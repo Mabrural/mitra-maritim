@@ -97,7 +97,7 @@ if ($_SESSION["level"] == "Staff IT") {
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Mitra Maritim, M </span></a>
+              <a href="operasion.php?page=dashboard" class="site_title"><i class="fa fa-anchor"></i> <span>Mitra Maritim, M </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -123,66 +123,64 @@ if ($_SESSION["level"] == "Staff IT") {
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php">Dashboard</a></li>
-                      <!-- <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li> -->
+                      <li><a href="operasion.php?page=dashboard">Dashboard</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-bar-chart"></i> Sales & Marketing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?page=voyageManagement">Voyage Management</a></li>
-                      <li><a href="index.php?page=salesPlan">Sales Plan</a></li>
-                      <li><a href="index.php?page=RAB">RAB</a></li>
-                      <li><a href="index.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="operasion.php?page=voyageManagement">Voyage Management</a></li>
+                      <li><a href="operasion.php?page=salesPlan">Sales Plan</a></li>
+                      <li><a href="operasion.php?page=RAB">RAB</a></li>
+                      <li><a href="operasion.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?page=voyageTracking">Voyage Tracking</a></li>
-                      <li><a href="index.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="index.php?page=stockBBM">Stock BBM Monitor</a></li>
-                      <li><a href="index.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
-                      <li><a href="index.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="operasion.php?page=voyageTracking">Voyage Tracking</a></li>
+                      <li><a href="operasion.php?page=vesselDatabase">Vessel Database</a></li>
+                      <li><a href="operasion.php?page=stockBBM">Stock BBM Monitor</a></li>
+                      <li><a href="operasion.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
+                      <li><a href="operasion.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-shopping-cart"></i> Purchasing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
-                      <li><a href="index.php?page=pengajuanPPU">Pengajuan PPU</a></li>
-                      <li><a href="index.php?page=dataBarang">Data Barang/Sparepart</a></li>
+                      <li><a href="operasion.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
+                      <li><a href="operasion.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="operasion.php?page=dataBarang">Data Barang/Sparepart</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="index.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
-                      <li><a href="index.php?page=dataBarang">Penjualan (Omset)</a></li>
-                      <li><a href="index.php?page=dataBarang">Laba & Rugi</a></li>
+                      <li><a href="operasion.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="operasion.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
+                      <li><a href="operasion.php?page=dataBarang">Penjualan (Omset)</a></li>
+                      <li><a href="operasion.php?page=dataBarang">Laba & Rugi</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?page=reqCuti">Database Karyawan</a></li>
-                      <li><a href="index.php?page=reqCuti">Database Crew</a></li>
-                      <li><a href="index.php?page=reqCuti">On Duty Karyawan</a></li>
-                      <li><a href="index.php?page=reqCuti">Slip Gaji</a></li>
-                      <li><a href="index.php?page=reqCuti">Form Cuti</a></li>
-                      <li><a href="index.php?page=historyCuti">History Cuti</a></li>
+                      <li><a href="operasion.php?page=reqCuti">Database Karyawan</a></li>
+                      <li><a href="operasion.php?page=reqCuti">Database Crew</a></li>
+                      <li><a href="operasion.php?page=reqCuti">On Duty Karyawan</a></li>
+                      <li><a href="operasion.php?page=reqCuti">Slip Gaji</a></li>
+                      <li><a href="operasion.php?page=reqCuti">Form Cuti</a></li>
+                      <li><a href="operasion.php?page=historyCuti">History Cuti</a></li>
                       <!-- <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?page=dataBarang">Inventaris & Asset Armada</a></li>
-                      <li><a href="index.php?page=dataBarang">Sales Plan</a></li>
-                      <li><a href="index.php?page=dataBarang">RAB</a></li>
-                      <li><a href="index.php?page=dataBarang">Pengajuan PPU</a></li>
+                      <li><a href="operasion.php?page=dataBarang">Inventaris & Asset Armada</a></li>
+                      <li><a href="operasion.php?page=dataBarang">Sales Plan</a></li>
+                      <li><a href="operasion.php?page=dataBarang">RAB</a></li>
+                      <li><a href="operasion.php?page=dataBarang">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
@@ -436,7 +434,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 break;
 
                             case 'dashboard':
-                                include "page/dashboard/dashboard.php";
+                                include "page/05dashboard/dashboard.php";
                                 break;
 
                             case 'dataInventaris':
@@ -466,6 +464,8 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'tagihan':
                                 include "page/tagihan/tagihan.php";
                                 break;
+
+
               
                             
 
@@ -573,7 +573,7 @@ if ($_SESSION["level"] == "Staff IT") {
                     }
 
                     else{
-                        include "dashboard.php";
+                        include "page/05dashboard/dashboard.php";
                     }
                 ?>
         </div>
@@ -588,7 +588,7 @@ if ($_SESSION["level"] == "Staff IT") {
         <!-- footer content -->
         <footer class="">
           <div class="pull-right">
-            PT Global Petro Pasific - All Right Reserved <a href="https://globalpetro.co.id">2024</a>
+            PT Mitra Maritim Mandiri - All Right Reserved <a href="https://mitramaritim.com">2024</a>
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -8,7 +8,7 @@ if (isset($_SESSION["login"])) {
   }elseif ($_SESSION["level"] === "Direktur Operasional") {
     header("Location: admin2.php");
   }elseif ($_SESSION["level"] === "Purchasing") {
-    header("Location: admin3.php");
+    header("Location: purchasing.php");
   }elseif ($_SESSION["level"] === "Direktur HRD") {
     header("Location: hrd.php");
   }elseif ($_SESSION["level"] === "Direktur Keuangan") {
@@ -16,7 +16,7 @@ if (isset($_SESSION["login"])) {
   }elseif ($_SESSION["level"] === "Direktur Utama") {
     header("Location: dirut.php");
   }elseif ($_SESSION["level"] === "Kepala Operasional") {
-    header("Location: admin-kops.php");
+    header("Location: sales.php");
   }else{
     header("Location: index.php");
   }
@@ -90,24 +90,6 @@ if (isset($_POST['login'])) {
             window.location.href = 'admin2.php'; //will redirect to your blog page (an ex: blog.html)
         }, 2000); //will call the function after 2 secs
         </script>";
-      }elseif ($row["level"] === "Purchasing") {
-        echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
-        echo '<script src="./sweetalert2.min.js"></script>';
-        echo "<script>
-        setTimeout(function () { 
-            swal.fire({
-                
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
-                //footer              :  '',
-                icon                : 'success',
-                timer               : 2000,
-                showConfirmButton   : true
-            });  
-        },10);   setTimeout(function () {
-            window.location.href = 'admin3.php'; //will redirect to your blog page (an ex: blog.html)
-        }, 2000); //will call the function after 2 secs
-        </script>";
       }elseif ($row["level"] === "Kepala Finance") {
         echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
         echo '<script src="./sweetalert2.min.js"></script>';
@@ -123,7 +105,25 @@ if (isset($_POST['login'])) {
                 showConfirmButton   : true
             });  
         },10);   setTimeout(function () {
-            window.location.href = 'k-finance.php'; //will redirect to your blog page (an ex: blog.html)
+            window.location.href = 'finance.php'; //will redirect to your blog page (an ex: blog.html)
+        }, 2000); //will call the function after 2 secs
+        </script>";
+      }elseif ($row["level"] === "Purchasing") {
+        echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+        echo '<script src="./sweetalert2.min.js"></script>';
+        echo "<script>
+        setTimeout(function () { 
+            swal.fire({
+                
+                title               : 'Berhasil',
+                text                :  'Login berhasil',
+                //footer              :  '',
+                icon                : 'success',
+                timer               : 2000,
+                showConfirmButton   : true
+            });  
+        },10);   setTimeout(function () {
+            window.location.href = 'purchasing.php'; //will redirect to your blog page (an ex: blog.html)
         }, 2000); //will call the function after 2 secs
         </script>";
       }elseif ($row["level"] === "Direktur HRD") {
@@ -213,7 +213,25 @@ if (isset($_POST['login'])) {
                 showConfirmButton   : true
             });  
         },10);   setTimeout(function () {
-            window.location.href = 'admin-kops.php'; //will redirect to your blog page (an ex: blog.html)
+            window.location.href = 'sales.php'; //will redirect to your blog page (an ex: blog.html)
+        }, 2000); //will call the function after 2 secs
+        </script>";
+      }elseif ($row["level"] === "Staff Operasional") {
+        echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+        echo '<script src="./sweetalert2.min.js"></script>';
+        echo "<script>
+        setTimeout(function () { 
+            swal.fire({
+                
+                title               : 'Berhasil',
+                text                :  'Login berhasil',
+                //footer              :  '',
+                icon                : 'success',
+                timer               : 2000,
+                showConfirmButton   : true
+            });  
+        },10);   setTimeout(function () {
+            window.location.href = 'operasion.php'; //will redirect to your blog page (an ex: blog.html)
         }, 2000); //will call the function after 2 secs
         </script>";
       }else{
@@ -235,12 +253,6 @@ if (isset($_POST['login'])) {
         }, 2000); //will call the function after 2 secs
         </script>";
       }
-      
-      // echo 
-      // "<script>
-      //     alert('Login berhasil!');
-      //     document.location.href = 'index.php';
-      // </script>";
       exit;
     }
         else{
