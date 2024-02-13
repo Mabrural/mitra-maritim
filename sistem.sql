@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2024 at 10:16 AM
+-- Generation Time: Feb 13, 2024 at 11:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -806,7 +806,7 @@ CREATE TABLE `sales_plan` (
 --
 
 INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `jenis_kargo`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`) VALUES
-(1, 'IRM0000001-000001', 'kargo', 1, 'Jakarta', 'jakarta', 10000000, '2024-02-13', NULL, 1, 11, 3, 2);
+(5, 'SPL-24021300001-61274', 'sdfsdf', 10000, 'jkt48', 'jkt48', 10000000, '2024-02-13', '0000-00-00', 1, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1341,7 +1341,7 @@ ALTER TABLE `req_cuti`
 -- AUTO_INCREMENT for table `sales_plan`
 --
 ALTER TABLE `sales_plan`
-  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `satuan`

@@ -23,46 +23,79 @@ function query($query){
 	return $rows;
 }
 
-// function tambahPengajuan($data) {
-// 	global $koneksi;
-// 	// $kode_pengajuan = htmlspecialchars($data["kode_pengajuan"]);
-// 	$kode_pengajuan = 1;
-// 	$nama_barang = htmlspecialchars($data["nama_barang"]);
-// 	$spek = htmlspecialchars($data["spek"]);
-// 	$deskripsi = htmlspecialchars($data["deskripsi"]);
-// 	$qty = htmlspecialchars($data["qty"]);
-// 	$tgl_pengajuan = htmlspecialchars($data["tgl_pengajuan"]);
-// 	$status = htmlspecialchars($data["status"]);
-// 	$id_user = mysqli_real_escape_string($koneksi, $_SESSION["id_user"]);
-// 	$new_kode_pengajuan = $kode_pengajuan+1;
-
-// 	$query = "INSERT INTO barang VALUES
-// 			('', '$new_kode_pengajuan', '$nama_barang', '$spek', '$deskripsi', '$qty', '$tgl_pengajuan', '$status','$id_user')";
-// 	mysqli_query($koneksi, $query);
-
-// 	return mysqli_affected_rows($koneksi);
-// }
-
-
-// function generate_kode_pengajuan() {
-//   global $koneksi;
+function generate_kode_sales() {
+	global $koneksi;
   
-//   // Ambil nilai auto increment terakhir
-//   $query = "SELECT MAX(CAST(SUBSTRING(kode_brg, 4) AS SIGNED)) AS kode_terakhir FROM req_barang";
-//   $result = mysqli_query($koneksi, $query);
-//   $row = mysqli_fetch_assoc($result);
-//   $kode_terakhir = $row['kode_terakhir'];
+	// Ambil nilai auto increment terakhir
+	$query = "SELECT MAX(CAST(SUBSTRING(kode_sales, 13, 5) AS SIGNED)) AS kode_terakhir FROM sales_plan";
+	$result = mysqli_query($koneksi, $query);
+	$row = mysqli_fetch_assoc($result);
+	$kode_terakhir = $row['kode_terakhir'];
+  
+	// Generate kode pengajuan baru
+	$kode_baru = "SPL-" . date('ymd');
+	if ($kode_terakhir !== null) {
+	  $kode_baru .= sprintf("%05d", $kode_terakhir + 1);
+	} else {
+	  $kode_baru .= "00001";
+	}
+  
+	// Generate angka random
+	$angka_random = random_int(10000, 99999);
+  
+	// Cek apakah angka random sudah pernah digunakan
+	$query = "SELECT kode_sales FROM sales_plan WHERE kode_sales LIKE 'SPL-%' AND RIGHT(kode_sales, 5) = '$angka_random'";
+	$result = mysqli_query($koneksi, $query);
+	while (mysqli_num_rows($result) > 0) {
+	  // Jika sudah pernah digunakan, generate angka random lagi
+	  $angka_random = random_int(10000, 99999);
+	  $query = "SELECT kode_sales FROM sales_plan WHERE kode_sales LIKE 'SPL-%' AND RIGHT(kode_sales, 5) = '$angka_random'";
+	  $result = mysqli_query($koneksi, $query);
+	}
+  
+	// Tambahkan angka random ke kode pengajuan
+	$kode_baru .= "-" . $angka_random;
+  
+	return $kode_baru;
+  }
 
-//   // Generate kode barang baru
-//   $kode_baru = "REQ". date('Ymd');
-//   if ($kode_terakhir !== null) {
-//     $kode_baru .= sprintf("%05d", $kode_terakhir + 1);
-//   } else {
-//     $kode_baru .= "00001";
-//   }
+  function tambahSales($data) {
 
-//   return $kode_baru;
-// }
+	global $koneksi;
+	$kode_sales = generate_kode_sales();
+	$jenis_kargo = mysqli_real_escape_string($koneksi, $data["jenis_kargo"]);
+	$qty_sales = mysqli_real_escape_string($koneksi, $data["qty_sales"]);
+	$loading_port = mysqli_real_escape_string($koneksi, $data["loading_port"]);
+	$discharge_port = mysqli_real_escape_string($koneksi, $data["discharge_port"]);
+	$sales_nominal = mysqli_real_escape_string($koneksi, $data["sales_nominal"]);
+	$start = mysqli_real_escape_string($koneksi, $data["start"]);
+	$finished = mysqli_real_escape_string($koneksi, $data["finished"]);
+	$id_cust = mysqli_real_escape_string($koneksi, $data["id_cust"]);
+	$id_satuan = mysqli_real_escape_string($koneksi, $data["id_satuan"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	$id_dept = mysqli_real_escape_string($koneksi, $data["id_dept"]);
+
+	$query = "INSERT INTO sales_plan VALUES
+			('', '$kode_sales', '$jenis_kargo', '$qty_sales', '$loading_port', '$discharge_port', '$sales_nominal', '$start', '$finished', '$id_cust', '$id_satuan', '$id_vessel', '$id_dept')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function hapusSales($id_sales) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM sales_plan WHERE id_sales='$id_sales'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 
 function generate_kode_pengajuan() {
   global $koneksi;

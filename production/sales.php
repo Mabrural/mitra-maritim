@@ -411,6 +411,11 @@ if ($_SESSION["level"] == "Staff IT") {
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
                         switch ($page) {
+
+                            case 'salesPlan':
+                                include "page/01sales_dan_marketing/sales_plan/sales_plan.php";
+                                break;
+
                             case 'pengajuan':
                                 include "page/pengajuan/pengajuan.php";
                                 break;
@@ -479,6 +484,14 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                            case "tambahSales":
+                                include "page/01sales_dan_marketing/sales_plan/tambah.php";
+                                break;
+
+                            case "hapusSales":
+                                include "page/01sales_dan_marketing/sales_plan/hapus.php";
+                                break;
                             
 
                             case 'ubahPengajuan':
