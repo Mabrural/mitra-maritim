@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2024 at 11:42 AM
+-- Generation Time: Feb 13, 2024 at 10:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -182,26 +182,6 @@ INSERT INTO `barang` (`kode_brg`, `nama_barang`, `gambar_barang`, `spek`, `deskr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang_masuk`
---
-
-CREATE TABLE `barang_masuk` (
-  `id_transaksi` varchar(50) NOT NULL,
-  `tgl_masuk` date NOT NULL,
-  `qty_masuk` int(5) NOT NULL,
-  `harga_brg` decimal(10,0) NOT NULL,
-  `waranty` varchar(50) DEFAULT NULL,
-  `renewal` date DEFAULT NULL,
-  `keterangan` text DEFAULT NULL,
-  `id_vendor` int(10) NOT NULL,
-  `id_user` int(10) NOT NULL,
-  `id_satuan` int(10) NOT NULL,
-  `id_req_brg` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `cart_of_account`
 --
 
@@ -226,7 +206,7 @@ INSERT INTO `cart_of_account` (`kode_coa`, `name_account`, `account_type`) VALUE
 (1122, ' Ciwi Real Estate, PT ', 'Piutang Usaha'),
 (1123, ' Ciwi Sempurna Beton, PT ', 'Piutang Usaha'),
 (1124, ' Eka Prima Nusa, PT ', 'Piutang Usaha'),
-(1125, ' Ghatala Multi Karya, PT ', 'Piutang Usaha'),
+(1125, ' Piutang Usaha - Ghatala Multi Karya, PT ', 'Piutang Usaha'),
 (1126, ' LA Engineering, PT ', 'Piutang Usaha'),
 (1127, ' Seascape Surveys Indonesia, PT  ', 'Piutang Usaha'),
 (1128, ' United Shipping Indonesia, PT  ', 'Piutang Usaha'),
@@ -355,7 +335,7 @@ INSERT INTO `cart_of_account` (`kode_coa`, `name_account`, `account_type`) VALUE
 (7500, ' PPH 15 FINAL ', 'Beban Lainnya'),
 (7510, ' Biaya Pajak - PPh Final Pasal 15 ', 'Beban Lainnya'),
 (1111001, ' Kas idr ', ' Kas  '),
-(1112001, ' Bank Mandiri - Batam 1090500006663 ', ' Bank '),
+(1112001, ' Bank Mandiri - Batam 1090500006663 ', 'Bank'),
 (1112002, ' Bank Mandiri - Batam 1090040001331 ', 'Bank'),
 (1160001, ' Pajak Dibayar Dimuka - PPn ', 'Pajak Dibayar Dimuka'),
 (1160002, ' Pajak Dibayar Dimuka - PPh 22 ', 'Pajak Dibayar Dimuka'),
@@ -386,6 +366,44 @@ INSERT INTO `cart_of_account` (`kode_coa`, `name_account`, `account_type`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `id_cust` int(10) NOT NULL,
+  `nama_customer` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id_cust`, `nama_customer`) VALUES
+(1, 'PT lain');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dept`
+--
+
+CREATE TABLE `dept` (
+  `id_dept` int(10) NOT NULL,
+  `nama_dept` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dept`
+--
+
+INSERT INTO `dept` (`id_dept`, `nama_dept`) VALUES
+(1, 'TC'),
+(2, 'FC'),
+(3, 'Shipping Agency');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ijazah`
 --
 
@@ -405,29 +423,6 @@ CREATE TABLE `ijazah` (
 
 INSERT INTO `ijazah` (`id_ijazah`, `no_ijazah`, `tgl_penitipan`, `tgl_kembali`, `status_ijazah`, `scan_ijazah`, `id_emp`) VALUES
 (60, 'M-SMK/1100023', '2024-01-02', '0000-00-00', 'Sedang dititipkan', '65aa48284ecd6.pdf', 30);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `invoice`
---
-
-CREATE TABLE `invoice` (
-  `id_invoice` int(10) NOT NULL,
-  `no_invoice` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `invoice`
---
-
-INSERT INTO `invoice` (`id_invoice`, `no_invoice`) VALUES
-(23, 'NO. 002/PO/MMM/I/2024'),
-(24, 'NO. 003/PO/MMM/I/2024'),
-(26, 'NO. 004/PO/MMM/I/2024'),
-(31, 'NO. 005/PO/MMM/I/2024'),
-(32, 'NO. 006/PO/MMM/I/2024'),
-(33, 'NO. 007/PO/MMM/I/2024');
 
 -- --------------------------------------------------------
 
@@ -456,7 +451,14 @@ INSERT INTO `jurnal` (`id_jurnal`, `tgl_jurnal`, `ket_jurnal`, `debit`, `kredit`
 (24, '2024-02-07', '-', 1000000, 0, '001/GPP', 1120),
 (25, '2024-02-07', 'beli monitor lantai 2', 0, 850000, '001/GPP', 1000),
 (26, '2024-02-07', 'wifi', 495000, 0, '001/GPP', 6913),
-(27, '2024-02-07', 'listrik kantor', 500000, 0, '001/GPP', 6310);
+(27, '2024-02-07', 'listrik kantor', 500000, 0, '001/GPP', 6310),
+(28, '2024-02-12', '-', 0, 1500000, '003/GPP/2024', 1110),
+(29, '2024-02-12', '-', 1500000, 0, '001/GPP', 1110),
+(30, '2024-02-12', '', 2500000, 0, '003/GPP/2024', 1110),
+(31, '2024-02-12', '', 1400000, 0, '001/GPP', 1000),
+(32, '2024-02-12', 'hutang lancar', 2000000, 0, '001/GPP', 2100),
+(33, '2024-02-12', 'hutang lancar', 0, 1500000, '003/GPP/2024', 2100),
+(34, '2024-02-12', '---', 0, 1500000, '003/GPP/2024', 2100);
 
 -- --------------------------------------------------------
 
@@ -657,6 +659,24 @@ INSERT INTO `no_jurnal` (`no_jurnal`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `no_po`
+--
+
+CREATE TABLE `no_po` (
+  `id_no_po` int(10) NOT NULL,
+  `no_po` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `no_po`
+--
+
+INSERT INTO `no_po` (`id_no_po`, `no_po`) VALUES
+(1, 'NO. 007/PO/MMM/I/2024');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `po_barang`
 --
 
@@ -672,22 +692,8 @@ CREATE TABLE `po_barang` (
   `acc5` varchar(40) DEFAULT NULL,
   `id_vendor` int(10) NOT NULL,
   `id_user` int(10) NOT NULL,
-  `id_invoice` int(10) NOT NULL
+  `id_no_po` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `po_barang`
---
-
-INSERT INTO `po_barang` (`id_po`, `id_req_brg`, `tgl_po`, `qty_po`, `harga_po`, `ket_po`, `acc3`, `acc4`, `acc5`, `id_vendor`, `id_user`, `id_invoice`) VALUES
-(48, 70, '2024-02-02', 1, 5000000, '4 cilinder', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 2, 27, 23),
-(49, 71, '2024-02-02', 1, 15000, '-', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 1, 27, 24),
-(50, 72, '2024-02-02', 1, 150000, '-', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 1, 27, 24),
-(51, 74, '2024-02-02', 1, 300000, 'untuk bersih bersih kapal', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 1, 27, 24),
-(52, 73, '2024-02-02', 1, 120000, '-', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 2, 27, 26),
-(53, 75, '2024-02-02', 1, 500000, '1', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 3, 27, 31),
-(83, 76, '2024-02-05', 1, 300000, 'aki kapal', 'James Taju', 'Regina', 'Raden Sulaiman Sanjeev', 1, 27, 32),
-(84, 77, '2024-02-06', 1, 1500000, '-', '', '', '', 1, 27, 33);
 
 -- --------------------------------------------------------
 
@@ -772,6 +778,35 @@ INSERT INTO `req_cuti` (`id_req_cuti`, `tgl_mulai`, `tgl_akhir`, `jml_hari`, `ti
 (22, '2024-01-25', '2024-01-25', 1, 'Full Day', 'perpanjang STNK', 'Sudah diapprove', '2024-01-23 14:39:37', '2024-01-23 14:54:18', 30, 4),
 (23, '2024-01-25', '2024-01-26', 2, 'Full Day', 'Pulang Kampung', 'Sudah diapprove', '2024-01-23 14:56:52', '2024-01-23 15:03:19', 30, 4),
 (30, '2024-01-24', '2024-01-24', 1, 'Full Day', 'Ngurus ATM', 'Sudah diapprove', '2024-01-23 17:47:40', '2024-01-23 17:48:41', 19, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_plan`
+--
+
+CREATE TABLE `sales_plan` (
+  `id_sales` int(10) NOT NULL,
+  `kode_sales` varchar(50) NOT NULL,
+  `jenis_kargo` varchar(50) DEFAULT NULL,
+  `qty_sales` int(5) DEFAULT NULL,
+  `loading_port` varchar(50) DEFAULT NULL,
+  `discharge_port` varchar(50) DEFAULT NULL,
+  `sales_nominal` int(10) DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `finished` date DEFAULT NULL,
+  `id_cust` int(10) NOT NULL,
+  `id_satuan` int(10) NOT NULL,
+  `id_vessel` int(10) NOT NULL,
+  `id_dept` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sales_plan`
+--
+
+INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `jenis_kargo`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`) VALUES
+(1, 'IRM0000001-000001', 'kargo', 1, 'Jakarta', 'jakarta', 10000000, '2024-02-13', NULL, 1, 11, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -947,7 +982,8 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `id_emp`) VALUES
 (30, 'niken', '$2y$10$97K4MbdoDy98yZbu5BbtIOkSn4iT.PuudgLeGDIGb/USt79lGL6K2', 'Staff Finance', 17),
 (31, 'mabrur', '$2y$10$zxwFH.e4ooAM3CgI8Wzi8Ot0AIZhzcnKMHNPSIprWt.gbQiArYqki', 'Staff IT', 30),
 (33, 'dirkeu', '$2y$10$ieRoa0fn5uVaLatoFYBeUuwI0H1l./YWLxnB.1WNvFbTZyPApFUl6', 'Direktur Keuangan', 9),
-(34, 'gahral', '$2y$10$htRb4rT9Pd08BIcc9/JnpeMPtqmVxkXU2Agz4JkQX0xFMj29ZBCtG', 'Kepala Operasional', 13);
+(34, 'gahral', '$2y$10$htRb4rT9Pd08BIcc9/JnpeMPtqmVxkXU2Agz4JkQX0xFMj29ZBCtG', 'Kepala Operasional', 13),
+(35, 'rika', '$2y$10$gC0lYt4CihldMHZrbkUiE.JNb4T1i4LSha06Re7glcgj5pWxE/02q', 'Staff Operasional', 15);
 
 -- --------------------------------------------------------
 
@@ -969,6 +1005,27 @@ INSERT INTO `vendor` (`id_vendor`, `nama_vendor`, `no_telp_vendor`) VALUES
 (1, 'PT Karimun Marine Suplarindo', NULL),
 (2, 'PT Evercode Internasional', NULL),
 (3, 'PT Securindo Jaya Pratama', '077812431570');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vessel`
+--
+
+CREATE TABLE `vessel` (
+  `id_vessel` int(10) NOT NULL,
+  `nama_vessel` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vessel`
+--
+
+INSERT INTO `vessel` (`id_vessel`, `nama_vessel`) VALUES
+(1, 'TB Tiga Permata'),
+(2, 'OB Selaras 01'),
+(3, 'OB Garuda'),
+(4, 'OB Mitra Utama 03');
 
 --
 -- Indexes for dumped tables
@@ -997,22 +1054,22 @@ ALTER TABLE `barang`
   ADD PRIMARY KEY (`kode_brg`);
 
 --
--- Indexes for table `barang_masuk`
---
-ALTER TABLE `barang_masuk`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD UNIQUE KEY `id_transaksi` (`id_transaksi`),
-  ADD UNIQUE KEY `id_transaksi_2` (`id_transaksi`),
-  ADD KEY `id_vendor` (`id_vendor`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_satuan` (`id_satuan`),
-  ADD KEY `id_req_brg` (`id_req_brg`);
-
---
 -- Indexes for table `cart_of_account`
 --
 ALTER TABLE `cart_of_account`
   ADD PRIMARY KEY (`kode_coa`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id_cust`);
+
+--
+-- Indexes for table `dept`
+--
+ALTER TABLE `dept`
+  ADD PRIMARY KEY (`id_dept`);
 
 --
 -- Indexes for table `ijazah`
@@ -1020,12 +1077,6 @@ ALTER TABLE `cart_of_account`
 ALTER TABLE `ijazah`
   ADD PRIMARY KEY (`id_ijazah`),
   ADD KEY `id_emp` (`id_emp`);
-
---
--- Indexes for table `invoice`
---
-ALTER TABLE `invoice`
-  ADD PRIMARY KEY (`id_invoice`);
 
 --
 -- Indexes for table `jurnal`
@@ -1087,6 +1138,12 @@ ALTER TABLE `no_jurnal`
   ADD PRIMARY KEY (`no_jurnal`);
 
 --
+-- Indexes for table `no_po`
+--
+ALTER TABLE `no_po`
+  ADD PRIMARY KEY (`id_no_po`);
+
+--
 -- Indexes for table `po_barang`
 --
 ALTER TABLE `po_barang`
@@ -1094,7 +1151,7 @@ ALTER TABLE `po_barang`
   ADD KEY `id_req_brg` (`id_req_brg`),
   ADD KEY `id_vendor` (`id_vendor`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_invoice` (`id_invoice`);
+  ADD KEY `id_no_po` (`id_no_po`);
 
 --
 -- Indexes for table `qrcode`
@@ -1121,6 +1178,16 @@ ALTER TABLE `req_cuti`
   ADD PRIMARY KEY (`id_req_cuti`),
   ADD KEY `id_emp` (`id_emp`),
   ADD KEY `id_kategori_cuti` (`id_kategori_cuti`);
+
+--
+-- Indexes for table `sales_plan`
+--
+ALTER TABLE `sales_plan`
+  ADD PRIMARY KEY (`id_sales`),
+  ADD KEY `id_cust` (`id_cust`),
+  ADD KEY `id_satuan` (`id_satuan`),
+  ADD KEY `id_vessel` (`id_vessel`),
+  ADD KEY `id_dept` (`id_dept`);
 
 --
 -- Indexes for table `satuan`
@@ -1153,6 +1220,12 @@ ALTER TABLE `vendor`
   ADD PRIMARY KEY (`id_vendor`);
 
 --
+-- Indexes for table `vessel`
+--
+ALTER TABLE `vessel`
+  ADD PRIMARY KEY (`id_vessel`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1169,22 +1242,28 @@ ALTER TABLE `akses_pintu`
   MODIFY `id_akses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id_cust` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `dept`
+--
+ALTER TABLE `dept`
+  MODIFY `id_dept` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `ijazah`
 --
 ALTER TABLE `ijazah`
   MODIFY `id_ijazah` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT for table `invoice`
---
-ALTER TABLE `invoice`
-  MODIFY `id_invoice` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id_jurnal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_jurnal` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `karyawan`
@@ -1229,6 +1308,12 @@ ALTER TABLE `manage_cuti`
   MODIFY `id_manage_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
+-- AUTO_INCREMENT for table `no_po`
+--
+ALTER TABLE `no_po`
+  MODIFY `id_no_po` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `po_barang`
 --
 ALTER TABLE `po_barang`
@@ -1253,6 +1338,12 @@ ALTER TABLE `req_cuti`
   MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
+-- AUTO_INCREMENT for table `sales_plan`
+--
+ALTER TABLE `sales_plan`
+  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `satuan`
 --
 ALTER TABLE `satuan`
@@ -1268,13 +1359,19 @@ ALTER TABLE `storage_barang`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
   MODIFY `id_vendor` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `vessel`
+--
+ALTER TABLE `vessel`
+  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -1293,15 +1390,6 @@ ALTER TABLE `absen`
 ALTER TABLE `akses_pintu`
   ADD CONSTRAINT `akses_pintu_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`),
   ADD CONSTRAINT `akses_pintu_ibfk_2` FOREIGN KEY (`id_lantai`) REFERENCES `lantai` (`id_lantai`);
-
---
--- Constraints for table `barang_masuk`
---
-ALTER TABLE `barang_masuk`
-  ADD CONSTRAINT `barang_masuk_ibfk_1` FOREIGN KEY (`id_vendor`) REFERENCES `vendor` (`id_vendor`),
-  ADD CONSTRAINT `barang_masuk_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `barang_masuk_ibfk_3` FOREIGN KEY (`id_satuan`) REFERENCES `satuan` (`id_satuan`),
-  ADD CONSTRAINT `barang_masuk_ibfk_4` FOREIGN KEY (`id_req_brg`) REFERENCES `req_barang` (`id_req_brg`);
 
 --
 -- Constraints for table `ijazah`
@@ -1336,7 +1424,7 @@ ALTER TABLE `po_barang`
   ADD CONSTRAINT `po_barang_ibfk_1` FOREIGN KEY (`id_req_brg`) REFERENCES `req_barang` (`id_req_brg`),
   ADD CONSTRAINT `po_barang_ibfk_2` FOREIGN KEY (`id_vendor`) REFERENCES `vendor` (`id_vendor`),
   ADD CONSTRAINT `po_barang_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `po_barang_ibfk_4` FOREIGN KEY (`id_invoice`) REFERENCES `invoice` (`id_invoice`);
+  ADD CONSTRAINT `po_barang_ibfk_4` FOREIGN KEY (`id_no_po`) REFERENCES `no_po` (`id_no_po`);
 
 --
 -- Constraints for table `qrcode`
@@ -1360,6 +1448,15 @@ ALTER TABLE `req_barang`
 ALTER TABLE `req_cuti`
   ADD CONSTRAINT `req_cuti_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`),
   ADD CONSTRAINT `req_cuti_ibfk_2` FOREIGN KEY (`id_kategori_cuti`) REFERENCES `kategori_cuti` (`id_kategori_cuti`);
+
+--
+-- Constraints for table `sales_plan`
+--
+ALTER TABLE `sales_plan`
+  ADD CONSTRAINT `sales_plan_ibfk_1` FOREIGN KEY (`id_cust`) REFERENCES `customer` (`id_cust`),
+  ADD CONSTRAINT `sales_plan_ibfk_2` FOREIGN KEY (`id_satuan`) REFERENCES `satuan` (`id_satuan`),
+  ADD CONSTRAINT `sales_plan_ibfk_3` FOREIGN KEY (`id_vessel`) REFERENCES `vessel` (`id_vessel`),
+  ADD CONSTRAINT `sales_plan_ibfk_4` FOREIGN KEY (`id_dept`) REFERENCES `dept` (`id_dept`);
 
 --
 -- Constraints for table `storage_barang`
