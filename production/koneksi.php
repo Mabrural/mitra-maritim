@@ -84,6 +84,41 @@ function generate_kode_sales() {
 
 }
 
+function ubahSales($data) {
+	global $koneksi;
+	$id_sales = $data["id_sales"];
+	$jenis_kargo = mysqli_real_escape_string($koneksi, $data["jenis_kargo"]);
+	$qty_sales = mysqli_real_escape_string($koneksi, $data["qty_sales"]);
+	$loading_port = mysqli_real_escape_string($koneksi, $data["loading_port"]);
+	$discharge_port = mysqli_real_escape_string($koneksi, $data["discharge_port"]);
+	$sales_nominal = mysqli_real_escape_string($koneksi, $data["sales_nominal"]);
+	$start = mysqli_real_escape_string($koneksi, $data["start"]);
+	$finished = mysqli_real_escape_string($koneksi, $data["finished"]);
+	$id_cust = mysqli_real_escape_string($koneksi, $data["id_cust"]);
+	$id_satuan = mysqli_real_escape_string($koneksi, $data["id_satuan"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	$id_dept = mysqli_real_escape_string($koneksi, $data["id_dept"]);
+
+
+	$query = "UPDATE sales_plan SET
+				jenis_kargo = '$jenis_kargo',
+				qty_sales = '$qty_sales',
+				loading_port = '$loading_port',
+				discharge_port = '$discharge_port',
+				sales_nominal = '$sales_nominal',
+				start = '$start',
+				finished = '$finished',
+				id_cust = '$id_cust',
+				id_satuan = '$id_satuan',
+				id_vessel = '$id_vessel',
+				id_dept = '$id_dept'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
 function hapusSales($id_sales) {
 	global $koneksi;
 	try{

@@ -331,7 +331,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       </a> -->
                     <a class="dropdown-item"  href="?page=profile">Profile <i class="fa fa-user pull-right"></i></a>
                     <a class="dropdown-item"  href="?page=changePassword">Change Password<i class="fa fa-key pull-right"></i></a>
-                    <a class="dropdown-item"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item" onclick="return confirm('Anda yakin ingin keluar?')"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
@@ -416,6 +416,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/01sales_dan_marketing/sales_plan/sales_plan.php";
                                 break;
 
+                            case 'masterVessel':
+                              include "page/01sales_dan_marketing/master_vessel/master_vessel.php";
+                              break;
+
                             case 'pengajuan':
                                 include "page/pengajuan/pengajuan.php";
                                 break;
@@ -491,6 +495,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "hapusSales":
                                 include "page/01sales_dan_marketing/sales_plan/hapus.php";
+                                break;
+
+                            case "ubahSales":
+                                include "page/01sales_dan_marketing/sales_plan/ubah.php";
                                 break;
                             
 
