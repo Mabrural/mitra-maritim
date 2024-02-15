@@ -7,11 +7,11 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Vessel<small></small></h2>
-        <a href="?form=tambahVessel" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+        <h2>Master Customer<small></small></h2>
+        <a href="?form=tambahCustomer" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
         <a href="?page=salesPlan" class="btn btn-dark btn-sm"><i class="fa fa-ship"></i> Sales Plan</a>
-        <a href="?page=masterVessel" class="btn btn-warning btn-sm btn disabled"><i class="fa fa-ship"></i> Master Vessel</a>
-        <a href="?page=masterCustomer" class="btn btn-success btn-sm"><i class="fa fa-user"></i> Master Customer</a>
+        <a href="?page=masterVessel" class="btn btn-warning btn-sm"><i class="fa fa-ship"></i> Master Vessel</a>
+        <a href="?page=masterCustomer" class="btn btn-success btn-sm  btn disabled"><i class="fa fa-user"></i> Master Customer</a>
        
         <div class="clearfix"></div>
       </div>
@@ -28,7 +28,7 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nama Vessel </th>
+                <th class="column-title">Nama Customer </th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -42,7 +42,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM vessel";
+              		$query = "SELECT * FROM customer";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -50,9 +50,9 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['nama_vessel'];?></td>
+                <td class=" "><?= $data['nama_customer'];?></td>
             
-                <td class=" last"><a href="?form=ubahVessel&id_vessel=<?= $data["id_vessel"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusVessel&id_vessel=<?= $data["id_vessel"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahCustomer&id_cust=<?= $data["id_cust"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusCustomer&id_cust=<?= $data["id_cust"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

@@ -1,10 +1,6 @@
 <?php
 
-
-$id_vessel = $_GET['id_vessel'];
-
-$vessel = query("SELECT * FROM vessel WHERE id_vessel=$id_vessel")[0];
-
+$customer = query("SELECT * FROM customer");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -12,7 +8,7 @@ if (isset($_POST["submit"])) {
 
 
 	// cek apakah data berhasil ditambahkan atau tidak
-	if(ubahVessel($_POST) > 0 ) {
+	if(tambahCustomer($_POST) > 0 ) {
 		echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 		echo '<script src="./sweetalert2.min.js"></script>';
 		echo "<script>
@@ -20,14 +16,14 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'Data berhasil diubah',
+				text                :  'Data berhasil ditambahkan',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=masterVessel'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=masterCustomer'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>"; 
 		// echo "
@@ -44,14 +40,14 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'Data gagal diubah',
+				text                :  'Data gagal ditambahkan',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=masterVessel'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=masterCustomer'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -75,7 +71,7 @@ if (isset($_POST["submit"])) {
 				<div class="col-md-12 col-sm-12 ">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Ubah Data Vessel <small></small></h2>
+							<h2>Form Input New Customer <small></small></h2>
 							<!-- <ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 								</li>
@@ -96,12 +92,12 @@ if (isset($_POST["submit"])) {
 						<div class="x_content">
 							<br />
 							<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
-                                <input type="hidden" name="id_vessel" value="<?= $id_vessel?>">
+							
                                 <div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_vessel">Nama Vessel <span class="required">*</span>
+									<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_customer">Nama Customer <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="nama_vessel" id="nama_vessel" required="required" class="form-control" value="<?= $vessel['nama_vessel']?>">
+										<input type="text" name="nama_customer" id="nama_customer" required="required" class="form-control" placeholder="Ketikkan Nama Customer">
 									</div>
 								</div>
 
@@ -114,7 +110,7 @@ if (isset($_POST["submit"])) {
 									<div class="col-md-6 col-sm-6 offset-md-3">
 										<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" class="btn btn-success" name="submit">Ubah</button>
+										<button type="submit" class="btn btn-success" name="submit">Submit</button>
 									</div>
 								</div>
 

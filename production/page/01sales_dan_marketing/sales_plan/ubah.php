@@ -201,7 +201,7 @@ if (isset($_POST["submit"])) {
 									<div class="col-md-6 col-sm-6 offset-md-3">
 										<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" class="btn btn-success" name="submit">Submit</button>
+										<button type="submit" class="btn btn-success" name="submit">Ubah</button>
 									</div>
 								</div>
 

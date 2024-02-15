@@ -172,6 +172,47 @@ function hapusVessel($id_vessel) {
 
 }
 
+function tambahCustomer($data) {
+
+	global $koneksi;
+	$nama_customer = mysqli_real_escape_string($koneksi, $data["nama_customer"]);
+
+
+	$query = "INSERT INTO customer VALUES
+			('', '$nama_customer')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahCustomer($data) {
+	global $koneksi;
+	$id_cust = $data["id_cust"];
+	$nama_customer = mysqli_real_escape_string($koneksi, $data["nama_customer"]);
+
+	$query = "UPDATE customer SET
+				nama_customer = '$nama_customer'
+			  WHERE id_cust = $id_cust
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusCustomer($id_cust) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM customer WHERE id_cust='$id_cust'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function generate_kode_pengajuan() {
   global $koneksi;
 
