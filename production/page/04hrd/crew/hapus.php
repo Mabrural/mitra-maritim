@@ -1,7 +1,7 @@
 <?php 
 
-$id_cust = $_GET["id_cust"];
-if($id_cust === null) {
+$id_crew = $_GET["id_crew"];
+if($id_crew === null) {
     echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 	echo '<script src="./sweetalert2.min.js"></script>';
 	echo "<script>
@@ -16,12 +16,12 @@ if($id_cust === null) {
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=masterCustomer'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=crew'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
  }
 
-if( $id_cust!==null && hapusCustomer($id_cust) > 0 ){
+if( $id_crew!==null && hapusCrew($id_crew) > 0 ){
 	echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 	echo '<script src="./sweetalert2.min.js"></script>';
 	echo "<script>
@@ -36,7 +36,7 @@ if( $id_cust!==null && hapusCustomer($id_cust) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=masterCustomer'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=crew'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
 
@@ -48,14 +48,14 @@ if( $id_cust!==null && hapusCustomer($id_cust) > 0 ){
 			swal.fire({
 				
 				title               : 'Peringatan!',
-				text                :  'Data Sales Plan Sudah Ada, Data Customer Tidak Boleh Dihapus',
+				text                :  'Data Kontrak Crew Sudah Ada, Crew Tidak Boleh Dihapus',
 				//footer              :  '',
 				icon                : 'warning',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=masterCustomer'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=crew'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 }

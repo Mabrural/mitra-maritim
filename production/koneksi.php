@@ -254,6 +254,74 @@ function hapusDept($id_dept) {
 
 }
 
+function tambahCrew($data) {
+
+	global $koneksi;
+	$nama_crew = mysqli_real_escape_string($koneksi, $data["nama_crew"]);
+	$nik = mysqli_real_escape_string($koneksi, $data["nik"]);
+	$npwp = mysqli_real_escape_string($koneksi, $data["npwp"]);
+	$tmp_lahir = mysqli_real_escape_string($koneksi, $data["tmp_lahir"]);
+	$tgl_lahircrew = mysqli_real_escape_string($koneksi, $data["tgl_lahircrew"]);
+	$jk_crew = mysqli_real_escape_string($koneksi, $data["jk_crew"]);
+	$no_rek = mysqli_real_escape_string($koneksi, $data["no_rek"]);
+	$id_posisi = mysqli_real_escape_string($koneksi, $data["id_posisi"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	$id_bank = mysqli_real_escape_string($koneksi, $data["id_bank"]);
+
+	$query = "INSERT INTO crew VALUES
+			('', '$nama_crew', '$nik', '$npwp', '$tmp_lahir', '$tgl_lahircrew', '$jk_crew', '$no_rek', '$id_posisi', '$id_vessel', '$id_bank')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahCrew($data) {
+	global $koneksi;
+	$id_crew = $data["id_crew"];
+	$nama_crew = mysqli_real_escape_string($koneksi, $data["nama_crew"]);
+	$nik = mysqli_real_escape_string($koneksi, $data["nik"]);
+	$npwp = mysqli_real_escape_string($koneksi, $data["npwp"]);
+	$tmp_lahir = mysqli_real_escape_string($koneksi, $data["tmp_lahir"]);
+	$tgl_lahircrew = mysqli_real_escape_string($koneksi, $data["tgl_lahircrew"]);
+	$jk_crew = mysqli_real_escape_string($koneksi, $data["jk_crew"]);
+	$no_rek = mysqli_real_escape_string($koneksi, $data["no_rek"]);
+	$id_posisi = mysqli_real_escape_string($koneksi, $data["id_posisi"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	$id_bank = mysqli_real_escape_string($koneksi, $data["id_bank"]);
+
+
+	$query = "UPDATE crew SET
+				nama_crew = '$nama_crew',
+				nik = '$nik',
+				npwp = '$npwp',
+				tmp_lahir = '$tmp_lahir',
+				tgl_lahircrew = '$tgl_lahircrew',
+				jk_crew = '$jk_crew',
+				no_rek = '$no_rek',
+				id_posisi = '$id_posisi',
+				id_vessel = '$id_vessel',
+				id_bank = '$id_bank'
+			  WHERE id_crew = $id_crew
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusCrew($id_crew) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM crew WHERE id_crew='$id_crew'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function generate_kode_pengajuan() {
   global $koneksi;
 

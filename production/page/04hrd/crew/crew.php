@@ -2,18 +2,15 @@
 
 $id_user = $_SESSION["id_user"];
 
-// $pengajuan = query("SELECT * FROM barang WHERE barang.id_barang=$id_user");
 
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Vessel<small></small></h2>
-        <a href="?form=tambahVessel" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
-        <a href="?page=salesPlan" class="btn btn-dark btn-sm"><i class="fa fa-bar-chart"></i> Sales Plan</a>
-        <a href="?page=masterVessel" class="btn btn-warning btn-sm btn disabled"><i class="fa fa-ship"></i> Master Vessel</a>
-        <a href="?page=masterCustomer" class="btn btn-success btn-sm"><i class="fa fa-user"></i> Master Customer</a>
-        <a href="?page=masterDept" class="btn btn-info btn-sm"><i class="fa fa-building"></i> Master Dept</a>
-       
+        <h2>Data Crew Armada<small></small></h2>
+        <a href="?form=tambahCrew" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Crew</a>
+        <a href="?page=crew" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-users"></i> Crew Armada</a>
+        <a href="?page=masterVessel" class="btn btn-warning btn-sm"><i class="fa fa-bank"></i> Master Bank</a>
+        <a href="?page=kontrakCrew" class="btn btn-success btn-sm  "><i class="fa fa-file-text-o"></i> Kontrak Crew</a>
         <div class="clearfix"></div>
       </div>
 
@@ -29,7 +26,14 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nama Vessel </th>
+                <th class="column-title">Nama Crew </th>
+                <th class="column-title">NIK </th>
+                <th class="column-title">NPWP </th>
+                <th class="column-title">Tempat, Tanggal Lahir </th>
+                <th class="column-title">Jenis Kelamin </th>
+                <th class="column-title">Posisi</th>
+                <th class="column-title">Bank - No. Rekening</th>
+                <th class="column-title">Kapal</th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -43,7 +47,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM vessel";
+              		$query = "SELECT * FROM crew JOIN bank ON bank.id_bank=crew.id_bank JOIN vessel ON vessel.id_vessel=crew.id_vessel JOIN posisi_crew ON posisi_crew.id_posisi=crew.id_posisi ORDER BY id_crew DESC";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -51,9 +55,16 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
+                <td class=" "><?= $data['nama_crew'];?></td>
+                <td class=" "><?= $data['nik'];?></td>
+                <td class=" "><?= $data['npwp'];?></td>
+                <td class=" "><?= $data['tmp_lahir'];?>, <?= date('d/m/Y', strtotime($data['tgl_lahircrew']));?></td>
+                <td class=" "><?= $data['jk_crew'];?></td>
+                <td class=" "><?= $data['nama_posisi'];?></td>
+                <td class=" "><?= $data['nama_bank'];?> - <?= $data['no_rek'];?></td>
                 <td class=" "><?= $data['nama_vessel'];?></td>
             
-                <td class=" last"><a href="?form=ubahVessel&id_vessel=<?= $data["id_vessel"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusVessel&id_vessel=<?= $data["id_vessel"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahCrew&id_crew=<?= $data["id_crew"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusCrew&id_crew=<?= $data["id_crew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

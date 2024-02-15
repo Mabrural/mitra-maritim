@@ -16,7 +16,7 @@ if (isset($_GET['cetakData'])) {
 <!-- saved from url=(0058)https://sim.polibatam.ac.id/layanan-akademik/cetak_khs.php -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>Rekap Data Inventaris</title>
-            <link rel="icon" href="img/gpp.png" type="image/ico" />
+            <link rel="icon" href="img/logo-mmm.png" type="image/ico" />
             <script language="JavaScript">
                 function Cetakan(){
                     document.getElementById("button_cetak").style.display = "none";
@@ -216,15 +216,15 @@ if (isset($_GET['cetakData'])) {
                 <div style="text-align: right; font-size: 18">
                     <!-- THE CENTRO TOWN HOUSE NO. 17 <br>
                     KEL. SUKAJADI, KEC. BATAM KOTA <br> -->
-                    <strong>PT GLOBAL PETRO PASIFIC</strong> <br>
+                    <strong>PT MITRA MARITIM MANDIRI</strong> <br>
                     The Centro Town House No. 17 <br>
                     Kel. Sukajadi, Kec. Batam Kota, Kota Batam <br>
-                    <!-- Telepon +62 778 469856 - 469860 Faksimile +62 778 463620 <br> -->
-                    Laman: www.globalpetro.co.id, Surel: info@globalpetro.co.id
+                    Telepon +62 778 48844550 - Faksimile +62 778 48844550 <br>
+                    info@mitramaritim.com
                 </div>
 
                 <div style="margin-top: -70px; margin-left: 20px">
-                    <img src="img/Logo Global Petro.jpg" style="width:300px;">
+                    <img src="img/Untitled-1.png" style="width:300px;">
                     <!-- <img src="../img_sim/logo_polibatam.png" style="width:100px;"> -->
                 </div>
 

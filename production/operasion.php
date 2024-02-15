@@ -166,7 +166,7 @@ if ($_SESSION["level"] == "Staff IT") {
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="operasion.php?page=reqCuti">Database Karyawan</a></li>
-                      <li><a href="operasion.php?page=reqCuti">Database Crew</a></li>
+                      <li><a href="operasion.php?page=crew">Database Crew</a></li>
                       <li><a href="operasion.php?page=reqCuti">On Duty Karyawan</a></li>
                       <li><a href="operasion.php?page=reqCuti">Slip Gaji</a></li>
                       <li><a href="operasion.php?page=reqCuti">Form Cuti</a></li>
@@ -409,6 +409,11 @@ if ($_SESSION["level"] == "Staff IT") {
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
                         switch ($page) {
+
+                            case 'crew':
+                                include "page/04hrd/crew/crew.php";
+                                break;
+
                             case 'pengajuan':
                                 include "page/pengajuan/pengajuan.php";
                                 break;
@@ -477,6 +482,19 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+
+                            case "tambahCrew":
+                                include "page/04hrd/crew/tambah.php";
+                                break;
+
+                            case "hapusCrew":
+                                include "page/04hrd/crew/hapus.php";
+                                break;
+
+                            case "ubahCrew":
+                                include "page/04hrd/crew/ubah.php";
+                                break;
                             
 
                             case 'ubahPengajuan':
