@@ -414,6 +414,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/04hrd/crew/crew.php";
                                 break;
 
+                            case 'kontrakCrew':
+                                include "page/04hrd/kontrak_crew/kontrak_crew.php";
+                                break;
+
                             case 'pengajuan':
                                 include "page/pengajuan/pengajuan.php";
                                 break;
@@ -495,7 +499,18 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "ubahCrew":
                                 include "page/04hrd/crew/ubah.php";
                                 break;
-                            
+
+                            case "tambahKontrakCrew":
+                                include "page/04hrd/kontrak_crew/tambah.php";
+                                break;
+
+                            case "ubahKontrakCrew":
+                                include "page/04hrd/kontrak_crew/ubah.php";
+                                break;
+
+                            case "hapusKontrakCrew":
+                                include "page/04hrd/kontrak_crew/hapus.php";
+                                break;
 
                             case 'ubahPengajuan':
                                 include "page/pengajuan/ubah.php";

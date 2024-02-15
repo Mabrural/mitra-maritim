@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2024 at 11:50 AM
+-- Generation Time: Feb 15, 2024 at 11:54 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -70,6 +70,26 @@ INSERT INTO `akses_pintu` (`id_akses`, `no_akses`, `id_emp`, `id_lantai`) VALUES
 (11, 2, 8, 2),
 (12, 3, 8, 2),
 (13, 4, 30, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bank`
+--
+
+CREATE TABLE `bank` (
+  `id_bank` int(10) NOT NULL,
+  `nama_bank` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bank`
+--
+
+INSERT INTO `bank` (`id_bank`, `nama_bank`) VALUES
+(1, 'Mandiri'),
+(2, 'BCA'),
+(3, 'BNI');
 
 -- --------------------------------------------------------
 
@@ -366,6 +386,35 @@ INSERT INTO `cart_of_account` (`kode_coa`, `name_account`, `account_type`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `crew`
+--
+
+CREATE TABLE `crew` (
+  `id_crew` int(10) NOT NULL,
+  `nama_crew` varchar(40) NOT NULL,
+  `nik` varchar(40) NOT NULL,
+  `npwp` varchar(40) NOT NULL,
+  `tmp_lahir` varchar(40) NOT NULL,
+  `tgl_lahircrew` date NOT NULL,
+  `jk_crew` varchar(30) NOT NULL,
+  `no_rek` varchar(30) NOT NULL,
+  `id_posisi` int(10) NOT NULL,
+  `id_vessel` int(10) NOT NULL,
+  `id_bank` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `crew`
+--
+
+INSERT INTO `crew` (`id_crew`, `nama_crew`, `nik`, `npwp`, `tmp_lahir`, `tgl_lahircrew`, `jk_crew`, `no_rek`, `id_posisi`, `id_vessel`, `id_bank`) VALUES
+(3, 'Riki', '2171012109190001', '2171012109190001', 'Batam', '2024-02-15', 'Laki-laki', '32625566147', 1, 2, 2),
+(8, 'Mabrur', '2171012105020001', '95.461.480.6-225.000', 'Pulau Tumbar', '2002-05-21', 'Laki-laki', '3262432251', 1, 1, 2),
+(10, 'Alex', '2171012105020001', '95.461.480.6-225.000', 'Batam', '1990-08-14', 'Laki-laki', '1090132510002', 1, 3, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -379,7 +428,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_cust`, `nama_customer`) VALUES
-(1, 'PT lain');
+(1, 'PT lain-lain'),
+(6, 'PT Merdeka ');
 
 -- --------------------------------------------------------
 
@@ -398,8 +448,8 @@ CREATE TABLE `dept` (
 
 INSERT INTO `dept` (`id_dept`, `nama_dept`) VALUES
 (1, 'TC'),
-(2, 'FC'),
-(3, 'Shipping Agency');
+(3, 'FC'),
+(7, 'Shipping Agency');
 
 -- --------------------------------------------------------
 
@@ -522,6 +572,28 @@ INSERT INTO `kategori_cuti` (`id_kategori_cuti`, `kategori_cuti`) VALUES
 (4, 'Annual Leave'),
 (5, 'Sick Leave'),
 (6, 'Unpaid Leave');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kontrak_crew`
+--
+
+CREATE TABLE `kontrak_crew` (
+  `id_kontrakcrew` int(10) NOT NULL,
+  `sign_on` date NOT NULL,
+  `sign_off` date NOT NULL,
+  `gaji_crew` int(10) NOT NULL,
+  `idstatus_crew` int(10) NOT NULL,
+  `id_crew` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kontrak_crew`
+--
+
+INSERT INTO `kontrak_crew` (`id_kontrakcrew`, `sign_on`, `sign_off`, `gaji_crew`, `idstatus_crew`, `id_crew`) VALUES
+(8, '2024-02-29', '2024-03-29', 4500000, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -677,6 +749,30 @@ INSERT INTO `no_po` (`id_no_po`, `no_po`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `posisi_crew`
+--
+
+CREATE TABLE `posisi_crew` (
+  `id_posisi` int(10) NOT NULL,
+  `nama_posisi` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `posisi_crew`
+--
+
+INSERT INTO `posisi_crew` (`id_posisi`, `nama_posisi`) VALUES
+(1, 'Nahkoda'),
+(2, 'CO/SO'),
+(3, 'KKM'),
+(4, 'Mualim'),
+(5, 'ABK & AB'),
+(6, 'Masinis'),
+(7, 'Oiler');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `po_barang`
 --
 
@@ -806,7 +902,8 @@ CREATE TABLE `sales_plan` (
 --
 
 INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `jenis_kargo`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`) VALUES
-(5, 'SPL-24021300001-61274', 'sdfsdf', 10000, 'jkt48', 'jkt48', 10000000, '2024-02-13', '0000-00-00', 1, 4, 1, 1);
+(5, 'SPL-24021300001-61274', 'sdfsdf', 10000, 'jkt48', 'jkt48', 10000000, '2024-02-13', '0000-00-00', 1, 4, 4, 7),
+(7, 'SPL-24021500002-90380', 'sdfsdf', 6, 'asdsd', 'jkt48', 111111, '2024-02-15', '2024-02-29', 1, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -836,6 +933,25 @@ INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
 (10, 'Roll'),
 (11, 'Kg'),
 (12, 'Drum');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_crew`
+--
+
+CREATE TABLE `status_crew` (
+  `idstatus_crew` int(10) NOT NULL,
+  `nama_status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `status_crew`
+--
+
+INSERT INTO `status_crew` (`idstatus_crew`, `nama_status`) VALUES
+(1, 'On Contract'),
+(2, 'End Contract');
 
 -- --------------------------------------------------------
 
@@ -1048,6 +1164,12 @@ ALTER TABLE `akses_pintu`
   ADD KEY `id_lantai` (`id_lantai`);
 
 --
+-- Indexes for table `bank`
+--
+ALTER TABLE `bank`
+  ADD PRIMARY KEY (`id_bank`);
+
+--
 -- Indexes for table `barang`
 --
 ALTER TABLE `barang`
@@ -1058,6 +1180,15 @@ ALTER TABLE `barang`
 --
 ALTER TABLE `cart_of_account`
   ADD PRIMARY KEY (`kode_coa`);
+
+--
+-- Indexes for table `crew`
+--
+ALTER TABLE `crew`
+  ADD PRIMARY KEY (`id_crew`),
+  ADD KEY `id_vessel` (`id_vessel`),
+  ADD KEY `id_bank` (`id_bank`),
+  ADD KEY `id_posisi` (`id_posisi`);
 
 --
 -- Indexes for table `customer`
@@ -1097,6 +1228,14 @@ ALTER TABLE `karyawan`
 --
 ALTER TABLE `kategori_cuti`
   ADD PRIMARY KEY (`id_kategori_cuti`);
+
+--
+-- Indexes for table `kontrak_crew`
+--
+ALTER TABLE `kontrak_crew`
+  ADD PRIMARY KEY (`id_kontrakcrew`),
+  ADD KEY `id_crew` (`id_crew`),
+  ADD KEY `idstatus_crew` (`idstatus_crew`);
 
 --
 -- Indexes for table `kontrak_kerja`
@@ -1142,6 +1281,12 @@ ALTER TABLE `no_jurnal`
 --
 ALTER TABLE `no_po`
   ADD PRIMARY KEY (`id_no_po`);
+
+--
+-- Indexes for table `posisi_crew`
+--
+ALTER TABLE `posisi_crew`
+  ADD PRIMARY KEY (`id_posisi`);
 
 --
 -- Indexes for table `po_barang`
@@ -1196,6 +1341,12 @@ ALTER TABLE `satuan`
   ADD PRIMARY KEY (`id_satuan`);
 
 --
+-- Indexes for table `status_crew`
+--
+ALTER TABLE `status_crew`
+  ADD PRIMARY KEY (`idstatus_crew`);
+
+--
 -- Indexes for table `storage_barang`
 --
 ALTER TABLE `storage_barang`
@@ -1242,16 +1393,28 @@ ALTER TABLE `akses_pintu`
   MODIFY `id_akses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `bank`
+--
+ALTER TABLE `bank`
+  MODIFY `id_bank` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `crew`
+--
+ALTER TABLE `crew`
+  MODIFY `id_crew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id_cust` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cust` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `dept`
 --
 ALTER TABLE `dept`
-  MODIFY `id_dept` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_dept` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ijazah`
@@ -1276,6 +1439,12 @@ ALTER TABLE `karyawan`
 --
 ALTER TABLE `kategori_cuti`
   MODIFY `id_kategori_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `kontrak_crew`
+--
+ALTER TABLE `kontrak_crew`
+  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `kontrak_kerja`
@@ -1314,6 +1483,12 @@ ALTER TABLE `no_po`
   MODIFY `id_no_po` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `posisi_crew`
+--
+ALTER TABLE `posisi_crew`
+  MODIFY `id_posisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `po_barang`
 --
 ALTER TABLE `po_barang`
@@ -1341,13 +1516,19 @@ ALTER TABLE `req_cuti`
 -- AUTO_INCREMENT for table `sales_plan`
 --
 ALTER TABLE `sales_plan`
-  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `satuan`
 --
 ALTER TABLE `satuan`
   MODIFY `id_satuan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `status_crew`
+--
+ALTER TABLE `status_crew`
+  MODIFY `idstatus_crew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `storage_barang`
@@ -1371,7 +1552,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `vessel`
 --
 ALTER TABLE `vessel`
-  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -1392,6 +1573,14 @@ ALTER TABLE `akses_pintu`
   ADD CONSTRAINT `akses_pintu_ibfk_2` FOREIGN KEY (`id_lantai`) REFERENCES `lantai` (`id_lantai`);
 
 --
+-- Constraints for table `crew`
+--
+ALTER TABLE `crew`
+  ADD CONSTRAINT `crew_ibfk_1` FOREIGN KEY (`id_vessel`) REFERENCES `vessel` (`id_vessel`),
+  ADD CONSTRAINT `crew_ibfk_2` FOREIGN KEY (`id_bank`) REFERENCES `bank` (`id_bank`),
+  ADD CONSTRAINT `crew_ibfk_3` FOREIGN KEY (`id_posisi`) REFERENCES `posisi_crew` (`id_posisi`);
+
+--
 -- Constraints for table `ijazah`
 --
 ALTER TABLE `ijazah`
@@ -1403,6 +1592,13 @@ ALTER TABLE `ijazah`
 ALTER TABLE `jurnal`
   ADD CONSTRAINT `jurnal_ibfk_1` FOREIGN KEY (`no_jurnal`) REFERENCES `no_jurnal` (`no_jurnal`),
   ADD CONSTRAINT `jurnal_ibfk_2` FOREIGN KEY (`kode_coa`) REFERENCES `cart_of_account` (`kode_coa`);
+
+--
+-- Constraints for table `kontrak_crew`
+--
+ALTER TABLE `kontrak_crew`
+  ADD CONSTRAINT `kontrak_crew_ibfk_3` FOREIGN KEY (`id_crew`) REFERENCES `crew` (`id_crew`),
+  ADD CONSTRAINT `kontrak_crew_ibfk_4` FOREIGN KEY (`idstatus_crew`) REFERENCES `status_crew` (`idstatus_crew`);
 
 --
 -- Constraints for table `kontrak_kerja`

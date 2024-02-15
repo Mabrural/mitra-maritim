@@ -322,6 +322,56 @@ function hapusCrew($id_crew) {
 
 }
 
+function tambahKontrakCrew($data) {
+
+	global $koneksi;
+	$sign_on = mysqli_real_escape_string($koneksi, $data["sign_on"]);
+	$sign_off = mysqli_real_escape_string($koneksi, $data["sign_off"]);
+	$gaji_crew = mysqli_real_escape_string($koneksi, $data["gaji_crew"]);
+	$idstatus_crew = mysqli_real_escape_string($koneksi, $data["idstatus_crew"]);
+	$id_crew = mysqli_real_escape_string($koneksi, $data["id_crew"]);
+	
+
+	$query = "INSERT INTO kontrak_crew VALUES
+			('', '$sign_on', '$sign_off', '$gaji_crew', '$idstatus_crew', '$id_crew')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahKontrakCrew($data) {
+	global $koneksi;
+	$id_kontrakcrew = $data["id_kontrakcrew"];
+	$sign_on = mysqli_real_escape_string($koneksi, $data["sign_on"]);
+	$sign_off = mysqli_real_escape_string($koneksi, $data["sign_off"]);
+	$gaji_crew = mysqli_real_escape_string($koneksi, $data["gaji_crew"]);
+	$idstatus_crew = mysqli_real_escape_string($koneksi, $data["idstatus_crew"]);
+	$id_crew = mysqli_real_escape_string($koneksi, $data["id_crew"]);
+
+
+	$query = "UPDATE kontrak_crew SET
+				sign_on = '$sign_on',
+				sign_off = '$sign_off',
+				gaji_crew = '$gaji_crew',
+				idstatus_crew = '$idstatus_crew',
+				id_crew = '$id_crew'
+			  WHERE id_kontrakcrew = $id_kontrakcrew
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusKontrakCrew($id_kontrakcrew) {
+	global $koneksi;
+	mysqli_query($koneksi, "DELETE FROM kontrak_crew WHERE id_kontrakcrew=$id_kontrakcrew");
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function generate_kode_pengajuan() {
   global $koneksi;
 
