@@ -213,6 +213,47 @@ function hapusCustomer($id_cust) {
 
 }
 
+function tambahDept($data) {
+
+	global $koneksi;
+	$nama_dept = mysqli_real_escape_string($koneksi, $data["nama_dept"]);
+
+
+	$query = "INSERT INTO dept VALUES
+			('', '$nama_dept')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahDept($data) {
+	global $koneksi;
+	$id_dept = $data["id_dept"];
+	$nama_dept = mysqli_real_escape_string($koneksi, $data["nama_dept"]);
+
+	$query = "UPDATE dept SET
+				nama_dept = '$nama_dept'
+			  WHERE id_dept = $id_dept
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusDept($id_dept) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM dept WHERE id_dept='$id_dept'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function generate_kode_pengajuan() {
   global $koneksi;
 

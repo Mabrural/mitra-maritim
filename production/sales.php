@@ -423,6 +423,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'masterCustomer':
                               include "page/01sales_dan_marketing/master_customer/master_customer.php";
                               break;
+
+                            case 'masterDept':
+                              include "page/01sales_dan_marketing/master_dept/master_dept.php";
+                              break;
   
 
                             case 'pengajuan':
@@ -528,6 +532,18 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "ubahCustomer":
                                 include "page/01sales_dan_marketing/master_customer/ubah.php";
+                                break;
+
+                            case "tambahDept":
+                                include "page/01sales_dan_marketing/master_dept/tambah.php";
+                                break;
+
+                            case "hapusDept":
+                                include "page/01sales_dan_marketing/master_dept/hapus.php";
+                                break;
+
+                            case "ubahDept":
+                                include "page/01sales_dan_marketing/master_dept/ubah.php";
                                 break;
 
                             case 'ubahPengajuan':

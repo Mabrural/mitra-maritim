@@ -12,6 +12,7 @@ $id_user = $_SESSION["id_user"];
         <a href="?page=salesPlan" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-ship"></i> Sales Plan</a>
         <a href="?page=masterVessel" class="btn btn-warning btn-sm"><i class="fa fa-ship"></i> Master Vessel</a>
         <a href="?page=masterCustomer" class="btn btn-success btn-sm"><i class="fa fa-user"></i> Master Customer</a>
+        <a href="?page=masterDept" class="btn btn-info btn-sm"><i class="fa fa-building"></i> Master Dept</a>
        
         <div class="clearfix"></div>
       </div>
