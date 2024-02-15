@@ -51,7 +51,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><?= $data['nama_vessel'];?></td>
             
-                <td class=" last"><a href="?form=ubahVessel&id_vessel=<?= $data["id_vessel"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusvessel&id_vessel=<?= $data["id_vessel"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahVessel&id_vessel=<?= $data["id_vessel"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusVessel&id_vessel=<?= $data["id_vessel"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

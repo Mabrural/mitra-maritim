@@ -1,12 +1,10 @@
 <?php
 
 
-$kode_sales = generate_kode_sales();
+$id_vessel = $_GET['id_vessel'];
 
-$customer = query("SELECT * FROM customer");
-$vessel = query("SELECT * FROM vessel");
-$satuan = query("SELECT * FROM satuan");
-$dept = query("SELECT * FROM dept");
+$vessel = query("SELECT * FROM vessel WHERE id_vessel=$id_vessel")[0];
+
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -14,7 +12,7 @@ if (isset($_POST["submit"])) {
 
 
 	// cek apakah data berhasil ditambahkan atau tidak
-	if(tambahVessel($_POST) > 0 ) {
+	if(ubahVessel($_POST) > 0 ) {
 		echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 		echo '<script src="./sweetalert2.min.js"></script>';
 		echo "<script>
@@ -22,7 +20,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'Data berhasil ditambahkan',
+				text                :  'Data berhasil diubah',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
@@ -46,7 +44,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'Data gagal ditambahkan',
+				text                :  'Data gagal diubah',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
@@ -77,7 +75,7 @@ if (isset($_POST["submit"])) {
 				<div class="col-md-12 col-sm-12 ">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Form Input New Vessel <small></small></h2>
+							<h2>Ubah Data Vessel <small></small></h2>
 							<!-- <ul class="nav navbar-right panel_toolbox">
 								<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 								</li>
@@ -98,12 +96,12 @@ if (isset($_POST["submit"])) {
 						<div class="x_content">
 							<br />
 							<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
-							
+                                <input type="hidden" name="id_vessel" value="<?= $id_vessel?>">
                                 <div class="item form-group">
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="nama_vessel">Nama Vessel <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="nama_vessel" id="nama_vessel" required="required" class="form-control" placeholder="Ketikkan Nama Vessel">
+										<input type="text" name="nama_vessel" id="nama_vessel" required="required" class="form-control" value="<?= $vessel['nama_vessel']?>">
 									</div>
 								</div>
 
