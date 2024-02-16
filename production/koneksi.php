@@ -372,6 +372,47 @@ function hapusKontrakCrew($id_kontrakcrew) {
 
 }
 
+function tambahBank($data) {
+
+	global $koneksi;
+	$nama_bank = mysqli_real_escape_string($koneksi, $data["nama_bank"]);
+	
+
+	$query = "INSERT INTO bank VALUES
+			('', '$nama_bank')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahBank($data) {
+	global $koneksi;
+	$id_bank = mysqli_real_escape_string($koneksi, $data["id_bank"]);
+	$nama_bank = mysqli_real_escape_string($koneksi, $data["nama_bank"]);
+
+	$query = "UPDATE bank SET
+				nama_bank = '$nama_bank'
+			  WHERE id_bank = $id_bank
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusBank($id_bank) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM bank WHERE id_bank='$id_bank'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function generate_kode_pengajuan() {
   global $koneksi;
 
