@@ -413,6 +413,75 @@ function hapusBank($id_bank) {
 
 }
 
+function tambahRab($data) {
+	global $koneksi;
+	$doc_num = htmlspecialchars($data["doc_num"]);
+	$tgl_rab = htmlspecialchars($data["tgl_rab"]);
+	$id_user = htmlspecialchars($data["id_user"]);
+
+	$file_rab =  uploadFileRab();
+	if (!$file_rab) {
+		return false;
+	}
+
+	$query = "INSERT INTO rab VALUES
+			('', '$doc_num', '$tgl_rab', '$file_rab', '$id_user')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function uploadFileRab(){
+
+	$namaFile = $_FILES['file_rab']['name'];
+	$ukuranFile = $_FILES['file_rab']['size'];
+	$error = $_FILES['file_rab']['error'];
+	$tmpName = $_FILES['file_rab']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'xlsx'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Excel!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran pdf terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/rab/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+
 function generate_kode_pengajuan() {
   global $koneksi;
 

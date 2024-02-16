@@ -167,7 +167,7 @@ if ($_SESSION["level"] == "Staff IT") {
                     <ul class="nav child_menu">
                       <li><a href="operasion.php?page=reqCuti">Database Karyawan</a></li>
                       <li><a href="operasion.php?page=crew">Database Crew</a></li>
-                      <li><a href="operasion.php?page=reqCuti">On Duty Karyawan</a></li>
+                      <li><a href="operasion.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="operasion.php?page=reqCuti">Slip Gaji</a></li>
                       <li><a href="operasion.php?page=reqCuti">Form Cuti</a></li>
                       <li><a href="operasion.php?page=historyCuti">History Cuti</a></li>
@@ -420,6 +420,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case 'masterBank':
                                 include "page/04hrd/master_bank/master_bank.php";
+                                break;
+
+                            case "onDuty":
+                                include "page/04hrd/on_duty/on_duty.php";
                                 break;
 
                             case 'pengajuan':

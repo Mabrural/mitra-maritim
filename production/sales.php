@@ -431,6 +431,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'inventarisAsset':
                               include "page/06purchasing/inventaris_dan_asset/inventaris.php";
                               break;
+
+                            case "RAB":
+                              include "page/01sales_dan_marketing/rab/rab.php";
+                              break;
   
 
                             case 'pengajuan':
@@ -548,6 +552,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "ubahDept":
                                 include "page/01sales_dan_marketing/master_dept/ubah.php";
+                                break;
+
+                            case "tambahRab":
+                                include "page/01sales_dan_marketing/rab/tambah.php";
                                 break;
 
                             case 'ubahPengajuan':

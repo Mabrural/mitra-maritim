@@ -72,8 +72,16 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['loading_port'];?></td>
                 <td class=" "><?= $data['discharge_port'];?></td>
                 <td class=" "><?= $data['sales_nominal'];?></td>
-                <td class=" "><?= $data['start'];?></td>
-                <td class=" "><?= $data['finished'];?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['start']));?></td>
+                <td class=" ">
+                    <?php
+        				        if ($data['finished'] == NULL || $data['finished'] == '' || $data['finished'] == '0000-00-00') {
+        				            echo '-';
+        				        } else {
+        				            echo date('d-M-Y', strtotime($data['finished']));
+        				        }
+        				    ?>
+                </td>
                 <td class=" "><?= $data['nama_dept'];?></td>
                 
                 <td class=" last"><a href="?form=ubahSales&id_sales=<?= $data["id_sales"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusSales&id_sales=<?= $data["id_sales"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
