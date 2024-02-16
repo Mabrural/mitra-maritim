@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2024 at 11:54 AM
+-- Generation Time: Feb 16, 2024 at 11:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -89,7 +89,8 @@ CREATE TABLE `bank` (
 INSERT INTO `bank` (`id_bank`, `nama_bank`) VALUES
 (1, 'Mandiri'),
 (2, 'BCA'),
-(3, 'BNI');
+(3, 'BNI'),
+(5, 'BRI');
 
 -- --------------------------------------------------------
 
@@ -410,7 +411,8 @@ CREATE TABLE `crew` (
 INSERT INTO `crew` (`id_crew`, `nama_crew`, `nik`, `npwp`, `tmp_lahir`, `tgl_lahircrew`, `jk_crew`, `no_rek`, `id_posisi`, `id_vessel`, `id_bank`) VALUES
 (3, 'Riki', '2171012109190001', '2171012109190001', 'Batam', '2024-02-15', 'Laki-laki', '32625566147', 1, 2, 2),
 (8, 'Mabrur', '2171012105020001', '95.461.480.6-225.000', 'Pulau Tumbar', '2002-05-21', 'Laki-laki', '3262432251', 1, 1, 2),
-(10, 'Alex', '2171012105020001', '95.461.480.6-225.000', 'Batam', '1990-08-14', 'Laki-laki', '1090132510002', 1, 3, 1);
+(10, 'Alex', '2171012105020001', '95.461.480.6-225.000', 'Batam', '1990-08-14', 'Laki-laki', '1090132510002', 1, 3, 1),
+(12, 'Jordan', '2171012105020001', '95.461.480.6-225.000', 'Batam', '1989-01-01', 'Laki-laki', '3262545518', 3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -473,6 +475,28 @@ CREATE TABLE `ijazah` (
 
 INSERT INTO `ijazah` (`id_ijazah`, `no_ijazah`, `tgl_penitipan`, `tgl_kembali`, `status_ijazah`, `scan_ijazah`, `id_emp`) VALUES
 (60, 'M-SMK/1100023', '2024-01-02', '0000-00-00', 'Sedang dititipkan', '65aa48284ecd6.pdf', 30);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_kargo`
+--
+
+CREATE TABLE `jenis_kargo` (
+  `id_kargo` int(10) NOT NULL,
+  `nama_kargo` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jenis_kargo`
+--
+
+INSERT INTO `jenis_kargo` (`id_kargo`, `nama_kargo`) VALUES
+(1, 'High Speed Diesel'),
+(2, 'Palm Oil Product'),
+(3, 'CPO (CRUD Palm Oil)'),
+(4, 'PFAD (Palm Fatty Acid Distillate)'),
+(5, 'Biosolar');
 
 -- --------------------------------------------------------
 
@@ -593,7 +617,7 @@ CREATE TABLE `kontrak_crew` (
 --
 
 INSERT INTO `kontrak_crew` (`id_kontrakcrew`, `sign_on`, `sign_off`, `gaji_crew`, `idstatus_crew`, `id_crew`) VALUES
-(8, '2024-02-29', '2024-03-29', 4500000, 1, 8);
+(8, '2024-02-16', '2024-05-16', 4500000, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -812,6 +836,27 @@ INSERT INTO `qrcode` (`id_qr`, `id_emp`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rab`
+--
+
+CREATE TABLE `rab` (
+  `id_rab` int(10) NOT NULL,
+  `doc_num` varchar(30) NOT NULL,
+  `tgl_rab` date NOT NULL,
+  `file_rab` varchar(40) NOT NULL,
+  `id_user` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rab`
+--
+
+INSERT INTO `rab` (`id_rab`, `doc_num`, `tgl_rab`, `file_rab`, `id_user`) VALUES
+(4, '002/RAB-MMM/II/2024', '2024-02-16', '65cee80b4bb72.xlsx', 34);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `req_barang`
 --
 
@@ -884,26 +929,30 @@ INSERT INTO `req_cuti` (`id_req_cuti`, `tgl_mulai`, `tgl_akhir`, `jml_hari`, `ti
 CREATE TABLE `sales_plan` (
   `id_sales` int(10) NOT NULL,
   `kode_sales` varchar(50) NOT NULL,
-  `jenis_kargo` varchar(50) DEFAULT NULL,
+  `voy_num` varchar(30) NOT NULL,
   `qty_sales` int(5) DEFAULT NULL,
   `loading_port` varchar(50) DEFAULT NULL,
   `discharge_port` varchar(50) DEFAULT NULL,
   `sales_nominal` int(10) DEFAULT NULL,
   `start` date DEFAULT NULL,
   `finished` date DEFAULT NULL,
+  `app1` varchar(20) DEFAULT NULL,
+  `app2` varchar(20) DEFAULT NULL,
+  `app3` varchar(20) DEFAULT NULL,
+  `status_plan` varchar(30) DEFAULT NULL,
   `id_cust` int(10) NOT NULL,
   `id_satuan` int(10) NOT NULL,
   `id_vessel` int(10) NOT NULL,
-  `id_dept` int(10) NOT NULL
+  `id_dept` int(10) NOT NULL,
+  `id_kargo` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sales_plan`
 --
 
-INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `jenis_kargo`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`) VALUES
-(5, 'SPL-24021300001-61274', 'sdfsdf', 10000, 'jkt48', 'jkt48', 10000000, '2024-02-13', '0000-00-00', 1, 4, 4, 7),
-(7, 'SPL-24021500002-90380', 'sdfsdf', 6, 'asdsd', 'jkt48', 111111, '2024-02-15', '2024-02-29', 1, 2, 2, 1);
+INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `voy_num`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `app1`, `app2`, `app3`, `status_plan`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`, `id_kargo`) VALUES
+(13, 'SPL-24021600001-88684', '001VOY/MMM/I/2024', 1, 'jkt', 'btm', 1000000000, '2024-02-16', '0000-00-00', '', '', '', 'On Dirops', 6, 1, 2, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -921,8 +970,8 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
-(1, 'Unit'),
-(2, 'Pack'),
+(1, 'MTON'),
+(2, 'KL'),
 (3, 'Pcs'),
 (4, 'Liter'),
 (5, 'Lusin'),
@@ -1087,7 +1136,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `id_emp`) VALUES
 (11, 'admin', '$2y$10$IgW4FLMwe9euVk0Ne9.ks.8ZhYCvheo7j1at4NiMIW38uOXYUM8pi', 'Kepala Cabang', 12),
-(12, 'admin2', '$2y$10$HGD9twPbqY2jRuhsR6NMA.qUNiqShFNa8AFS8hy2LjDvFqdvGGM3e', 'Direktur Operasional', 11),
+(12, 'bambang', '$2y$10$SVagKtrQSTcXSCs7SKmhgeGxD3WshRv0IpPq2oD44P90gEUk.u5IG', 'Direktur Operasional', 11),
 (13, 'admin3', '$2y$10$Q3IQI9/N96Pkm12hhwZrRe152Y937dQmRcqeZZSshp0mpz2Mh7IjO', 'Purchasing', 19),
 (14, 'elis', '$2y$10$D4rpUxPZMdYYV5EBPAbWleveaycPXW5m/bsLGyhUWTF34uSzL1BJ2', 'Kepala Finance', 14),
 (15, 'hrd', '$2y$10$rfSEEc5RaRZ/YjmxEF9G8uDTXi8w04f8PnuI/3Br7pXPWD9PKOhN2', 'Direktur HRD', 10),
@@ -1210,6 +1259,12 @@ ALTER TABLE `ijazah`
   ADD KEY `id_emp` (`id_emp`);
 
 --
+-- Indexes for table `jenis_kargo`
+--
+ALTER TABLE `jenis_kargo`
+  ADD PRIMARY KEY (`id_kargo`);
+
+--
 -- Indexes for table `jurnal`
 --
 ALTER TABLE `jurnal`
@@ -1306,6 +1361,13 @@ ALTER TABLE `qrcode`
   ADD KEY `id_emp` (`id_emp`);
 
 --
+-- Indexes for table `rab`
+--
+ALTER TABLE `rab`
+  ADD PRIMARY KEY (`id_rab`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `req_barang`
 --
 ALTER TABLE `req_barang`
@@ -1332,7 +1394,8 @@ ALTER TABLE `sales_plan`
   ADD KEY `id_cust` (`id_cust`),
   ADD KEY `id_satuan` (`id_satuan`),
   ADD KEY `id_vessel` (`id_vessel`),
-  ADD KEY `id_dept` (`id_dept`);
+  ADD KEY `id_dept` (`id_dept`),
+  ADD KEY `id_kargo` (`id_kargo`);
 
 --
 -- Indexes for table `satuan`
@@ -1396,13 +1459,13 @@ ALTER TABLE `akses_pintu`
 -- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
-  MODIFY `id_bank` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_bank` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `crew`
 --
 ALTER TABLE `crew`
-  MODIFY `id_crew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_crew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -1421,6 +1484,12 @@ ALTER TABLE `dept`
 --
 ALTER TABLE `ijazah`
   MODIFY `id_ijazah` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `jenis_kargo`
+--
+ALTER TABLE `jenis_kargo`
+  MODIFY `id_kargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
@@ -1501,6 +1570,12 @@ ALTER TABLE `qrcode`
   MODIFY `id_qr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `rab`
+--
+ALTER TABLE `rab`
+  MODIFY `id_rab` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `req_barang`
 --
 ALTER TABLE `req_barang`
@@ -1516,7 +1591,7 @@ ALTER TABLE `req_cuti`
 -- AUTO_INCREMENT for table `sales_plan`
 --
 ALTER TABLE `sales_plan`
-  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -1629,6 +1704,12 @@ ALTER TABLE `qrcode`
   ADD CONSTRAINT `qrcode_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
 
 --
+-- Constraints for table `rab`
+--
+ALTER TABLE `rab`
+  ADD CONSTRAINT `rab_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
 -- Constraints for table `req_barang`
 --
 ALTER TABLE `req_barang`
@@ -1652,7 +1733,8 @@ ALTER TABLE `sales_plan`
   ADD CONSTRAINT `sales_plan_ibfk_1` FOREIGN KEY (`id_cust`) REFERENCES `customer` (`id_cust`),
   ADD CONSTRAINT `sales_plan_ibfk_2` FOREIGN KEY (`id_satuan`) REFERENCES `satuan` (`id_satuan`),
   ADD CONSTRAINT `sales_plan_ibfk_3` FOREIGN KEY (`id_vessel`) REFERENCES `vessel` (`id_vessel`),
-  ADD CONSTRAINT `sales_plan_ibfk_4` FOREIGN KEY (`id_dept`) REFERENCES `dept` (`id_dept`);
+  ADD CONSTRAINT `sales_plan_ibfk_4` FOREIGN KEY (`id_dept`) REFERENCES `dept` (`id_dept`),
+  ADD CONSTRAINT `sales_plan_ibfk_5` FOREIGN KEY (`id_kargo`) REFERENCES `jenis_kargo` (`id_kargo`);
 
 --
 -- Constraints for table `storage_barang`
