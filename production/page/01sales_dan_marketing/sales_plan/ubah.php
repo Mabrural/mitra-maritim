@@ -7,6 +7,7 @@ $customer = query("SELECT * FROM customer");
 $vessel = query("SELECT * FROM vessel");
 $satuan = query("SELECT * FROM satuan");
 $dept = query("SELECT * FROM dept");
+$kargo = query("SELECT * FROM jenis_kargo");
 
 $sales_plan = query("SELECT * FROM sales_plan WHERE id_sales=$id_sales")[0];
 // cek apakah tombol submit sudah ditekan atau belum
@@ -90,7 +91,15 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kode Sales <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="kode_brg" id="last-name" required="required" class="form-control" value="<?= $sales_plan['kode_sales'];?>" readonly>
+										<input type="text" name="kode_sales" id="last-name" required="required" class="form-control" value="<?= $sales_plan['kode_sales'];?>" readonly>
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label class="col-form-label col-md-3 col-sm-3 label-align" for="voy_num">Voyage Number <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="text" name="voy_num" id="voy_num" required="required" class="form-control" value="<?= $sales_plan['voy_num'];?>" readonly>
 									</div>
 								</div>
 
@@ -117,14 +126,19 @@ if (isset($_POST["submit"])) {
                                         </select>
                                     </div>
                                 </div>
-                        
+
 								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Jenis Kargo <span class="required">*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="jenis_kargo" id="last-name" required="required" class="form-control" value="<?= $sales_plan['jenis_kargo']?>">
-									</div>
-								</div>
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kargo <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select class="form-control" name="id_kargo" required>
+                                            <option value="">--Pilih Jenis Kargo--</option>
+                                            <?php foreach($kargo as $row) : ?>
+                                                <option value="<?= $row['id_kargo']?>" <?= ($row['id_kargo'] == $sales_plan['id_kargo'])? 'selected' : '';?>><?= $row['nama_kargo']?></option>
+                                            <?php endforeach;?>	
+                                        </select>
+                                    </div>
+                                </div>
+                        
 
 								<div class="item form-group">
 									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Qty</label>

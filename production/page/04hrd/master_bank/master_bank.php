@@ -6,7 +6,15 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Bank<small></small></h2>
+        <h2>Master Bank<small></small></h2><br>
+        <form action="laporan/cetak_inventaris.php" method="get">
+              <input type="hidden" name="aksi">
+              <input type="hidden" name="id_user" value="<?= $id_user;?>">
+              <input type="hidden" name="id_lokasi" value="<?= $id_vessel;?>">
+              <input type="hidden" name="id_room" value="<?= $id_posisi;?>">
+              <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
+              
+          </form>
         <a href="?form=tambahBank" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Bank</a>
         <a href="?page=crew" class="btn btn-dark btn-sm "><i class="fa fa-users"></i> Crew Armada</a>
         <a href="?page=masterBank" class="btn btn-warning btn-sm btn disabled"><i class="fa fa-bank"></i> Master Bank</a>

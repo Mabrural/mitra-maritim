@@ -6,7 +6,7 @@ if (isset($_SESSION["login"])) {
   if ($_SESSION["level"] === "Kepala Cabang") {
     header("Location: admin.php");
   }elseif ($_SESSION["level"] === "Direktur Operasional") {
-    header("Location: admin2.php");
+    header("Location: dirops.php");
   }elseif ($_SESSION["level"] === "Purchasing") {
     header("Location: purchasing.php");
   }elseif ($_SESSION["level"] === "Direktur HRD") {
@@ -87,7 +87,7 @@ if (isset($_POST['login'])) {
                 showConfirmButton   : true
             });  
         },10);   setTimeout(function () {
-            window.location.href = 'admin2.php'; //will redirect to your blog page (an ex: blog.html)
+            window.location.href = 'dirops.php'; //will redirect to your blog page (an ex: blog.html)
         }, 2000); //will call the function after 2 secs
         </script>";
       }elseif ($row["level"] === "Kepala Finance") {

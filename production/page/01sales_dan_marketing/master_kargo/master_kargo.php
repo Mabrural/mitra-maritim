@@ -7,13 +7,13 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Dept<small></small></h2>
-        <a href="?form=tambahDept" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
+        <h2>Master Kargo<small></small></h2>
+        <a href="?form=tambahKargo" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
         <a href="?page=salesPlan" class="btn btn-dark btn-sm"><i class="fa fa-bar-chart"></i> Sales Plan</a>
         <a href="?page=masterVessel" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Vessel</a>
         <a href="?page=masterCustomer" class="btn btn-success btn-sm  "><i class="fa fa-user"></i> Master Customer</a>
-        <a href="?page=masterDept" class="btn btn-info btn-sm btn disabled"><i class="fa fa-building"></i> Master Dept</a>
-        <a href="?page=masterKargo" class="btn btn-dark btn-sm"><i class="fa fa-truck"></i> Master Kargo</a>
+        <a href="?page=masterDept" class="btn btn-info btn-sm "><i class="fa fa-building"></i> Master Dept</a>
+        <a href="?page=masterKargo" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-truck"></i> Master Kargo</a>
         <div class="clearfix"></div>
       </div>
 
@@ -29,7 +29,7 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nama Departement </th>
+                <th class="column-title">Nama Kargo </th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -43,7 +43,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM dept";
+              		$query = "SELECT * FROM jenis_kargo";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -51,9 +51,9 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['nama_dept'];?></td>
+                <td class=" "><?= $data['nama_kargo'];?></td>
             
-                <td class=" last"><a href="?form=ubahDept&id_dept=<?= $data["id_dept"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusDept&id_dept=<?= $data["id_dept"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahKargo&id_kargo=<?= $data["id_kargo"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusKargo&id_kargo=<?= $data["id_kargo"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

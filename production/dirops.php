@@ -11,10 +11,6 @@ if ($_SESSION["level"] == "Kepala Cabang") {
     exit;
 } 
 
-if ($_SESSION["level"] == "Direktur Operasional") {
-    header("Location: admin2.php");
-    exit;
-} 
 
 if ($_SESSION["level"] == "Direktur Keuangan") {
     header("Location: dirkeu.php");
@@ -123,7 +119,7 @@ if ($_SESSION["level"] == "Staff IT") {
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=dashboard">Dashboard</a></li>
+                      <li><a href="dirops.php?page=dashboard">Dashboard</a></li>
                       <!-- <li><a href="index2.html">Dashboard2</a></li>
                       <li><a href="index3.html">Dashboard3</a></li> -->
                     </ul>
@@ -132,57 +128,57 @@ if ($_SESSION["level"] == "Staff IT") {
                   <li><a><i class="fa fa-bar-chart"></i> Sales & Marketing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <!-- <li><a href="sales.php?page=voyageManagement">Voyage Management</a></li> -->
-                      <li><a href="sales.php?page=salesPlan">Sales Plan</a></li>
-                      <li><a href="sales.php?page=RAB">RAB</a></li>
-                      <li><a href="sales.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="dirops.php?page=salesPlan">Sales Plan</a></li>
+                      <li><a href="dirops.php?page=RAB">RAB</a></li>
+                      <li><a href="dirops.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=voyageTracking">Voyage Tracking</a></li>
-                      <li><a href="sales.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="sales.php?page=stockBBM">Stock BBM Monitor</a></li>
-                      <li><a href="sales.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
-                      <li><a href="sales.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="dirops.php?page=voyageTracking">Voyage Tracking</a></li>
+                      <li><a href="dirops.php?page=vesselDatabase">Vessel Database</a></li>
+                      <li><a href="dirops.php?page=stockBBM">Stock BBM Monitor</a></li>
+                      <li><a href="dirops.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
+                      <li><a href="dirops.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-shopping-cart"></i> Purchasing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
-                      <li><a href="sales.php?page=pengajuanPPU">Pengajuan PPU</a></li>
-                      <li><a href="sales.php?page=dataBarang">Data Barang/Sparepart</a></li>
+                      <li><a href="dirops.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
+                      <li><a href="dirops.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="dirops.php?page=dataBarang">Data Barang/Sparepart</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="sales.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
-                      <li><a href="sales.php?page=dataBarang">Penjualan (Omset)</a></li>
-                      <li><a href="sales.php?page=dataBarang">Laba & Rugi</a></li>
+                      <li><a href="dirops.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="dirops.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
+                      <li><a href="dirops.php?page=dataBarang">Penjualan (Omset)</a></li>
+                      <li><a href="dirops.php?page=dataBarang">Laba & Rugi</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=reqCuti">Database Karyawan</a></li>
-                      <li><a href="sales.php?page=reqCuti">Database Crew</a></li>
-                      <li><a href="sales.php?page=reqCuti">On Duty Karyawan</a></li>
-                      <li><a href="sales.php?page=reqCuti">Slip Gaji</a></li>
-                      <li><a href="sales.php?page=reqCuti">Form Cuti</a></li>
-                      <li><a href="sales.php?page=historyCuti">History Cuti</a></li>
+                      <li><a href="dirops.php?page=reqCuti">Database Karyawan</a></li>
+                      <li><a href="dirops.php?page=reqCuti">Database Crew</a></li>
+                      <li><a href="dirops.php?page=reqCuti">On Duty Karyawan</a></li>
+                      <li><a href="dirops.php?page=reqCuti">Slip Gaji</a></li>
+                      <li><a href="dirops.php?page=reqCuti">Form Cuti</a></li>
+                      <li><a href="dirops.php?page=historyCuti">History Cuti</a></li>
                       <!-- <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=dataBarang">Inventaris & Asset Armada</a></li>
-                      <li><a href="sales.php?page=dataBarang">Sales Plan</a></li>
-                      <li><a href="sales.php?page=dataBarang">RAB</a></li>
-                      <li><a href="sales.php?page=dataBarang">Pengajuan PPU</a></li>
+                      <li><a href="dirops.php?page=dataBarang">Inventaris & Asset Armada</a></li>
+                      <li><a href="dirops.php?page=dataBarang">Sales Plan</a></li>
+                      <li><a href="dirops.php?page=dataBarang">RAB</a></li>
+                      <li><a href="dirops.php?page=dataBarang">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 

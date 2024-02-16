@@ -2,11 +2,24 @@
 
 $id_user = $_SESSION["id_user"];
 
+$vessel = query("SELECT * FROM vessel");
+$posisi = query("SELECT * FROM posisi_crew");
+$id_vessel = isset($_GET['id_vessel']) ? $_GET['id_vessel'] : '';
+$id_posisi = isset($_GET['id_posisi']) ? $_GET['id_posisi'] : '';
 
 ?>
     <div class="x_panel">
       <div class="x_title">
         <h2>Data Crew Armada<small></small></h2>
+
+          <form action="laporan/cetak_inventaris.php" method="get">
+              <input type="hidden" name="aksi">
+              <input type="hidden" name="id_user" value="<?= $id_user;?>">
+              <input type="hidden" name="id_lokasi" value="<?= $id_vessel;?>">
+              <input type="hidden" name="id_room" value="<?= $id_posisi;?>">
+              <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
+              
+          </form>
         <a href="?form=tambahCrew" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Crew</a>
         <a href="?page=crew" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-users"></i> Crew Armada</a>
         <a href="?page=masterBank" class="btn btn-warning btn-sm"><i class="fa fa-bank"></i> Master Bank</a>
@@ -14,7 +27,49 @@ $id_user = $_SESSION["id_user"];
         <div class="clearfix"></div>
       </div>
 
+          <div class="col-md-2 col-sm-6">
+              <form method="get">
+                <input type="hidden" name="aksi">
+                  <select class="form-control" name="id_vessel" id="id_vessel" required>
+                      <option value="">--Pilih Kapal--</option>
+                      <?php foreach($vessel as $row) : ?>
+                          <option value="<?= $row['id_vessel']?>" <?php echo ($id_vessel == $row['id_vessel']) ? 'selected' : ''; ?>>
+                              <?= $row['nama_vessel']?>
+                          </option>
+                      <?php endforeach;?> 
+                  </select><br>
+              </form>
+          </div>
+
+          <div class="col-md-2 col-sm-6">
+              <select class="form-control" name="id_posisi" id="id_posisi" required>
+                  <option value="">--Pilih Posisi--</option>
+                  <?php foreach($posisi as $row) : ?>
+                      <option value="<?= $row['id_posisi']?>" <?php echo ($id_posisi == $row['id_posisi']) ? 'selected' : ''; ?>>
+                          <?= $row['nama_posisi']?>
+                      </option>
+                  <?php endforeach;?> 
+              </select>
+                <br>
+          </div>
+
       <div class="x_content">
+
+      <script type="text/javascript">
+        $(document).ready(function() {
+            // Add change event listeners to the dropdowns
+            $('#id_vessel, #id_posisi').change(function() {
+                // Get selected values
+                var id_vessel = $('#id_vessel').val();
+                var id_posisi = $('#id_posisi').val();
+
+                // Redirect to the current page with filter parameters
+                window.location.href = '?page=crew&id_vessel=' + id_vessel + '&id_posisi=' + id_posisi;
+            });
+
+            // ... (rest of the JavaScript code)
+        });
+      </script>
 
         <!-- <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p> -->
 
@@ -47,8 +102,18 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM crew JOIN bank ON bank.id_bank=crew.id_bank JOIN vessel ON vessel.id_vessel=crew.id_vessel JOIN posisi_crew ON posisi_crew.id_posisi=crew.id_posisi ORDER BY id_crew DESC";
+              		$query = "SELECT * FROM crew JOIN bank ON bank.id_bank=crew.id_bank JOIN vessel ON vessel.id_vessel=crew.id_vessel JOIN posisi_crew ON posisi_crew.id_posisi=crew.id_posisi";
               		
+                  // Add filter conditions based on the selected values
+                  if (!empty($id_vessel)) {
+                    $query .= " WHERE crew.id_vessel = $id_vessel";
+                  }
+
+                  if (!empty($id_posisi)) {
+                      $query .= (!empty($id_posisi)) ? " AND " : " WHERE ";
+                      $query .= "crew.id_posisi = $id_posisi";
+                  }
+
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
               	     		

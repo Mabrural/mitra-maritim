@@ -1,15 +1,16 @@
 <?php
 
 $id_user = $_SESSION["id_user"];
+$id_sales = $_GET['id_sales'];
 
-// $pengajuan = query("SELECT * FROM barang WHERE barang.id_barang=$id_user");
+$sales_plan = query("SELECT * FROM sales_plan WHERE id_sales=$id_sales")[0];
 
 ?>
     <div class="x_panel">
       <div class="x_title">
         <h2>Sales Plan<small></small></h2>
         <a href="?form=tambahSales" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
-        <a href="?page=salesPlan" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-bar-chart"></i> Sales Plan</a>
+        <a href="?page=salesPlan" class="btn btn-dark btn-sm"><i class="fa fa-bar-chart"></i> Sales Plan</a>
         <a href="?page=masterVessel" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Vessel</a>
         <a href="?page=masterCustomer" class="btn btn-success btn-sm"><i class="fa fa-user"></i> Master Customer</a>
         <a href="?page=masterDept" class="btn btn-info btn-sm"><i class="fa fa-building"></i> Master Dept</a>
@@ -43,9 +44,9 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Start</th>
                 <th class="column-title">Finished</th>
                 <th class="column-title">Departement</th>
-                <!-- <th class="column-title">Stok Barang </th> -->
+                <th class="column-title">Status</th>
                            
-                <th class="column-title no-link last"><span class="nobr">Action</span>
+                <!-- <th class="column-title no-link last"><span class="nobr">Action</span> -->
                 </th>
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -57,7 +58,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM sales_plan JOIN satuan ON satuan.id_satuan=sales_plan.id_satuan JOIN vessel ON vessel.id_vessel=sales_plan.id_vessel JOIN dept ON dept.id_dept=sales_plan.id_dept JOIN customer ON customer.id_cust=sales_plan.id_cust JOIN jenis_kargo ON jenis_kargo.id_kargo=sales_plan.id_kargo ORDER BY sales_plan.id_sales DESC";
+              		$query = "SELECT * FROM sales_plan JOIN satuan ON satuan.id_satuan=sales_plan.id_satuan JOIN vessel ON vessel.id_vessel=sales_plan.id_vessel JOIN dept ON dept.id_dept=sales_plan.id_dept JOIN customer ON customer.id_cust=sales_plan.id_cust JOIN jenis_kargo ON jenis_kargo.id_kargo=sales_plan.id_kargo WHERE sales_plan.id_sales=$id_sales ORDER BY sales_plan.id_sales DESC";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -86,21 +87,10 @@ $id_user = $_SESSION["id_user"];
         				    ?>
                 </td>
                 <td class=" "><?= $data['nama_dept'];?></td>
-                
-                <!-- <td class=" last"><a href="?form=ubahSales&id_sales=<?= $data["id_sales"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusSales&id_sales=<?= $data["id_sales"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a> <a href="?form=lihatApprove&id_sales=<?= $data["id_sales"]; ?>" class="btn btn-dark btn-sm">Lihat Approval </a>
-                </td> -->
-                <td class="last">
-                    <?php
-                    if ($data['app1'] !== null || $data['app2'] !== null || $data['app3'] !== null) {
-                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                    } else {
-                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                        echo '| <a href="?form=ubahSales&id_sales=' . $data["id_sales"] . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> </a>';
-                        echo '| <a href="?form=hapusSales&id_sales=' . $data["id_sales"] . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
-                    }
-                    ?>
-                </td>
+                <td class=" "><?= $data['status_plan'];?></td>
 
+            
+                </td>
               </tr>
               
            <?php } ?>
@@ -146,4 +136,36 @@ $id_user = $_SESSION["id_user"];
 				
 			
       </div>
+
+        <div class="x_content">
+            <div class="row no-gutters">
+                
+                <div class="col-md-4 mt-2 ml-3 mr-5">
+                    <h5 class="card-title"><b>DATA APPROVAL</b></h5><hr>
+                    <table>
+                    <tbody style="font-size: 0.9rem;">
+                    <tr>
+                        <td width="45%"><strong>Direktur Operasional</strong></td>
+                        <td>:&nbsp;&nbsp;</td>
+                        <td><?= $sales_plan['app1']?></td>
+                    </tr>
+
+                    <tr>
+                        <td width="45%"><strong>Direktur Utama</strong></td>
+                        <td>:&nbsp;&nbsp;</td>
+                        <td><?= $sales_plan['app2']?></td>
+                    </tr>
+
+                    <tr>
+                        <td width="45%"><strong>Direktur Keuangan</strong></td>
+                        <td>:&nbsp;&nbsp;</td>
+                        <td><?= $sales_plan['app3']?></td>
+                    </tr>
+
+                </tbody></table>
+                <br>
+                </div>
+            </div>
+        </div>
+
     </div>

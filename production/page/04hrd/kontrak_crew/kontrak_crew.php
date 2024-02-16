@@ -7,6 +7,14 @@ $id_user = $_SESSION["id_user"];
     <div class="x_panel">
       <div class="x_title">
         <h2>Kontrak Crew Armada<small></small></h2>
+        <form action="laporan/cetak_inventaris.php" method="get">
+            <input type="hidden" name="aksi">
+            <input type="hidden" name="id_user" value="<?= $id_user;?>">
+            <input type="hidden" name="id_lokasi" value="<?= $id_vessel;?>">
+            <input type="hidden" name="id_room" value="<?= $id_posisi;?>">
+            <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
+
+        </form>
         <a href="?form=tambahKontrakCrew" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Contract</a>
         <a href="?page=crew" class="btn btn-dark btn-sm "><i class="fa fa-users"></i> Crew Armada</a>
         <a href="?page=masterBank" class="btn btn-warning btn-sm"><i class="fa fa-bank"></i> Master Bank</a>

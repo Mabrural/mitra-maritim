@@ -7,6 +7,7 @@ $customer = query("SELECT * FROM customer");
 $vessel = query("SELECT * FROM vessel");
 $satuan = query("SELECT * FROM satuan");
 $dept = query("SELECT * FROM dept");
+$kargo = query("SELECT * FROM jenis_kargo");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -78,21 +79,7 @@ if (isset($_POST["submit"])) {
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>Form Input Sales Plan <small></small></h2>
-							<!-- <ul class="nav navbar-right panel_toolbox">
-								<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-								</li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a class="dropdown-item" href="#">Settings 1</a>
-										</li>
-										<li><a class="dropdown-item" href="#">Settings 2</a>
-										</li>
-									</ul>
-								</li>
-								<li><a class="close-link"><i class="fa fa-close"></i></a>
-								</li>
-							</ul> -->
+							
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
@@ -103,6 +90,14 @@ if (isset($_POST["submit"])) {
 									</label>
 									<div class="col-md-6 col-sm-6 ">
 										<input type="text" name="kode_brg" id="last-name" required="required" class="form-control" value="<?= $kode_sales;?>" readonly>
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label class="col-form-label col-md-3 col-sm-3 label-align" for="voy_num">Voyage Number <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="text" name="voy_num" id="voy_num" required="required" class="form-control" placeholder="Ketikkan Voyage Number">
 									</div>
 								</div>
 
@@ -129,19 +124,23 @@ if (isset($_POST["submit"])) {
                                         </select>
                                     </div>
                                 </div>
-                        
+
 								<div class="item form-group">
-									<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Jenis Kargo <span class="required">*</span>
-									</label>
-									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="jenis_kargo" id="last-name" required="required" class="form-control" placeholder="Ketikkan Jenis Kargo">
-									</div>
-								</div>
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kargo <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select class="form-control" name="id_kargo" required>
+                                            <option value="">--Pilih Jenis Kargo--</option>
+                                            <?php foreach($kargo as $row) : ?>
+                                                <option value="<?= $row['id_kargo']?>"><?= $row['nama_kargo']?></option>
+                                            <?php endforeach;?>	
+                                        </select>
+                                    </div>
+                                </div>
 
 								<div class="item form-group">
 									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Qty</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input id="middle-name" name="qty_sales" class="form-control" type="number" min="1" placeholder="Ketikkan Spesifikasi">
+										<input id="middle-name" name="qty_sales" class="form-control" type="number" min="1" placeholder="Ketikkan Qty">
 									</div>
 								</div>
 
@@ -207,6 +206,12 @@ if (isset($_POST["submit"])) {
                                         </select>
                                     </div>
                                 </div>
+
+								<input type="text" name="app1">
+								<input type="text" name="app2">
+								<input type="text" name="app3">
+								<input type="text" name="status_plan">
+
 
 								<div class="ln_solid"></div>
 								<div class="item form-group">
