@@ -207,10 +207,10 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
-								<input type="text" name="app1">
-								<input type="text" name="app2">
-								<input type="text" name="app3">
-								<input type="text" name="status_plan">
+								<input type="hidden" name="app1">
+								<input type="hidden" name="app2">
+								<input type="hidden" name="app3">
+								<input type="hidden" name="status_plan" value="On Dirops">
 
 
 								<div class="ln_solid"></div>

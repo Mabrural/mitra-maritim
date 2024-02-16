@@ -81,7 +81,7 @@ function generate_kode_sales() {
 	$id_kargo = mysqli_real_escape_string($koneksi, $data["id_kargo"]);
 
 	$query = "INSERT INTO sales_plan VALUES
-			('', '$kode_sales', '$voy_num', '$qty_sales', '$loading_port', '$discharge_port', '$sales_nominal', '$start', '$finished', '','','','', '$id_cust', '$id_satuan', '$id_vessel', '$id_dept', '$id_kargo')";
+			('', '$kode_sales', '$voy_num', '$qty_sales', '$loading_port', '$discharge_port', '$sales_nominal', '$start', '$finished', '','','','$status_plan', '$id_cust', '$id_satuan', '$id_vessel', '$id_dept', '$id_kargo')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -99,6 +99,10 @@ function ubahSales($data) {
 	$sales_nominal = mysqli_real_escape_string($koneksi, $data["sales_nominal"]);
 	$start = mysqli_real_escape_string($koneksi, $data["start"]);
 	$finished = mysqli_real_escape_string($koneksi, $data["finished"]);
+	$app1 = mysqli_real_escape_string($koneksi, $data["app1"]);
+	$app2 = mysqli_real_escape_string($koneksi, $data["app2"]);
+	$app3 = mysqli_real_escape_string($koneksi, $data["app3"]);
+	$status_plan = mysqli_real_escape_string($koneksi, $data["status_plan"]);
 	$id_cust = mysqli_real_escape_string($koneksi, $data["id_cust"]);
 	$id_satuan = mysqli_real_escape_string($koneksi, $data["id_satuan"]);
 	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);

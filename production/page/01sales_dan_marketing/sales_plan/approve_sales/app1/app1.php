@@ -91,12 +91,12 @@ $id_user = $_SESSION["id_user"];
                 </td> -->
                 <td class="last">
                     <?php
-                    if ($data['status_plan'] === 'On Dirut') {
-                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
+                    if ($data['status_plan'] !== 'On Dirops') {
+                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm btn disabled">Approved</a>';
                     } else {
-                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                        echo '| <a href="?form=ubahSales&id_sales=' . $data["id_sales"] . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> </a>';
-                        echo '| <a href="?form=hapusSales&id_sales=' . $data["id_sales"] . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
+                        echo '<a href="?form=approveSales&id_sales=' . $data["id_sales"] . '" class="btn btn-success btn-sm" onclick="return confirm(\'Anda yakin ingin mengapprove data ini?\')">Approve </a>';
+                        echo '| <a href="?form=ubahSales&id_sales=' . $data["id_sales"] . '" class="btn btn-info btn-sm" onclick="return confirm(\'Anda yakin ingin merevise data ini?\')">Revise </a>';
+                        echo '| <a href="?form=ubahSales&id_sales=' . $data["id_sales"] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Anda yakin ingin mereject data ini?\')">Reject</a>';
                     }
                     ?>
                 </td>

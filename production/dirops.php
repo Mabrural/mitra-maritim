@@ -409,7 +409,7 @@ if ($_SESSION["level"] == "Staff IT") {
                         switch ($page) {
 
                             case 'salesPlan':
-                                include "page/01sales_dan_marketing/sales_plan/sales_plan.php";
+                                include "page/01sales_dan_marketing/sales_plan/approve_sales/app1/app1.php";
                                 break;
 
                             case 'masterVessel':
@@ -556,6 +556,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "lihatApprove":
                                 include "page/01sales_dan_marketing/sales_plan/lihat_approve.php";
+                                break;
+
+                            case "approveSales":
+                                include "page/01sales_dan_marketing/sales_plan/approve_sales/app1/konfirmasiapp1.php";
                                 break;
 
                             case "tambahRab":
