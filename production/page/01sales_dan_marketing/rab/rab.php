@@ -8,7 +8,7 @@ $id_user = $_SESSION["id_user"];
     <div class="x_panel">
       <div class="x_title">
         <h2>RAB<small></small></h2>
-        <a href="?form=tambahRab" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Upload RAB</a>
+        <a href="?form=tambahRab" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New RAB</a>
        
         <div class="clearfix"></div>
       </div>

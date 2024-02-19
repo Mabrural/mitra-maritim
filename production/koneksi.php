@@ -280,6 +280,26 @@ function rejectSales3($id_sales) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function generate_document_number() {
+	global $koneksi;
+	
+	// Ambil nilai auto increment terakhir
+	$query = "SELECT MAX(CAST(SUBSTRING(doc_num, 4) AS SIGNED)) AS kode_terakhir FROM rab";
+	$result = mysqli_query($koneksi, $query);
+	$row = mysqli_fetch_assoc($result);
+	$kode_terakhir = $row['kode_terakhir'];
+  
+	// Generate kode barang baru
+	$kode_baru = "RAB";
+	if ($kode_terakhir !== null) {
+	  $kode_baru .= sprintf("%07d", $kode_terakhir + 1);
+	} else {
+	  $kode_baru .= "0000001";
+	}
+  
+	return $kode_baru;
+  }
+
 
 function tambahVessel($data) {
 
@@ -1529,25 +1549,6 @@ function approveCuti($data) {
 }
 
 
-// function generate_kode_barang() {
-//   global $koneksi;
-  
-//   // Ambil nilai auto increment terakhir
-//   $query = "SELECT MAX(CAST(SUBSTRING(kode_brg, 4) AS SIGNED)) AS kode_terakhir FROM storage_barang";
-//   $result = mysqli_query($koneksi, $query);
-//   $row = mysqli_fetch_assoc($result);
-//   $kode_terakhir = $row['kode_terakhir'];
-
-//   // Generate kode barang baru
-//   $kode_baru = "BRG";
-//   if ($kode_terakhir !== null) {
-//     $kode_baru .= sprintf("%03d", $kode_terakhir + 1);
-//   } else {
-//     $kode_baru .= "001";
-//   }
-
-//   return $kode_baru;
-// }
 
 function generate_kode_barang() {
   global $koneksi;
