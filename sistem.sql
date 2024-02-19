@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2024 at 11:49 AM
+-- Generation Time: Feb 19, 2024 at 11:58 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -847,13 +847,6 @@ CREATE TABLE `rab` (
   `id_user` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `rab`
---
-
-INSERT INTO `rab` (`id_rab`, `doc_num`, `tgl_rab`, `file_rab`, `id_user`) VALUES
-(4, '002/RAB-MMM/II/2024', '2024-02-16', '65cee80b4bb72.xlsx', 34);
-
 -- --------------------------------------------------------
 
 --
@@ -936,9 +929,9 @@ CREATE TABLE `sales_plan` (
   `sales_nominal` int(10) DEFAULT NULL,
   `start` date DEFAULT NULL,
   `finished` date DEFAULT NULL,
-  `app1` varchar(20) DEFAULT NULL,
-  `app2` varchar(20) DEFAULT NULL,
-  `app3` varchar(20) DEFAULT NULL,
+  `app1` varchar(40) DEFAULT NULL,
+  `app2` varchar(40) DEFAULT NULL,
+  `app3` varchar(40) DEFAULT NULL,
   `status_plan` varchar(30) DEFAULT NULL,
   `id_cust` int(10) NOT NULL,
   `id_satuan` int(10) NOT NULL,
@@ -952,7 +945,7 @@ CREATE TABLE `sales_plan` (
 --
 
 INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `voy_num`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `app1`, `app2`, `app3`, `status_plan`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`, `id_kargo`) VALUES
-(13, 'SPL-24021600001-88684', '001VOY/MMM/I/2024', 1, 'jkt', 'btm', 1000000000, '2024-02-16', '0000-00-00', '', '', '', 'On Dirops', 6, 1, 2, 7, 1);
+(13, 'SPL-24021600001-88684', '001VOY/MMM/I/2024', 1, 'jkt', 'btm', 2000000000, '2024-02-16', '0000-00-00', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai', 6, 1, 2, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -1146,7 +1139,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `id_emp`) VALUES
 (29, 'krisno', '$2y$10$wdmPEof2zbHxxFyJWXAZZOZOigLJucxD/Vy5oALS.0y5ZJkvzVNhC', 'Crew Armada', 16),
 (30, 'niken', '$2y$10$97K4MbdoDy98yZbu5BbtIOkSn4iT.PuudgLeGDIGb/USt79lGL6K2', 'Staff Finance', 17),
 (31, 'mabrur', '$2y$10$zxwFH.e4ooAM3CgI8Wzi8Ot0AIZhzcnKMHNPSIprWt.gbQiArYqki', 'Staff IT', 30),
-(33, 'dirkeu', '$2y$10$ieRoa0fn5uVaLatoFYBeUuwI0H1l./YWLxnB.1WNvFbTZyPApFUl6', 'Direktur Keuangan', 9),
+(33, 'regina', '$2y$10$eyJDmSlVrm0AhnUWMi2KT.j8g.wrDKuDCNcpxqi.ZRWevSjBbwUXa', 'Direktur Keuangan', 9),
 (34, 'gahral', '$2y$10$htRb4rT9Pd08BIcc9/JnpeMPtqmVxkXU2Agz4JkQX0xFMj29ZBCtG', 'Kepala Operasional', 13),
 (35, 'rika', '$2y$10$gC0lYt4CihldMHZrbkUiE.JNb4T1i4LSha06Re7glcgj5pWxE/02q', 'Staff Operasional', 15);
 
@@ -1489,7 +1482,7 @@ ALTER TABLE `ijazah`
 -- AUTO_INCREMENT for table `jenis_kargo`
 --
 ALTER TABLE `jenis_kargo`
-  MODIFY `id_kargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_kargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
