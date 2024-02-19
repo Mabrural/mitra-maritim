@@ -265,6 +265,46 @@ function hapusDept($id_dept) {
 
 }
 
+function tambahKargo($data) {
+
+	global $koneksi;
+	$nama_kargo = mysqli_real_escape_string($koneksi, $data["nama_kargo"]);
+
+
+	$query = "INSERT INTO jenis_kargo VALUES
+			('', '$nama_kargo')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function ubahKargo($data) {
+	global $koneksi;
+	$id_kargo = $data["id_kargo"];
+	$nama_kargo = mysqli_real_escape_string($koneksi, $data["nama_kargo"]);
+
+	$query = "UPDATE jenis_kargo SET
+				nama_kargo = '$nama_kargo'
+			  WHERE id_kargo = $id_kargo
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusKargo($id_kargo) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM jenis_kargo WHERE id_kargo='$id_kargo'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function tambahCrew($data) {
 
 	global $koneksi;

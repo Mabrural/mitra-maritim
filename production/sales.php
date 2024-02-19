@@ -558,6 +558,18 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/01sales_dan_marketing/master_dept/ubah.php";
                                 break;
 
+                            case "tambahKargo":
+                                include "page/01sales_dan_marketing/master_kargo/tambah.php";
+                                break;
+
+                            case "hapusKargo":
+                                include "page/01sales_dan_marketing/master_kargo/hapus.php";
+                                break;
+
+                            case "ubahKargo":
+                                include "page/01sales_dan_marketing/master_kargo/ubah.php";
+                                break;
+
                             case "lihatApprove":
                                 include "page/01sales_dan_marketing/sales_plan/lihat_approve.php";
                                 break;
