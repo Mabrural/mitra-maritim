@@ -91,7 +91,7 @@ $id_user = $_SESSION["id_user"];
                 </td> -->
                 <td class="last">
                     <?php
-                    if ($data['status_plan'] === 'On Dirut') {
+                    if ($data['status_plan'] === 'On Dirut' || $data['status_plan'] === 'Reject') {
                         echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
                     } else {
                         echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';

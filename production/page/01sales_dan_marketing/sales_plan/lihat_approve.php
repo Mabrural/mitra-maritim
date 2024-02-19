@@ -87,7 +87,20 @@ $sales_plan = query("SELECT * FROM sales_plan WHERE id_sales=$id_sales")[0];
         				    ?>
                 </td>
                 <td class=" "><?= $data['nama_dept'];?></td>
-                <td class=" "><?= $data['status_plan'];?></td>
+                <td class=" ">
+                    <strong style="background-color: <?php
+                    if ($data['status_plan'] == 'Reject') {
+                        echo '#a62f26';
+                    } elseif ($data['status_plan'] == 'Selesai') {
+                      echo '#14a664';
+                    } else {
+                        echo '#b58709';
+                    }
+                ?>
+
+
+                    ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_plan'];?></strong>
+                </td>
 
             
                 </td>
