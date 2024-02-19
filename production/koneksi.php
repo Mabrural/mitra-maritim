@@ -142,6 +142,49 @@ function hapusSales($id_sales) {
 
 }
 
+function approveSales1($id_sales) {
+	global $koneksi;
+	$app1 = "Bambang Wahyudi";	
+	$status_plan = "On Dirut";	
+
+	$query = "UPDATE sales_plan SET
+				app1 = '$app1',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseSales1($id_sales) {
+	global $koneksi;
+	$app1 = "";	
+	$status_plan = "Revise";	
+
+	$query = "UPDATE sales_plan SET
+				app1 = '$app1',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectSales1($id_sales) {
+	global $koneksi;
+	$status_plan = "Reject";	
+
+	$query = "UPDATE sales_plan SET
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
 function tambahVessel($data) {
 
 	global $koneksi;

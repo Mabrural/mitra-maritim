@@ -2,7 +2,7 @@
 
 $id_sales = $_GET["id_sales"];
 
-if( approveSales1($id_sales) > 0 ){
+if( reviseSales1($id_sales) > 0 ){
 	echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 	echo '<script src="./sweetalert2.min.js"></script>';
 	echo "<script>
@@ -10,7 +10,7 @@ if( approveSales1($id_sales) > 0 ){
 		swal.fire({
 			
 			title               : 'Berhasil',
-			text                :  'Data berhasil diapprove',
+			text                :  'Data berhasil direvise',
 			//footer              :  '',
 			icon                : 'success',
 			timer               : 2000,
@@ -29,7 +29,7 @@ if( approveSales1($id_sales) > 0 ){
 		swal.fire({
 			
 			title               : 'Gagal',
-			text                :  'Data gagal diapprove',
+			text                :  'Data gagal direvise',
 			//footer              :  '',
 			icon                : 'error',
 			timer               : 2000,

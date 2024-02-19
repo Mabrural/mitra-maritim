@@ -562,6 +562,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/01sales_dan_marketing/sales_plan/approve_sales/app1/konfirmasiapp1.php";
                                 break;
 
+                            case "reviseSales":
+                                include "page/01sales_dan_marketing/sales_plan/revise_sales/revise1/revise1.php";
+                                break;
+
+                            case "rejectSales":
+                                include "page/01sales_dan_marketing/sales_plan/reject_sales/reject1.php";
+                                break;
+
                             case "tambahRab":
                                 include "page/01sales_dan_marketing/rab/tambah.php";
                                 break;
