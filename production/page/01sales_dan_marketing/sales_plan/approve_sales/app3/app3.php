@@ -52,7 +52,7 @@ $id_user = $_SESSION["id_user"];
                 </th>
               </tr>
             </thead>
-
+ 
             <tbody>
               <tr class="even pointer">
               	<?php 
@@ -86,17 +86,15 @@ $id_user = $_SESSION["id_user"];
         				    ?>
                 </td>
                 <td class=" "><?= $data['nama_dept'];?></td>
-                
-                <!-- <td class=" last"><a href="?form=ubahSales&id_sales=<?= $data["id_sales"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusSales&id_sales=<?= $data["id_sales"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a> <a href="?form=lihatApprove&id_sales=<?= $data["id_sales"]; ?>" class="btn btn-dark btn-sm">Lihat Approval </a>
-                </td> -->
+
                 <td class="last">
                     <?php
-                    if ($data['status_plan'] === 'On Dirut' || $data['status_plan'] === 'Reject' || $data['status_plan'] === 'On Dirkeu' || $data['status_plan'] === 'Selesai') {
-                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
+                    if ($data['status_plan'] !== 'On Dirkeu') {
+                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm btn disabled">' . $data['status_plan'] . '</a>';
                     } else {
-                        echo '<a href="?form=lihatApprove&id_sales=' . $data["id_sales"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                        echo '| <a href="?form=ubahSales&id_sales=' . $data["id_sales"] . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> </a>';
-                        echo '| <a href="?form=hapusSales&id_sales=' . $data["id_sales"] . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
+                        echo '| <a href="?form=approveSales&id_sales=' . $data["id_sales"] . '" class="btn btn-success btn-sm" onclick="return confirm(\'Anda yakin ingin mengapprove data ini?\')">Approve</a>';
+                        echo '| <a href="?form=reviseSales&id_sales=' . $data["id_sales"] . '" class="btn btn-info btn-sm" onclick="return confirm(\'Anda yakin ingin merevise data ini?\')">Revise </a>';
+                        echo '| <a href="?form=rejectSales&id_sales=' . $data["id_sales"] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Anda yakin ingin mereject data ini?\')">Reject</a>';
                     }
                     ?>
                 </td>
@@ -129,19 +127,6 @@ $id_user = $_SESSION["id_user"];
 
           </script>
 
-
-          <!-- <script type="text/javascript">
-            new DataTable('#example', {
-            responsive: true,
-            columnDefs: [
-              {
-                targets: -1,
-                responsivePriority: 'auto'
-              }
-            ]
-          });
-
-          </script> -->
         </div>
 				
 			

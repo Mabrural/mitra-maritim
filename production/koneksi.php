@@ -118,6 +118,7 @@ function ubahSales($data) {
 				sales_nominal = '$sales_nominal',
 				start = '$start',
 				finished = '$finished',
+				status_plan = '$status_plan',
 				id_cust = '$id_cust',
 				id_satuan = '$id_satuan',
 				id_vessel = '$id_vessel',
@@ -184,6 +185,101 @@ function rejectSales1($id_sales) {
 
 	return mysqli_affected_rows($koneksi);
 }
+
+function approveSales2($id_sales) {
+	global $koneksi;
+	$app2 = "Raden Sulaiman Sanjeev";	
+	$status_plan = "On Dirkeu";	
+
+	$query = "UPDATE sales_plan SET
+				app2= '$app2',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseSales2($id_sales) {
+	global $koneksi;
+	$app1 = "";	
+	$status_plan = "Revise";	
+
+	$query = "UPDATE sales_plan SET
+				app1 = '$app1',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectSales2($id_sales) {
+	global $koneksi;
+	$app1 = "";
+	$status_plan = "Reject";	
+
+	$query = "UPDATE sales_plan SET
+				app1 = '$app1',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function approveSales3($id_sales) {
+	global $koneksi;
+	$app3 = "Regina";	
+	$status_plan = "Selesai";	
+
+	$query = "UPDATE sales_plan SET
+				app3= '$app3',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseSales3($id_sales) {
+	global $koneksi;
+	$app1 = "";	
+	$app2 = "";	
+	$status_plan = "Revise";	
+
+	$query = "UPDATE sales_plan SET
+				app1 = '$app1',
+				app2 = '$app2',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectSales3($id_sales) {
+	global $koneksi;
+	$app1 = "";
+	$app2 = "";
+	$status_plan = "Reject";	
+
+	$query = "UPDATE sales_plan SET
+				app1 = '$app1',
+				app2 = '$app2',
+				status_plan = '$status_plan'
+			  WHERE id_sales = $id_sales
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
 
 function tambahVessel($data) {
 

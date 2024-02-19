@@ -213,7 +213,7 @@ if (isset($_POST["submit"])) {
 								<input type="hidden" name="app1" value="<?= $sales_plan['app1']?>">
 								<input type="hidden" name="app2" value="<?= $sales_plan['app2']?>">
 								<input type="hidden" name="app3" value="<?= $sales_plan['app3']?>">
-								<input type="hidden" name="status_plan" value="<?= $sales_plan['status_plan']?>">
+								<input type="hidden" name="status_plan" value="On Dirops">
 
 								<div class="ln_solid"></div>
 								<div class="item form-group">
