@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2024 at 11:58 AM
+-- Generation Time: Feb 20, 2024 at 08:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -548,34 +548,38 @@ CREATE TABLE `karyawan` (
   `status` varchar(30) NOT NULL,
   `gambar` varchar(200) NOT NULL,
   `tgl_lahir` date DEFAULT NULL,
+  `tempat` varchar(50) DEFAULT NULL,
   `jenis_kelamin` varchar(30) DEFAULT NULL,
   `alamat` varchar(200) DEFAULT NULL,
   `no_hp` varchar(15) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
   `status_pernikahan` varchar(30) DEFAULT NULL,
   `nik` varchar(30) DEFAULT NULL,
-  `npwp` varchar(30) DEFAULT NULL
+  `npwp` varchar(30) DEFAULT NULL,
+  `norek_mandiri` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `karyawan`
 --
 
-INSERT INTO `karyawan` (`id_emp`, `nama_emp`, `jabatan`, `divisi`, `status`, `gambar`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `no_hp`, `email`, `status_pernikahan`, `nik`, `npwp`) VALUES
-(5, 'Andre Yogi', 'Staff Operasional', 'Office', 'Aktif', '65a4f45ead15a.png', NULL, NULL, NULL, '', '', '', NULL, ''),
-(8, 'Raden Sulaiman Sanjeev', 'Direktur Utama', 'BSD', 'Aktif', '65a4f45ead15a.png', '1985-01-01', 'Laki-laki', '-', '0', 'sanjeev@bumi-laut.com', 'Sudah Menikah', '1312', '1321'),
-(9, 'Regina', 'Direktur Keuangan', 'BSD', 'Aktif', '65a4f45ead15a.png', NULL, NULL, NULL, '', '', '', NULL, ''),
-(10, 'James Taju', 'Direktur HRD', 'HRM', 'Aktif', '65a4f45ead15a.png', '1980-01-01', 'Laki-laki', '-', '1231231', 'btm@gmail.xom', 'Sudah Menikah', '123', '123'),
-(11, 'Bambang Wahyudi', 'Direktur Operasional', 'Manager', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Laki-laki', '-', '0', 'btm@gmail.xom', 'Sudah Menikah', '132', '132'),
-(12, 'Michael Kawilarang', 'Kepala Cabang', 'Manager', 'Aktif', '65a8b1dbd087d.png', '0000-00-00', 'Laki-laki', '-', '0', 'batam@gmail.com', 'Sudah Menikah', '123', '123'),
-(13, 'Gahral', 'Kepala Operasional', 'Shipping', 'Aktif', '65a4f45ead15a.png', NULL, NULL, NULL, '', '', '', NULL, ''),
-(14, 'Elis', 'Kepala Finance', 'Finance', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Laki-laki', '-', '0', 'btm@gmail.xom', 'Belum Menikah', '123', '1321'),
-(15, 'Rika', 'Staff Shipping', 'Shipping', 'Aktif', '65a4f45ead15a.png', NULL, NULL, NULL, '', '', '', NULL, ''),
-(16, 'Krisno', 'Staff Shipping', 'Shipping', 'Aktif', '65a4f45ead15a.png', NULL, NULL, NULL, '', '', '', NULL, ''),
-(17, 'Niken', 'Staff Finance', 'Finance', 'Aktif', '65a4f45ead15a.png', NULL, NULL, NULL, '', '', '', NULL, ''),
-(18, 'Robby T. Hamisi ', 'Staff Operasional', 'Operasional', 'Aktif', '65a4f45ead15a.png', '1980-08-08', 'Laki-laki', 'Nongsa', '082285686292', 'robby.t@gmail.com', 'Sudah Menikah', '2171012205180001', '082222050215000'),
-(19, 'Alex Untu', 'Staff Operasional', 'Operasional', 'Aktif', '65a8a7a4c616b.png', '0000-00-00', 'Laki-laki', 'Bengkong Kolam Swadaya', '081100001212', 'alex@gmail.com', 'Belum Menikah', '2171012122030001', '927824938215000'),
-(30, 'Muhammad Mabrur Al Mutaqi', 'Staff IT', 'IT Dept', 'Aktif', '65a8cc3d11e59.png', '2002-05-21', 'Laki-laki', 'Cipta Asri blok Herba no.120', '082178192938', 'mabruralmutaqi@gmail.com', 'Belum Menikah', '2171012105020001', '95.461.480.6-225.000');
+INSERT INTO `karyawan` (`id_emp`, `nama_emp`, `jabatan`, `divisi`, `status`, `gambar`, `tgl_lahir`, `tempat`, `jenis_kelamin`, `alamat`, `no_hp`, `email`, `status_pernikahan`, `nik`, `npwp`, `norek_mandiri`) VALUES
+(5, 'Andre Yogi', 'Staff Operasional', 'Office', 'Tidak Aktif', '65a4f45ead15a.png', '2024-02-20', 'Batam', 'Laki-laki', '-', '0', 'admin@gmail.com', 'Belum Menikah', '0', '0', '0'),
+(8, 'Raden Sulaiman Sanjeev', 'Direktur Utama', 'BSD', 'Aktif', '65a4f45ead15a.png', '1985-01-01', 'Batam', 'Laki-laki', '-', '0', 'sanjeev@bumi-laut.com', 'Sudah Menikah', '1312', '1321', '0'),
+(9, 'Regina', 'Direktur Keuangan', 'BSD', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Perempuan', 'sukajadi', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
+(10, 'James Taju', 'Direktur HRD', 'HRM', 'Aktif', '65a4f45ead15a.png', '1980-01-01', 'Batam', 'Laki-laki', '-', '1231231', 'btm@gmail.xom', 'Sudah Menikah', '123', '123', '0'),
+(11, 'Bambang Wahyudi', 'Direktur Operasional', 'Manager', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Laki-laki', '-', '0', 'btm@gmail.xom', 'Sudah Menikah', '132', '132', '0'),
+(12, 'Michael Kawilarang', 'Kepala Cabang', 'Manager', 'Aktif', '65a8b1dbd087d.png', '0000-00-00', 'Batam', 'Laki-laki', '-', '0', 'batam@gmail.com', 'Sudah Menikah', '123', '123', '0'),
+(13, 'Gahral', 'Kepala Operasional', 'Shipping', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Laki-laki', 'Tiban', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
+(14, 'Elis', 'Kepala Finance', 'Finance', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Laki-laki', '-', '0', 'btm@gmail.xom', 'Belum Menikah', '123', '1321', '0'),
+(15, 'Rika', 'Staff Shipping', 'Shipping', 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Perempuan', 'Tiban BTN', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
+(16, 'Krisno', 'Staff Shipping', 'Shipping', 'Aktif', '65a4f45ead15a.png', '1990-11-20', 'Batam', 'Laki-laki', 'Sagulung', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
+(17, 'Niken', 'Staff Finance', 'Finance', 'Aktif', '65a4f45ead15a.png', '2024-02-20', 'Batam', 'Perempuan', 'Batam Center', '0', 'admin@gmail.com', 'Belum Menikah', '0', '0', '0'),
+(18, 'Robby T. Hamisi ', 'Staff Operasional', 'Operasional', 'Aktif', '65a4f45ead15a.png', '1980-08-08', 'Batam', 'Laki-laki', 'Nongsa', '082285686292', 'robby.t@gmail.com', 'Sudah Menikah', '2171012205180001', '082222050215000', '0'),
+(19, 'Alex Untu', 'Staff Operasional', 'Operasional', 'Aktif', '65a8a7a4c616b.png', '0000-00-00', 'Batam', 'Laki-laki', 'Bengkong Kolam Swadaya', '081100001212', 'alex@gmail.com', 'Belum Menikah', '2171012122030001', '927824938215000', '0'),
+(30, 'Muhammad Mabrur Al Mutaqi', 'Staff IT', 'IT Dept', 'Aktif', '65a8cc3d11e59.png', '2002-05-21', 'Batam', 'Laki-laki', 'Cipta Asri blok Herba no.120', '082178192938', 'mabruralmutaqi@gmail.com', 'Belum Menikah', '2171012105020001', '95.461.480.6-225.000', '0'),
+(34, 'Ardit Satoto', 'Staff Admin', 'Shipping', 'Tidak Aktif', '65d44e15b5ac2.png', '1999-05-19', 'Batam', 'Perempuan', 'Botania 1 blok AB no. 5', '0', 'adit.hs85@gmail.com', 'Belum Menikah', '2171011945023331', '95.461.480.6-225.000', '0'),
+(36, 'Diki Kurniawan', 'Staff Operasional', 'Shipping', 'Aktif', '65d453fab67db.png', '2024-02-20', 'Batam', 'Laki-laki', '-', '0', 'adit.hs85@gmail.com', 'Belum Menikah', '0', '0', '10900000000');
 
 -- --------------------------------------------------------
 
@@ -617,7 +621,7 @@ CREATE TABLE `kontrak_crew` (
 --
 
 INSERT INTO `kontrak_crew` (`id_kontrakcrew`, `sign_on`, `sign_off`, `gaji_crew`, `idstatus_crew`, `id_crew`) VALUES
-(8, '2024-02-16', '2024-05-16', 4500000, 1, 8);
+(9, '2024-02-20', '2024-05-20', 4500000, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -732,7 +736,8 @@ INSERT INTO `manage_cuti` (`id_manage_cuti`, `id_kategori_cuti`, `kuota_cuti`, `
 (30, 5, 6, 30),
 (32, 4, 8, 19),
 (33, 5, 6, 19),
-(34, 6, 3, 19);
+(34, 6, 3, 19),
+(35, 4, 11, 15);
 
 -- --------------------------------------------------------
 
@@ -831,7 +836,10 @@ CREATE TABLE `qrcode` (
 --
 
 INSERT INTO `qrcode` (`id_qr`, `id_emp`) VALUES
-(10, 8);
+(10, 8),
+(13, 9),
+(12, 10),
+(14, 11);
 
 -- --------------------------------------------------------
 
@@ -911,7 +919,8 @@ CREATE TABLE `req_cuti` (
 INSERT INTO `req_cuti` (`id_req_cuti`, `tgl_mulai`, `tgl_akhir`, `jml_hari`, `tipe_cuti`, `alasan`, `status_cuti`, `created_at`, `updated_at`, `id_emp`, `id_kategori_cuti`) VALUES
 (22, '2024-01-25', '2024-01-25', 1, 'Full Day', 'perpanjang STNK', 'Sudah diapprove', '2024-01-23 14:39:37', '2024-01-23 14:54:18', 30, 4),
 (23, '2024-01-25', '2024-01-26', 2, 'Full Day', 'Pulang Kampung', 'Sudah diapprove', '2024-01-23 14:56:52', '2024-01-23 15:03:19', 30, 4),
-(30, '2024-01-24', '2024-01-24', 1, 'Full Day', 'Ngurus ATM', 'Sudah diapprove', '2024-01-23 17:47:40', '2024-01-23 17:48:41', 19, 4);
+(30, '2024-01-24', '2024-01-24', 1, 'Full Day', 'Ngurus ATM', 'Sudah diapprove', '2024-01-23 17:47:40', '2024-01-23 17:48:41', 19, 4),
+(32, '2024-02-21', '2024-02-21', 1, 'Full Day', 'ada perlu', 'Sudah diapprove', '2024-02-20 11:50:53', '2024-02-20 11:51:19', 15, 4);
 
 -- --------------------------------------------------------
 
@@ -1494,7 +1503,7 @@ ALTER TABLE `jurnal`
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_emp` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_emp` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `kategori_cuti`
@@ -1506,7 +1515,7 @@ ALTER TABLE `kategori_cuti`
 -- AUTO_INCREMENT for table `kontrak_crew`
 --
 ALTER TABLE `kontrak_crew`
-  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `kontrak_kerja`
@@ -1536,7 +1545,7 @@ ALTER TABLE `lokasi_room`
 -- AUTO_INCREMENT for table `manage_cuti`
 --
 ALTER TABLE `manage_cuti`
-  MODIFY `id_manage_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_manage_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `no_po`
@@ -1560,7 +1569,7 @@ ALTER TABLE `po_barang`
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
-  MODIFY `id_qr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_qr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `rab`
@@ -1578,7 +1587,7 @@ ALTER TABLE `req_barang`
 -- AUTO_INCREMENT for table `req_cuti`
 --
 ALTER TABLE `req_cuti`
-  MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `sales_plan`
