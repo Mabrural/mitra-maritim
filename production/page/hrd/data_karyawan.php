@@ -18,6 +18,8 @@ $id_user = $_SESSION["id_user"];
           <a href="?form=tambahKaryawan" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> Tambah Karyawan</a>
           <a href="?page=dataKaryawan" class="btn btn-dark btn-sm btn disabled" autofocus="on"><i class="fa fa-users"></i> Karyawan Aktif</a>
           <a href="?page=dataKaryawanNonaktif" class="btn btn-danger btn-sm"><i class="fa fa-users"></i> Karyawan Non Aktif</a>
+          <a href="?page=masterJabatan" class="btn btn-warning btn-sm"><i class="fa fa-user"></i> Master Jabatan</a>
+          <a href="?page=masterDivisi" class="btn btn-success btn-sm"><i class="fa fa-building"></i> Master Divisi</a>
         
   
         <div class="clearfix"></div>

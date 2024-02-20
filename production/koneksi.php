@@ -464,6 +464,86 @@ function hapusKargo($id_kargo) {
 
 }
 
+function tambahJabatan($data) {
+
+	global $koneksi;
+	$nama_jabatan = mysqli_real_escape_string($koneksi, $data["nama_jabatan"]);
+
+
+	$query = "INSERT INTO jabatan VALUES
+			('', '$nama_jabatan')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function hapusJabatan($id_jabatan) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM jabatan WHERE id_jabatan='$id_jabatan'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function ubahJabatan($data) {
+	global $koneksi;
+	$id_jabatan = $data["id_jabatan"];
+	$nama_jabatan = mysqli_real_escape_string($koneksi, $data["nama_jabatan"]);
+
+	$query = "UPDATE jabatan SET
+				nama_jabatan = '$nama_jabatan'
+			  WHERE id_jabatan = $id_jabatan
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function tambahDivisi($data) {
+
+	global $koneksi;
+	$nama_divisi= mysqli_real_escape_string($koneksi, $data["nama_divisi"]);
+
+
+	$query = "INSERT INTO divisi VALUES
+			('', '$nama_divisi')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function ubahDivisi($data) {
+	global $koneksi;
+	$id_divisi = $data["id_divisi"];
+	$nama_divisi = mysqli_real_escape_string($koneksi, $data["nama_divisi"]);
+
+	$query = "UPDATE divisi SET
+				nama_divisi = '$nama_divisi'
+			  WHERE id_divisi = $id_divisi
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusDivisi($id_divisi) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM divisi WHERE id_divisi='$id_divisi'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function tambahCrew($data) {
 
 	global $koneksi;

@@ -422,6 +422,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/04hrd/master_bank/master_bank.php";
                                 break;
 
+                            case 'masterJabatan':
+                                include "page/hrd/master_jabatan/master_jabatan.php";
+                                break;
+
+                            case 'masterDivisi':
+                                include "page/hrd/master_divisi/master_divisi.php";
+                                break;
+
                             case 'approve':
                                 include "page/admin_approve/admin_aprove.php";
                                 break;
@@ -558,6 +566,18 @@ if ($_SESSION["level"] == "Staff IT") {
                               include "page/04hrd/crew/ubah.php";
                               break;
 
+                          case "tambahBank":
+                              include "page/04hrd/master_bank/tambah.php";
+                              break;
+
+                          case "ubahBank":
+                              include "page/04hrd/master_bank/ubah.php";
+                              break;
+
+                          case "hapusBank":
+                              include "page/04hrd/master_bank/hapus.php";
+                              break;
+
                           case "tambahKontrakCrew":
                             include "page/04hrd/kontrak_crew/tambah.php";
                             break;
@@ -568,6 +588,30 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "hapusKontrakCrew":
                                 include "page/04hrd/kontrak_crew/hapus.php";
+                                break;
+
+                            case "tambahJabatan":
+                                include "page/hrd/master_jabatan/tambah.php";
+                                break;
+
+                            case "ubahJabatan":
+                                include "page/hrd/master_jabatan/ubah.php";
+                                break;
+
+                            case "hapusJabatan":
+                                include "page/hrd/master_jabatan/hapus.php";
+                                break;
+
+                            case "tambahDivisi":
+                                include "page/hrd/master_divisi/tambah.php";
+                                break;
+
+                            case "ubahDivisi":
+                                include "page/hrd/master_divisi/ubah.php";
+                                break;
+
+                            case "hapusDivisi":
+                                include "page/hrd/master_divisi/hapus.php";
                                 break;
                             
 
