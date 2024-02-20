@@ -48,7 +48,12 @@ $karyawan = query("SELECT * FROM karyawan WHERE id_emp = $id_emp")[0];
 						        <h5 class="card-title"><b><center>DATA DIRI KARYAWAN</center></b></h5><hr>
 						        <table>
 						        <tbody style="font-size: 0.9rem;">
-						        	<tr>
+								<tr>
+						          <td width="45%">Nama Lengkap</td>
+						          <td>:&nbsp;&nbsp;</td>
+						          <td><?= $karyawan['nama_emp']?></td>
+						        </tr>
+						        <tr>
 						          <td width="45%">NIK</td>
 						          <td>:&nbsp;&nbsp;</td>
 						          <td><?= $karyawan['nik']?></td>
@@ -58,11 +63,18 @@ $karyawan = query("SELECT * FROM karyawan WHERE id_emp = $id_emp")[0];
 						          <td>:&nbsp;&nbsp;</td>
 						          <td><?= $karyawan['npwp']?></td>
 						        </tr>
-						        <tr>
-						          <td width="45%">Nama Lengkap</td>
+								<tr>
+						          <td>Tempat, Tanggal Lahir</td>
 						          <td>:&nbsp;&nbsp;</td>
-						          <td><?= $karyawan['nama_emp']?></td>
+						          <td><?= $karyawan['tempat']?>, <?= date('d/m/Y', strtotime($karyawan['tgl_lahir']));?></td>
 						        </tr>
+
+								<tr>
+						          <td>Jenis Kelamin</td>
+						          <td>:&nbsp;&nbsp;</td>
+						          <td><?= $karyawan['jenis_kelamin']?></td>
+						        </tr>
+						        
 						        <tr>
 						          <td>No. Telp/HP</td>
 						          <td>:&nbsp;&nbsp;</td>

@@ -896,6 +896,7 @@ function tambahKaryawan($data) {
 	$divisi = htmlspecialchars($data["divisi"]);
 	$status = htmlspecialchars($data["status"]);
 	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
+	$tempat = htmlspecialchars($data["tempat"]);
 	$jenis_kelamin = htmlspecialchars($data["jenis_kelamin"]);
 	$alamat = htmlspecialchars($data["alamat"]);
 	$no_hp = htmlspecialchars($data["no_hp"]);
@@ -903,6 +904,7 @@ function tambahKaryawan($data) {
 	$status_p = htmlspecialchars($data["status_pernikahan"]);
 	$nik = htmlspecialchars($data["nik"]);
 	$npwp = htmlspecialchars($data["npwp"]);
+	$norek_mandiri = htmlspecialchars($data["norek_mandiri"]);
 
 	// upload gambar
 	$gambar =  upload();
@@ -911,7 +913,7 @@ function tambahKaryawan($data) {
 	}
 
 	$query = "INSERT INTO karyawan VALUES
-			('', '$nama_emp', '$jabatan', '$divisi', '$status', '$gambar', '$tgl_lahir', '$jenis_kelamin', '$alamat', '$no_hp', '$email', '$status_p', '$nik', '$npwp')";
+			('', '$nama_emp', '$jabatan', '$divisi', '$status', '$gambar', '$tgl_lahir', '$tempat', '$jenis_kelamin', '$alamat', '$no_hp', '$email', '$status_p', '$nik', '$npwp', '$norek_mandiri')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -976,6 +978,7 @@ function ubahKaryawan($data) {
 	$status = htmlspecialchars($data["status"]);
 	$gambarLama = htmlspecialchars($data["gambarLama"]);
 	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
+	$tempat = htmlspecialchars($data["tempat"]);
 	$jenis_kelamin = htmlspecialchars($data["jenis_kelamin"]);
 	$alamat = htmlspecialchars($data["alamat"]);
 	$no_hp = htmlspecialchars($data["no_hp"]);
@@ -983,6 +986,7 @@ function ubahKaryawan($data) {
 	$status_p = htmlspecialchars($data["status_pernikahan"]);
 	$nik = htmlspecialchars($data["nik"]);
 	$npwp = htmlspecialchars($data["npwp"]);
+	$norek_mandiri = htmlspecialchars($data["norek_mandiri"]);
 
 	// cek apakah user pilih gambar baru atau tidak
 	if ($_FILES['gambar']['error'] === 4 ) {
@@ -1000,13 +1004,15 @@ function ubahKaryawan($data) {
 				status = '$status',
 				gambar = '$gambar',
 				tgl_lahir = '$tgl_lahir',
+				tempat = '$tempat',
 				jenis_kelamin = '$jenis_kelamin',
 				alamat = '$alamat',
 				no_hp = '$no_hp',
 				email = '$email',
 				status_pernikahan = '$status_p',
 				nik = '$nik',
-				npwp = '$npwp'
+				npwp = '$npwp',
+				norek_mandiri = '$norek_mandiri'
 			  WHERE id_emp = $id_emp
 			";
 	mysqli_query($koneksi, $query);

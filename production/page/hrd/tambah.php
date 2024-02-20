@@ -110,10 +110,18 @@ if (isset($_POST["submit"])) {
 									<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Lengkap <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text" name="nama_emp" id="last-name" required="required" class="form-control" placeholder="Ketikkan Nama Lengkap">
+											</div>
+										</div>
+
+										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">NIK <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" name="nik" id="last-name" required="required" class="form-control" placeholder="Ketikkan NIK">
+												<input type="number" min="0" name="nik" id="last-name" required="required" class="form-control" placeholder="Ketikkan NIK">
 											</div>
 										</div>
 
@@ -124,24 +132,33 @@ if (isset($_POST["submit"])) {
 												<input type="text" name="npwp" id="last-name" required="required" class="form-control" placeholder="Ketikkan NPWP">
 											</div>
 										</div>
-										
+
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Nama Lengkap <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="norek_mandiri">No. Rek Mandiri <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" name="nama_emp" id="last-name" required="required" class="form-control" placeholder="Ketikkan Nama Lengkap">
+												<input type="number" min="0" name="norek_mandiri" id="norek_mandiri" required="required" class="form-control" placeholder="Ketikkan No. Rekening Mandiri">
 											</div>
 										</div>
+										
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan</label>
 											<div class="col-md-6 col-sm-6 ">
 												<input id="middle-name" name="jabatan" class="form-control" type="text" placeholder="Ketikkan Jabatan">
 											</div>
 										</div>
+
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Divisi</label>
 											<div class="col-md-6 col-sm-6 ">
 												<input id="middle-name" name="divisi" class="form-control" type="text" placeholder="Ketikkan Divisi">
+											</div>
+										</div>
+
+										<div class="item form-group">
+											<label for="tempat" class="col-form-label col-md-3 col-sm-3 label-align">Tempat Lahir <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 ">
+												<input id="tempat" name="tempat" class="form-control" type="text" placeholder="Ketikkan Tempat Lahir">
 											</div>
 										</div>
 
@@ -153,15 +170,19 @@ if (isset($_POST["submit"])) {
 										</div>
 
 										<div class="item form-group">
-											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin <span class="required">*</span></label>
+											<label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="jenis_kelamin" required>
-													<option value="">--Pilih Jenis Kelamin--</option>
-													<option value="Laki-laki">Laki-laki</option>
-													<option value="Perempuan">Perempuan</option>	
-												</select>
+												<div class="col-md-2 col-sm-6 ">
+													Laki-laki :
+													<input type="radio" class="flat" name="jenis_kelamin" id="genderM" value="Laki-laki" checked="" required /> 
+												</div>
+												<div class="col-md-2 col-sm-6 ">
+													Perempuan :
+													<input type="radio" class="flat" name="jenis_kelamin" id="genderF" value="Perempuan" required />
+												</div>
+												
 											</div>
-										</div>
+										</div>	
 
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Alamat <span class="required">*</span></label>
@@ -174,7 +195,7 @@ if (isset($_POST["submit"])) {
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">No. HP <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="middle-name" name="no_hp" class="form-control" type="number" placeholder="Ketikkan No. HP" required>
+												<input id="middle-name" name="no_hp" min="0" class="form-control" type="number" placeholder="Ketikkan No. HP" required>
 											</div>
 										</div>
 

@@ -189,8 +189,8 @@ if ($_SESSION["level"] == "Staff IT") {
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="hrd.php?page=dataKaryawan">Data Karyawan</a></li>
+                      <li><a href="hrd.php?page=crew">Database Crew</a></li>
                       <li><a href="hrd.php?page=kontrakKerja">Kontrak Kerja</a></li>
-                      <!-- <li><a href="hrd.php?page=cuti">Form Cuti</a></li> -->
                       <li><a href="hrd.php?page=absen">Data Absen</a></li>
                       <li><a href="hrd.php?page=aksesPintu">Data Akses Pintu</a></li>
                       <li><a href="hrd.php?page=userLogin">Data Login</a></li>
@@ -410,6 +410,18 @@ if ($_SESSION["level"] == "Staff IT") {
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
                         switch ($page) {
+                            case 'crew':
+                                include "page/04hrd/crew/crew.php";
+                                break;
+
+                            case 'kontrakCrew':
+                                include "page/04hrd/kontrak_crew/kontrak_crew.php";
+                                break;
+
+                            case 'masterBank':
+                                include "page/04hrd/master_bank/master_bank.php";
+                                break;
+
                             case 'approve':
                                 include "page/admin_approve/admin_aprove.php";
                                 break;
@@ -436,6 +448,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case 'dataKaryawan':
                                 include "page/hrd/data_karyawan.php";
+                                break;
+
+                            case 'dataKaryawanNonaktif':
+                                include "page/hrd/data_karyawan_nonaktif.php";
                                 break;
 
                             case 'manageCuti':
@@ -529,6 +545,30 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "tambahCrew":
+                            include "page/04hrd/crew/tambah.php";
+                            break;
+
+                          case "hapusCrew":
+                              include "page/04hrd/crew/hapus.php";
+                              break;
+
+                          case "ubahCrew":
+                              include "page/04hrd/crew/ubah.php";
+                              break;
+
+                          case "tambahKontrakCrew":
+                            include "page/04hrd/kontrak_crew/tambah.php";
+                            break;
+
+                            case "ubahKontrakCrew":
+                                include "page/04hrd/kontrak_crew/ubah.php";
+                                break;
+
+                            case "hapusKontrakCrew":
+                                include "page/04hrd/kontrak_crew/hapus.php";
+                                break;
                             
 
                             case 'tambahKaryawan':
