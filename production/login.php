@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
   $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
   $password = mysqli_real_escape_string($koneksi, $_POST["password"]);
 
-  $result = mysqli_query($koneksi, "SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE username = '$username'");
+  $result = mysqli_query($koneksi, "SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan WHERE username = '$username'");
   // $result = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
 
   // cek username
@@ -51,7 +51,7 @@ if (isset($_POST['login'])) {
       $_SESSION["level"] = $row["level"];
 
       // Menyimpan jabatan pengguna dalam sesi
-      $_SESSION['jabatan'] = $row['jabatan'];
+      $_SESSION['nama_jabatan'] = $row['nama_jabatan'];
 
       // Mengarahkan berdasarkan level pengguna
       if ($row["level"] === "Kepala Cabang") {

@@ -1,6 +1,7 @@
 <?php
 
-// $id_mhs = $_SESSION["id_mhs"];
+$jabatan = query("SELECT * FROM jabatan");
+$divisi = query("SELECT * FROM divisi");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -142,16 +143,26 @@ if (isset($_POST["submit"])) {
 										</div>
 										
 										<div class="item form-group">
-											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan</label>
+											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="middle-name" name="jabatan" class="form-control" type="text" placeholder="Ketikkan Jabatan">
+												<select class="form-control" name="id_jabatan" id="id_jabatan" required>
+													<option value="">--Pilih Jabatan--</option>
+													<?php foreach($jabatan as $row) : ?>
+														<option value="<?= $row['id_jabatan']?>"><?= $row['nama_jabatan']?></option>
+													<?php endforeach;?>	
+												</select>
 											</div>
 										</div>
 
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Divisi</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input id="middle-name" name="divisi" class="form-control" type="text" placeholder="Ketikkan Divisi">
+												<select class="form-control" name="id_divisi" id="id_divisi" required>
+													<option value="">--Pilih Divisi--</option>
+													<?php foreach($divisi as $row) : ?>
+														<option value="<?= $row['id_divisi']?>"><?= $row['nama_divisi']?></option>
+													<?php endforeach;?>	
+												</select>
 											</div>
 										</div>
 

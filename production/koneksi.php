@@ -972,8 +972,8 @@ function hapusPengajuan($id_req_brg) {
 function tambahKaryawan($data) {
 	global $koneksi;
 	$nama_emp = htmlspecialchars($data["nama_emp"]);
-	$jabatan = htmlspecialchars($data["jabatan"]);
-	$divisi = htmlspecialchars($data["divisi"]);
+	$id_jabatan = htmlspecialchars($data["id_jabatan"]);
+	$id_divisi = htmlspecialchars($data["id_divisi"]);
 	$status = htmlspecialchars($data["status"]);
 	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
 	$tempat = htmlspecialchars($data["tempat"]);
@@ -993,7 +993,7 @@ function tambahKaryawan($data) {
 	}
 
 	$query = "INSERT INTO karyawan VALUES
-			('', '$nama_emp', '$jabatan', '$divisi', '$status', '$gambar', '$tgl_lahir', '$tempat', '$jenis_kelamin', '$alamat', '$no_hp', '$email', '$status_p', '$nik', '$npwp', '$norek_mandiri')";
+			('', '$nama_emp', '$id_jabatan', '$id_divisi', '$status', '$gambar', '$tgl_lahir', '$tempat', '$jenis_kelamin', '$alamat', '$no_hp', '$email', '$status_p', '$nik', '$npwp', '$norek_mandiri')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -1053,8 +1053,8 @@ function ubahKaryawan($data) {
 	global $koneksi;
 	$id_emp = $data["id_emp"];
 	$nama_emp = htmlspecialchars($data["nama_emp"]);
-	$jabatan = htmlspecialchars($data["jabatan"]);
-	$divisi = htmlspecialchars($data["divisi"]);
+	$id_jabatan = htmlspecialchars($data["id_jabatan"]);
+	$id_divisi = htmlspecialchars($data["id_divisi"]);
 	$status = htmlspecialchars($data["status"]);
 	$gambarLama = htmlspecialchars($data["gambarLama"]);
 	$tgl_lahir = htmlspecialchars($data["tgl_lahir"]);
@@ -1079,8 +1079,8 @@ function ubahKaryawan($data) {
 
 	$query = "UPDATE karyawan SET
 				nama_emp = '$nama_emp',
-				jabatan = '$jabatan',
-				divisi = '$divisi',
+				id_jabatan = '$id_jabatan',
+				id_divisi = '$id_divisi',
 				status = '$status',
 				gambar = '$gambar',
 				tgl_lahir = '$tgl_lahir',

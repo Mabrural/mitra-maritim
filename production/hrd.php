@@ -44,7 +44,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
   $nama = $_SESSION["nama_emp"];
 
-  $jabatan = $_SESSION['jabatan'];
+  $jabatan = $_SESSION['nama_jabatan'];
   
   $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
   ?>
@@ -146,9 +146,9 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-shopping-cart"></i> Purchasing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="finance.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
-                      <li><a href="finance.php?page=pengajuanPPU">Pengajuan PPU</a></li>
-                      <li><a href="finance.php?page=dataBarang">Data Barang/Sparepart</a></li>
+                      <li><a href="hrd.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
+                      <li><a href="hrd.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="hrd.php?page=dataBarang">Data Barang/Sparepart</a></li>
                     </ul>
                   </li>
 
@@ -330,7 +330,7 @@ if ($_SESSION["level"] == "Staff IT") {
                         <span>Settings</span>
                       </a> -->
                     <!-- <a class="dropdown-item"  href="javascript:;">Help</a> -->
-                    <a class="dropdown-item"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item" onclick="return confirm('Anda yakin ingin keluar?')"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
@@ -410,6 +410,11 @@ if ($_SESSION["level"] == "Staff IT") {
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
                         switch ($page) {
+
+                            case 'inventarisAsset':
+                                include "page/06purchasing/inventaris_dan_asset/inventaris.php";
+                                break;
+
                             case 'crew':
                                 include "page/04hrd/crew/crew.php";
                                 break;
@@ -553,6 +558,18 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case 'tambahInventaris':
+                              include "page/06purchasing/inventaris_dan_asset/tambah.php";
+                              break;
+
+                          case 'ubahInventaris':
+                              include "page/06purchasing/inventaris_dan_asset/ubah.php";
+                              break;
+
+                          case 'hapusInventaris':
+                              include 'page/06purchasing/inventaris_dan_asset/hapus.php';
+                              break;
 
                           case "tambahCrew":
                             include "page/04hrd/crew/tambah.php";

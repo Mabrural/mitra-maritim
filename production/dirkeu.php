@@ -40,7 +40,7 @@ if ($_SESSION["level"] == "Staff IT") {
   $id_user = $_SESSION["id_user"];
 
   $nama = $_SESSION["nama_emp"];
-  $jabatan = $_SESSION['jabatan'];
+  $jabatan = $_SESSION['nama_jabatan'];
 
  $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
 

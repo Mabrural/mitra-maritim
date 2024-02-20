@@ -3,7 +3,7 @@
 // $id_mhs = $_SESSION["id_mhs"];
 
 // $karyawan = query("SELECT * FROM karyawan");
-$karyawan = query("SELECT * FROM karyawan WHERE jabatan != 'Direktur Utama' AND jabatan != 'Direktur HRD' AND jabatan != 'Direktur Keuangan' AND jabatan != 'Direktur Operasional'");
+$karyawan = query("SELECT * FROM karyawan WHERE id_jabatan != '1' AND id_jabatan != '2' AND id_jabatan != '3' AND id_jabatan != '4'");
 $kategori_cuti = query("SELECT * FROM kategori_cuti");
 // $kategori_cuti = query("SELECT * FROM kategori_cuti WHERE id_kategori_cuti NOT IN (SELECT id_kategori_cuti FROM manage_cuti)");
 

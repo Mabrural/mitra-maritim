@@ -7,7 +7,7 @@ $id_req_cuti = $_GET["id_req_cuti"];
 // query data berdasarkan id
 $req_cuti = query("SELECT * FROM req_cuti WHERE id_req_cuti = $id_req_cuti")[0];
 // $karyawan = query("SELECT * FROM karyawan");
-$karyawan = query("SELECT * FROM karyawan WHERE jabatan != 'Direktur Utama' AND jabatan != 'Direktur HRD' AND jabatan != 'Direktur Keuangan' AND jabatan != 'Direktur Operasional' AND id_emp IN (SELECT id_emp FROM req_cuti WHERE id_req_cuti=$id_req_cuti)");
+$karyawan = query("SELECT * FROM karyawan WHERE id_jabatan != '1' AND id_jabatan != '2' AND id_jabatan != '3' AND id_jabatan != '4' AND id_emp IN (SELECT id_emp FROM req_cuti WHERE id_req_cuti=$id_req_cuti)");
 // $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user=$id_user");
 $kategori_cuti = query("SELECT * FROM kategori_cuti");
 date_default_timezone_set('Asia/Jakarta');
@@ -200,7 +200,7 @@ if (isset($_POST["submit"])) {
 											<div class="col-md-6 col-sm-6 offset-md-3">
 												<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 												<!-- <button class="btn btn-primary" type="reset">Reset</button> -->
-												<button type="submit" class="btn btn-success" name="submit">Approved</button>
+												<button type="submit" class="btn btn-success" name="submit">Approve</button>
 											</div>
 										</div>
 

@@ -55,7 +55,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM karyawan WHERE status='Tidak Aktif'";
+              		$query = "SELECT * FROM karyawan JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan  WHERE karyawan.status='Tidak Aktif'";
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
               	      		
@@ -68,7 +68,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['npwp'];?> </td>
                 <td class=" "><?= $data['tempat'];?>,  <?= date('d/m/Y', strtotime($data['tgl_lahir']));?></td>
                 <td class=" "><?= $data['jenis_kelamin'];?> </td>
-                <td class=" "><?= $data['jabatan'];?> </td>
+                <td class=" "><?= $data['nama_jabatan'];?> </td>
                 <!-- <td class=" "><?= $data['nama_bank'];?> - <?= $data['nama_bank'];?></td> -->
                 <td class=" "><?= $data['status'];?></td>
 

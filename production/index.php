@@ -331,7 +331,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       </a> -->
                     <a class="dropdown-item"  href="?page=profile">Profile <i class="fa fa-user pull-right"></i></a>
                     <a class="dropdown-item"  href="?page=changePassword">Change Password<i class="fa fa-key pull-right"></i></a>
-                    <a class="dropdown-item"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item" onclick="return confirm('Anda yakin ingin keluar?')"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 

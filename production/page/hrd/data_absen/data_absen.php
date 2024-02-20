@@ -54,7 +54,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM absen JOIN karyawan ON karyawan.id_emp=absen.id_emp JOIN lantai ON lantai.id_lantai=absen.id_lantai ORDER BY absen.id_absen DESC";
+              		$query = "SELECT * FROM absen JOIN karyawan ON karyawan.id_emp=absen.id_emp JOIN lantai ON lantai.id_lantai=absen.id_lantai JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan ORDER BY absen.id_absen DESC";
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
               	      		
@@ -62,8 +62,8 @@ $id_user = $_SESSION["id_user"];
               	 ?>
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><a href="?form=rincianKaryawan&id_emp=<?=$data["id_emp"]?>"><?= $data['nama_emp'];?></a></td>
-                <td class=" "><?= $data['jabatan'];?> </td>
-                <td class=" "><?= $data['divisi'];?> </td>
+                <td class=" "><?= $data['nama_jabatan'];?> </td>
+                <td class=" "><?= $data['nama_divisi'];?> </td>
                 <td class=" "><?= $data['no_absen'];?> </td>
                 <td class=" "><?= $data['nama_lantai'];?></td>
                

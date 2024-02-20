@@ -7,7 +7,7 @@ $id_kontrak = $_GET["id_kontrak"];
 // query data kontrak berdasarkan id
 $kontrak = query("SELECT * FROM kontrak_kerja WHERE id_kontrak = $id_kontrak")[0];
 // $karyawan = query("SELECT * FROM karyawan");
-$karyawan = query("SELECT * FROM karyawan WHERE jabatan != 'Direktur Utama' AND jabatan != 'Direktur HRD' AND jabatan != 'Direktur Keuangan' AND jabatan != 'Direktur Operasional' AND id_emp IN (SELECT id_emp FROM kontrak_kerja WHERE id_kontrak=$id_kontrak)");
+$karyawan = query("SELECT * FROM karyawan WHERE id_jabatan != '1' AND id_jabatan != '2' AND id_jabatan != '3' AND id_jabatan != '4' AND id_emp IN (SELECT id_emp FROM kontrak_kerja WHERE id_kontrak=$id_kontrak)");
 $lantai = query("SELECT * FROM lantai");
 
 // cek apakah tombol submit sudah ditekan atau belum

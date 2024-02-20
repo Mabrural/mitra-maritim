@@ -52,7 +52,7 @@ require_once('phpqrcode/qrlib.php');
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM qrcode JOIN karyawan ON karyawan.id_emp=qrcode.id_emp";
+              		$query = "SELECT * FROM qrcode JOIN karyawan ON karyawan.id_emp=qrcode.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan";
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
               	      	$qrvalue = $data["nama_emp"];
@@ -70,7 +70,7 @@ require_once('phpqrcode/qrlib.php');
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><a href="pdfqrcodes/<?= $data['nama_emp'].'.png';?>"><img src="pdfqrcodes/<?= $data['nama_emp'].'.png';?>" width="50"></a></td>
                 <td class=" "><a href="?form=rincianKaryawan&id_emp=<?=$data["id_emp"]?>"><?= $data['nama_emp'];?></a></td>
-                <td class=" "><?= $data['jabatan'];?> </td>
+                <td class=" "><?= $data['nama_jabatan'];?> </td>
 
                 <td class=" last"> <a href="?form=hapusQrcode&id_qr=<?= $data["id_qr"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>

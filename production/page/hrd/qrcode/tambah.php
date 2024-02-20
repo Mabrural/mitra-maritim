@@ -2,7 +2,7 @@
 
 // $id_mhs = $_SESSION["id_mhs"];
 
-$karyawan = query("SELECT * FROM karyawan WHERE id_emp NOT IN (SELECT id_emp FROM qrcode)");
+$karyawan = query("SELECT * FROM karyawan JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan JOIN divisi ON divisi.id_divisi=karyawan.id_divisi WHERE id_emp NOT IN (SELECT id_emp FROM qrcode)");
 $lantai = query("SELECT * FROM lantai");
 
 // cek apakah tombol submit sudah ditekan atau belum
@@ -118,7 +118,7 @@ if (isset($_POST["submit"])) {
 												<select class="form-control" name="id_emp" required>
 													<option value="">--Pilih Karyawan--</option>
 													<?php foreach($karyawan as $row) : ?>
-														<option value="<?= $row['id_emp']?>"><?= $row['nama_emp']?> - ( <?= $row['jabatan'];?> )</option>
+														<option value="<?= $row['id_emp']?>"><?= $row['nama_emp']?> - ( <?= $row['nama_jabatan'];?> )</option>
 													<?php endforeach;?>	
 												</select>
 											</div>

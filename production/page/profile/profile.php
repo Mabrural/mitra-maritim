@@ -5,7 +5,8 @@
 // ambil data di URL
 $id_user = $_SESSION["id_user"];
 // query data karyawan berdasarkan id
-$karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
+$karyawan = query("SELECT * FROM karyawan JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN user ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
+// $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
 
 // $tgl_pengajuan = $_GET['tgl_pengajuan'];
 
@@ -48,7 +49,12 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 						        <h5 class="card-title"><b><center>DATA DIRI KARYAWAN</center></b></h5><hr>
 						        <table>
 						        <tbody style="font-size: 0.9rem;">
-						        	<tr>
+								<tr>
+						          <td width="45%">Nama Lengkap</td>
+						          <td>:&nbsp;&nbsp;</td>
+						          <td><?= $karyawan['nama_emp']?></td>
+						        </tr>
+						        <tr>
 						          <td width="45%">NIK</td>
 						          <td>:&nbsp;&nbsp;</td>
 						          <td><?= $karyawan['nik']?></td>
@@ -58,11 +64,18 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 						          <td>:&nbsp;&nbsp;</td>
 						          <td><?= $karyawan['npwp']?></td>
 						        </tr>
-						        <tr>
-						          <td width="45%">Nama Lengkap</td>
+								<tr>
+						          <td>Tempat, Tanggal Lahir</td>
 						          <td>:&nbsp;&nbsp;</td>
-						          <td><?= $karyawan['nama_emp']?></td>
+						          <td><?= $karyawan['tempat']?>, <?= date('d/m/Y', strtotime($karyawan['tgl_lahir']));?></td>
 						        </tr>
+
+								<tr>
+						          <td>Jenis Kelamin</td>
+						          <td>:&nbsp;&nbsp;</td>
+						          <td><?= $karyawan['jenis_kelamin']?></td>
+						        </tr>
+						        
 						        <tr>
 						          <td>No. Telp/HP</td>
 						          <td>:&nbsp;&nbsp;</td>
@@ -86,12 +99,12 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 						        <tr>
 						          <td>Jabatan</td>
 						          <td>:&nbsp;&nbsp;</td>
-						          <td><?= $karyawan['jabatan']?></td>
+						          <td><?= $karyawan['nama_jabatan']?></td>
 						        </tr>
 						        <tr>
 						          <td>Divisi</td>
 						          <td>:&nbsp;&nbsp;</td>
-						          <td><?= $karyawan['divisi']?></td>
+						          <td><?= $karyawan['nama_divisi']?></td>
 						        </tr>
 						        
 						        <tr>
@@ -101,8 +114,8 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 						        </tr>
 						      
 						    </tbody></table>
-						    <br>
-						    <a href="?form=updateProfile&id_emp=<?= $karyawan['id_emp']?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Update Profile</a>
+							<br>
+							<a href="?form=updateProfile&id_emp=<?= $karyawan['id_emp']?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Update Profile</a>
 						  </div>
 						</div>
 					</div>
@@ -141,8 +154,6 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 				                </th> -->
 				                <th class="column-title">No. </th>
 				                <th class="column-title">Nama Karyawan</th>
-				                <th class="column-title">Jabatan</th>
-				                <th class="column-title">Divisi</th>
 				                <th class="column-title">Kategori Cuti</th>
 				                <th class="column-title">Kuota</th>
 				                </th>
@@ -157,7 +168,7 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 				              	<?php 
 				              		$no = 1;
 				              		// $query = "SELECT * FROM akses_pintu JOIN karyawan ON karyawan.id_emp=akses_pintu.id_emp JOIN lantai ON lantai.id_lantai=akses_pintu.id_lantai ORDER BY akses_pintu.id_akses DESC";
-				                  $query = "SELECT * FROM manage_cuti JOIN karyawan ON karyawan.id_emp=manage_cuti.id_emp JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=manage_cuti.id_kategori_cuti JOIN user ON user.id_emp=karyawan.id_emp WHERE user.id_user=$id_user";
+				                  $query = "SELECT * FROM manage_cuti JOIN karyawan ON karyawan.id_emp=manage_cuti.id_emp JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=manage_cuti.id_kategori_cuti JOIN user ON user.id_emp=karyawan.id_emp JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan JOIN divisi ON divisi.id_divisi=karyawan.id_divisi WHERE user.id_user=$id_user";
 				              		$tampil = mysqli_query($koneksi, $query);
 				              		while ($data = mysqli_fetch_assoc($tampil)) {
 				              	      		
@@ -165,8 +176,6 @@ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_e
 				              	 ?>
 				                <td class=" "><?= $no++;?></td>
 				                <td class=" "><a href="?form=rincianKaryawan&id_emp=<?=$data["id_emp"]?>"><?= $data['nama_emp'];?></a></td>
-				                <td class=" "><?= $data['jabatan'];?> </td>
-				                <td class=" "><?= $data['divisi'];?> </td>
 				                <td class=" "><?= $data['kategori_cuti'];?> </td>
 
 				                <td class="">

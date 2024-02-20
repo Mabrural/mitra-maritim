@@ -5,7 +5,7 @@
 // ambil data di URL
 $id_emp = $_GET["id_emp"];
 // query data karyawan berdasarkan id
-$karyawan = query("SELECT * FROM karyawan WHERE id_emp = $id_emp")[0];
+$karyawan = query("SELECT * FROM karyawan JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan WHERE id_emp = $id_emp")[0];
 
 // $tgl_pengajuan = $_GET['tgl_pengajuan'];
 
@@ -98,12 +98,12 @@ $karyawan = query("SELECT * FROM karyawan WHERE id_emp = $id_emp")[0];
 						        <tr>
 						          <td>Jabatan</td>
 						          <td>:&nbsp;&nbsp;</td>
-						          <td><?= $karyawan['jabatan']?></td>
+						          <td><?= $karyawan['nama_jabatan']?></td>
 						        </tr>
 						        <tr>
 						          <td>Divisi</td>
 						          <td>:&nbsp;&nbsp;</td>
-						          <td><?= $karyawan['divisi']?></td>
+						          <td><?= $karyawan['nama_divisi']?></td>
 						        </tr>
 						        
 						        <tr>

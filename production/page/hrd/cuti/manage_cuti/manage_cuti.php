@@ -57,7 +57,7 @@ $id_user = $_SESSION["id_user"];
                   $no = 1;
                   // $query = "SELECT * FROM akses_pintu JOIN karyawan ON karyawan.id_emp=akses_pintu.id_emp JOIN lantai ON lantai.id_lantai=akses_pintu.id_lantai ORDER BY akses_pintu.id_akses DESC";
                   // $query = "SELECT * FROM manage_cuti JOIN karyawan ON karyawan.id_emp=manage_cuti.id_emp JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=manage_cuti.id_kategori_cuti GROUP BY manage_cuti.id_emp";
-                  $query = "SELECT * FROM karyawan WHERE jabatan != 'Direktur Utama' AND jabatan != 'Direktur Keuangan' AND jabatan != 'Direktur HRD' AND jabatan != 'Direktur Operasional'";
+                  $query = "SELECT * FROM karyawan JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan WHERE karyawan.id_jabatan != '1' AND karyawan.id_jabatan != '2' AND karyawan.id_jabatan != '3' AND karyawan.id_jabatan != '3' ";
                   $tampil = mysqli_query($koneksi, $query);
                   while ($data = mysqli_fetch_assoc($tampil)) {
                           
@@ -65,8 +65,8 @@ $id_user = $_SESSION["id_user"];
                  ?>
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><a href="?form=rincianKaryawan&id_emp=<?=$data["id_emp"]?>"><?= $data['nama_emp'];?></a></td>
-                <td class=" "><?= $data['jabatan'];?> </td>
-                <td class=" "><?= $data['divisi'];?> </td>
+                <td class=" "><?= $data['nama_jabatan'];?> </td>
+                <td class=" "><?= $data['nama_divisi'];?> </td>
                <!--  <td class=" "><?= $data['kategori_cuti'];?> </td>
 
                 <td class="">

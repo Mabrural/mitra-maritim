@@ -7,7 +7,7 @@ $id_ijazah = $_GET["id_ijazah"];
 // query data mahasiswa berdasarkan id
 $ijazah = query("SELECT * FROM ijazah WHERE id_ijazah = $id_ijazah")[0];
 // $karyawan = query("SELECT * FROM karyawan");
-$karyawan = query("SELECT * FROM karyawan WHERE jabatan != 'Direktur Utama' AND jabatan != 'Direktur HRD' AND jabatan != 'Direktur Keuangan' AND jabatan != 'Direktur Operasional' AND id_emp IN (SELECT id_emp FROM ijazah WHERE id_ijazah=$id_ijazah)");
+$karyawan = query("SELECT * FROM karyawan WHERE id_jabatan != '1' AND id_jabatan != '2' AND id_jabatan != '3' AND id_jabatan != '4' AND id_emp IN (SELECT id_emp FROM ijazah WHERE id_ijazah=$id_ijazah)");
 $lantai = query("SELECT * FROM lantai");
 
 // cek apakah tombol submit sudah ditekan atau belum

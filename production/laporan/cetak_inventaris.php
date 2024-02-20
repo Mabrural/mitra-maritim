@@ -261,7 +261,7 @@ if (isset($_GET['cetakData'])) {
                                 <td>&nbsp;</td>
                             </tr>
                             <?php 
-                                $query = "SELECT * FROM storage_barang JOIN lokasi_barang ON lokasi_barang.id_lokasi=storage_barang.id_lokasi JOIN lokasi_room ON lokasi_room.id_room=storage_barang.id_room JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp";
+                                $query = "SELECT * FROM storage_barang JOIN lokasi_barang ON lokasi_barang.id_lokasi=storage_barang.id_lokasi JOIN lokasi_room ON lokasi_room.id_room=storage_barang.id_room JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan";
 
                                 // Add filter conditions based on the selected values
                                   if (!empty($id_lokasi)) {
@@ -344,7 +344,7 @@ if (isset($_GET['cetakData'])) {
                                 <?php 
                                     $no = 1;
                                     $total = 0;
-                                    $query = "SELECT * FROM storage_barang JOIN lokasi_room ON lokasi_room.id_room=storage_barang.id_room JOIN lokasi_barang ON lokasi_barang.id_lokasi=storage_barang.id_lokasi JOIN barang ON barang.kode_brg=storage_barang.kode_brg JOIN satuan ON satuan.id_satuan=storage_barang.id_satuan JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp";
+                                    $query = "SELECT * FROM storage_barang JOIN lokasi_room ON lokasi_room.id_room=storage_barang.id_room JOIN lokasi_barang ON lokasi_barang.id_lokasi=storage_barang.id_lokasi JOIN barang ON barang.kode_brg=storage_barang.kode_brg JOIN satuan ON satuan.id_satuan=storage_barang.id_satuan JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan";
                                      
                                     // Add filter conditions based on the selected values
                                       if (!empty($id_lokasi)) {
@@ -358,7 +358,7 @@ if (isset($_GET['cetakData'])) {
 
                                     $tampil = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_assoc($tampil)) {
-                                        $jabatan = $data['jabatan'];
+                                        $jabatan = $data['nama_jabatan'];
                                         $qty_req = $data['qty_brg'];
                                         $total += $qty_req;
                                     // $qty_req_arr = explode(',', $qty_req);

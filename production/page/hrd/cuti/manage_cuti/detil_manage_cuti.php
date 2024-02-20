@@ -39,8 +39,6 @@ $id_emp = $_GET['id_emp'];
                 </th> -->
                 <th class="column-title">No. </th>
                 <th class="column-title">Nama Karyawan</th>
-                <th class="column-title">Jabatan</th>
-                <th class="column-title">Divisi</th>
                 <th class="column-title">Jenis Cuti</th>
                 <th class="column-title">Kuota</th>
                 <th class="column-title no-link last"><span class="nobr">Action</span>
@@ -64,8 +62,6 @@ $id_emp = $_GET['id_emp'];
               	 ?>
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><a href="?form=rincianKaryawan&id_emp=<?=$data["id_emp"]?>"><?= $data['nama_emp'];?></a></td>
-                <td class=" "><?= $data['jabatan'];?> </td>
-                <td class=" "><?= $data['divisi'];?> </td>
                 <td class=" "><?= $data['kategori_cuti'];?> </td>
 
                 <td class="">

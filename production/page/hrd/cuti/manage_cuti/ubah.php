@@ -7,7 +7,7 @@ $id_manage_cuti = $_GET["id_manage_cuti"];
 // query data mahasiswa berdasarkan id
 $manage_cuti = query("SELECT * FROM manage_cuti WHERE id_manage_cuti = $id_manage_cuti")[0];
 // $karyawan = query("SELECT * FROM karyawan");
-$karyawan = query("SELECT * FROM karyawan WHERE jabatan != 'Direktur Utama' AND jabatan != 'Direktur HRD' AND jabatan != 'Direktur Keuangan' AND jabatan != 'Direktur Operasional' AND id_emp IN (SELECT id_emp FROM manage_cuti WHERE id_manage_cuti=$id_manage_cuti)");
+$karyawan = query("SELECT * FROM karyawan WHERE id_jabatan != '1' AND id_jabatan != '2' AND id_jabatan != '3' AND id_jabatan != '4' AND id_emp IN (SELECT id_emp FROM manage_cuti WHERE id_manage_cuti=$id_manage_cuti)");
 $lantai = query("SELECT * FROM lantai");
 $kategori_cuti = query("SELECT * FROM kategori_cuti");
 
