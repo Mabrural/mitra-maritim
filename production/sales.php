@@ -431,6 +431,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'masterKargo':
                               include "page/01sales_dan_marketing/master_kargo/master_kargo.php";
                               break;
+                            
+                            case "masterPort":
+                              include "page/01sales_dan_marketing/rab/master_port/master_port.php";
+                              break;
 
                             case 'inventarisAsset':
                               include "page/06purchasing/inventaris_dan_asset/inventaris.php";
@@ -569,6 +573,18 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "ubahKargo":
                                 include "page/01sales_dan_marketing/master_kargo/ubah.php";
                                 break;
+
+                            case "tambahPort":
+                                include "page/01sales_dan_marketing/rab/master_port/tambah.php";
+                                break;
+
+                            case "ubahPort":
+                                include "page/01sales_dan_marketing/rab/master_port/ubah.php";
+                                break;
+
+                            case "hapusPort":
+                              include "page/01sales_dan_marketing/rab/master_port/hapus.php";
+                              break;
 
                             case "lihatApprove":
                                 include "page/01sales_dan_marketing/sales_plan/lihat_approve.php";

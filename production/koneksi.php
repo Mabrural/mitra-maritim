@@ -464,6 +464,48 @@ function hapusKargo($id_kargo) {
 
 }
 
+function tambahPort($data) {
+
+	global $koneksi;
+	$nama_port = mysqli_real_escape_string($koneksi, $data["nama_port"]);
+
+
+	$query = "INSERT INTO port VALUES
+			('', '$nama_port')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function ubahPort($data) {
+	global $koneksi;
+	$id_port = $data["id_port"];
+	$nama_port = mysqli_real_escape_string($koneksi, $data["nama_port"]);
+
+	$query = "UPDATE port SET
+				nama_port = '$nama_port'
+			  WHERE id_port = $id_port
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusPort($id_port) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM port WHERE id_port='$id_port'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+
+
 function tambahJabatan($data) {
 
 	global $koneksi;

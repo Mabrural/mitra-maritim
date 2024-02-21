@@ -8,6 +8,7 @@ $satuan = query("SELECT * FROM satuan");
 $vessel = query("SELECT * FROM vessel");
 $customer = query("SELECT * FROM customer");
 $kargo = query("SELECT * FROM jenis_kargo");
+$port = query("SELECT * FROM port");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -314,7 +315,7 @@ if (isset($_POST["submit"])) {
 					<tr class="odd pointer">
 						<td class=" " style="width: 15rem; text-align: right;"><strong>Load Qty : </strong><input type="text" class="" value="0" style="width: 6rem; text-align: right;" oninput="formatAngka(this)"></td>
 						<td class=" ">
-						<select class="" name="voy_num" required>
+						<select class="" style="padding: 3px;">
 								<option value="">--Pilih Satuan--</option>
 								<?php foreach($satuan as $row) : ?>
 									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
@@ -338,18 +339,18 @@ if (isset($_POST["submit"])) {
 			<tbody>
 				<tr class="even pointer">
 			
-					<td class=" " style="vertical-align: middle; text-align: left;">Mob port from</td>
+					<td class=" " style="vertical-align: middle; text-align: left; width: 15rem;">Mob port from</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Port--</option>
-							<?php foreach($satuan as $row) : ?>
-								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<option value=""></option>
+							<?php foreach($port as $row) : ?>
+								<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 							<?php endforeach;?>	
 						</select>
 					
 					</td>
-					<td class=" " rowspan="6"  style="vertical-align: middle; text-align: center; width: 15rem;">Distance</td>
-					<td class=" " style="vertical-align: middle; text-align: center; width: 15rem;"><input type="number" name="tgl_rab" class="form-control text-right" style="width: " value="0"></td>
+					<td class=" " rowspan="6"  style="vertical-align: middle; text-align: center; width: 18rem;">Distance</td>
+					<td class=" " style="vertical-align: middle; text-align: center; width: 15rem;"><input type="text" name="tgl_rab" class="form-control text-right" style="width: " value="0"></td>
 					<td class=" " style="vertical-align: middle; text-align: right;">Bunker Price Rp. </td>
 					<td class=""><input type="text" name="" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 				</tr>
@@ -358,14 +359,14 @@ if (isset($_POST["submit"])) {
 					<td class=" " style="vertical-align: middle; text-align: left;">Load port </td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Satuan--</option>
-							<?php foreach($satuan as $row) : ?>
-								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<option value=""></option>
+							<?php foreach($port as $row) : ?>
+								<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 							<?php endforeach;?>	
 						</select>
 					</td>
 					
-					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" value="0"></td>
 					<td class=" " style="vertical-align: middle; text-align: right;">Lumpsum Freight Rp. </td>
 					<td class="a-right a-right "><input type="text" name="tgl_rab" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 				</tr>
@@ -374,14 +375,14 @@ if (isset($_POST["submit"])) {
 					<td class=" " style="vertical-align: middle; text-align: left;">Load port 2</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Satuan--</option>
-							<?php foreach($satuan as $row) : ?>
-								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<option value=""></option>
+							<?php foreach($port as $row) : ?>
+								<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 							<?php endforeach;?>	
 						</select>
 					</td>
 					
-					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" value="0"></td>
 					<td class=" " colspan="2">&nbsp;</td>
 				</tr>
 				<tr class="even pointer">
@@ -389,14 +390,14 @@ if (isset($_POST["submit"])) {
 					<td class=" " style="vertical-align: middle; text-align: left;">Discharge port</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Satuan--</option>
-							<?php foreach($satuan as $row) : ?>
-								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<option value=""></option>
+							<?php foreach($port as $row) : ?>
+								<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 							<?php endforeach;?>	
 						</select>
 					</td>
 				
-					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" value="0"></td>
 					<td class=" " style="vertical-align: middle; text-align: right;">Freight Computation Rp. </td>
 					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 				</tr>
@@ -405,14 +406,14 @@ if (isset($_POST["submit"])) {
 					<td class=" " style="vertical-align: middle; text-align: left;">Discharge port 2</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Satuan--</option>
-							<?php foreach($satuan as $row) : ?>
-								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<option value=""></option>
+							<?php foreach($port as $row) : ?>
+								<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 							<?php endforeach;?>	
 						</select>
 					</td>
 				
-					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" value="0"></td>
 					<td class=" " colspan="2">&nbsp;</td>
 				</tr>
 				<tr class="odd pointer">
@@ -420,14 +421,14 @@ if (isset($_POST["submit"])) {
 					<td class=" " style="vertical-align: middle; text-align: left;">Demob</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Satuan--</option>
-							<?php foreach($satuan as $row) : ?>
-								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<option value=""></option>
+							<?php foreach($port as $row) : ?>
+								<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 							<?php endforeach;?>	
 						</select>
 					</td>
 			
-					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" value="0"></td>
 					<td class=" " colspan="2">&nbsp;</td>
 				</tr>
 				
@@ -457,31 +458,59 @@ if (isset($_POST["submit"])) {
 
 				<tbody>
 					<tr>
-						<td><input type="text" name="field6[]" placeholder="From" required></td>
-						<td><input type="text" name="field6[]" placeholder="To" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td>
+							<select class="form-control col-md-12" name="voy_num" required>
+								<option value="">--From--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>
+							<select class="form-control col-md-12" name="voy_num" required>
+								<option value="">--To--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0"></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0"></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0"></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0"></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="field6[]" placeholder="From" required></td>
-						<td><input type="text" name="field6[]" placeholder="To" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td>
+							<select class="form-control col-md-12" name="voy_num" required>
+								<option value="">--From--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>
+							<select class="form-control col-md-12" name="voy_num" required>
+								<option value="">--To--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 					<tr>
 						<td>Idle Time</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 
 					<tr>
@@ -489,9 +518,9 @@ if (isset($_POST["submit"])) {
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 
 					<tr>
@@ -499,9 +528,9 @@ if (isset($_POST["submit"])) {
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 
 					<tr>
@@ -509,9 +538,9 @@ if (isset($_POST["submit"])) {
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 
 					<tr>
@@ -519,9 +548,9 @@ if (isset($_POST["submit"])) {
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 
 					<tr>
@@ -529,13 +558,13 @@ if (isset($_POST["submit"])) {
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
-						<td><input type="text" name="field6[]" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
+						<td><input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required></td>
 					</tr>
 
-					<tr>
-						<td colspan="2"><center><strong>Total</strong></center></td>
+					<tr style="text-align: right">
+						<td colspan="2" ><center><strong>Total</strong></center></td>
 						<td><strong>0</strong></td>
 						<td><strong>0</strong></td>
 						<td><strong>0</strong></td>
@@ -549,8 +578,8 @@ if (isset($_POST["submit"])) {
 
 
 				</tbody>
-				<button type="button" id="addRowBtn">Add Row</button>
-				<button id="addRowBtn">Submit</button>
+				<button type="button" class="btn btn-success btn-sm mt-1" id="addRowBtn"> <i class="fa fa-plus"></i> Row </button>
+				<!-- <button id="addRowBtn">Submit</button> -->
 			</table>
 		</div>
 
@@ -559,12 +588,12 @@ if (isset($_POST["submit"])) {
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTables" >
 				<thead>
-					<tr class="" style="background-color: #6fb7f2;">
+					<tr class="" style="background-color: #A3B2D9;">
 						<th class="" colspan="4" rowspan="2" style="vertical-align: middle; text-align: center;"><center>Revenue Sales</center> </th>
 						<th class="" colspan="2"><center>Jumlah</center></th>
 						
 					</tr>
-					<tr class="" style="background-color: #6fb7f2;">
+					<tr class="" style="background-color: #A3B2D9;">
 						<th class=""><center>(IDR)</center> </th>
 						<th class=""><center>%</center></th>
 						
@@ -573,24 +602,58 @@ if (isset($_POST["submit"])) {
 
 				<tbody>
 					<tr>
-						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="From" required></td>
-						<td colspan="3"><input type="text" name="field6[]" placeholder="To" required></td>
-						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="To" required></td>
+						<td style="vertical-align: middle; text-align: right;">
+							<Label>1. Freight Earning From</Label>
+						</td>
+						<td style="vertical-align: middle; text-align: right;">
+							<select class="form-control col-md-12" name="">
+								<option value="">--Pilih Port--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td colspan="2">
+							<select class="form-control col-md-6" name="">
+								<option value="">--Pilih Port--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td style="vertical-align: middle; text-align: right;"><input type="text" name="" style="vertical-align: middle; text-align: right;" value="0" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
-						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="From" required></td>
-						<td colspan="3"><input type="text" name="" value="0"></td>
-						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="To" required></td>
+						<td style="vertical-align: middle; text-align: right;">
+							<Label>2. Freight Earning From</Label>
+						</td>
+						<td style="vertical-align: middle; text-align: right;">
+							<select class="form-control col-md-12" name="">
+								<option value="">--Pilih Port--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td colspan="2">
+							<select class="form-control col-md-6" name="">
+								<option value="">--Pilih Port--</option>
+								<?php foreach($port as $row) : ?>
+									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td style="vertical-align: middle; text-align: right;"><input type="text" name="" style="vertical-align: middle; text-align: right;" value="0" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 
-					<tr style=" background-color:#f5c542;">
+					<tr style=" background-color:#FAFD8A;">
 						<td colspan="4"><b style="float: right;">Total Sales Revenue</b></td>
 						<td ><b style="float: right;">0</b></td>
-						<td><b style="float: right;">%</b></td>
+						<td><b style="float: right;">0 %</b></td>
 						
 					</tr>
 					
@@ -598,7 +661,7 @@ if (isset($_POST["submit"])) {
 				</tbody>
 
 				<thead>
-					<tr class="" style="background-color: #6fb7f2;">
+					<tr class="" style="background-color: #A3B2D9;">
 						<th class="" colspan="2" style="vertical-align: middle; text-align: center;"><center>Expenses/item</center> </th>
 						<th class="" ><center>Total Qty</center></th>
 						<th class="" ><center>Unit Price</center></th>
@@ -606,10 +669,10 @@ if (isset($_POST["submit"])) {
 						<th class="">&nbsp;</th>
 						
 					</tr>
-					<tr class="" style=" background-color:#f5c542;">
+					<tr class="" style=" background-color:#FAFD8A;">
 						<th class="" colspan="4" style="vertical-align: middle; text-align: right;">Total Expenses</th>
 						<th class=""><b style="float: right;">0</b></th>
-						<th class="" ><b style="float: right;">0</b></th>
+						<th class="" ><b style="float: right;">0 %</b></th>
 						
 					</tr>
 					
@@ -618,195 +681,410 @@ if (isset($_POST["submit"])) {
 					<tr>
 						<td>Gaji Crew</td>
 						<td colspan="2" style="vertical-align: middle; text-align: center;">
-							<input type="number" name="" value="0" oninput="formatAngka(this)">
-							<select class="" name="" required>
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
 								<option value="">--Pilih Satuan--</option>
 								<?php foreach($satuan as $row) : ?>
 									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
 								<?php endforeach;?>	
 							</select>
 						</td>
-						<td>Rp. <input type="text" name="" value="0" style="float: right;" oninput="formatAngka(this)"></td>
-						<td><input type="number" name="" value="0" style="float: right;"></td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Asuransi Armada</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
-						
 					</tr>
 					<tr>
 						<td>Uang Makan</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Repair Maintenance (RM)</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Depresiasi</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Bunker Usage</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Total Freshwater Usage</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Crew Bonus</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya On Time Delivery (OTD)</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya Operasional Nahkoda</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Agency Fees at Loading Port</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Agency Fees at Discharge Port</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Labuh Tambat at Loading Port</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Labuh Tambat at Discharge Port</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya Koordinasi di Laut</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya Supervisi loading un loading</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Broker Fee</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya Premi Pengawas</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya Lain-lain Pengawas</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya Lain-lain Operasional</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>R/M Additional</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Pengurusan Document Kapal</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Biaya keperluan kapal/cleaning</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Crew Bonus (Performance Losses)</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
 						<td>Pph Pasal 15 - (1.2%)</td>
-						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
-						<td><input type="number" name="field6[]" value="0" required></td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="text" name="" value="0" class="text-right" style="width: 7rem;" oninput="formatAngka(this)">
+							<select class="" style="padding: 3px;" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
+						<td><input type="text" name="" value="0" style="float: right; text-align: right;" oninput="formatAngka(this)"></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 
-					<tr style=" background-color:#f5c542;">
+					<tr style=" background-color:#FAFD8A;">
 						<td colspan="4"><b style="float: right;">Cost of Money (2.5%)</b></td>
 						<td >0</td>
 						<td><b style="float: right;">%</b></td>
 						
 					</tr>
-					<tr style=" background-color:#f5c542; border-color: black;">
+					<tr style=" background-color:#FAFD8A; border-color: black;">
 						<td colspan="4"><b style="float: right;">Management Fee (2.5%)</b></td>
 						<td >0</td>
 						<td><b style="float: right;">%</b></td>
@@ -838,8 +1116,12 @@ if (isset($_POST["submit"])) {
 				
 			
 		</div>
+				
+				<a href="?page=RAB" class="btn btn-danger btn-sm">Cancel</a>
+				<button type="submit" class="btn btn-success btn-sm" name="submit">Submit</button>
 	</div>
 </div>
+
 
 
 </form>
@@ -867,13 +1149,23 @@ if (isset($_POST["submit"])) {
         var cell6 = newRow.insertCell(5);
         var cell7 = newRow.insertCell(6); // Fix index for the last cell
 
-        cell1.innerHTML = '<input type="text" name="field1[]" required>';
-        cell2.innerHTML = '<input type="text" name="field2[]" required>';
-        cell3.innerHTML = '<input type="text" name="field3[]" value="0" required>';
-        cell4.innerHTML = '<input type="text" name="field4[]" value="0" required>';
-        cell5.innerHTML = '<input type="text" name="field5[]" value="0" required>';
-        cell6.innerHTML = '<input type="text" name="field6[]" value="0" required>';
-        cell7.innerHTML = '<input type="text" name="field7[]" value="0" required>';
+        cell1.innerHTML = '<select class="form-control col-md-12" name="" required>' +
+							'<option value="">--From--</option>' +
+							'<?php foreach($port as $row) : ?>' +
+								'<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>' +
+							'<?php endforeach;?>' +
+						'</select>';
+        cell2.innerHTML = '<select class="form-control col-md-12" name="" required>' +
+							'<option value="">--To--</option>' +
+							'<?php foreach($port as $row) : ?>' +
+								'<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>' +
+							'<?php endforeach;?>' +
+						'</select>';
+        cell3.innerHTML = '<input type="text" name="field3[]" style="text-align: right" class="form-control" value="0" required>';
+        cell4.innerHTML = '<input type="text" name="field4[]" style="text-align: right" class="form-control" value="0" required>';
+        cell5.innerHTML = '<input type="text" name="field5[]" style="text-align: right" class="form-control" value="0" required>';
+        cell6.innerHTML = '<input type="text" name="field6[]" style="text-align: right" class="form-control" value="0" required>';
+        cell7.innerHTML = '<input type="text" name="field7[]" style="text-align: right" class="form-control" value="0" required>';
     });
 </script>
 

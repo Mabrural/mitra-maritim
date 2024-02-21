@@ -2,16 +2,14 @@
 
 $id_user = $_SESSION["id_user"];
 
-// $pengajuan = query("SELECT * FROM barang WHERE barang.id_barang=$id_user");
 
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>RAB<small></small></h2>
-        <a href="?form=tambahRab" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New RAB</a>
-        <a href="?page=RAB" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-bar-chart"></i> RAB</a>
-        <a href="?page=masterPort" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Port</a>
-       
+        <h2>Master Port<small></small></h2>
+        <a href="?form=tambahPort" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Port</a>
+        <a href="?page=RAB" class="btn btn-dark btn-sm "><i class="fa fa-bar-chart"></i> RAB</a>
+        <a href="?page=masterPort" class="btn btn-warning btn-sm text-dark btn disabled"><i class="fa fa-ship"></i> Master Port</a>
         <div class="clearfix"></div>
       </div>
 
@@ -27,10 +25,8 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Document Number </th>
-                <th class="column-title">Tanggal RAB </th>
-                <th class="column-title">File RAB</th>
-     
+                <th class="column-title">Nama Port </th>
+                           
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
                 <th class="bulk-actions" colspan="7">
@@ -43,7 +39,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM rab";
+              		$query = "SELECT * FROM port";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -51,11 +47,9 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['doc_num'];?></td>
-                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_rab']));?></td>
-                <td class=" "><a href="files/rab/<?= $data['file_rab']; ?>" style="color:blue; text-decoration: underline;"><i class="fa fa-download"></i> Unduh RAB</a></td>
-                
-                <td class=" last"><a href="?form=ubahRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRab&id_rab=<?= $data["id_rab"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" "><?= $data['nama_port'];?></td>
+            
+                <td class=" last"><a href="?form=ubahPort&id_port=<?= $data["id_port"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusPort&id_port=<?= $data["id_port"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               
