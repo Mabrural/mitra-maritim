@@ -71,7 +71,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><?= $data['kategori_cuti'];?> </td>
                 <td class=" "><?= date('d-M-Y', strtotime($data['tgl_mulai']));?> </td>
-                <td class=" "><?= date('d-M-Y', strtotime($data['tgl_mulai']));?> </td>
+                <td class=" "><?= date('d-M-Y', strtotime($data['tgl_akhir']));?> </td>
                 <td class=" "><?= $data['jml_hari'];?> Hari</td>
                 <td class=" "><?= $data['tipe_cuti'];?> </td>
                 <td class=" "><?= $data['alasan'];?> </td>

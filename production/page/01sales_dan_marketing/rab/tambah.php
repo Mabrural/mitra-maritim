@@ -6,6 +6,8 @@ $sales_plan = query("SELECT * FROM sales_plan");
 $doc_num = generate_document_number();
 $satuan = query("SELECT * FROM satuan");
 $vessel = query("SELECT * FROM vessel");
+$customer = query("SELECT * FROM customer");
+$kargo = query("SELECT * FROM jenis_kargo");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -174,26 +176,26 @@ if (isset($_POST["submit"])) {
 					<tr class="even pointer">
 						<td class=" " style="width: 15rem;"><strong>C/Hire Per day</strong></td>
 						<td class=" ">: Rp.&nbsp;</td>
-						<td class=" "> <input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "> <input type="text" name="tgl_rab" id="last-name" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 						
 					</tr>
 					<br>
 					<tr class="odd pointer">
 						<td class=" "><strong>C/Hire Per day</strong></td>
 						<td class=" ">: Rp.&nbsp;</td>
-						<td class=" "><input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "><input type="text" name="tgl_rab" id="last-name" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
 						<td class=" "><strong>Total C/Hire Per day</strong></td>
 						<td class=" ">: Rp.&nbsp;</td>
-						<td class=" "><input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "><input type="text" name="tgl_rab" id="last-name" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
 						<td class=" "><strong>C/Hire Per Month</strong></td>
 						<td class=" ">: Rp.&nbsp;</td>
-						<td class=" "><input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "><input type="text" name="tgl_rab" id="last-name" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 					</tr>
 				</table><br>
 			</div>
@@ -202,26 +204,26 @@ if (isset($_POST["submit"])) {
 					<tr class="even pointer">
 						<td class=" " style="width: 15rem;"><strong>AVG. Speed/Knots</strong></td>
 						<td class=" ">: &nbsp;</td>
-						<td class=" "> <input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "> <input type="text" name="tgl_rab" id="last-name" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 						
 					</tr>
 					<br>
 					<tr class="odd pointer">
 						<td class=" "><strong>Bunker Cons Per day</strong></td>
 						<td class=" ">: &nbsp;</td>
-						<td class=" "><input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "><input type="text" name="tgl_rab" id="last-name" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
 						<td class=" "><strong>M/E Per Hrs</strong></td>
 						<td class=" ">: &nbsp;</td>
-						<td class=" "><input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "><input type="text" name="tgl_rab" id="last-name" class="form-control text-right" value="0"></td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
 						<td class=" "><strong>A/E Per Hrs</strong></td>
 						<td class=" ">: &nbsp;</td>
-						<td class=" "><input type="number" name="tgl_rab" id="last-name" class="form-control" value="0"></td>
+						<td class=" "><input type="text" name="tgl_rab" id="last-name" class="form-control text-right" value="0"></td>
 					</tr>
 				</table><br>
 			</div>
@@ -239,9 +241,9 @@ if (isset($_POST["submit"])) {
 						<td class=" ">
 
 							<select class="form-control" name="voy_num" required>
-								<option value="">--Pilih Vessel--</option>
-								<?php foreach($vessel as $row) : ?>
-									<option value="<?= $row['id_vessel']?>"><?= $row['nama_vessel']?></option>
+								<option value="">--Pilih Customer--</option>
+								<?php foreach($customer as $row) : ?>
+									<option value="<?= $row['id_cust']?>"><?= $row['nama_customer']?></option>
 								<?php endforeach;?>	
 							</select>
 
@@ -256,8 +258,8 @@ if (isset($_POST["submit"])) {
 
 							<select class="form-control" name="voy_num" required>
 								<option value="">--Pilih Commodity--</option>
-								<?php foreach($vessel as $row) : ?>
-									<option value="<?= $row['id_vessel']?>"><?= $row['nama_vessel']?></option>
+								<?php foreach($kargo as $row) : ?>
+									<option value="<?= $row['id_kargo']?>"><?= $row['nama_kargo']?></option>
 								<?php endforeach;?>	
 							</select>
 
@@ -269,22 +271,22 @@ if (isset($_POST["submit"])) {
 			<div class="row col-md-4">
 				<table>
 					<tr class="even pointer">
-						<td class=" " style="width: 15rem;"> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
+						<td class=" " style="width: 15rem; text-align: right;"> <strong>Date of Opening :</strong></td>
+						<td class=" "> <input type="date" class="form-control" id="dateOpening" onchange="calculateTotalDays()"></td>
 						<td class=" ">  &nbsp;</td>
 						
 					</tr>
 					<br>
 					<tr class="odd pointer">
-						<td class=" "> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
+						<td class="" style="width: 15rem; text-align: right;"> <strong>Date of Closing :</strong></td>
+						<td class=" "><input type="date" class="form-control" id="dateClosing" onchange="calculateTotalDays()"></td>
 						<td class=" "> &nbsp;</td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
-						<td class=" "> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
+						<td class=" " style="width: 15rem; text-align: right;"> <strong>Total Days : </strong></td>
+						<td class=" " style="width: 10rem; text-align: right;"> <strong><span id="totalDays">0</span></strong></td>
+						<td class=" "></td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
@@ -297,22 +299,28 @@ if (isset($_POST["submit"])) {
 			<div class="row col-md-4">
 				<table>
 					<tr class="even pointer">
-						<td class=" " style="width: 15rem;"> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
+						<td class=" " style="width: 15rem; text-align: right;"><strong>Loading Date :</strong></td>
+						<td class=" "> <input type="date" class="form-control" id="dateOpening" onchange="calculateTotalDays()"></td>
 						<td class=" ">  &nbsp;</td>
 						
 					</tr>
 					<br>
 					<tr class="odd pointer">
-						<td class=" "> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
+						<td class=" " style="width: 15rem; text-align: right;"> <strong>Est Discharging Date :</strong></td>
+						<td class=" "> <input type="date" class="form-control" id="dateOpening" onchange="calculateTotalDays()"></td>
 						<td class=" "> &nbsp;</td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
-						<td class=" "> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
-						<td class=" "> &nbsp;</td>
+						<td class=" " style="width: 15rem; text-align: right;"><strong>Load Qty : </strong><input type="text" class="" value="0" style="width: 6rem; text-align: right;" oninput="formatAngka(this)"></td>
+						<td class=" ">
+						<select class="" name="voy_num" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select> </td>
+						<td class=" "> </td>
 					</tr>
 					<br>
 					<tr class="odd pointer">
@@ -330,24 +338,24 @@ if (isset($_POST["submit"])) {
 			<tbody>
 				<tr class="even pointer">
 			
-					<td class=" ">Mob port from</td>
+					<td class=" " style="vertical-align: middle; text-align: left;">Mob port from</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
-							<option value="">--Pilih Satuan--</option>
+							<option value="">--Pilih Port--</option>
 							<?php foreach($satuan as $row) : ?>
 								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
 							<?php endforeach;?>	
 						</select>
 					
 					</td>
-					<td class=" " rowspan="4"  style="vertical-align: middle; text-align: center;">Distance</td>
-					<td class=" "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
-					<td class=" ">Bunker Price</td>
-					<td class="a-right a-right "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
+					<td class=" " rowspan="6"  style="vertical-align: middle; text-align: center; width: 15rem;">Distance</td>
+					<td class=" " style="vertical-align: middle; text-align: center; width: 15rem;"><input type="number" name="tgl_rab" class="form-control text-right" style="width: " value="0"></td>
+					<td class=" " style="vertical-align: middle; text-align: right;">Bunker Price Rp. </td>
+					<td class=""><input type="text" name="" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
 				</tr>
 				<tr class="odd pointer">
 
-					<td class=" ">Load port </td>
+					<td class=" " style="vertical-align: middle; text-align: left;">Load port </td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
 							<option value="">--Pilih Satuan--</option>
@@ -357,13 +365,28 @@ if (isset($_POST["submit"])) {
 						</select>
 					</td>
 					
-					<td class=" "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
-					<td class=" ">Lumpsum Freight</td>
-					<td class="a-right a-right "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
+					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" " style="vertical-align: middle; text-align: right;">Lumpsum Freight Rp. </td>
+					<td class="a-right a-right "><input type="text" name="tgl_rab" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
+				</tr>
+				<tr class="odd pointer">
+
+					<td class=" " style="vertical-align: middle; text-align: left;">Load port 2</td>
+					<td class=" ">
+						<select class="form-control col-md-12" name="voy_num" required>
+							<option value="">--Pilih Satuan--</option>
+							<?php foreach($satuan as $row) : ?>
+								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<?php endforeach;?>	
+						</select>
+					</td>
+					
+					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" " colspan="2">&nbsp;</td>
 				</tr>
 				<tr class="even pointer">
 
-					<td class=" ">Discharge port</td>
+					<td class=" " style="vertical-align: middle; text-align: left;">Discharge port</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
 							<option value="">--Pilih Satuan--</option>
@@ -373,13 +396,28 @@ if (isset($_POST["submit"])) {
 						</select>
 					</td>
 				
-					<td class=" "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
-					<td class=" ">Freight Computation</td>
-					<td class="a-right a-right "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
+					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" " style="vertical-align: middle; text-align: right;">Freight Computation Rp. </td>
+					<td class=" "><input type="text" name="tgl_rab" class="form-control text-right" oninput="formatAngka(this)" value="0"></td>
+				</tr>
+				<tr class="even pointer">
+
+					<td class=" " style="vertical-align: middle; text-align: left;">Discharge port 2</td>
+					<td class=" ">
+						<select class="form-control col-md-12" name="voy_num" required>
+							<option value="">--Pilih Satuan--</option>
+							<?php foreach($satuan as $row) : ?>
+								<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+							<?php endforeach;?>	
+						</select>
+					</td>
+				
+					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" " colspan="2">&nbsp;</td>
 				</tr>
 				<tr class="odd pointer">
 
-					<td class=" ">Demob</td>
+					<td class=" " style="vertical-align: middle; text-align: left;">Demob</td>
 					<td class=" ">
 						<select class="form-control col-md-12" name="voy_num" required>
 							<option value="">--Pilih Satuan--</option>
@@ -389,9 +427,8 @@ if (isset($_POST["submit"])) {
 						</select>
 					</td>
 			
-					<td class=" "><input type="number" name="tgl_rab" class="form-control col-md-12" value="0"></td>
-					<td class=" ">&nbsp;</td>
-					<td class="a-right a-right ">&nbsp;</td>
+					<td class=" "><input type="number" name="tgl_rab" class="form-control text-right" value="0"></td>
+					<td class=" " colspan="2">&nbsp;</td>
 				</tr>
 				
 				
@@ -498,8 +535,9 @@ if (isset($_POST["submit"])) {
 					</tr>
 
 					<tr>
-						<td colspan="3"><center><strong>Total</strong></center></td>
-						<td>&nbsp;</td>
+						<td colspan="2"><center><strong>Total</strong></center></td>
+						<td><strong>0</strong></td>
+						<td><strong>0</strong></td>
 						<td><strong>0</strong></td>
 						<td><strong>0</strong></td>
 						<td><strong>0</strong></td>
@@ -521,12 +559,12 @@ if (isset($_POST["submit"])) {
 		<div class="table-responsive">
 			<table class="table table-bordered" id="dataTables" >
 				<thead>
-					<tr class="">
+					<tr class="" style="background-color: #6fb7f2;">
 						<th class="" colspan="4" rowspan="2" style="vertical-align: middle; text-align: center;"><center>Revenue Sales</center> </th>
 						<th class="" colspan="2"><center>Jumlah</center></th>
 						
 					</tr>
-					<tr class="">
+					<tr class="" style="background-color: #6fb7f2;">
 						<th class=""><center>(IDR)</center> </th>
 						<th class=""><center>%</center></th>
 						
@@ -535,31 +573,266 @@ if (isset($_POST["submit"])) {
 
 				<tbody>
 					<tr>
-						<td><input type="text" name="field6[]" placeholder="From" required></td>
+						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="From" required></td>
 						<td colspan="3"><input type="text" name="field6[]" placeholder="To" required></td>
-						<td><input type="text" name="field6[]" placeholder="To" required></td>
+						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="To" required></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 					<tr>
-						<td><input type="text" name="field6[]" placeholder="From" required></td>
-						<td colspan="3"><input type="text" name="field6[]" placeholder="To" required></td>
-						<td><input type="text" name="field6[]" placeholder="To" required></td>
+						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="From" required></td>
+						<td colspan="3"><input type="text" name="" value="0"></td>
+						<td style="vertical-align: middle; text-align: right;"><input type="text" name="field6[]" placeholder="To" required></td>
 						<td>&nbsp;</td>
 						
 					</tr>
 
-					<tr>
+					<tr style=" background-color:#f5c542;">
 						<td colspan="4"><b style="float: right;">Total Sales Revenue</b></td>
-						<td >0</td>
+						<td ><b style="float: right;">0</b></td>
 						<td><b style="float: right;">%</b></td>
 						
 					</tr>
 					
 
 				</tbody>
-				<button type="button" id="addRowBtn">Add Row</button>
-				<button id="addRowBtn">Submit</button>
+
+				<thead>
+					<tr class="" style="background-color: #6fb7f2;">
+						<th class="" colspan="2" style="vertical-align: middle; text-align: center;"><center>Expenses/item</center> </th>
+						<th class="" ><center>Total Qty</center></th>
+						<th class="" ><center>Unit Price</center></th>
+						<th class="">&nbsp;</th>
+						<th class="">&nbsp;</th>
+						
+					</tr>
+					<tr class="" style=" background-color:#f5c542;">
+						<th class="" colspan="4" style="vertical-align: middle; text-align: right;">Total Expenses</th>
+						<th class=""><b style="float: right;">0</b></th>
+						<th class="" ><b style="float: right;">0</b></th>
+						
+					</tr>
+					
+				</thead>
+				<tbody>
+					<tr>
+						<td>Gaji Crew</td>
+						<td colspan="2" style="vertical-align: middle; text-align: center;">
+							<input type="number" name="" value="0" oninput="formatAngka(this)">
+							<select class="" name="" required>
+								<option value="">--Pilih Satuan--</option>
+								<?php foreach($satuan as $row) : ?>
+									<option value="<?= $row['id_satuan']?>"><?= $row['nama_satuan']?></option>
+								<?php endforeach;?>	
+							</select>
+						</td>
+						<td>Rp. <input type="text" name="" value="0" style="float: right;" oninput="formatAngka(this)"></td>
+						<td><input type="number" name="" value="0" style="float: right;"></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Asuransi Armada</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Uang Makan</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Repair Maintenance (RM)</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Depresiasi</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Bunker Usage</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Total Freshwater Usage</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Crew Bonus</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya On Time Delivery (OTD)</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya Operasional Nahkoda</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Agency Fees at Loading Port</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Agency Fees at Discharge Port</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Labuh Tambat at Loading Port</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Labuh Tambat at Discharge Port</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya Koordinasi di Laut</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya Supervisi loading un loading</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Broker Fee</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya Premi Pengawas</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya Lain-lain Pengawas</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya Lain-lain Operasional</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>R/M Additional</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Pengurusan Document Kapal</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Biaya keperluan kapal/cleaning</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Crew Bonus (Performance Losses)</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+					<tr>
+						<td>Pph Pasal 15 - (1.2%)</td>
+						<td colspan="3"><input type="number" name="field6[]" value="0" required></td>
+						<td><input type="number" name="field6[]" value="0" required></td>
+						<td>&nbsp;</td>
+						
+					</tr>
+
+					<tr style=" background-color:#f5c542;">
+						<td colspan="4"><b style="float: right;">Cost of Money (2.5%)</b></td>
+						<td >0</td>
+						<td><b style="float: right;">%</b></td>
+						
+					</tr>
+					<tr style=" background-color:#f5c542; border-color: black;">
+						<td colspan="4"><b style="float: right;">Management Fee (2.5%)</b></td>
+						<td >0</td>
+						<td><b style="float: right;">%</b></td>
+						
+					</tr>
+					<tr style=" background-color:#fff;">
+						<td colspan="4"><b style="float: right;">Net Profit (2.5%)</b></td>
+						<td >0</td>
+						<td><b style="float: right;">%</b></td>
+						
+					</tr>
+					<tr style=" background-color:#fff;">
+						
+						<td colspan="6">
+							<label for=""><b>Notes Proyek: </b></label>
+							<textarea name="ctt" id="" colspan="30" rows="5" class="form-control" style="resize: none;" placeholder="Ketikkan Notes Proyek"></textarea>
+						</td>
+						
+						
+					</tr>
+					
+
+				</tbody>				
+
+				<!-- <button type="button" id="addRowBtn">Add Row</button>
+				<button id="addRowBtn">Submit</button> -->
 			</table>
 		</div>
 				
@@ -604,28 +877,34 @@ if (isset($_POST["submit"])) {
     });
 </script>
 
-
-
-<!-- 
 <script>
-	document.getElementById('addRowBtn').addEventListener('click', function () {
-		var table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-		var newRow = table.insertRow(table.rows.length);
+	function formatAngka(input) {
+		// Menghapus karakter selain angka
+		let angka = input.value.replace(/\D/g, '');
 
-		var cell1 = newRow.insertCell(0);
-		var cell2 = newRow.insertCell(1);
-		var cell3 = newRow.insertCell(2);
-		var cell4 = newRow.insertCell(3);
-		var cell5 = newRow.insertCell(4);
-		var cell6 = newRow.insertCell(5);
-		var cell7 = newRow.insertCell(5);
+		// Menggunakan fungsi Number() untuk mengonversi string menjadi angka
+		angka = Number(angka);
 
-		cell1.innerHTML = '<input type="text" name="field1[]" required>';
-		cell2.innerHTML = '<input type="text" name="field2[]" required>';
-		cell3.innerHTML = '<input type="text" name="field3[]" value="0" required>';
-		cell4.innerHTML = '<input type="text" name="field4[]" value="0" required>';
-		cell5.innerHTML = '<input type="text" name="field5[]" value="0" required>';
-		cell6.innerHTML = '<input type="text" name="field6[]" value="0" required>';
-		cell7.innerHTML = '<input type="text" name="field7[]" value="0" required>';
-	});
-</script> -->
+		// Menggunakan fungsi toLocaleString() untuk memformat angka dengan tanda pemisah ribuan
+		input.value = angka.toLocaleString();
+	}
+</script>
+
+<script>
+	function calculateTotalDays() {
+		// Ambil elemen input date
+		var dateOpening = document.getElementById("dateOpening").value;
+		var dateClosing = document.getElementById("dateClosing").value;
+
+		// Konversi string date menjadi objek Date
+		var startDate = new Date(dateOpening);
+		var endDate = new Date(dateClosing);
+
+		// Hitung selisih hari dan tambahkan 1
+		var timeDifference = endDate.getTime() - startDate.getTime();
+		var daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24)) + 1;
+
+		// Tampilkan hasil pada elemen dengan id "totalDays"
+		document.getElementById("totalDays").innerText = daysDifference;
+	}
+</script>

@@ -148,7 +148,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_mulai">Dari <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="date" name="tgl_mulai" id="tgl_mulai" required="required" class="form-control" value="<?= $req_cuti['tgl_mulai']?>">
+												<input type="date" name="tgl_mulai" id="dateOpening" required="required" class="form-control" onchange="calculateTotalDays()" value="<?= $req_cuti['tgl_mulai']?>">
 											</div>
 										</div>
 								
@@ -156,7 +156,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_akhir">Sampai <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="date" name="tgl_akhir" id="tgl_akhir" required="required" class="form-control" value="<?= $req_cuti['tgl_akhir']?>">
+												<input type="date" name="tgl_akhir" id="dateClosing" required="required" class="form-control" onchange="calculateTotalDays()" value="<?= $req_cuti['tgl_akhir']?>">
 											</div>
 										</div>
 
@@ -164,7 +164,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="jml_hari">Jumlah Hari <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" name="jml_hari" id="jml_hari" required="required" class="form-control" min="0" value="<?= $req_cuti['jml_hari']?>">
+												<input type="number" name="jml_hari" id="totalDaysInput" required="required" class="form-control" min="0" value="<?= $req_cuti['jml_hari']?>" readonly>
 											</div>
 										</div>
 
@@ -217,3 +217,22 @@ if (isset($_POST["submit"])) {
 					
 				</div>
     </div>
+
+	<script>
+        function calculateTotalDays() {
+            // Ambil elemen input date
+            var dateOpening = document.getElementById("dateOpening").value;
+            var dateClosing = document.getElementById("dateClosing").value;
+
+            // Konversi string date menjadi objek Date
+            var startDate = new Date(dateOpening);
+            var endDate = new Date(dateClosing);
+
+            // Hitung selisih hari dan tambahkan 1
+            var timeDifference = endDate.getTime() - startDate.getTime();
+            var daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24)) + 1;
+
+            // Setel nilai pada elemen input dengan id "totalDaysInput"
+            document.getElementById("totalDaysInput").value = daysDifference;
+        }
+    </script>
