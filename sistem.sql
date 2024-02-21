@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2024 at 11:51 AM
+-- Generation Time: Feb 21, 2024 at 11:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -828,6 +828,27 @@ INSERT INTO `no_po` (`id_no_po`, `no_po`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `port`
+--
+
+CREATE TABLE `port` (
+  `id_port` int(10) NOT NULL,
+  `nama_port` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `port`
+--
+
+INSERT INTO `port` (`id_port`, `nama_port`) VALUES
+(1, 'Tanjung Uban'),
+(2, 'OB Pontianak'),
+(3, 'Siantan - Pontianak'),
+(5, 'OB Tanjung Pinang');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posisi_crew`
 --
 
@@ -972,7 +993,8 @@ INSERT INTO `req_cuti` (`id_req_cuti`, `tgl_mulai`, `tgl_akhir`, `jml_hari`, `ti
 (30, '2024-01-24', '2024-01-24', 1, 'Full Day', 'Ngurus ATM', 'Sudah diapprove', '2024-01-23 17:47:40', '2024-01-23 17:48:41', 19, 4),
 (32, '2024-02-21', '2024-02-21', 1, 'Full Day', 'ada perlu', 'Sudah diapprove', '2024-02-20 11:50:53', '2024-02-20 11:51:19', 15, 4),
 (33, '2024-02-20', '2024-02-20', 1, 'Full Day', 'liburan', 'Sudah diapprove', '2024-02-20 17:40:26', '2024-02-20 17:49:38', 15, 4),
-(34, '2024-02-20', '2024-02-20', 1, 'Full Day', '', 'Sudah diapprove', '2024-02-20 17:50:16', '2024-02-20 17:50:51', 15, 4);
+(34, '2024-02-20', '2024-02-20', 1, 'Full Day', '', 'Sudah diapprove', '2024-02-20 17:50:16', '2024-02-20 17:50:51', 15, 4),
+(37, '2024-02-22', '2024-02-23', 2, 'Full Day', '', 'Belum diapprove', '2024-02-21 14:10:03', '0000-00-00 00:00:00', 13, 4);
 
 -- --------------------------------------------------------
 
@@ -1406,6 +1428,12 @@ ALTER TABLE `no_po`
   ADD PRIMARY KEY (`id_no_po`);
 
 --
+-- Indexes for table `port`
+--
+ALTER TABLE `port`
+  ADD PRIMARY KEY (`id_port`);
+
+--
 -- Indexes for table `posisi_crew`
 --
 ALTER TABLE `posisi_crew`
@@ -1632,6 +1660,12 @@ ALTER TABLE `no_po`
   MODIFY `id_no_po` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `port`
+--
+ALTER TABLE `port`
+  MODIFY `id_port` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `posisi_crew`
 --
 ALTER TABLE `posisi_crew`
@@ -1665,7 +1699,7 @@ ALTER TABLE `req_barang`
 -- AUTO_INCREMENT for table `req_cuti`
 --
 ALTER TABLE `req_cuti`
-  MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `sales_plan`
