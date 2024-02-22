@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2024 at 11:37 AM
+-- Generation Time: Feb 22, 2024 at 11:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -456,6 +456,27 @@ INSERT INTO `dept` (`id_dept`, `nama_dept`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `disch_port`
+--
+
+CREATE TABLE `disch_port` (
+  `id_disch` int(10) NOT NULL,
+  `nama_disch` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `disch_port`
+--
+
+INSERT INTO `disch_port` (`id_disch`, `nama_disch`) VALUES
+(1, 'Tanjung Uban'),
+(2, 'OB Pontianak'),
+(3, 'Siantan - Pontianak'),
+(4, 'OB Tanjung Pinang');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `divisi`
 --
 
@@ -720,6 +741,27 @@ INSERT INTO `lantai` (`id_lantai`, `nama_lantai`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `load_port`
+--
+
+CREATE TABLE `load_port` (
+  `id_load` int(10) NOT NULL,
+  `nama_load` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `load_port`
+--
+
+INSERT INTO `load_port` (`id_load`, `nama_load`) VALUES
+(1, 'Tanjung Uban'),
+(2, 'OB Pontianak'),
+(3, 'Siantan - Pontianak'),
+(4, 'OB Tanjung Pinang');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lokasi_barang`
 --
 
@@ -824,6 +866,29 @@ CREATE TABLE `no_po` (
 
 INSERT INTO `no_po` (`id_no_po`, `no_po`) VALUES
 (1, 'NO. 007/PO/MMM/I/2024');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `on_duty`
+--
+
+CREATE TABLE `on_duty` (
+  `id_duty` int(10) NOT NULL,
+  `tgl_duty` date NOT NULL,
+  `waktu_duty` time NOT NULL,
+  `tujuan_duty` varchar(40) NOT NULL,
+  `alasan_duty` varchar(50) NOT NULL,
+  `status_duty` varchar(50) NOT NULL,
+  `id_user` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `on_duty`
+--
+
+INSERT INTO `on_duty` (`id_duty`, `tgl_duty`, `waktu_duty`, `tujuan_duty`, `alasan_duty`, `status_duty`, `id_user`) VALUES
+(1, '2024-02-22', '16:54:51', 'Audit Kapal', 'Pengecekan Inventais kapal', 'On Progress', 35);
 
 -- --------------------------------------------------------
 
@@ -1007,8 +1072,8 @@ CREATE TABLE `sales_plan` (
   `kode_sales` varchar(50) NOT NULL,
   `voy_num` varchar(30) NOT NULL,
   `qty_sales` int(5) DEFAULT NULL,
-  `loading_port` varchar(50) DEFAULT NULL,
-  `discharge_port` varchar(50) DEFAULT NULL,
+  `id_load` int(10) DEFAULT NULL,
+  `id_disch` int(10) DEFAULT NULL,
   `sales_nominal` int(10) DEFAULT NULL,
   `start` date DEFAULT NULL,
   `finished` date DEFAULT NULL,
@@ -1027,8 +1092,8 @@ CREATE TABLE `sales_plan` (
 -- Dumping data for table `sales_plan`
 --
 
-INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `voy_num`, `qty_sales`, `loading_port`, `discharge_port`, `sales_nominal`, `start`, `finished`, `app1`, `app2`, `app3`, `status_plan`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`, `id_kargo`) VALUES
-(13, 'SPL-24021600001-88684', '001VOY/MMM/I/2024', 1, 'jkt', 'btm', 2000000000, '2024-02-16', '0000-00-00', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai', 6, 1, 2, 7, 1);
+INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `voy_num`, `qty_sales`, `id_load`, `id_disch`, `sales_nominal`, `start`, `finished`, `app1`, `app2`, `app3`, `status_plan`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`, `id_kargo`) VALUES
+(17, 'SPL-24022200001-17104', '001VOY/MMM/I/2024', 1, 1, 4, 1000000000, '2024-02-22', '0000-00-00', '', '', '', 'On Dirops', 1, 1, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -1046,10 +1111,10 @@ CREATE TABLE `satuan` (
 --
 
 INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
-(1, 'MTON'),
-(2, 'KL'),
+(1, 'Unit'),
+(2, 'Ltr'),
 (3, 'Pcs'),
-(4, 'Liter'),
+(4, 'Nm'),
 (5, 'Lusin'),
 (6, 'Box'),
 (7, 'Galon'),
@@ -1328,6 +1393,12 @@ ALTER TABLE `dept`
   ADD PRIMARY KEY (`id_dept`);
 
 --
+-- Indexes for table `disch_port`
+--
+ALTER TABLE `disch_port`
+  ADD PRIMARY KEY (`id_disch`);
+
+--
 -- Indexes for table `divisi`
 --
 ALTER TABLE `divisi`
@@ -1396,6 +1467,12 @@ ALTER TABLE `lantai`
   ADD PRIMARY KEY (`id_lantai`);
 
 --
+-- Indexes for table `load_port`
+--
+ALTER TABLE `load_port`
+  ADD PRIMARY KEY (`id_load`);
+
+--
 -- Indexes for table `lokasi_barang`
 --
 ALTER TABLE `lokasi_barang`
@@ -1426,6 +1503,13 @@ ALTER TABLE `no_jurnal`
 --
 ALTER TABLE `no_po`
   ADD PRIMARY KEY (`id_no_po`);
+
+--
+-- Indexes for table `on_duty`
+--
+ALTER TABLE `on_duty`
+  ADD PRIMARY KEY (`id_duty`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `port`
@@ -1491,7 +1575,9 @@ ALTER TABLE `sales_plan`
   ADD KEY `id_satuan` (`id_satuan`),
   ADD KEY `id_vessel` (`id_vessel`),
   ADD KEY `id_dept` (`id_dept`),
-  ADD KEY `id_kargo` (`id_kargo`);
+  ADD KEY `id_kargo` (`id_kargo`),
+  ADD KEY `id_load` (`id_load`),
+  ADD KEY `id_disch` (`id_disch`);
 
 --
 -- Indexes for table `satuan`
@@ -1576,6 +1662,12 @@ ALTER TABLE `dept`
   MODIFY `id_dept` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `disch_port`
+--
+ALTER TABLE `disch_port`
+  MODIFY `id_disch` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
@@ -1636,6 +1728,12 @@ ALTER TABLE `lantai`
   MODIFY `id_lantai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `load_port`
+--
+ALTER TABLE `load_port`
+  MODIFY `id_load` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `lokasi_barang`
 --
 ALTER TABLE `lokasi_barang`
@@ -1658,6 +1756,12 @@ ALTER TABLE `manage_cuti`
 --
 ALTER TABLE `no_po`
   MODIFY `id_no_po` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `on_duty`
+--
+ALTER TABLE `on_duty`
+  MODIFY `id_duty` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `port`
@@ -1705,7 +1809,7 @@ ALTER TABLE `req_cuti`
 -- AUTO_INCREMENT for table `sales_plan`
 --
 ALTER TABLE `sales_plan`
-  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -1810,6 +1914,12 @@ ALTER TABLE `manage_cuti`
   ADD CONSTRAINT `manage_cuti_ibfk_2` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
 
 --
+-- Constraints for table `on_duty`
+--
+ALTER TABLE `on_duty`
+  ADD CONSTRAINT `on_duty_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
 -- Constraints for table `po_barang`
 --
 ALTER TABLE `po_barang`
@@ -1855,7 +1965,9 @@ ALTER TABLE `sales_plan`
   ADD CONSTRAINT `sales_plan_ibfk_2` FOREIGN KEY (`id_satuan`) REFERENCES `satuan` (`id_satuan`),
   ADD CONSTRAINT `sales_plan_ibfk_3` FOREIGN KEY (`id_vessel`) REFERENCES `vessel` (`id_vessel`),
   ADD CONSTRAINT `sales_plan_ibfk_4` FOREIGN KEY (`id_dept`) REFERENCES `dept` (`id_dept`),
-  ADD CONSTRAINT `sales_plan_ibfk_5` FOREIGN KEY (`id_kargo`) REFERENCES `jenis_kargo` (`id_kargo`);
+  ADD CONSTRAINT `sales_plan_ibfk_5` FOREIGN KEY (`id_kargo`) REFERENCES `jenis_kargo` (`id_kargo`),
+  ADD CONSTRAINT `sales_plan_ibfk_6` FOREIGN KEY (`id_load`) REFERENCES `load_port` (`id_load`),
+  ADD CONSTRAINT `sales_plan_ibfk_7` FOREIGN KEY (`id_disch`) REFERENCES `disch_port` (`id_disch`);
 
 --
 -- Constraints for table `storage_barang`
