@@ -8,6 +8,8 @@ $vessel = query("SELECT * FROM vessel");
 $satuan = query("SELECT * FROM satuan");
 $dept = query("SELECT * FROM dept");
 $kargo = query("SELECT * FROM jenis_kargo");
+$load_port = query("SELECT * FROM load_port");
+$disch_port = query("SELECT * FROM disch_port");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -160,7 +162,13 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Loading Port <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="loading_port" id="last-name" required="required" class="form-control" placeholder="Ketikkan Loading Port">
+										<!-- <input type="text" name="loading_port" id="last-name" required="required" class="form-control" placeholder="Ketikkan Loading Port"> -->
+										<select class="form-control" name="id_load" required>
+                                            <option value="">--Pilih Loading Port--</option>
+                                            <?php foreach($load_port as $row) : ?>
+                                                <option value="<?= $row['id_load']?>"><?= $row['nama_load']?></option>
+                                            <?php endforeach;?>	
+                                        </select>
 									</div>
 								</div>
 
@@ -168,7 +176,13 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Discharge Port <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="text" name="discharge_port" id="last-name" required="required" class="form-control" placeholder="Ketikkan Discharge Port">
+										<!-- <input type="text" name="discharge_port" id="last-name" required="required" class="form-control" placeholder="Ketikkan Discharge Port"> -->
+										<select class="form-control" name="id_disch" required>
+                                            <option value="">--Pilih Discharge Port--</option>
+                                            <?php foreach($disch_port as $row) : ?>
+                                                <option value="<?= $row['id_disch']?>"><?= $row['nama_disch']?></option>
+                                            <?php endforeach;?>	
+                                        </select>
 									</div>
 								</div>
 

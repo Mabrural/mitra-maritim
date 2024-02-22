@@ -98,18 +98,61 @@ if (isset($_POST["submit"])) {
 						<td class=" ">: &nbsp;</td>
 						<td class=" ">
 
-							<select class="form-control" name="voy_num" required>
+							<select class="form-control" id="selectVoy" name="selectVoy" onchange="getVoyageNumber()" required>
 								<option value="">--Pilih Voyage Number--</option>
 								<?php foreach($sales_plan as $row) : ?>
 									<option value="<?= $row['id_sales']?>"><?= $row['voy_num']?></option>
 								<?php endforeach;?>	
 							</select>
 
+							<!-- <select class="form-control" id="selectVoy" name="selectVoy" onchange="getVoyageNumber()">
+								<option value="">--Pilih Voyage Number--</option>
+								<?php
+									
+
+									// $sql = "SELECT voy_num FROM sales_plan";
+									// $result = $koneksi->query($sql);
+
+									// if ($result->num_rows > 0) {
+									// 	while($row = $result->fetch_assoc()) {
+									// 		echo "<option value='" . $row["voy_num"] . "'>" . $row["voy_num"] . "</option>";
+									// 	}
+									// }
+
+									// $conn->close();
+								?>
+							</select> -->
+							<div id="salesplanDetails">
+								<!-- Nama dan Jurusan mahasiswa akan ditampilkan di sini -->
+							</div>
+
 						</td>
 
 					</tr>
 				</table><br>
 			</div>
+
+			<script>
+				function getVoyageNumber() {
+					var selectedVoy = document.getElementById("selectVoy").value;
+
+					if (selectedVoy !== "") {
+						// Menggunakan AJAX untuk mengambil data sales_plan berdasarkan voy_num
+						var xhr = new XMLHttpRequest();
+						xhr.onreadystatechange = function() {
+							if (this.readyState == 4 && this.status == 200) {
+								var salesplanDetails = document.getElementById("salesplanDetails");
+								salesplanDetails.innerHTML = this.responseText;
+							}
+						};
+						xhr.open("GET", "page/01sales_dan_marketing/rab/voyage_data.php?voy_num=" + selectedVoy, true);
+						xhr.send();
+					} else {
+						// Jika tidak ada pilihan, kosongkan salesplanDetails
+						document.getElementById("salesplanDetails").innerHTML = "";
+					}
+				}
+			</script>
 			<div class="row col-md-4">
 				<table>
 					<tr class="even pointer">
@@ -160,7 +203,7 @@ if (isset($_POST["submit"])) {
 						<td class=" ">: &nbsp;</td>
 						<td class=" ">
 
-							<select class="form-control" name="voy_num" required>
+							<select class="form-control" required disabled>
 								<option value="">--Pilih Vessel--</option>
 								<?php foreach($vessel as $row) : ?>
 									<option value="<?= $row['id_vessel']?>"><?= $row['nama_vessel']?></option>
@@ -241,7 +284,7 @@ if (isset($_POST["submit"])) {
 						<td class=" ">: &nbsp;</td>
 						<td class=" ">
 
-							<select class="form-control" name="voy_num" required>
+							<select class="form-control" required disabled>
 								<option value="">--Pilih Customer--</option>
 								<?php foreach($customer as $row) : ?>
 									<option value="<?= $row['id_cust']?>"><?= $row['nama_customer']?></option>
@@ -257,7 +300,7 @@ if (isset($_POST["submit"])) {
 						<td class=" ">: &nbsp;</td>
 						<td class=" ">
 
-							<select class="form-control" name="voy_num" required>
+							<select class="form-control" required disabled>
 								<option value="">--Pilih Commodity--</option>
 								<?php foreach($kargo as $row) : ?>
 									<option value="<?= $row['id_kargo']?>"><?= $row['nama_kargo']?></option>
@@ -606,16 +649,16 @@ if (isset($_POST["submit"])) {
 							<Label>1. Freight Earning From</Label>
 						</td>
 						<td style="vertical-align: middle; text-align: right;">
-							<select class="form-control col-md-12" name="">
-								<option value="">--Pilih Port--</option>
+							<select class="form-control col-md-6" name="">
+								<option value=""></option>
 								<?php foreach($port as $row) : ?>
 									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 								<?php endforeach;?>	
-							</select>
+							</select><p class="mt-2">to</p>
 						</td>
 						<td colspan="2">
-							<select class="form-control col-md-6" name="">
-								<option value="">--Pilih Port--</option>
+							<select class="form-control col-md-7" name="">
+								<option value=""></option>
 								<?php foreach($port as $row) : ?>
 									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 								<?php endforeach;?>	
@@ -630,16 +673,16 @@ if (isset($_POST["submit"])) {
 							<Label>2. Freight Earning From</Label>
 						</td>
 						<td style="vertical-align: middle; text-align: right;">
-							<select class="form-control col-md-12" name="">
-								<option value="">--Pilih Port--</option>
+							<select class="form-control col-md-6" name="">
+								<option value=""></option>
 								<?php foreach($port as $row) : ?>
 									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 								<?php endforeach;?>	
-							</select>
+							</select><p class="mt-2">to</p>
 						</td>
 						<td colspan="2">
-							<select class="form-control col-md-6" name="">
-								<option value="">--Pilih Port--</option>
+							<select class="form-control col-md-7" name="">
+								<option value=""></option>
 								<?php foreach($port as $row) : ?>
 									<option value="<?= $row['id_port']?>"><?= $row['nama_port']?></option>
 								<?php endforeach;?>	
@@ -662,8 +705,8 @@ if (isset($_POST["submit"])) {
 
 				<thead>
 					<tr class="" style="background-color: #A3B2D9;">
-						<th class="" colspan="2" style="vertical-align: middle; text-align: center;"><center>Expenses/item</center> </th>
-						<th class="" ><center>Total Qty</center></th>
+						<th class="" style="vertical-align: middle; text-align: center;"><center>Expenses/item</center> </th>
+						<th class=""  colspan="2"><center>Total Qty</center></th>
 						<th class="" ><center>Unit Price</center></th>
 						<th class="">&nbsp;</th>
 						<th class="">&nbsp;</th>

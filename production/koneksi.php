@@ -65,8 +65,8 @@ function generate_kode_sales() {
 	$kode_sales = generate_kode_sales();
 	$voy_num = mysqli_real_escape_string($koneksi, $data["voy_num"]);
 	$qty_sales = mysqli_real_escape_string($koneksi, $data["qty_sales"]);
-	$loading_port = mysqli_real_escape_string($koneksi, $data["loading_port"]);
-	$discharge_port = mysqli_real_escape_string($koneksi, $data["discharge_port"]);
+	$id_load = mysqli_real_escape_string($koneksi, $data["id_load"]);
+	$id_disch = mysqli_real_escape_string($koneksi, $data["id_disch"]);
 	$sales_nominal = mysqli_real_escape_string($koneksi, $data["sales_nominal"]);
 	$start = mysqli_real_escape_string($koneksi, $data["start"]);
 	$finished = mysqli_real_escape_string($koneksi, $data["finished"]);
@@ -81,7 +81,7 @@ function generate_kode_sales() {
 	$id_kargo = mysqli_real_escape_string($koneksi, $data["id_kargo"]);
 
 	$query = "INSERT INTO sales_plan VALUES
-			('', '$kode_sales', '$voy_num', '$qty_sales', '$loading_port', '$discharge_port', '$sales_nominal', '$start', '$finished', '','','','$status_plan', '$id_cust', '$id_satuan', '$id_vessel', '$id_dept', '$id_kargo')";
+			('', '$kode_sales', '$voy_num', '$qty_sales', '$id_load', '$id_disch', '$sales_nominal', '$start', '$finished', '','','','$status_plan', '$id_cust', '$id_satuan', '$id_vessel', '$id_dept', '$id_kargo')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -94,8 +94,8 @@ function ubahSales($data) {
 	$id_sales = $data["id_sales"];
 	$voy_num = mysqli_real_escape_string($koneksi, $data["voy_num"]);
 	$qty_sales = mysqli_real_escape_string($koneksi, $data["qty_sales"]);
-	$loading_port = mysqli_real_escape_string($koneksi, $data["loading_port"]);
-	$discharge_port = mysqli_real_escape_string($koneksi, $data["discharge_port"]);
+	$id_load = mysqli_real_escape_string($koneksi, $data["id_load"]);
+	$id_disch = mysqli_real_escape_string($koneksi, $data["id_disch"]);
 	$sales_nominal = mysqli_real_escape_string($koneksi, $data["sales_nominal"]);
 	$start = mysqli_real_escape_string($koneksi, $data["start"]);
 	$finished = mysqli_real_escape_string($koneksi, $data["finished"]);
@@ -113,8 +113,8 @@ function ubahSales($data) {
 	$query = "UPDATE sales_plan SET
 				voy_num = '$voy_num',
 				qty_sales = '$qty_sales',
-				loading_port = '$loading_port',
-				discharge_port = '$discharge_port',
+				id_load = '$id_load',
+				id_disch = '$id_disch',
 				sales_nominal = '$sales_nominal',
 				start = '$start',
 				finished = '$finished',

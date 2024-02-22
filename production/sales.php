@@ -513,6 +513,9 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+                            case "voyageData":
+                              include "page/01sales_dan_marketing/rab/voyage_data.php";
+                              break;
 
                             case "tambahSales":
                                 include "page/01sales_dan_marketing/sales_plan/tambah.php";
