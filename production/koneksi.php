@@ -1719,9 +1719,20 @@ function tambahBarang($data) {
 	return mysqli_affected_rows($koneksi);
 }
 
- function hapusBarang($kode_brg) {
+//  function hapusBarang($kode_brg) {
+// 	global $koneksi;
+// 	mysqli_query($koneksi, "DELETE FROM barang WHERE kode_brg='$kode_brg'");
+
+// 	return mysqli_affected_rows($koneksi);
+
+// }
+function hapusBarang($kode_brg) {
 	global $koneksi;
-	mysqli_query($koneksi, "DELETE FROM barang WHERE kode_brg='$kode_brg'");
+	try{
+		mysqli_query($koneksi, "DELETE FROM barang WHERE kode_brg='$kode_brg'");
+	}catch(Exception $e){
+		return false;
+	}
 
 	return mysqli_affected_rows($koneksi);
 

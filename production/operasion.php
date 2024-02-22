@@ -165,7 +165,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="operasion.php?page=reqCuti">Database Karyawan</a></li>
+                      <li><a href="operasion.php?page=dataKaryawan">Database Karyawan</a></li>
                       <li><a href="operasion.php?page=crew">Database Crew</a></li>
                       <li><a href="operasion.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="operasion.php?page=reqCuti">Slip Gaji</a></li>
@@ -422,6 +422,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/04hrd/master_bank/master_bank.php";
                                 break;
 
+                            case 'dataKaryawan':
+                              include "page/hrd/data_karyawan_read.php";
+                              break;
+
+                            case 'dataKaryawanNonaktif':
+                              include "page/hrd/data_karyawan_nonaktif_read.php";
+                              break;
+
                             case "onDuty":
                                 include "page/04hrd/on_duty/on_duty.php";
                                 break;
@@ -459,7 +467,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 break;
 
                             case 'dataBarang':
-                                include 'page/data_barang/barang_read.php';
+                                include 'page/data_barang/barang.php';
                                 break;
 
                             case 'invoicePembelian':
@@ -481,6 +489,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'tagihan':
                                 include "page/tagihan/tagihan.php";
                                 break;
+
+                            case 'inventarisAsset':
+                              include "page/06purchasing/inventaris_dan_asset/inventaris.php";
+                              break;
 
 
               

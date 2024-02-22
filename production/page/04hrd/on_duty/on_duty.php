@@ -7,10 +7,7 @@ $id_user = $_SESSION["id_user"];
     <div class="x_panel">
       <div class="x_title">
         <h2>On Duty Karyawan<small></small></h2>
-        <a href="?form=tambahCrew" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Form</a>
-        <a href="?page=crew" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-users"></i> Crew Armada</a>
-        <a href="?page=masterBank" class="btn btn-warning btn-sm"><i class="fa fa-bank"></i> Master Bank</a>
-        <a href="?page=kontrakCrew" class="btn btn-success btn-sm  "><i class="fa fa-file-text-o"></i> Kontrak Crew</a>
+        <a href="?form=tambahOnduty" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Form</a>
         <div class="clearfix"></div>
       </div>
 
@@ -26,14 +23,10 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nama Crew </th>
-                <th class="column-title">NIK </th>
-                <th class="column-title">NPWP </th>
-                <th class="column-title">Tempat, Tanggal Lahir </th>
-                <th class="column-title">Jenis Kelamin </th>
-                <th class="column-title">Posisi</th>
-                <th class="column-title">Bank - No. Rekening</th>
-                <th class="column-title">Kapal</th>
+                <th class="column-title">Tanggal On Duty</th>
+                <th class="column-title">Waktu On Duty </th>
+                <th class="column-title">Tujuan </th>
+                <th class="column-title">Alasan</th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -47,7 +40,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM crew JOIN bank ON bank.id_bank=crew.id_bank JOIN vessel ON vessel.id_vessel=crew.id_vessel JOIN posisi_crew ON posisi_crew.id_posisi=crew.id_posisi ORDER BY id_crew DESC";
+              		$query = "SELECT * FROM on_duty WHERE id_user='$id_user' ORDER BY id_duty DESC";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -55,16 +48,12 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['nama_crew'];?></td>
-                <td class=" "><?= $data['nik'];?></td>
-                <td class=" "><?= $data['npwp'];?></td>
-                <td class=" "><?= $data['tmp_lahir'];?>, <?= date('d/m/Y', strtotime($data['tgl_lahircrew']));?></td>
-                <td class=" "><?= $data['jk_crew'];?></td>
-                <td class=" "><?= $data['nama_posisi'];?></td>
-                <td class=" "><?= $data['nama_bank'];?> - <?= $data['no_rek'];?></td>
-                <td class=" "><?= $data['nama_vessel'];?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_duty']));?></td>
+                <td class=" "><?= $data['waktu_duty'];?></td>
+                <td class=" "><?= $data['tujuan_duty'];?></td>
+                <td class=" "><?= $data['alasan_duty'];?></td>
             
-                <td class=" last"><a href="?form=ubahCrew&id_crew=<?= $data["id_crew"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusCrew&id_crew=<?= $data["id_crew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahOnduty&id_duty=<?= $data["id_duty"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusOnduty&id_duty=<?= $data["id_duty"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               
