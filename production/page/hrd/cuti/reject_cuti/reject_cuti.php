@@ -9,9 +9,9 @@ $id_user = $_SESSION["id_user"];
       <div class="x_title">
         <h2>Approval Cuti <small></small></h2>
         <a href="?page=reqCuti" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> Tambah Request Cuti</a>
-        <a href="?page=approveCuti" class="btn btn-warning btn-sm btn disabled"><i class="fa fa-clock-o"></i> Pending</a>
+        <a href="?page=approveCuti" class="btn btn-warning btn-sm "><i class="fa fa-clock-o"></i> Pending</a>
         <a href="?page=approvedCuti" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approved</a>
-        <a href="?page=rejectedCuti" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Rejected</a>
+        <a href="?page=rejectedCuti" class="btn btn-danger btn-sm btn disabled"><i class="fa fa-ban"></i> Rejected</a>
         <div class="clearfix"></div>
       </div>
 
@@ -36,11 +36,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Created At</th>
                 <th class="column-title">Approved At</th>
                 <th class="column-title">Status Cuti</th>
-                
-<!--                 <th class="column-title">Jenis Cuti</th>
-                <th class="column-title">Kuota</th> -->
-                <th class="column-title no-link last"><span class="nobr">Action</span>
-                </th>
+
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                 </th>
@@ -52,7 +48,7 @@ $id_user = $_SESSION["id_user"];
                 <?php 
                   $no = 1;
                  
-                  $query = "SELECT * FROM req_cuti JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=req_cuti.id_kategori_cuti JOIN karyawan ON karyawan.id_emp=req_cuti.id_emp WHERE req_cuti.status_cuti='Pending'";
+                  $query = "SELECT * FROM req_cuti JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=req_cuti.id_kategori_cuti JOIN karyawan ON karyawan.id_emp=req_cuti.id_emp WHERE req_cuti.status_cuti='Rejected'";
                   $tampil = mysqli_query($koneksi, $query);
                   while ($data = mysqli_fetch_assoc($tampil)) {
                           
@@ -82,19 +78,7 @@ $id_user = $_SESSION["id_user"];
 
                     ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_cuti'];?></strong>
                 </td>
-              
-                <!-- <td class=" last"><a href="?form=approveCuti&id_req_cuti=<?= $data["id_req_cuti"]; ?>" class="btn btn-info btn-sm">Approve </a>
-                </td> -->
-                <td class=" last">
-                    <?php
-                        if ($data['status_cuti'] !== 'Pending') {
-                            echo '<a href="?form=lihatApprove&id_req_cuti=' . $data["id_req_cuti"] . '" class="btn btn-dark btn-sm btn disabled">' . $data['status_cuti'] . '</a>';
-                        } else {
-                            echo '<a href="?form=approveCuti&id_req_cuti=' . $data["id_req_cuti"] . '" class="btn btn-success btn-sm" >Approve</a>';
-                            echo '| <a href="?form=rejectCuti&id_req_cuti=' . $data["id_req_cuti"] . '" class="btn btn-danger btn-sm">Reject</a>';
-                        }
-                    ?>
-                </td>
+            
                 
                 </td>
               </tr>

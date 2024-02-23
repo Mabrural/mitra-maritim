@@ -7,21 +7,11 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>History Request Cuti <small></small></h2>
+        <h2>Cuti Karyawan <small></small></h2>
         <a href="?page=reqCuti" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> Tambah Request Cuti</a>
-        <!-- <ul class="nav navbar-right panel_toolbox">
-          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Settings 1</a>
-                <a class="dropdown-item" href="#">Settings 2</a>
-              </div>
-          </li>
-          <li><a class="close-link"><i class="fa fa-close"></i></a>
-          </li>
-        </ul> -->
+        <a href="?page=cutiKaryawan" class="btn btn-warning btn-sm "><i class="fa fa-clock-o"></i> Pending</a>
+        <a href="?page=approvedCuti" class="btn btn-success btn-sm "><i class="fa fa-check"></i> Approved</a>
+        <a href="?page=rejectedCuti" class="btn btn-danger btn-sm btn disabled"><i class="fa fa-ban"></i> Rejected</a>
         <div class="clearfix"></div>
       </div>
 
@@ -47,13 +37,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Approved At</th>
                 <th class="column-title">Status Cuti</th>
                 
-<!--                 <th class="column-title">Jenis Cuti</th>
-                <th class="column-title">Kuota</th> -->
-                <th class="column-title no-link last"><span class="nobr">Action</span>
-                </th>
-                <th class="bulk-actions" colspan="7">
-                  <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                </th>
+
               </tr>
             </thead>
 
@@ -62,7 +46,7 @@ $id_user = $_SESSION["id_user"];
                 <?php 
                   $no = 1;
                  
-                  $query = "SELECT * FROM req_cuti JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=req_cuti.id_kategori_cuti JOIN karyawan ON karyawan.id_emp=req_cuti.id_emp JOIN user ON user.id_emp=karyawan.id_emp WHERE user.id_user=$id_user";
+                  $query = "SELECT * FROM req_cuti JOIN kategori_cuti ON kategori_cuti.id_kategori_cuti=req_cuti.id_kategori_cuti JOIN karyawan ON karyawan.id_emp=req_cuti.id_emp JOIN user ON user.id_emp=karyawan.id_emp WHERE user.id_user=$id_user AND req_cuti.status_cuti='Rejected'";
                   $tampil = mysqli_query($koneksi, $query);
                   while ($data = mysqli_fetch_assoc($tampil)) {
                           
@@ -77,17 +61,22 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['alasan'];?> </td>
                 <td class=" "><?= date('d-M-Y H:i:s', strtotime($data['created_at']));?> </td>
                 <td class=" "><?= $data['updated_at'];?> </td>
-                <td class=" "><?= $data['status_cuti'];?> </td>
-                
-                <td class=" last">
-                    <?php if ($data['status_cuti'] == 'Belum diapprove') : ?>
-                        <a href="?form=ubahRequestCuti&id_req_cuti=<?= $data["id_req_cuti"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRequestCuti&id_req_cuti=<?= $data["id_req_cuti"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
-                    <?php else : ?>
-                        <button class="btn btn-secondary btn-sm" disabled>SELESAI</button>
-                    <?php endif; ?>
+                <td class=" ">
+                    <strong style="background-color: <?php
+                    if ($data['status_cuti'] == 'Rejected') {
+                        echo '#a62f26';
+                    } elseif ($data['status_cuti'] == 'Approved') {
+                      echo '#14a664';
+                    } else {
+                        echo '#b58709';
+                    }
+                ?>
+
+
+                    ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_cuti'];?></strong>
                 </td>
-                <!-- <td class=" last"><a href="?form=ubahRequestCuti&id_req_cuti=<?= $data["id_req_cuti"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRequestCuti&id_req_cuti=<?= $data["id_req_cuti"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
-                </td> -->
+                
+           
                 
               </tr>
               <?php } ?>

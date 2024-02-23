@@ -171,8 +171,9 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="sales.php?page=reqCuti">Database Crew</a></li>
                       <li><a href="sales.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="sales.php?page=reqCuti">Slip Gaji</a></li>
-                      <li><a href="sales.php?page=reqCuti">Form Cuti</a></li>
-                      <li><a href="sales.php?page=historyCuti">History Cuti</a></li>
+                      <li><a href="sales.php?page=cutiKaryawan">Cuti Karyawan</a></li>
+                      <!-- <li><a href="sales.php?page=reqCuti">Form Cuti</a></li>
+                      <li><a href="sales.php?page=historyCuti">History Cuti</a></li> -->
                       <!-- <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
@@ -472,6 +473,18 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'historyCuti':
                                 include "page/hrd/cuti/req_cuti/history_request.php";
                                 break;
+
+                            case 'cutiKaryawan':
+                              include "page/hrd/cuti/req_cuti/cuti.php";
+                              break;
+
+                            case 'approvedCuti':
+                              include "page/hrd/cuti/req_cuti/approved.php";
+                              break;
+
+                            case 'rejectedCuti':
+                              include "page/hrd/cuti/req_cuti/rejected.php";
+                              break;
 
                             case 'dashboard':
                                 include "page/05dashboard/dashboard.php";

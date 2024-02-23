@@ -17,7 +17,7 @@ if( hapusRequestCuti($id_req_cuti) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=historyCuti'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=cutiKaryawan'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
 	// echo "
@@ -41,7 +41,7 @@ if( hapusRequestCuti($id_req_cuti) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=historyCuti'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=cutiKaryawan'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
 	// echo "

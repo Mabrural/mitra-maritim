@@ -196,7 +196,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="hrd.php?page=userLogin">Data Login</a></li>
                       <li><a href="hrd.php?page=penitipanIjazah">Penitipan Ijazah</a></li>
                       <li><a href="hrd.php?page=manageCuti">Manage Cuti</a></li>
-                      <li><a href="hrd.php?page=reqCuti">Form Cuti</a></li>
+                      <!-- <li><a href="hrd.php?page=reqCuti">Form Cuti</a></li> -->
                       <!-- <li><a href="hrd.php?page=approveCuti">Approve Cuti</a></li> -->
 
                       <!-- notifikasi lengket jika tidak ada data yang ditampilkan maka spannya tetap ada tapi 0 -->
@@ -254,7 +254,6 @@ if ($_SESSION["level"] == "Staff IT") {
                                 ?>
                             </a>
                         </li>
-                      <li><a href="hrd.php?page=historyApproveCuti">History Approve Cuti</a></li>
                       <li class="nav-item">
                             <a href="hrd.php?page=approveOnduty" class="nav-link">
                                 Approve On Duty karyawan 
@@ -524,7 +523,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 break;
 
                             case 'reqCuti':
-                                include "page/hrd/cuti/req_cuti/form_cuti.php";
+                                include "page/hrd/cuti/req_cuti/form_cuti2.php";
                                 break;
                             case 'historyCuti':
                                 include "page/hrd/cuti/req_cuti/history_request.php";
@@ -533,6 +532,14 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'approveCuti':
                                 include "page/hrd/cuti/approve_cuti/approve_cuti.php";
                                 break;
+
+                            case 'approvedCuti':
+                              include "page/hrd/cuti/approve_cuti/approved.php";
+                              break;
+
+                            case 'rejectedCuti':
+                              include "page/hrd/cuti/reject_cuti/reject_cuti.php";
+                              break;
 
                               case 'approveOnduty':
                                 include "page/04hrd/on_duty/approve_duty/approve_duty.php";
@@ -788,6 +795,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case 'approveCuti':
                                 include 'page/hrd/cuti/approve_cuti/konfirmasi_approve_cuti.php';
+                                break;
+
+                            case 'rejectCuti':
+                                include 'page/hrd/cuti/reject_cuti/konfirmasi_reject.php';
                                 break;
 
                             case 'app1Pembelian':

@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=historyCuti'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=cutiKaryawan'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=historyCuti'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=cutiKaryawan'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -186,7 +186,7 @@ if (isset($_POST["submit"])) {
 											<div class="col-md-6 col-sm-6 ">
 												<textarea class="form-control" rows="4" name="alasan" id="alasan" style="resize:none;" placeholder=""><?= $req_cuti['alasan']?></textarea>
 												<!-- <input type="text" name="alasan" id="alasan" required="required" class="form-control" value="<?= $req_cuti['alasan']?>"> -->
-												<input type="hidden" name="status_cuti" class="form-control" value="Belum diapprove">
+												<input type="hidden" name="status_cuti" class="form-control" value="<?= $req_cuti['status_cuti']?>">
 												<input type="hidden" name="created_at" class="form-control" value="<?= date('Y-m-d H:i:s') ?>">
 												<input type="hidden" name="updated_at" class="form-control" value="NULL">
 											</div>
@@ -199,7 +199,7 @@ if (isset($_POST["submit"])) {
 											<div class="col-md-6 col-sm-6 offset-md-3">
 												<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 												<button class="btn btn-primary" type="reset">Reset</button>
-												<button type="submit" class="btn btn-success" name="submit">Submit</button>
+												<button type="submit" class="btn btn-success" name="submit">Ubah</button>
 											</div>
 										</div>
 

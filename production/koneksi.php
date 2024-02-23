@@ -1715,7 +1715,7 @@ function approveCuti($data) {
     $id_emp = htmlspecialchars($data["id_emp"]);
 
     // Jika status cuti sudah diapprove
-    if ($status_cuti == "Sudah diapprove") {
+    if ($status_cuti == "Approved") {
 
         // Ambil data manage_cuti berdasarkan id_emp dan id_kategori_cuti
         $manage_cuti = mysqli_query($koneksi, "SELECT * FROM manage_cuti WHERE id_emp = $id_emp AND id_kategori_cuti = $id_kategori_cuti");
@@ -1753,6 +1753,39 @@ function approveCuti($data) {
     return mysqli_affected_rows($koneksi);
 }
 
+function rejectCuti($data) {
+    global $koneksi;
+    $id_req_cuti = $data["id_req_cuti"];
+    $tgl_mulai = htmlspecialchars($data["tgl_mulai"]);
+    $tgl_akhir = htmlspecialchars($data["tgl_akhir"]);
+    $jml_hari = htmlspecialchars($data["jml_hari"]);
+    $tipe_cuti = htmlspecialchars($data["tipe_cuti"]);
+    $alasan = htmlspecialchars($data["alasan"]);
+    $status_cuti = htmlspecialchars($data["status_cuti"]);
+    $created_at = htmlspecialchars($data["created_at"]);
+    $updated_at = htmlspecialchars($data["updated_at"]);
+    $id_kategori_cuti = htmlspecialchars($data["id_kategori_cuti"]);
+    $id_emp = htmlspecialchars($data["id_emp"]);
+
+
+    // Update data req_cuti
+    $query = "UPDATE req_cuti SET
+                tgl_mulai = '$tgl_mulai',
+                tgl_akhir = '$tgl_akhir',
+                jml_hari = '$jml_hari',
+                tipe_cuti = '$tipe_cuti',
+                alasan = '$alasan',
+                status_cuti = '$status_cuti',
+                created_at = '$created_at',
+                updated_at = '$updated_at',
+                id_emp = '$id_emp',
+                id_kategori_cuti = '$id_kategori_cuti'
+           	WHERE id_req_cuti = $id_req_cuti
+            ";
+    mysqli_query($koneksi, $query);
+
+    return mysqli_affected_rows($koneksi);
+}
 
 
 function generate_kode_barang() {

@@ -7,7 +7,7 @@ $id_req_cuti = $_GET["id_req_cuti"];
 // query data berdasarkan id
 $req_cuti = query("SELECT * FROM req_cuti WHERE id_req_cuti = $id_req_cuti")[0];
 // $karyawan = query("SELECT * FROM karyawan");
-$karyawan = query("SELECT * FROM karyawan WHERE id_jabatan != '1' AND id_jabatan != '2' AND id_jabatan != '3' AND id_jabatan != '4' AND id_emp IN (SELECT id_emp FROM req_cuti WHERE id_req_cuti=$id_req_cuti)");
+$karyawan = query("SELECT * FROM karyawan WHERE  id_emp IN (SELECT id_emp FROM req_cuti WHERE id_req_cuti=$id_req_cuti)");
 // $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user=$id_user");
 $kategori_cuti = query("SELECT * FROM kategori_cuti");
 date_default_timezone_set('Asia/Jakarta');
@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=historyApproveCuti'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=approveCuti'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -58,7 +58,7 @@ if (isset($_POST["submit"])) {
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=historyApproveCuti'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=approveCuti'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -173,7 +173,7 @@ if (isset($_POST["submit"])) {
 											<div class="col-md-6 col-sm-6 ">
 												<!-- <input type="text" name="alasan" id="alasan" required="required" class="form-control" value="<?= $req_cuti['alasan']?>"> -->
 												<textarea class="form-control" rows="4" name="alasan" id="alasan" style="resize:none;" placeholder="" readonly><?= $req_cuti['alasan']?></textarea>
-												<input type="hidden" name="status_cuti" class="form-control" value="Sudah diapprove">
+												<input type="hidden" name="status_cuti" class="form-control" value="Approved">
 												<input type="hidden" name="created_at" class="form-control" value="<?= $req_cuti['created_at'] ?>">
 												<input type="hidden" name="updated_at" class="form-control" value="<?= date('Y-m-d H:i:s') ?>">
 											</div>
