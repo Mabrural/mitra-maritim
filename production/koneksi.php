@@ -1623,6 +1623,57 @@ function hapusRequestCuti($id_req_cuti) {
 
 }
 
+function tambahOnduty($data) {
+	global $koneksi;
+
+	$tgl_duty = htmlspecialchars($data["tgl_duty"]);
+	$waktu_duty = htmlspecialchars($data["waktu_duty"]);
+	$tujuan_duty = htmlspecialchars($data["tujuan_duty"]);
+	$alasan_duty = htmlspecialchars($data["alasan_duty"]);
+	$status_duty = htmlspecialchars($data["status_duty"]);
+	$id_emp = htmlspecialchars($data["id_emp"]);
+
+
+	$query = "INSERT INTO on_duty VALUES
+			('', '$tgl_duty', '$waktu_duty', '$tujuan_duty', '$alasan_duty', '$status_duty', '$id_emp')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function ubahOnduty($data) {
+	global $koneksi;
+	$id_duty = htmlspecialchars($data['id_duty']);
+	$tgl_duty = mysqli_real_escape_string($koneksi, $data["tgl_duty"]);
+	$waktu_duty = mysqli_real_escape_string($koneksi, $data["waktu_duty"]);
+	$tujuan_duty = mysqli_real_escape_string($koneksi, $data["tujuan_duty"]);
+	$alasan_duty = mysqli_real_escape_string($koneksi, $data["alasan_duty"]);
+	$status_duty = mysqli_real_escape_string($koneksi, $data["status_duty"]);
+	$id_emp = mysqli_real_escape_string($koneksi, $data["id_emp"]);
+
+
+	$query = "UPDATE on_duty SET
+				tgl_duty = '$tgl_duty',
+				waktu_duty = '$waktu_duty',
+				tujuan_duty = '$tujuan_duty',
+				alasan_duty = '$alasan_duty',
+				status_duty = '$status_duty'
+			  WHERE id_duty = $id_duty
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusOnduty($id_duty) {
+	global $koneksi;
+	mysqli_query($koneksi, "DELETE FROM on_duty WHERE id_duty=$id_duty");
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+
 function approveCuti($data) {
     global $koneksi;
     $id_req_cuti = $data["id_req_cuti"];
@@ -1821,83 +1872,6 @@ function uploadGambarBarang(){
 	return $namaFileBaru;
  }
 
-// function uploadGambarBarang(){
-
-// 	$namaFile = $_FILES['gambar_barang']['name'];
-// 	$ukuranFile = $_FILES['gambar_barang']['size'];
-// 	$error = $_FILES['gambar_barang']['error'];
-// 	$tmpName = $_FILES['gambar_barang']['tmp_name'];
-
-// 	// cek apakah tidak ada gambar yang diupload
-// 	if ($error === 4) {
-// 		echo "
-// 			<script>
-// 				alert('pilih gambar terlebih dahulu!');
-// 			</script>
-// 		";
-// 		return false;
-// 	}
-
-// 	// cek apakah yang diupload adalah gambar
-// 	$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-// 	$ekstensiGambar = explode('.', $namaFile);
-// 	$ekstensiGambar = strtolower(end($ekstensiGambar));
-// 	if (!in_array($ekstensiGambar, $ekstensiGambarValid) ){
-// 		echo "
-// 			<script>
-// 				alert('yang anda upload bukan gambar!');
-// 			</script>
-// 		";
-// 		return false;
-// 	}
-
-// 	// cek jika ukurannya terlalu besar
-// 	if ($ukuranFile > 1000000){
-// 		echo "
-// 			<script>
-// 				alert('ukuran gambar terlalu besar!');
-// 			</script>
-// 		";
-// 		return false;
-// 	}
-
-// 	// Auto crop gambar menjadi 400 x 400 px
-// 	$maxWidth = 400;
-// 	$maxHeight = 400;
-
-// 	list($width, $height) = getimagesize($tmpName);
-
-// 	$ratio = min($maxWidth/$width, $maxHeight/$height);
-
-// 	$newWidth = $width * $ratio;
-// 	$newHeight = $height * $ratio;
-
-// 	$imageResized = imagecreatetruecolor($newWidth, $newHeight);
-
-// 	if ($ekstensiGambar == 'jpg' || $ekstensiGambar == 'jpeg') {
-// 		$image = imagecreatefromjpeg($tmpName);
-// 	} elseif ($ekstensiGambar == 'png') {
-// 		$image = imagecreatefrompng($tmpName);
-// 	}
-
-// 	imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-// 	// Simpan gambar yang sudah di-crop
-// 	$namaFileBaru = 'img/barang/' . uniqid() . '.' . $ekstensiGambar;
-
-// 	if ($ekstensiGambar == 'jpg' || $ekstensiGambar == 'jpeg') {
-// 		imagejpeg($imageResized, $namaFileBaru);
-// 	} elseif ($ekstensiGambar == 'png') {
-// 		imagepng($imageResized, $namaFileBaru);
-// 	}
-
-// 	imagedestroy($imageResized);
-
-// 	// Hapus file sementara yang diupload
-// 	unlink($tmpName);
-
-// 	return $namaFileBaru;
-//  }
 
 
 function tambahInventaris($data) {

@@ -517,6 +517,19 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                            case "tambahOnduty":
+                              include "page/04hrd/on_duty/tambah.php";
+                              break;
+
+                            case "ubahOnduty":
+                              include "page/04hrd/on_duty/ubah.php";
+                              break;
+
+                            case "hapusOnduty":
+                              include "page/04hrd/on_duty/hapus.php";
+                              break;
+
                             case "voyageData":
                               include "page/01sales_dan_marketing/rab/voyage_data.php";
                               break;

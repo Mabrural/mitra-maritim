@@ -27,6 +27,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Waktu On Duty </th>
                 <th class="column-title">Tujuan </th>
                 <th class="column-title">Alasan</th>
+                <th class="column-title">Status</th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -40,7 +41,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM on_duty WHERE id_user='$id_user' ORDER BY id_duty DESC";
+              		$query = "SELECT * FROM on_duty JOIN karyawan ON karyawan.id_emp=on_duty.id_emp JOIN user ON user.id_emp=karyawan.id_emp WHERE user.id_user='$id_user' ORDER BY id_duty DESC";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -52,6 +53,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['waktu_duty'];?></td>
                 <td class=" "><?= $data['tujuan_duty'];?></td>
                 <td class=" "><?= $data['alasan_duty'];?></td>
+                <td class=" "><?= $data['status_duty'];?></td>
             
                 <td class=" last"><a href="?form=ubahOnduty&id_duty=<?= $data["id_duty"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusOnduty&id_duty=<?= $data["id_duty"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>

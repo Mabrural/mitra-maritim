@@ -507,6 +507,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
+                            case "tambahOnduty":
+                              include "page/04hrd/on_duty/tambah.php";
+                              break;
+
 
                             case "tambahCrew":
                                 include "page/04hrd/crew/tambah.php";
