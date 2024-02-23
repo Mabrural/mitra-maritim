@@ -61,8 +61,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -79,8 +79,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -97,8 +97,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -115,8 +115,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -133,8 +133,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -151,8 +151,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -169,8 +169,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -187,8 +187,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -205,8 +205,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -223,8 +223,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,
@@ -241,8 +241,8 @@ if (isset($_POST['login'])) {
         setTimeout(function () { 
             swal.fire({
                 
-                title               : 'Berhasil',
-                text                :  'Login berhasil',
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
                 //footer              :  '',
                 icon                : 'success',
                 timer               : 2000,

@@ -276,6 +276,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 ?>
                             </a>
                         </li>
+                      <li><a href="hrd.php?page=slipGaji">Slip Gaji</a></li>
                       <li><a href="hrd.php?page=qrCode">QRCode</a></li>
                       <!-- <li><a href="hrd.php?page=attendance">Attendance</a></li>
                       <li><a href="hrd.php?page=penilaian">Penilaian Karyawan</a></li>
@@ -585,6 +586,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/profil/profil.php";
                                 break;
 
+                            case 'slipGaji':
+                                include "page/hrd/slip_gaji/slip_gaji.php";
+                                break;
+
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";
                                 break;
@@ -593,6 +598,14 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case 'tambahSlip':
+                            include 'page/hrd/slip_gaji/tambah.php';
+                            break;
+
+                          case 'ubahSlip':
+                            include 'page/hrd/slip_gaji/ubah.php';
+                            break;
 
 
                           case 'approveOnduty':

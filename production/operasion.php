@@ -168,7 +168,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="operasion.php?page=dataKaryawan">Database Karyawan</a></li>
                       <li><a href="operasion.php?page=crew">Database Crew</a></li>
                       <li><a href="operasion.php?page=onDuty">On Duty Karyawan</a></li>
-                      <li><a href="operasion.php?page=reqCuti">Slip Gaji</a></li>
+                      <li><a href="operasion.php?page=slipGaji">Slip Gaji</a></li>
                       <li><a href="operasion.php?page=cutiKaryawan">Cuti Karyawan</a></li>
                       <!-- <li><a href="operasion.php?page=reqCuti">Form Cuti</a></li>
                       <li><a href="operasion.php?page=historyCuti">History Cuti</a></li> -->
@@ -515,8 +515,9 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/hrd/cuti/req_cuti/rejected.php";
                                 break;
 
-
-              
+                              case 'slipGaji':
+                                include "page/hrd/slip_gaji/slip_gaji_read.php";
+                                break;
                             
 
                             default:

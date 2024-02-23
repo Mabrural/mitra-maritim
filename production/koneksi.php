@@ -1469,6 +1469,106 @@ function hapusIjazah($id_ijazah) {
 
 }
 
+function tambahSlip($data) {
+	global $koneksi;
+	$periode = htmlspecialchars($data["periode"]);
+	$tgl_terbit = htmlspecialchars($data["tgl_terbit"]);
+	$id_emp = htmlspecialchars($data["id_emp"]);
+
+	// Modifikasi format periode
+	// $periode = date("Y-m-01", strtotime($periode));
+
+	$file =  uploadSlip();
+	if (!$file) {
+		return false;
+	}
+
+	$query = "INSERT INTO slip_gaji VALUES
+			('', '$id_emp', '$periode', '$tgl_terbit', '$file')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function uploadSlip(){
+
+	$namaFile = $_FILES['slip_gaji']['name'];
+	$ukuranFile = $_FILES['slip_gaji']['size'];
+	$error = $_FILES['slip_gaji']['error'];
+	$tmpName = $_FILES['slip_gaji']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan pdf!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran pdf terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/slip_gaji/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+ function ubahSlip($data) {
+	global $koneksi;
+	$id_slip = $data["id_slip"];
+	$periode = htmlspecialchars($data["periode"]);
+	$tgl_terbit = htmlspecialchars($data["tgl_terbit"]);
+	$id_emp = htmlspecialchars($data["id_emp"]);
+	$fileLama = htmlspecialchars($data['slip_gaji_lama']);
+
+	// cek apakah user pilih gambar baru atau tidak
+	if ($_FILES['slip_gaji']['error'] === 4 ) {
+		$file = $fileLama;
+	} else {
+
+		$file = uploadSlip();
+	}
+
+	$query = "UPDATE slip_gaji SET
+				id_emp = '$id_emp',
+				periode = '$periode',
+				tgl_terbit = '$tgl_terbit',
+				slip_gaji = '$file'
+			  WHERE id_slip = $id_slip
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+
 function tambahKontrak($data) {
 	global $koneksi;
 	$tgl_mulai = htmlspecialchars($data["tgl_mulai"]);

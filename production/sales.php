@@ -170,7 +170,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="sales.php?page=reqCuti">Database Karyawan</a></li>
                       <li><a href="sales.php?page=reqCuti">Database Crew</a></li>
                       <li><a href="sales.php?page=onDuty">On Duty Karyawan</a></li>
-                      <li><a href="sales.php?page=reqCuti">Slip Gaji</a></li>
+                      <li><a href="sales.php?page=slipGaji">Slip Gaji</a></li>
                       <li><a href="sales.php?page=cutiKaryawan">Cuti Karyawan</a></li>
                       <!-- <li><a href="sales.php?page=reqCuti">Form Cuti</a></li>
                       <li><a href="sales.php?page=historyCuti">History Cuti</a></li> -->
@@ -519,7 +519,9 @@ if ($_SESSION["level"] == "Staff IT") {
                                   break;
 
 
-
+                                case 'slipGaji':
+                                  include "page/hrd/slip_gaji/slip_gaji_read.php";
+                                  break;
 
               
                             
