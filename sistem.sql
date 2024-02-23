@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2024 at 11:57 AM
+-- Generation Time: Feb 23, 2024 at 11:42 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -517,7 +517,7 @@ CREATE TABLE `ijazah` (
 --
 
 INSERT INTO `ijazah` (`id_ijazah`, `no_ijazah`, `tgl_penitipan`, `tgl_kembali`, `status_ijazah`, `scan_ijazah`, `id_emp`) VALUES
-(60, 'M-SMK/1100023', '2024-01-02', '0000-00-00', 'Sedang dititipkan', '65aa48284ecd6.pdf', 30);
+(60, 'M-SMK/1100023--', '2024-01-02', '0000-00-00', 'Sedang dititipkan', '65aa48284ecd6.pdf', 30);
 
 -- --------------------------------------------------------
 
@@ -829,7 +829,8 @@ INSERT INTO `manage_cuti` (`id_manage_cuti`, `id_kategori_cuti`, `kuota_cuti`, `
 (32, 4, 8, 19),
 (33, 5, 6, 19),
 (34, 6, 3, 19),
-(35, 4, 10, 15);
+(35, 4, 6, 15),
+(37, 4, 10, 13);
 
 -- --------------------------------------------------------
 
@@ -880,15 +881,20 @@ CREATE TABLE `on_duty` (
   `tujuan_duty` varchar(40) NOT NULL,
   `alasan_duty` varchar(50) NOT NULL,
   `status_duty` varchar(50) NOT NULL,
-  `id_user` int(10) NOT NULL
+  `id_emp` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `on_duty`
 --
 
-INSERT INTO `on_duty` (`id_duty`, `tgl_duty`, `waktu_duty`, `tujuan_duty`, `alasan_duty`, `status_duty`, `id_user`) VALUES
-(1, '2024-02-22', '16:54:51', 'Audit Kapal', 'Pengecekan Inventais kapal', 'On Progress', 35);
+INSERT INTO `on_duty` (`id_duty`, `tgl_duty`, `waktu_duty`, `tujuan_duty`, `alasan_duty`, `status_duty`, `id_emp`) VALUES
+(6, '2024-02-23', '10:36:00', 'Meeting dengan customer', 'asdasd', 'Approved', 13),
+(7, '2024-02-23', '10:39:00', 'Meeting dengan customer', 'sama', 'Rejected', 15),
+(8, '2024-02-23', '11:11:00', 'Meeting dengan customer', '', 'Approved', 15),
+(9, '2024-02-26', '11:14:00', 'Meeting dengan customer', '', 'Approved', 13),
+(10, '2024-02-23', '11:25:00', 'Meeting dengan customer', '', 'Rejected', 15),
+(11, '2024-02-27', '11:29:00', 'Meeting dengan customer', '', 'Approved', 15);
 
 -- --------------------------------------------------------
 
@@ -1053,13 +1059,17 @@ CREATE TABLE `req_cuti` (
 --
 
 INSERT INTO `req_cuti` (`id_req_cuti`, `tgl_mulai`, `tgl_akhir`, `jml_hari`, `tipe_cuti`, `alasan`, `status_cuti`, `created_at`, `updated_at`, `id_emp`, `id_kategori_cuti`) VALUES
-(22, '2024-01-25', '2024-01-25', 1, 'Full Day', 'perpanjang STNK', 'Sudah diapprove', '2024-01-23 14:39:37', '2024-01-23 14:54:18', 30, 4),
-(23, '2024-01-25', '2024-01-26', 2, 'Full Day', 'Pulang Kampung', 'Sudah diapprove', '2024-01-23 14:56:52', '2024-01-23 15:03:19', 30, 4),
 (30, '2024-01-24', '2024-01-24', 1, 'Full Day', 'Ngurus ATM', 'Sudah diapprove', '2024-01-23 17:47:40', '2024-01-23 17:48:41', 19, 4),
 (32, '2024-02-21', '2024-02-21', 1, 'Full Day', 'ada perlu', 'Sudah diapprove', '2024-02-20 11:50:53', '2024-02-20 11:51:19', 15, 4),
 (33, '2024-02-20', '2024-02-20', 1, 'Full Day', 'liburan', 'Sudah diapprove', '2024-02-20 17:40:26', '2024-02-20 17:49:38', 15, 4),
-(34, '2024-02-20', '2024-02-20', 1, 'Full Day', '', 'Sudah diapprove', '2024-02-20 17:50:16', '2024-02-20 17:50:51', 15, 4),
-(37, '2024-02-22', '2024-02-23', 2, 'Full Day', '', 'Belum diapprove', '2024-02-21 14:10:03', '0000-00-00 00:00:00', 13, 4);
+(34, '2024-02-20', '2024-02-20', 1, 'Full Day', '', 'Rejected', '2024-02-20 17:50:16', '2024-02-20 17:50:51', 15, 4),
+(37, '2024-02-22', '2024-02-23', 2, 'Full Day', '', 'Rejected', '2024-02-21 14:10:03', '2024-02-23 13:39:57', 13, 4),
+(39, '2024-02-23', '2024-02-23', 1, 'Full Day', '', 'Approved', '2024-02-23 13:45:18', '2024-02-23 13:55:42', 15, 4),
+(40, '2024-02-26', '2024-02-27', 2, 'Full Day', 'perlu', 'Approved', '2024-02-23 13:57:19', '2024-02-23 14:01:27', 15, 4),
+(41, '2024-02-26', '2024-02-27', 2, 'Full Day', '-', 'Approved', '2024-02-23 14:02:07', '2024-02-23 14:04:04', 15, 4),
+(42, '2024-02-23', '2024-02-23', 1, 'Full Day', '', 'Rejected', '2024-02-23 14:05:47', '2024-02-23 14:07:51', 15, 4),
+(44, '2024-02-27', '2024-02-28', 2, 'Full Day', 'asdas', 'Approved', '2024-02-23 14:22:37', '2024-02-23 14:24:14', 15, 4),
+(45, '2024-02-23', '2024-02-23', 1, 'Full Day', '', 'Approved', '2024-02-23 14:26:21', '2024-02-23 14:32:52', 10, 4);
 
 -- --------------------------------------------------------
 
@@ -1123,6 +1133,32 @@ INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
 (10, 'Roll'),
 (11, 'Kg'),
 (12, 'Drum');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `slip_gaji`
+--
+
+CREATE TABLE `slip_gaji` (
+  `id_slip` int(10) NOT NULL,
+  `id_emp` int(10) NOT NULL,
+  `periode` varchar(7) NOT NULL,
+  `tgl_terbit` date NOT NULL,
+  `slip_gaji` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `slip_gaji`
+--
+
+INSERT INTO `slip_gaji` (`id_slip`, `id_emp`, `periode`, `tgl_terbit`, `slip_gaji`) VALUES
+(12, 13, '2024-06', '2024-02-23', '65d8715ddf9db.pdf'),
+(13, 15, '2024-02', '2024-02-23', '65d868bec3b5d.pdf'),
+(14, 15, '2024-03', '2024-02-23', '65d86a6262779.pdf'),
+(15, 15, '2024-01', '2024-02-23', '65d86a75b6707.pdf'),
+(16, 15, '2023-12', '2024-02-23', '65d86a8bbea9b.pdf'),
+(17, 15, '2023-11', '2024-02-23', '65d86aa01a260.pdf');
 
 -- --------------------------------------------------------
 
@@ -1509,7 +1545,7 @@ ALTER TABLE `no_po`
 --
 ALTER TABLE `on_duty`
   ADD PRIMARY KEY (`id_duty`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_emp` (`id_emp`);
 
 --
 -- Indexes for table `port`
@@ -1584,6 +1620,13 @@ ALTER TABLE `sales_plan`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`id_satuan`);
+
+--
+-- Indexes for table `slip_gaji`
+--
+ALTER TABLE `slip_gaji`
+  ADD PRIMARY KEY (`id_slip`),
+  ADD KEY `id_emp` (`id_emp`);
 
 --
 -- Indexes for table `status_crew`
@@ -1713,7 +1756,7 @@ ALTER TABLE `kategori_cuti`
 -- AUTO_INCREMENT for table `kontrak_crew`
 --
 ALTER TABLE `kontrak_crew`
-  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `kontrak_kerja`
@@ -1749,7 +1792,7 @@ ALTER TABLE `lokasi_room`
 -- AUTO_INCREMENT for table `manage_cuti`
 --
 ALTER TABLE `manage_cuti`
-  MODIFY `id_manage_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_manage_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `no_po`
@@ -1761,7 +1804,7 @@ ALTER TABLE `no_po`
 -- AUTO_INCREMENT for table `on_duty`
 --
 ALTER TABLE `on_duty`
-  MODIFY `id_duty` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_duty` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `port`
@@ -1803,7 +1846,7 @@ ALTER TABLE `req_barang`
 -- AUTO_INCREMENT for table `req_cuti`
 --
 ALTER TABLE `req_cuti`
-  MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_req_cuti` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `sales_plan`
@@ -1816,6 +1859,12 @@ ALTER TABLE `sales_plan`
 --
 ALTER TABLE `satuan`
   MODIFY `id_satuan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `slip_gaji`
+--
+ALTER TABLE `slip_gaji`
+  MODIFY `id_slip` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `status_crew`
@@ -1917,7 +1966,7 @@ ALTER TABLE `manage_cuti`
 -- Constraints for table `on_duty`
 --
 ALTER TABLE `on_duty`
-  ADD CONSTRAINT `on_duty_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `on_duty_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
 
 --
 -- Constraints for table `po_barang`
@@ -1968,6 +2017,12 @@ ALTER TABLE `sales_plan`
   ADD CONSTRAINT `sales_plan_ibfk_5` FOREIGN KEY (`id_kargo`) REFERENCES `jenis_kargo` (`id_kargo`),
   ADD CONSTRAINT `sales_plan_ibfk_6` FOREIGN KEY (`id_load`) REFERENCES `load_port` (`id_load`),
   ADD CONSTRAINT `sales_plan_ibfk_7` FOREIGN KEY (`id_disch`) REFERENCES `disch_port` (`id_disch`);
+
+--
+-- Constraints for table `slip_gaji`
+--
+ALTER TABLE `slip_gaji`
+  ADD CONSTRAINT `slip_gaji_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
 
 --
 -- Constraints for table `storage_barang`
