@@ -125,7 +125,7 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
-                                    <input type="hidden" name="status_duty" value="Menunggu Persetujuan">
+                                    <input type="hidden" name="status_duty" value="Pending">
                                
 								<div class="ln_solid"></div>
 								<div class="item form-group">

@@ -1673,6 +1673,32 @@ function hapusOnduty($id_duty) {
 
 }
 
+function approveOnduty($id_duty) {
+	global $koneksi;	
+	$status_duty = "Approved";	
+
+	$query = "UPDATE on_duty SET
+				status_duty = '$status_duty'
+			  WHERE id_duty = $id_duty
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectOnduty($id_duty) {
+	global $koneksi;	
+	$status_duty = "Rejected";	
+
+	$query = "UPDATE on_duty SET
+				status_duty = '$status_duty'
+			  WHERE id_duty = $id_duty
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
 
 function approveCuti($data) {
     global $koneksi;

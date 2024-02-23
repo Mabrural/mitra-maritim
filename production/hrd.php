@@ -254,13 +254,29 @@ if ($_SESSION["level"] == "Staff IT") {
                                 ?>
                             </a>
                         </li>
-
-                      
-
-
-
-
                       <li><a href="hrd.php?page=historyApproveCuti">History Approve Cuti</a></li>
+                      <li class="nav-item">
+                            <a href="hrd.php?page=approveOnduty" class="nav-link">
+                                Approve On Duty karyawan 
+                                <?php
+                                    // Check if the notification should be displayed
+                                    if (!isset($_SESSION['duti_notification_displayed'])) {
+                                        // Query untuk menghitung jumlah cuti yang belum diapprove
+                                        $query = "SELECT COUNT(*) AS jml_duty_pending FROM on_duty JOIN karyawan ON karyawan.id_emp=on_duty.id_emp WHERE on_duty.status_duty='Pending'";
+                                        $result = mysqli_query($koneksi, $query);
+                                        $data = mysqli_fetch_assoc($result);
+
+                                        // Cek apakah ada data
+                                        if ($data['jml_duty_pending'] > 0) {
+                                            echo "<span class='badge badge-primary'>{$data['jml_duty_pending']}</span>";
+                                        }
+
+                                        // Set session to indicate that the notification has been displayed
+                                        $_SESSION['duti_notification_displayed'] = true;
+                                    }
+                                ?>
+                            </a>
+                        </li>
                       <li><a href="hrd.php?page=qrCode">QRCode</a></li>
                       <!-- <li><a href="hrd.php?page=attendance">Attendance</a></li>
                       <li><a href="hrd.php?page=penilaian">Penilaian Karyawan</a></li>
@@ -518,6 +534,18 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/hrd/cuti/approve_cuti/approve_cuti.php";
                                 break;
 
+                              case 'approveOnduty':
+                                include "page/04hrd/on_duty/approve_duty/approve_duty.php";
+                                break;
+
+                              case 'approved':
+                                include "page/04hrd/on_duty/approve_duty/approved.php";
+                                break;
+
+                              case 'rejected':
+                                include "page/04hrd/on_duty/reject_duty/rejected.php";
+                                break;
+
                             case 'historyApproveCuti':
                                 include "page/hrd/cuti/approve_cuti/history_approve_cuti.php";
                                 break;
@@ -558,6 +586,15 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+
+                          case 'approveOnduty':
+                              include "page/04hrd/on_duty/approve_duty/konfirmasiapp_duty.php";
+                              break;
+                          
+                          case 'rejectOnduty':
+                            include "page/04hrd/on_duty/reject_duty/reject.php";
+                            break;
 
                           case 'tambahInventaris':
                               include "page/06purchasing/inventaris_dan_asset/tambah.php";

@@ -497,13 +497,15 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include 'page/asset_dan_inventaris/transaksi_barang/barang_masuk/barang_masuk.php';
                                 break;
 
-                            case 'laporan':
-                                include "page/laporan/laporan.php";
-                                break;
+                                case 'approved':
+                                  include "page/04hrd/on_duty/approved.php";
+                                  break;
+  
+                                case 'rejected':
+                                  include "page/04hrd/on_duty/rejected.php";
+                                  break;
 
-                            case 'tagihan':
-                                include "page/tagihan/tagihan.php";
-                                break;
+
 
 
               

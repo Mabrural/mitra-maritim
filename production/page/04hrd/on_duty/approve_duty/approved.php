@@ -7,9 +7,9 @@ $id_user = $_SESSION["id_user"];
     <div class="x_panel">
       <div class="x_title">
         <h2>On Duty Karyawan<small></small></h2>
-        <a href="?form=tambahOnduty" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Form</a>
-        <a href="?page=approveOnduty" class="btn btn-warning btn-sm btn disabled"><i class="fa fa-clock-o"></i> Pending</a>
-        <a href="?page=approved" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approved</a>
+        <!-- <a href="?form=tambahOnduty" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Form</a> -->
+        <a href="?page=approveOnduty" class="btn btn-warning btn-sm"><i class="fa fa-clock-o"></i> Pending</a>
+        <a href="?page=approved" class="btn btn-success btn-sm  btn disabled"><i class="fa fa-check"></i> Approved</a>
         <a href="?page=rejected" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Rejected</a>
         <div class="clearfix"></div>
       </div>
@@ -26,15 +26,13 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nama Karyawan</th>
+                <th class="column-title">Nama Karyawan </th>
                 <th class="column-title">Tanggal On Duty</th>
                 <th class="column-title">Waktu On Duty </th>
                 <th class="column-title">Tujuan </th>
                 <th class="column-title">Alasan</th>
                 <th class="column-title">Status</th>
                            
-                <th class="column-title no-link last"><span class="nobr">Action</span>
-                </th>
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                 </th>
@@ -45,7 +43,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM on_duty JOIN karyawan ON karyawan.id_emp=on_duty.id_emp JOIN user ON user.id_emp=karyawan.id_emp WHERE user.id_user='$id_user' AND on_duty.status_duty='Pending' ORDER BY id_duty DESC";
+              		$query = "SELECT * FROM on_duty JOIN karyawan ON karyawan.id_emp=on_duty.id_emp JOIN user ON user.id_emp=karyawan.id_emp WHERE on_duty.status_duty='Approved' ORDER BY id_duty DESC";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -61,7 +59,7 @@ $id_user = $_SESSION["id_user"];
                 <!-- <td class=" "><?= $data['status_duty'];?></td> -->
                 <td class=" ">
                     <strong style="background-color: <?php
-                    if ($data['status_duty'] == 'Reject') {
+                    if ($data['status_duty'] == 'Rejected') {
                         echo '#a62f26';
                     } elseif ($data['status_duty'] == 'Approved') {
                       echo '#14a664';
@@ -74,8 +72,7 @@ $id_user = $_SESSION["id_user"];
                     ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_duty'];?></strong>
                 </td>
             
-                <td class=" last"><a href="?form=ubahOnduty&id_duty=<?= $data["id_duty"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusOnduty&id_duty=<?= $data["id_duty"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
-                </td>
+                
               </tr>
               
            <?php } ?>

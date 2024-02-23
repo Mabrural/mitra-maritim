@@ -494,6 +494,14 @@ if ($_SESSION["level"] == "Staff IT") {
                               include "page/06purchasing/inventaris_dan_asset/inventaris.php";
                               break;
 
+                            case 'approved':
+                              include "page/04hrd/on_duty/approved.php";
+                              break;
+
+                            case 'rejected':
+                              include "page/04hrd/on_duty/rejected.php";
+                              break;
+
 
               
                             
