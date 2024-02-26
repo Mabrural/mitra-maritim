@@ -356,14 +356,15 @@ if (isset($_GET['cetakData'])) {
                                           $query .= "storage_barang.id_room = $id_room";
                                       }
 
+                                    // Add condition for kondisi_brg not equal to disposal
+                                    $query .= " AND storage_barang.kondisi_brg <> 'disposal'";
+
                                     $tampil = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_assoc($tampil)) {
                                         $jabatan = $data['nama_jabatan'];
                                         $qty_req = $data['qty_brg'];
                                         $total += $qty_req;
-                                    // $qty_req_arr = explode(',', $qty_req);
-                                    // $total = array_sum($qty_req_arr);
-                                    
+                
 
                                  ?>
                                 <td height="20" valign="top" align="center" class="kotak" style="padding:4px">&nbsp;<?= $no++; ?></td>

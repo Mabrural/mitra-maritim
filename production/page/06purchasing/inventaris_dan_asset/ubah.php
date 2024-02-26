@@ -171,6 +171,7 @@ if (isset($_POST["submit"])) {
 													<option value="Kurang Lengkap" <?= ($storage_barang['kondisi_brg'] == 'Kurang Lengkap') ? 'selected' : '';?>>Kurang Lengkap</option>
 													<option value="Rusak" <?= ($storage_barang['kondisi_brg'] == 'Rusak') ? 'selected' : '';?>>Rusak</option>
 													<option value="Hilang" <?= ($storage_barang['kondisi_brg'] == 'Hilang') ? 'selected' : '';?>>Hilang</option>
+													<option value="Disposal" <?= ($storage_barang['kondisi_brg'] == 'Disposal') ? 'selected' : '';?>>Disposal</option>
 												</select>
 											</div>
 										</div>

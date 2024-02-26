@@ -147,6 +147,7 @@ if (isset($_POST["submit"])) {
 											<option value="Kurang Lengkap">Kurang Lengkap</option>
 											<option value="Rusak">Rusak</option>
 											<option value="Hilang">Hilang</option>
+											<option value="Disposal">Disposal</option>
 										</select>
 									</div>
 								</div>

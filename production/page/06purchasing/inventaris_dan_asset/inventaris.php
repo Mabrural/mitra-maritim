@@ -114,17 +114,28 @@ $id_room = isset($_GET['id_room']) ? $_GET['id_room'] : '';
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM storage_barang JOIN lokasi_room ON lokasi_room.id_room=storage_barang.id_room JOIN lokasi_barang ON lokasi_barang.id_lokasi=storage_barang.id_lokasi JOIN barang ON barang.kode_brg=storage_barang.kode_brg";
+              		$query = "SELECT * FROM storage_barang 
+                            JOIN lokasi_room ON lokasi_room.id_room = storage_barang.id_room 
+                            JOIN lokasi_barang ON lokasi_barang.id_lokasi = storage_barang.id_lokasi 
+                            JOIN barang ON barang.kode_brg = storage_barang.kode_brg";
 
                   // Add filter conditions based on the selected values
+                  if (!empty($id_lokasi) || !empty($id_room)) {
+                      $query .= " WHERE";
+                  }
+
                   if (!empty($id_lokasi)) {
-                      $query .= " WHERE storage_barang.id_lokasi = $id_lokasi";
+                      $query .= " storage_barang.id_lokasi = $id_lokasi";
                   }
 
                   if (!empty($id_room)) {
-                      $query .= (!empty($id_lokasi)) ? " AND " : " WHERE ";
-                      $query .= "storage_barang.id_room = $id_room";
+                      $query .= (!empty($id_lokasi)) ? " AND" : "";
+                      $query .= " storage_barang.id_room = $id_room";
                   }
+
+                  // Add condition for kondisi_brg not equal to disposal
+                  $query .= " AND storage_barang.kondisi_brg <> 'disposal'";
+
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
