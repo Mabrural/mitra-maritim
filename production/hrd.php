@@ -428,7 +428,7 @@ if ($_SESSION["level"] == "Staff IT") {
                         switch ($page) {
 
                             case 'inventarisAsset':
-                                include "page/06purchasing/inventaris_dan_asset/inventaris.php";
+                                include "page/06purchasing/inventaris_dan_asset/inventaris_read.php";
                                 break;
 
                             case 'crew':
@@ -589,6 +589,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'slipGaji':
                                 include "page/hrd/slip_gaji/slip_gaji.php";
                                 break;
+
+                            case "disposal":
+                              include "page/06purchasing/inventaris_dan_asset/disposal_read.php";
+                              break;
 
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";

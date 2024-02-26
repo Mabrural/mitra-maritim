@@ -15,71 +15,22 @@ $id_room = isset($_GET['id_room']) ? $_GET['id_room'] : '';
         <h2>Asset dan Inventaris <small></small></h2>
 
         
-        <!-- <a href="laporan/cetak_inventaris.php?id_lokasi=<?= $id_lokasi?>&id_room=<?= $id_room?>" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Cetak Data</a><br> -->
           <form action="laporan/cetak_inventaris.php" method="get">
               <input type="hidden" name="aksi">
               <input type="hidden" name="id_user" value="<?= $id_user;?>">
               <input type="hidden" name="id_lokasi" value="<?= $id_lokasi;?>">
               <input type="hidden" name="id_room" value="<?= $id_room;?>">
-              <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button>
-              <a href="?page=inventarisAsset" class="btn btn-body btn-sm text-light bg-dark btn disabled"><i class="fa fa-suitcase"></i> Asset</a>
-              <a href="?page=disposal" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Disposal</a>
+              <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
+              <a href="?page=inventarisAsset" class="btn btn-body btn-sm text-light bg-dark "><i class="fa fa-suitcase"></i> Asset</a>
+              <a href="?page=disposal" class="btn btn-danger btn-sm btn disabled"><i class="fa fa-trash"></i> Disposal</a>
               
           </form>
-          <div class="row">
-            <div class="col-md-2 col-sm-6">
-                <form method="get">
-                  <input type="hidden" name="aksi">
-                      <!-- <input type="hidden" name="id_user" value="<?= $storage_barang['id_user'];?>"> -->
-                    <select class="form-control" name="id_lokasi" id="id_lokasi" required>
-                        <option value="">--Pilih Lokasi Barang--</option>
-                        <?php foreach($lokasi as $row) : ?>
-                            <option value="<?= $row['id_lokasi']?>" <?php echo ($id_lokasi == $row['id_lokasi']) ? 'selected' : ''; ?>>
-                                <?= $row['nama_lokasi']?>
-                            </option>
-                        <?php endforeach;?> 
-                    </select><br>
-                    <!-- <button type="submit" class="btn btn-primary btn-sm">Filter</button> -->
-                </form>
-            </div>
-            <div class="col-md-2 col-sm-6">
-                <!-- <form method="get"> -->
-                    <select class="form-control" name="id_room" id="id_room" required>
-                        <option value="">--Pilih Lokasi Ruangan--</option>
-                        <?php foreach($room as $row) : ?>
-                            <option value="<?= $row['id_room']?>" <?php echo ($id_room == $row['id_room']) ? 'selected' : ''; ?>>
-                                <?= $row['room_name']?>
-                            </option>
-                        <?php endforeach;?> 
-                    </select>
-                    <br>
-                    <!-- <button type="submit" class="btn btn-primary btn-sm">Filter</button> -->
-                <!-- </form> -->
-            </div>
-          </div>
+         
 
         <div class="clearfix"></div>
       </div>
 
       <div class="x_content">
-
-        <!-- <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p> -->
-      <script type="text/javascript">
-        $(document).ready(function() {
-            // Add change event listeners to the dropdowns
-            $('#id_lokasi, #id_room').change(function() {
-                // Get selected values
-                var id_lokasi = $('#id_lokasi').val();
-                var id_room = $('#id_room').val();
-
-                // Redirect to the current page with filter parameters
-                window.location.href = '?page=inventarisAsset&id_lokasi=' + id_lokasi + '&id_room=' + id_room;
-                // window.location.href = '?id_lokasi=' + id_lokasi + '&id_room=' + id_room;
-            });
-
-            // ... (rest of the JavaScript code)
-        });
-      </script>
 
         <div class="table-responsive">
           <table id="example" class="display" style="width:100%">
@@ -99,7 +50,6 @@ $id_room = isset($_GET['id_room']) ? $_GET['id_room'] : '';
                 <th class="column-title">Keterangan </th>
                 <th class="column-title">Lokasi Barang </th>
                 <th class="column-title">Lokasi Ruangan </th>               
-                
               </tr>
             </thead>
 
@@ -107,28 +57,17 @@ $id_room = isset($_GET['id_room']) ? $_GET['id_room'] : '';
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM storage_barang 
-                            JOIN lokasi_room ON lokasi_room.id_room = storage_barang.id_room 
-                            JOIN lokasi_barang ON lokasi_barang.id_lokasi = storage_barang.id_lokasi 
-                            JOIN barang ON barang.kode_brg = storage_barang.kode_brg";
+              		$query = "SELECT * FROM storage_barang JOIN lokasi_room ON lokasi_room.id_room=storage_barang.id_room JOIN lokasi_barang ON lokasi_barang.id_lokasi=storage_barang.id_lokasi JOIN barang ON barang.kode_brg=storage_barang.kode_brg WHERE storage_barang.kondisi_brg='Disposal'";
 
                   // Add filter conditions based on the selected values
-                  if (!empty($id_lokasi) || !empty($id_room)) {
-                      $query .= " WHERE";
-                  }
+                //   if (!empty($id_lokasi)) {
+                //       $query .= " WHERE storage_barang.id_lokasi = $id_lokasi";
+                //   }
 
-                  if (!empty($id_lokasi)) {
-                      $query .= " storage_barang.id_lokasi = $id_lokasi";
-                  }
-
-                  if (!empty($id_room)) {
-                      $query .= (!empty($id_lokasi)) ? " AND" : "";
-                      $query .= " storage_barang.id_room = $id_room";
-                  }
-
-                  // Add condition for kondisi_brg not equal to disposal
-                  $query .= " AND storage_barang.kondisi_brg <> 'disposal'";
-
+                //   if (!empty($id_room)) {
+                //       $query .= (!empty($id_lokasi)) ? " AND " : " WHERE ";
+                //       $query .= "storage_barang.id_room = $id_room";
+                //   }
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
