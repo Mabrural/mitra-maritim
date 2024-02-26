@@ -1,32 +1,7 @@
 <?php 
 
 $id_lokasi = $_GET["id_lokasi"];
-
-if( hapusLokasi($id_lokasi) > 0 ){
-	echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
-	echo '<script src="./sweetalert2.min.js"></script>';
-	echo "<script>
-	setTimeout(function () { 
-		swal.fire({
-			
-			title               : 'Berhasil',
-			text                :  'Data berhasil dihapus',
-			//footer              :  '',
-			icon                : 'success',
-			timer               : 2000,
-			showConfirmButton   : true
-		});  
-	},10);   setTimeout(function () {
-		window.location.href = '?page=dataLokasi'; //will redirect to your blog page (an ex: blog.html)
-	}, 2000); //will call the function after 2 secs
-	</script>";
-	// echo "
-	// 	<script>
-	// 		alert('Data berhasil dihapus!');
-	// 		document.location.href = 'index.php';
-	// 	</script>
-	// ";
-} else {
+if($id_lokasi === null) {
     echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 	echo '<script src="./sweetalert2.min.js"></script>';
 	echo "<script>
@@ -41,15 +16,48 @@ if( hapusLokasi($id_lokasi) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=dataLokasi'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=masterLokasi'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
-	// echo "
-	// 	<script>
-	// 		alert('Data gagal dihapus');
-	// 		document.location.href = 'index.php';
-	// 	</script>
-	// ";
  }
+
+if( $id_lokasi!==null && hapusLokasi($id_lokasi) > 0 ){
+	echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+	echo '<script src="./sweetalert2.min.js"></script>';
+	echo "<script>
+	setTimeout(function () { 
+		swal.fire({
+			
+			title               : 'Berhasil',
+			text                :  'Data berhasil dihapus',
+			//footer              :  '',
+			icon                : 'success',
+			timer               : 2000,
+			showConfirmButton   : true
+		});  
+	},10);   setTimeout(function () {
+		window.location.href = '?page=masterLokasi'; //will redirect to your blog page (an ex: blog.html)
+	}, 2000); //will call the function after 2 secs
+	</script>";
+
+} else{
+	 echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+		echo '<script src="./sweetalert2.min.js"></script>';
+		echo "<script>
+		setTimeout(function () { 
+			swal.fire({
+				
+				title               : 'Peringatan!',
+				text                :  'Data Inventaris Sudah Ada, Data Lokasi Tidak Boleh Dihapus',
+				//footer              :  '',
+				icon                : 'warning',
+				timer               : 2000,
+				showConfirmButton   : true
+			});  
+		},10);   setTimeout(function () {
+			window.location.href = '?page=masterLokasi'; //will redirect to your blog page (an ex: blog.html)
+		}, 2000); //will call the function after 2 secs
+		</script>";
+}
 
  ?>

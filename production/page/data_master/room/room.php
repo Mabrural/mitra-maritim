@@ -6,7 +6,11 @@ $id_user = $_SESSION["id_user"];
     <div class="x_panel">
       <div class="x_title">
         <h2>Data Ruangan <small></small></h2>
-		<a href="?form=tambahRuangan" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Ruangan</a>
+		    <a href="?form=tambahRuangan" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Ruangan</a>
+        <a href="?page=inventarisAsset" class="btn btn-body btn-sm text-light bg-dark"><i class="fa fa-suitcase"></i> Asset</a>
+        <a href="?page=masterLokasi" class="btn btn-warning btn-sm text-dark"><i class="fa fa-location-arrow"></i> Master Lokasi</a>
+        <a href="?page=masterCustomer" class="btn btn-success btn-sm btn disabled "><i class="fa fa-hotel"></i> Master Ruangan</a>
+        <a href="?page=disposal" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Disposal</a>
 
         <div class="clearfix"></div>
       </div>

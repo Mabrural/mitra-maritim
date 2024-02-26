@@ -2157,7 +2157,13 @@ function ubahLokasi($data) {
 
 function hapusLokasi($id_lokasi) {
 	global $koneksi;
-	mysqli_query($koneksi, "DELETE FROM lokasi_barang WHERE id_lokasi=$id_lokasi");
+
+
+	try{
+		mysqli_query($koneksi, "DELETE FROM lokasi_barang WHERE id_lokasi=$id_lokasi");
+	}catch(Exception $e){
+		return false;
+	}
 
 	return mysqli_affected_rows($koneksi);
 
@@ -2190,11 +2196,18 @@ function ubahRuangan($data) {
 
 function hapusRuangan($id_room) {
 	global $koneksi;
-	mysqli_query($koneksi, "DELETE FROM lokasi_room WHERE id_room=$id_room");
+
+
+	try{
+		mysqli_query($koneksi, "DELETE FROM lokasi_room WHERE id_room=$id_room");
+	}catch(Exception $e){
+		return false;
+	}
 
 	return mysqli_affected_rows($koneksi);
 
 }
+
 
 function tambahSatuan($data) {
 	global $koneksi;

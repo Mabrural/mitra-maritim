@@ -1,32 +1,7 @@
 <?php 
 
 $id_room = $_GET["id_room"];
-
-if( hapusRuangan($id_room) > 0 ){
-	echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
-	echo '<script src="./sweetalert2.min.js"></script>';
-	echo "<script>
-	setTimeout(function () { 
-		swal.fire({
-			
-			title               : 'Berhasil',
-			text                :  'Data berhasil dihapus',
-			//footer              :  '',
-			icon                : 'success',
-			timer               : 2000,
-			showConfirmButton   : true
-		});  
-	},10);   setTimeout(function () {
-		window.location.href = '?page=dataRuangan'; //will redirect to your blog page (an ex: blog.html)
-	}, 2000); //will call the function after 2 secs
-	</script>";
-	// echo "
-	// 	<script>
-	// 		alert('Data berhasil dihapus!');
-	// 		document.location.href = 'index.php';
-	// 	</script>
-	// ";
-} else {
+if($id_room === null) {
     echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 	echo '<script src="./sweetalert2.min.js"></script>';
 	echo "<script>
@@ -41,15 +16,48 @@ if( hapusRuangan($id_room) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=dataRuangan'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=masterRoom'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
-	// echo "
-	// 	<script>
-	// 		alert('Data gagal dihapus');
-	// 		document.location.href = 'index.php';
-	// 	</script>
-	// ";
  }
+
+if( $id_room!==null && hapusRuangan($id_room) > 0 ){
+	echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+	echo '<script src="./sweetalert2.min.js"></script>';
+	echo "<script>
+	setTimeout(function () { 
+		swal.fire({
+			
+			title               : 'Berhasil',
+			text                :  'Data berhasil dihapus',
+			//footer              :  '',
+			icon                : 'success',
+			timer               : 2000,
+			showConfirmButton   : true
+		});  
+	},10);   setTimeout(function () {
+		window.location.href = '?page=masterRoom'; //will redirect to your blog page (an ex: blog.html)
+	}, 2000); //will call the function after 2 secs
+	</script>";
+
+} else{
+	 echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+		echo '<script src="./sweetalert2.min.js"></script>';
+		echo "<script>
+		setTimeout(function () { 
+			swal.fire({
+				
+				title               : 'Peringatan!',
+				text                :  'Data Inventaris Sudah Ada, Data Ruangan Tidak Boleh Dihapus',
+				//footer              :  '',
+				icon                : 'warning',
+				timer               : 2000,
+				showConfirmButton   : true
+			});  
+		},10);   setTimeout(function () {
+			window.location.href = '?page=masterRoom'; //will redirect to your blog page (an ex: blog.html)
+		}, 2000); //will call the function after 2 secs
+		</script>";
+}
 
  ?>
