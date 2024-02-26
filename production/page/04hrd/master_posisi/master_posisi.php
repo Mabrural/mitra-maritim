@@ -6,7 +6,7 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Master Bank<small></small></h2><br>
+        <h2>Master Posisi Crew<small></small></h2><br>
         <form action="laporan/cetak_inventaris.php" method="get">
               <input type="hidden" name="aksi">
               <input type="hidden" name="id_user" value="<?= $id_user;?>">
@@ -15,10 +15,10 @@ $id_user = $_SESSION["id_user"];
               <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
               
           </form>
-        <a href="?form=tambahBank" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Bank</a>
+        <a href="?form=tambahPosisi" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Posisi</a>
         <a href="?page=crew" class="btn btn-dark btn-sm "><i class="fa fa-users"></i> Crew Armada</a>
-        <a href="?page=masterBank" class="btn btn-warning btn-sm btn disabled"><i class="fa fa-bank"></i> Master Bank</a>
-        <a href="?page=masterPosisi" class="btn btn-dark btn-sm"><i class="fa fa-ship"></i> Master Posisi</a>
+        <a href="?page=masterBank" class="btn btn-warning btn-sm "><i class="fa fa-bank"></i> Master Bank</a>
+        <a href="?page=masterPosisi" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-ship"></i> Master Posisi</a>
         <a href="?page=kontrakCrew" class="btn btn-success btn-sm  "><i class="fa fa-file-text-o"></i> Kontrak Crew</a>
         <div class="clearfix"></div>
       </div>
@@ -35,7 +35,7 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nama Bank </th>
+                <th class="column-title">Nama Posisi </th>
               
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -49,16 +49,16 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM bank";
+              		$query = "SELECT * FROM posisi_crew";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['nama_bank'];?></td>
+                <td class=" "><?= $data['nama_posisi'];?></td>
 
-                <td class=" last"><a href="?form=ubahBank&id_bank=<?= $data["id_bank"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusBank&id_bank=<?= $data["id_bank"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahPosisi&id_posisi=<?= $data["id_posisi"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusPosisi&id_posisi=<?= $data["id_posisi"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

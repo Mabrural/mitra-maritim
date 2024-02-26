@@ -168,7 +168,7 @@ if ($_SESSION["level"] == "Staff IT") {
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sales.php?page=reqCuti">Database Karyawan</a></li>
-                      <li><a href="sales.php?page=reqCuti">Database Crew</a></li>
+                      <li><a href="sales.php?page=crew">Database Crew</a></li>
                       <li><a href="sales.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="sales.php?page=slipGaji">Slip Gaji</a></li>
                       <li><a href="sales.php?page=cutiKaryawan">Cuti Karyawan</a></li>
@@ -413,6 +413,22 @@ if ($_SESSION["level"] == "Staff IT") {
                         $page = $_GET['page'];
                         switch ($page) {
 
+                          case 'crew':
+                            include "page/04hrd/crew/crew.php";
+                            break;
+
+                          case 'kontrakCrew':
+                            include "page/04hrd/kontrak_crew/kontrak_crew.php";
+                            break;
+
+                          case 'masterBank':
+                              include "page/04hrd/master_bank/master_bank.php";
+                              break;
+
+                            case 'masterPosisi':
+                              include "page/04hrd/master_posisi/master_posisi.php";
+                              break;
+
                             case 'salesPlan':
                                 include "page/01sales_dan_marketing/sales_plan/sales_plan.php";
                                 break;
@@ -545,6 +561,54 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                            case "tambahCrew":
+                              include "page/04hrd/crew/tambah.php";
+                              break;
+
+                            case "hapusCrew":
+                                include "page/04hrd/crew/hapus.php";
+                                break;
+
+                            case "ubahCrew":
+                                include "page/04hrd/crew/ubah.php";
+                                break;
+
+                            case "tambahKontrakCrew":
+                              include "page/04hrd/kontrak_crew/tambah.php";
+                              break;
+  
+                            case "ubahKontrakCrew":
+                                include "page/04hrd/kontrak_crew/ubah.php";
+                                break;
+
+                            case "hapusKontrakCrew":
+                                include "page/04hrd/kontrak_crew/hapus.php";
+                                break;
+
+                            case "tambahBank":
+                              include "page/04hrd/master_bank/tambah.php";
+                              break;
+  
+                            case "hapusBank":
+                                include "page/04hrd/master_bank/hapus.php";
+                                break;
+
+                            case "ubahBank":
+                                include "page/04hrd/master_bank/ubah.php";
+                                break;
+
+                            case "tambahPosisi":
+                              include "page/04hrd/master_posisi/tambah.php";
+                              break;
+
+                            case "ubahPosisi":
+                              include "page/04hrd/master_posisi/ubah.php";
+                              break;
+
+                            case "hapusPosisi":
+                              include "page/04hrd/master_posisi/hapus.php";
+                              break;
 
                             case "tambahOnduty":
                               include "page/04hrd/on_duty/tambah.php";

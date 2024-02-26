@@ -423,6 +423,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/04hrd/master_bank/master_bank.php";
                                 break;
 
+                            case 'masterPosisi':
+                              include "page/04hrd/master_posisi/master_posisi.php";
+                              break;
+
                             case 'dataKaryawan':
                               include "page/hrd/data_karyawan_read.php";
                               break;
@@ -581,6 +585,18 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "ubahBank":
                                 include "page/04hrd/master_bank/ubah.php";
                                 break;
+
+                            case "tambahPosisi":
+                              include "page/04hrd/master_posisi/tambah.php";
+                              break;
+
+                            case "ubahPosisi":
+                              include "page/04hrd/master_posisi/ubah.php";
+                              break;
+
+                            case "hapusPosisi":
+                              include "page/04hrd/master_posisi/hapus.php";
+                              break;
 
                             case 'ubahPengajuan':
                                 include "page/pengajuan/ubah.php";

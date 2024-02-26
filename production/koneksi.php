@@ -745,6 +745,47 @@ function hapusBank($id_bank) {
 
 }
 
+function tambahPosisi($data) {
+
+	global $koneksi;
+	$nama_posisi = mysqli_real_escape_string($koneksi, $data["nama_posisi"]);
+	
+
+	$query = "INSERT INTO posisi_crew VALUES
+			('', '$nama_posisi')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahPosisi($data) {
+	global $koneksi;
+	$id_posisi = mysqli_real_escape_string($koneksi, $data["id_posisi"]);
+	$nama_posisi = mysqli_real_escape_string($koneksi, $data["nama_posisi"]);
+
+	$query = "UPDATE posisi_crew SET
+				nama_posisi = '$nama_posisi'
+			  WHERE id_posisi = $id_posisi
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusPosisi($id_posisi) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM posisi_crew WHERE id_posisi='$id_posisi'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 function tambahRab($data) {
 	global $koneksi;
 	$doc_num = htmlspecialchars($data["doc_num"]);
