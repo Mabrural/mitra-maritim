@@ -58,7 +58,7 @@ $sales_plan = query("SELECT * FROM sales_plan WHERE id_sales=$id_sales")[0];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM sales_plan JOIN satuan ON satuan.id_satuan=sales_plan.id_satuan JOIN vessel ON vessel.id_vessel=sales_plan.id_vessel JOIN dept ON dept.id_dept=sales_plan.id_dept JOIN customer ON customer.id_cust=sales_plan.id_cust JOIN jenis_kargo ON jenis_kargo.id_kargo=sales_plan.id_kargo WHERE sales_plan.id_sales=$id_sales ORDER BY sales_plan.id_sales DESC";
+              		$query = "SELECT * FROM sales_plan JOIN satuan ON satuan.id_satuan=sales_plan.id_satuan JOIN vessel ON vessel.id_vessel=sales_plan.id_vessel JOIN dept ON dept.id_dept=sales_plan.id_dept JOIN customer ON customer.id_cust=sales_plan.id_cust JOIN jenis_kargo ON jenis_kargo.id_kargo=sales_plan.id_kargo JOIN load_port ON load_port.id_load=sales_plan.id_load JOIN disch_port ON disch_port.id_disch=sales_plan.id_disch WHERE sales_plan.id_sales=$id_sales ORDER BY sales_plan.id_sales DESC";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -73,8 +73,8 @@ $sales_plan = query("SELECT * FROM sales_plan WHERE id_sales=$id_sales")[0];
                 <td class=" "><?= $data['nama_kargo'];?></td>
                 <td class=" "><?= $data['qty_sales'];?></td>
                 <td class=" "><?= $data['nama_satuan'];?></td>
-                <td class=" "><?= $data['loading_port'];?></td>
-                <td class=" "><?= $data['discharge_port'];?></td>
+                <td class=" "><?= $data['nama_load'];?></td>
+                <td class=" "><?= $data['nama_disch'];?></td>
                 <td class=" "><strong style='color: red'><?= "Rp. ".number_format("$sales_nominal", 2, ",", "."); ?> </strong></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['start']));?></td>
                 <td class=" ">
