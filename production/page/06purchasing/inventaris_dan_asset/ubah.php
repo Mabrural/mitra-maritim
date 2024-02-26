@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=dataInventaris'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=inventarisAsset'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=dataInventaris'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=inventarisAsset'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 		// echo "
@@ -217,7 +217,7 @@ if (isset($_POST["submit"])) {
 											<div class="col-md-6 col-sm-6 offset-md-3">
 												<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 												<button class="btn btn-primary" type="reset">Reset</button>
-												<button type="submit" class="btn btn-success" name="submit">Submit</button>
+												<button type="submit" class="btn btn-success" name="submit">Ubah</button>
 											</div>
 										</div>
 

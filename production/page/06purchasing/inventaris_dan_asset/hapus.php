@@ -17,7 +17,7 @@ if( hapusInventaris($id_storage) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=dataInventaris'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=inventarisAsset'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
 	// echo "
@@ -41,7 +41,7 @@ if( hapusInventaris($id_storage) > 0 ){
 			showConfirmButton   : true
 		});  
 	},10);   setTimeout(function () {
-		window.location.href = '?page=dataInventaris'; //will redirect to your blog page (an ex: blog.html)
+		window.location.href = '?page=inventarisAsset'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
 	// echo "

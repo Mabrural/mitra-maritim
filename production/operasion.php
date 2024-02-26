@@ -518,6 +518,18 @@ if ($_SESSION["level"] == "Staff IT") {
                               case 'slipGaji':
                                 include "page/hrd/slip_gaji/slip_gaji_read.php";
                                 break;
+
+                                case "masterLokasi":
+                                  include "page/data_master/lokasi/lokasi.php";
+                                  break;
+    
+                                case "masterRoom":
+                                  include "page/data_master/room/room.php";
+                                  break;
+    
+                                case "disposal":
+                                  include "page/06purchasing/inventaris_dan_asset/disposal.php";
+                                  break;
                             
 
                             default:
@@ -599,15 +611,15 @@ if ($_SESSION["level"] == "Staff IT") {
                               break;
 
                             case 'tambahInventaris':
-                                include "page/asset_dan_inventaris/tambah.php";
+                                include "page/06purchasing/inventaris_dan_asset/tambah.php";
                                 break;
 
                             case 'ubahInventaris':
-                                include "page/asset_dan_inventaris/ubah.php";
+                                include "page/06purchasing/inventaris_dan_asset/ubah.php";
                                 break;
 
                             case 'hapusInventaris':
-                                include 'page/asset_dan_inventaris/hapus.php';
+                                include 'page/06purchasing/inventaris_dan_asset/hapus.php';
                                 break;
 
                             case 'tambahBarang':
