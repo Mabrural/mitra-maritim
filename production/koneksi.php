@@ -3270,6 +3270,55 @@ function cariAnggaran($keyword){
 	return query($query);
 }
 
+function tambahSertifikat($data) {
 
+	global $koneksi;
+	$nama_sertifikat = mysqli_real_escape_string($koneksi, $data["nama_sertifikat"]);
+	$tgl_terbit = mysqli_real_escape_string($koneksi, $data["tgl_terbit"]);
+	$tgl_expired = mysqli_real_escape_string($koneksi, $data["tgl_expired"]);
+	$status_cert = mysqli_real_escape_string($koneksi, $data["status_cert"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	
+
+	$query = "INSERT INTO sertifikat_kapal VALUES
+			('', '$nama_sertifikat', '$tgl_terbit', '$tgl_expired', '$status_cert', '$id_vessel')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahSertifikat($data){
+	global $koneksi;
+	$id_sertifikat = $data['id_sertifikat'];
+    $nama_sertifikat = mysqli_real_escape_string($koneksi, $data["nama_sertifikat"]);
+	$tgl_terbit = mysqli_real_escape_string($koneksi, $data["tgl_terbit"]);
+	$tgl_expired = mysqli_real_escape_string($koneksi, $data["tgl_expired"]);
+	$status_cert = mysqli_real_escape_string($koneksi, $data["status_cert"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+
+
+	$query = "UPDATE sertifikat_kapal SET
+			nama_sertifikat= '$nama_sertifikat',
+			tgl_terbit = '$tgl_terbit',
+			tgl_expired = '$tgl_expired',
+			status_cert = '$status_cert',
+			id_vessel = '$id_vessel'
+	WHERE id_sertifikat='$id_sertifikat'
+	";
+
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusSertifikat($id_sertifikat) {
+	global $koneksi;
+	mysqli_query($koneksi, "DELETE FROM sertifikat_kapal WHERE id_sertifikat=$id_sertifikat");
+
+	return mysqli_affected_rows($koneksi);
+
+}
 
  ?>

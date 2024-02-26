@@ -534,6 +534,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "disposal":
                                   include "page/06purchasing/inventaris_dan_asset/disposal.php";
                                   break;
+
+                                case "monitoringSertifikat":
+                                  include "page/02operasion_dan_shipping/monitoring_sertifikat/monitoring_sertifikat.php";
+                                  break;
                             
 
                             default:
@@ -544,6 +548,18 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                            case "tambahSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/tambah.php";
+                              break;
+
+                            case "ubahSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/ubah.php";
+                              break;
+
+                            case "hapusSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/hapus.php";
+                              break;
 
                             case "tambahOnduty":
                               include "page/04hrd/on_duty/tambah.php";
