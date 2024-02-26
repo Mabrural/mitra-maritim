@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2024 at 11:42 AM
+-- Generation Time: Feb 26, 2024 at 11:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1137,6 +1137,21 @@ INSERT INTO `satuan` (`id_satuan`, `nama_satuan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sertifikat_kapal`
+--
+
+CREATE TABLE `sertifikat_kapal` (
+  `id_sertifikat` int(10) NOT NULL,
+  `nama_sertifikat` varchar(200) NOT NULL,
+  `tgl_terbit` date NOT NULL,
+  `tgl_expired` date NOT NULL,
+  `status_cert` varchar(50) DEFAULT NULL,
+  `id_vessel` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `slip_gaji`
 --
 
@@ -1320,7 +1335,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `id_emp`) VALUES
 (21, 'sanjeev', '$2y$10$dqD5eyXMYFl5dmq.1s103OeZOPTBNN4gHGqbu/D5neofhrjWRKxBO', 'Direktur Utama', 8),
 (27, 'alex', '$2y$10$AIPkK9rwsTtwIpWxWxQyl.B4q1KZkeHJuzk9htMLmXM3k7hgRuyzW', 'Purchasing', 19),
 (28, 'robi', '$2y$10$pi39ljqjbeI7Xgu6up8uie2wOUT6Gv7dwqsQXgvI60DotWKCmSvQC', 'Crew Armada', 18),
-(29, 'krisno', '$2y$10$wdmPEof2zbHxxFyJWXAZZOZOigLJucxD/Vy5oALS.0y5ZJkvzVNhC', 'Crew Armada', 16),
+(29, 'krisno', '$2y$10$L4mvXlNErUBxc9aw.wieM.LikfJ0pNRGPhJkc3ntkS1Ovi674xIiy', 'Staff Operasional', 16),
 (30, 'niken', '$2y$10$97K4MbdoDy98yZbu5BbtIOkSn4iT.PuudgLeGDIGb/USt79lGL6K2', 'Staff Finance', 17),
 (31, 'mabrur', '$2y$10$zxwFH.e4ooAM3CgI8Wzi8Ot0AIZhzcnKMHNPSIprWt.gbQiArYqki', 'Staff IT', 30),
 (33, 'regina', '$2y$10$eyJDmSlVrm0AhnUWMi2KT.j8g.wrDKuDCNcpxqi.ZRWevSjBbwUXa', 'Direktur Keuangan', 9),
@@ -1622,6 +1637,13 @@ ALTER TABLE `satuan`
   ADD PRIMARY KEY (`id_satuan`);
 
 --
+-- Indexes for table `sertifikat_kapal`
+--
+ALTER TABLE `sertifikat_kapal`
+  ADD PRIMARY KEY (`id_sertifikat`),
+  ADD KEY `id_vessel` (`id_vessel`);
+
+--
 -- Indexes for table `slip_gaji`
 --
 ALTER TABLE `slip_gaji`
@@ -1780,13 +1802,13 @@ ALTER TABLE `load_port`
 -- AUTO_INCREMENT for table `lokasi_barang`
 --
 ALTER TABLE `lokasi_barang`
-  MODIFY `id_lokasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_lokasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `lokasi_room`
 --
 ALTER TABLE `lokasi_room`
-  MODIFY `id_room` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_room` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `manage_cuti`
@@ -1816,7 +1838,7 @@ ALTER TABLE `port`
 -- AUTO_INCREMENT for table `posisi_crew`
 --
 ALTER TABLE `posisi_crew`
-  MODIFY `id_posisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_posisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `po_barang`
@@ -1861,6 +1883,12 @@ ALTER TABLE `satuan`
   MODIFY `id_satuan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `sertifikat_kapal`
+--
+ALTER TABLE `sertifikat_kapal`
+  MODIFY `id_sertifikat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `slip_gaji`
 --
 ALTER TABLE `slip_gaji`
@@ -1876,7 +1904,7 @@ ALTER TABLE `status_crew`
 -- AUTO_INCREMENT for table `storage_barang`
 --
 ALTER TABLE `storage_barang`
-  MODIFY `id_storage` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id_storage` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -2017,6 +2045,12 @@ ALTER TABLE `sales_plan`
   ADD CONSTRAINT `sales_plan_ibfk_5` FOREIGN KEY (`id_kargo`) REFERENCES `jenis_kargo` (`id_kargo`),
   ADD CONSTRAINT `sales_plan_ibfk_6` FOREIGN KEY (`id_load`) REFERENCES `load_port` (`id_load`),
   ADD CONSTRAINT `sales_plan_ibfk_7` FOREIGN KEY (`id_disch`) REFERENCES `disch_port` (`id_disch`);
+
+--
+-- Constraints for table `sertifikat_kapal`
+--
+ALTER TABLE `sertifikat_kapal`
+  ADD CONSTRAINT `sertifikat_kapal_ibfk_1` FOREIGN KEY (`id_vessel`) REFERENCES `vessel` (`id_vessel`);
 
 --
 -- Constraints for table `slip_gaji`
