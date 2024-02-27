@@ -55,6 +55,12 @@ $totalWillExpired = $will_expired[0]['totalwillexpired'];
 $sertifikat_aktif = query("SELECT COUNT(*) as totalsertifikataktif FROM sertifikat_kapal WHERE status_cert='Aktif'");
 $totalAktif = $sertifikat_aktif[0]['totalsertifikataktif'];
 
+$crew_on = query("SELECT COUNT(*) as totalcrew FROM kontrak_crew WHERE idstatus_crew=1");
+$totalCrewOn = $crew_on[0]['totalcrew'];
+
+$crew_end = query("SELECT COUNT(*) as totalcrew FROM kontrak_crew WHERE idstatus_crew=2");
+$totalCrewEnd = $crew_end[0]['totalcrew'];
+
 
 ?>
 
@@ -104,7 +110,7 @@ $totalAktif = $sertifikat_aktif[0]['totalsertifikataktif'];
 <div class="row">
 	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
 	<div class="tile-stats bg-danger text-light">
-		<div class="icon"><i class="fa fa-file-pdf-o text-white"></i>
+		<div class="icon"><i class="fa fa-hourglass-end text-white"></i>
 		</div>
 		<div class="count"><?= $totalExpired;?></div>
 
@@ -114,7 +120,7 @@ $totalAktif = $sertifikat_aktif[0]['totalsertifikataktif'];
 	</div>
 	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
 	<div class="tile-stats bg-warning text-light">
-		<div class="icon"><i class="fa fa-file-pdf-o text-white"></i>
+		<div class="icon"><i class="fa fa-exclamation-triangle text-white"></i>
 		</div>
 		<div class="count"><?= $totalWillExpired;?></div>
 
@@ -124,7 +130,7 @@ $totalAktif = $sertifikat_aktif[0]['totalsertifikataktif'];
 	</div>
 	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
 	<div class="tile-stats bg-success text-light">
-		<div class="icon"><i class="fa fa-file-pdf-o text-white"></i>
+		<div class="icon"><i class="fa fa-hourglass text-white"></i>
 		</div>
 		<div class="count"><?= $totalAktif;?></div>
 
@@ -142,5 +148,29 @@ $totalAktif = $sertifikat_aktif[0]['totalsertifikataktif'];
 		<p><a href="?page=monitoringSertifikat" class="text-white">More details</a></p>
 	</div>
 	</div>
+</div>
+
+<div class="row">
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-danger text-light">
+		<div class="icon"><i class="fa fa-toggle-off text-white"></i>
+		</div>
+		<div class="count"><?= $totalCrewEnd;?></div>
+
+		<h3 class="text-white">Crew End Contract</h3>
+		<p><a href="?page=crewEndContract" class="text-white">More details</a></p>
+	</div>
+	</div>
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-success text-light">
+		<div class="icon"><i class="fa fa-toggle-on text-white"></i>
+		</div>
+		<div class="count"><?= $totalCrewOn;?></div>
+
+		<h3 class="text-white">Crew On Contract</h3>
+		<p><a href="?page=sertifikatWillExpired" class="text-white">More details</a></p>
+	</div>
+	</div>
+	
 </div>
 
