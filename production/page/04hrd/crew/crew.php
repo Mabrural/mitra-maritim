@@ -82,14 +82,15 @@ $id_posisi = isset($_GET['id_posisi']) ? $_GET['id_posisi'] : '';
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
+                <th class="column-title">Kapal</th>
                 <th class="column-title">Nama Crew </th>
+                <th class="column-title">Posisi</th>
                 <th class="column-title">NIK </th>
                 <th class="column-title">NPWP </th>
                 <th class="column-title">Tempat, Tanggal Lahir </th>
                 <th class="column-title">Jenis Kelamin </th>
-                <th class="column-title">Posisi</th>
                 <th class="column-title">Bank - No. Rekening</th>
-                <th class="column-title">Kapal</th>
+                
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -121,14 +122,16 @@ $id_posisi = isset($_GET['id_posisi']) ? $_GET['id_posisi'] : '';
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
+                <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= $data['nama_crew'];?></td>
+                <td class=" "><?= $data['nama_posisi'];?></td>
                 <td class=" "><?= $data['nik'];?></td>
                 <td class=" "><?= $data['npwp'];?></td>
                 <td class=" "><?= $data['tmp_lahir'];?>, <?= date('d/m/Y', strtotime($data['tgl_lahircrew']));?></td>
                 <td class=" "><?= $data['jk_crew'];?></td>
-                <td class=" "><?= $data['nama_posisi'];?></td>
+                
                 <td class=" "><?= $data['nama_bank'];?> - <?= $data['no_rek'];?></td>
-                <td class=" "><?= $data['nama_vessel'];?></td>
+                
             
                 <td class=" last"><a href="?form=ubahCrew&id_crew=<?= $data["id_crew"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusCrew&id_crew=<?= $data["id_crew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>

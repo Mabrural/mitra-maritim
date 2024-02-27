@@ -120,6 +120,13 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
+								<div class="item form-group">
+                                    <label for="uang_makan_crew" class="col-form-label col-md-3 col-sm-3 label-align">Uang Makan <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input id="uang_makan_crew" name="uang_makan_crew" class="form-control" type="number" min="0" value="<?= $kontrak_crew['uang_makan_crew']?>">
+                                    </div>
+                                </div>
+
 
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Status <span class="required">*</span></label>
@@ -139,7 +146,7 @@ if (isset($_POST["submit"])) {
 									<div class="col-md-6 col-sm-6 offset-md-3">
 										<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" class="btn btn-success" name="submit">Submit</button>
+										<button type="submit" class="btn btn-success" name="submit">Update</button>
 									</div>
 								</div>
 

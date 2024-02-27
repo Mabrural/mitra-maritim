@@ -39,7 +39,9 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Kapal </th>
                 <th class="column-title">Sign ON </th>
                 <th class="column-title">Sign OFF</th>
+                <th class="column-title">Sertifikat Crew</th>
                 <th class="column-title">Gaji </th>
+                <th class="column-title">Uang Makan </th>
                 <th class="column-title">Status </th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
@@ -59,6 +61,7 @@ $id_user = $_SESSION["id_user"];
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
               	     	$gaji = $data['gaji_crew'];
+              	     	$uang_makan_crew = $data['uang_makan_crew'];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
@@ -66,7 +69,9 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['sign_on']));?></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['sign_off']));?></td>
+                <td class=" ">lihat sertifikat</td>
                 <td class=" "><strong style='color: red'><?= "Rp. ".number_format("$gaji", 2, ",", "."); ?> </strong></td>
+                <td class=" "><strong style='color: red'><?= "Rp. ".number_format("$uang_makan_crew", 2, ",", "."); ?> </strong></td>
                 <td class=" ">
                     <strong style="background-color: <?php
                     if ($data['nama_status'] == 'On Contract') {
@@ -80,7 +85,7 @@ $id_user = $_SESSION["id_user"];
                     ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['nama_status'];?></strong>
                 </td>
             
-                <td class=" last"><a href="?form=ubahKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" class="btn btn-info btn-sm">Update </a> | <a href="?form=hapusKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

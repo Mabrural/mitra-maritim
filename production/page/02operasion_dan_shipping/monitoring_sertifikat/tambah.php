@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'Data berhasil ditambahkan',
+				text                :  'Sertifikat berhasil ditambahkan',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
@@ -35,7 +35,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'Data gagal ditambahkan',
+				text                :  'Sertifikat gagal ditambahkan',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
@@ -105,7 +105,7 @@ if (isset($_POST["submit"])) {
 								<input type="hidden" name="status_cert" id="status_cert" value="">
 
                                 <div class="item form-group">
-									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Sertifikat Kapal (.pdf) <span class="required">*</span></label>
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Sertifikat Kapal (.pdf) <br> Max. 1 MB <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 ">
 										<input type="file" name="scan_sertifikat_kapal" required>
 									</div>

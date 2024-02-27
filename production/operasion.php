@@ -147,6 +147,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="operasion.php?page=stockBBM">Stock BBM Monitor</a></li>
                       <li><a href="operasion.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
                       <li><a href="operasion.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="operasion.php?page=crew">Crewing</a></li>
                     </ul>
                   </li>
 

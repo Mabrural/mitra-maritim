@@ -34,6 +34,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Kapal </th>
                 <th class="column-title">Tanggal Terbit </th>
                 <th class="column-title">Tanggal Expired</th>
+                <th class="column-title">Lampiran File</th>
                 <th class="column-title">Status </th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
@@ -60,6 +61,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_terbit']));?></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_expired']));?></td>
+                <td class=" "><a href="files/sertifikat_kapal/<?= $data['scan_sertifikat_kapal'];?>" style="text-decoration: underline; color: blue;">Lihat Sertifikat</a></td>
                 <td class=" ">
                     <strong style="background-color: <?php
                     if ($data['status_cert'] == 'Aktif') {

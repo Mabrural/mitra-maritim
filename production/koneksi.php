@@ -660,12 +660,13 @@ function tambahKontrakCrew($data) {
 	$sign_on = mysqli_real_escape_string($koneksi, $data["sign_on"]);
 	$sign_off = mysqli_real_escape_string($koneksi, $data["sign_off"]);
 	$gaji_crew = mysqli_real_escape_string($koneksi, $data["gaji_crew"]);
+	$uang_makan_crew = mysqli_real_escape_string($koneksi, $data["uang_makan_crew"]);
 	$idstatus_crew = mysqli_real_escape_string($koneksi, $data["idstatus_crew"]);
 	$id_crew = mysqli_real_escape_string($koneksi, $data["id_crew"]);
 	
 
 	$query = "INSERT INTO kontrak_crew VALUES
-			('', '$sign_on', '$sign_off', '$gaji_crew', '$idstatus_crew', '$id_crew')";
+			('', '$sign_on', '$sign_off', '$gaji_crew', '$uang_makan_crew', '$idstatus_crew', '$id_crew')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -679,6 +680,7 @@ function ubahKontrakCrew($data) {
 	$sign_on = mysqli_real_escape_string($koneksi, $data["sign_on"]);
 	$sign_off = mysqli_real_escape_string($koneksi, $data["sign_off"]);
 	$gaji_crew = mysqli_real_escape_string($koneksi, $data["gaji_crew"]);
+	$uang_makan_crew = mysqli_real_escape_string($koneksi, $data["uang_makan_crew"]);
 	$idstatus_crew = mysqli_real_escape_string($koneksi, $data["idstatus_crew"]);
 	$id_crew = mysqli_real_escape_string($koneksi, $data["id_crew"]);
 
@@ -687,6 +689,7 @@ function ubahKontrakCrew($data) {
 				sign_on = '$sign_on',
 				sign_off = '$sign_off',
 				gaji_crew = '$gaji_crew',
+				uang_makan_crew = '$uang_makan_crew',
 				idstatus_crew = '$idstatus_crew',
 				id_crew = '$id_crew'
 			  WHERE id_kontrakcrew = $id_kontrakcrew
