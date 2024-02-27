@@ -89,6 +89,10 @@ if ($_SESSION["level"] == "Staff IT") {
     <link href="../build/css/custom.min.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- link jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
   </head>
 
   <body class="nav-md">
@@ -129,7 +133,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-bar-chart"></i> Sales & Marketing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="operasion.php?page=voyageManagement">Voyage Management</a></li>
+                      <!-- <li><a href="operasion.php?page=voyageManagement">Voyage Management</a></li> -->
                       <li><a href="operasion.php?page=salesPlan">Sales Plan</a></li>
                       <li><a href="operasion.php?page=RAB">RAB</a></li>
                       <li><a href="operasion.php?page=pengajuanPPU">Pengajuan PPU</a></li>
@@ -423,8 +427,28 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/04hrd/master_bank/master_bank.php";
                                 break;
 
+                            case 'masterVessel':
+                              include "page/01sales_dan_marketing/master_vessel/master_vessel.php";
+                              break;
+
                             case 'masterPosisi':
                               include "page/04hrd/master_posisi/master_posisi.php";
+                              break;
+
+                            case 'salesPlan':
+                              include "page/01sales_dan_marketing/sales_plan/sales_plan.php";
+                              break;
+
+                            case 'masterCustomer':
+                              include "page/01sales_dan_marketing/master_customer/master_customer.php";
+                              break;
+
+                            case 'masterDept':
+                              include "page/01sales_dan_marketing/master_dept/master_dept.php";
+                              break;
+
+                            case 'masterKargo':
+                              include "page/01sales_dan_marketing/master_kargo/master_kargo.php";
                               break;
 
                             case 'dataKaryawan':
@@ -538,6 +562,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "monitoringSertifikat":
                                   include "page/02operasion_dan_shipping/monitoring_sertifikat/monitoring_sertifikat.php";
                                   break;
+
+                                case "RAB":
+                                  include "page/01sales_dan_marketing/rab/rab.php";
+                                  break;
+
+                                case "vesselDatabase":
+                                  include "page/02operasion_dan_shipping/vessel_database/vessel_database.php";
+                                  break;
                             
 
                             default:
@@ -601,6 +633,66 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "ubahBank":
                                 include "page/04hrd/master_bank/ubah.php";
                                 break;
+
+                            case "tambahSales":
+                              include "page/01sales_dan_marketing/sales_plan/tambah.php";
+                              break;
+
+                          case "hapusSales":
+                              include "page/01sales_dan_marketing/sales_plan/hapus.php";
+                              break;
+
+                          case "ubahSales":
+                              include "page/01sales_dan_marketing/sales_plan/ubah.php";
+                              break;
+
+                          case "tambahVessel":
+                              include "page/01sales_dan_marketing/master_vessel/tambah.php";
+                              break;
+
+                          case "hapusVessel":
+                              include "page/01sales_dan_marketing/master_vessel/hapus.php";
+                              break;
+
+                          case "ubahVessel":
+                              include "page/01sales_dan_marketing/master_vessel/ubah.php";
+                              break;
+
+                              case "tambahCustomer":
+                                include "page/01sales_dan_marketing/master_customer/tambah.php";
+                                break;
+
+                            case "hapusCustomer":
+                                include "page/01sales_dan_marketing/master_customer/hapus.php";
+                                break;
+
+                            case "ubahCustomer":
+                                include "page/01sales_dan_marketing/master_customer/ubah.php";
+                                break;
+
+                            case "tambahDept":
+                                include "page/01sales_dan_marketing/master_dept/tambah.php";
+                                break;
+
+                            case "hapusDept":
+                                include "page/01sales_dan_marketing/master_dept/hapus.php";
+                                break;
+
+                            case "ubahDept":
+                                include "page/01sales_dan_marketing/master_dept/ubah.php";
+                                break;
+
+                                case "tambahKargo":
+                                  include "page/01sales_dan_marketing/master_kargo/tambah.php";
+                                  break;
+  
+                              case "hapusKargo":
+                                  include "page/01sales_dan_marketing/master_kargo/hapus.php";
+                                  break;
+  
+                              case "ubahKargo":
+                                  include "page/01sales_dan_marketing/master_kargo/ubah.php";
+                                  break;
 
                             case "tambahPosisi":
                               include "page/04hrd/master_posisi/tambah.php";

@@ -102,7 +102,9 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
-                                <div class="item form-group">
+								<input type="hidden" name="status_cert" id="status_cert" value="">
+
+                                <!-- <div class="item form-group">
                                     <label for="status_cert" class="col-form-label col-md-3 col-sm-3 label-align">Status Sertifikat <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 ">
 										<select class="form-control" name="status_cert" required>
@@ -112,7 +114,7 @@ if (isset($_POST["submit"])) {
                                             <option value="Kedaluarsa">Kedaluarsa</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
                                
 								<div class="ln_solid"></div>
@@ -138,3 +140,55 @@ if (isset($_POST["submit"])) {
 					
 	</div>
  </div>
+
+<script>
+    $(document).ready(function() {
+        $("#tgl_expired").change(function() {
+            // Ambil tanggal expired dari input form
+            var tglExpired = $("#tgl_expired").val();
+            
+            // Ubah format tanggal expired menjadi timestamp
+            var tglExpiredTimestamp = new Date(tglExpired).getTime();
+            
+            // Ambil tanggal sekarang
+            var today = new Date().getTime();
+            
+            // Hitung selisih hari antara tanggal expired dan hari ini
+            var selisihHari = Math.floor((tglExpiredTimestamp - today) / (1000 * 60 * 60 * 24));
+            
+            // Set status sertifikat berdasarkan selisih hari
+            if (selisihHari > 30) {
+                $("#status_cert").val("Aktif");
+            } else if (selisihHari <= 30 && selisihHari >= 0) {
+                $("#status_cert").val("Akan Kedaluarsa");
+            } else {
+                $("#status_cert").val("Kedaluarsa");
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Ambil tanggal expired dari input form
+        var tglExpired = $("#tgl_expired").val();
+        
+        // Ubah format tanggal expired menjadi timestamp
+        var tglExpiredTimestamp = new Date(tglExpired).getTime();
+        
+        // Ambil tanggal sekarang
+        var today = new Date().getTime();
+        
+        // Hitung selisih hari antara tanggal expired dan hari ini
+        var selisihHari = Math.floor((tglExpiredTimestamp - today) / (1000 * 60 * 60 * 24));
+        
+        // Set status sertifikat berdasarkan selisih hari
+        if (selisihHari > 30) {
+            $("#status_cert").val("Aktif");
+        } else if (selisihHari <= 30 && selisihHari >= 0) {
+            $("#status_cert").val("Akan Kedaluarsa");
+        } else {
+            $("#status_cert").val("Kedaluarsa");
+        }
+    });
+</script>
