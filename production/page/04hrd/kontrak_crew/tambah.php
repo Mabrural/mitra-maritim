@@ -1,7 +1,7 @@
 <?php
 
 $crew = query("SELECT * FROM crew JOIN vessel ON vessel.id_vessel=crew.id_vessel JOIN posisi_crew ON posisi_crew.id_posisi=crew.id_posisi WHERE crew.id_crew NOT IN (
-    SELECT id_crew FROM kontrak_crew
+    SELECT id_crew FROM kontrak_crew WHERE idstatus_crew=1
   )");
 $status_crew = query("SELECT * FROM status_crew");
 
@@ -84,14 +84,33 @@ if (isset($_POST["submit"])) {
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Nama Crew <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <select class="form-control" name="id_crew" required>
+										<input type="text" id="searchCrew" class="form-control" placeholder="Cari Nama Crew">
+                                        <select class="form-control" name="id_crew" id="selectCrew" required>
                                             <option value="">--Pilih Crew--</option>
                                             <?php foreach($crew as $row) : ?>
                                                 <option value="<?= $row['id_crew']?>"><?= $row['nama_crew']?> - [<?= $row['nama_posisi']?>] - <?= $row['nama_vessel']?></option>
                                             <?php endforeach;?>	
                                         </select>
+										
                                     </div>
                                 </div>
+
+								<script>
+									$(document).ready(function () {
+										// Fungsi untuk melakukan filter pada opsi select
+										$('#searchCrew').on('input', function () {
+											var searchText = $(this).val().toLowerCase();
+											$('#selectCrew option').filter(function () {
+												$(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+											});
+										});
+
+										// Fungsi untuk menanggapi perubahan pada opsi select
+										$('#selectCrew').change(function () {
+											$('#searchCrew').val($('#selectCrew option:selected').text().split('-')[0].trim());
+										});
+									});
+								</script>
 
                                 <div class="item form-group">
                                     <label for="sign_on" class="col-form-label col-md-3 col-sm-3 label-align">Sign On <span class="required">*</span></label>
@@ -137,7 +156,7 @@ if (isset($_POST["submit"])) {
 								<div class="item form-group">
 									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Sertifikat Crew (.pdf) <br> Max. 1 MB <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="file" name="scan_sertifikat_kapal" required>
+										<input type="file" name="scan_sertifikat_crew" required>
 									</div>
 								</div>
 

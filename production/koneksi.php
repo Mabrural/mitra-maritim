@@ -664,9 +664,13 @@ function tambahKontrakCrew($data) {
 	$idstatus_crew = mysqli_real_escape_string($koneksi, $data["idstatus_crew"]);
 	$id_crew = mysqli_real_escape_string($koneksi, $data["id_crew"]);
 	
+	$file_sertifikat_crew =  uploadSertifikatCrew();
+	if (!$file_sertifikat_crew) {
+		return false;
+	}
 
 	$query = "INSERT INTO kontrak_crew VALUES
-			('', '$sign_on', '$sign_off', '$gaji_crew', '$uang_makan_crew', '$idstatus_crew', '$id_crew')";
+			('', '$sign_on', '$sign_off', '$file_sertifikat_crew', '$gaji_crew', '$uang_makan_crew', '$idstatus_crew', '$id_crew')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -674,20 +678,80 @@ function tambahKontrakCrew($data) {
 
 }
 
+function uploadSertifikatCrew(){
+
+	$namaFile = $_FILES['scan_sertifikat_crew']['name'];
+	$ukuranFile = $_FILES['scan_sertifikat_crew']['size'];
+	$error = $_FILES['scan_sertifikat_crew']['error'];
+	$tmpName = $_FILES['scan_sertifikat_crew']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran pdf terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/sertifikat_crew/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+
 function ubahKontrakCrew($data) {
 	global $koneksi;
 	$id_kontrakcrew = $data["id_kontrakcrew"];
 	$sign_on = mysqli_real_escape_string($koneksi, $data["sign_on"]);
 	$sign_off = mysqli_real_escape_string($koneksi, $data["sign_off"]);
 	$gaji_crew = mysqli_real_escape_string($koneksi, $data["gaji_crew"]);
+	$fileLama = mysqli_real_escape_string($koneksi, $data["sertifikat_crew_lama"]);
 	$uang_makan_crew = mysqli_real_escape_string($koneksi, $data["uang_makan_crew"]);
 	$idstatus_crew = mysqli_real_escape_string($koneksi, $data["idstatus_crew"]);
 	$id_crew = mysqli_real_escape_string($koneksi, $data["id_crew"]);
 
+	// cek apakah user pilih pdf baru atau tidak
+	if ($_FILES['scan_sertifikat_crew']['error'] === 4 ) {
+		$file = $fileLama;
+	} else {
+
+		$file = uploadSertifikatCrew();
+	}
 
 	$query = "UPDATE kontrak_crew SET
 				sign_on = '$sign_on',
 				sign_off = '$sign_off',
+				sertifikat_crew = '$file',
 				gaji_crew = '$gaji_crew',
 				uang_makan_crew = '$uang_makan_crew',
 				idstatus_crew = '$idstatus_crew',

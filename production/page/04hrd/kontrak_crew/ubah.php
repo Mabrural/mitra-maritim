@@ -96,6 +96,7 @@ if (isset($_POST["submit"])) {
                                                 <option value="<?= $row['id_crew']?>" <?= ($row['id_crew'] == $kontrak_crew['id_crew']) ? 'selected': '';?>><?= $row['nama_crew']?> - [<?= $row['nama_posisi']?>] - <?= $row['nama_vessel']?></option>
                                             <?php endforeach;?>	
                                         </select>
+										
                                     </div>
                                 </div>
 
@@ -139,6 +140,18 @@ if (isset($_POST["submit"])) {
                                         </select>
                                     </div>
                                 </div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Sertifikat Crew (.pdf) <br> Max. 1 MB <span class="required">*</span></label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_sertifikat_crew">
+										<?php if (!empty($kontrak_crew['sertifikat_crew'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $kontrak_crew['sertifikat_crew'] ?></p>
+											<input type="hidden" name="sertifikat_crew_lama" value="<?= $kontrak_crew['sertifikat_crew'] ?>">
+										<?php endif; ?>
+									</div>
+								</div>
 
                                
 								<div class="ln_solid"></div>
