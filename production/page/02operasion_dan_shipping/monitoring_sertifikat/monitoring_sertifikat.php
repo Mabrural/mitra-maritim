@@ -37,6 +37,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Kapal </th>
                 <th class="column-title">Tanggal Terbit </th>
                 <th class="column-title">Tanggal Expired</th>
+                <th class="column-title">Lampiran File</th>
                 <th class="column-title">Status </th>
                            
                 <th class="column-title no-link last"><span class="nobr">Action</span>
@@ -63,6 +64,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_terbit']));?></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_expired']));?></td>
+                <td class=" "><a href="files/sertifikat_kapal/<?= $data['scan_sertifikat_kapal'];?>" style="text-decoration: underline; color: blue;">Lihat Sertifikat</a></td>
                 <td class=" ">
                     <strong style="background-color: <?php
                     if ($data['status_cert'] == 'Aktif') {
@@ -77,6 +79,8 @@ $id_user = $_SESSION["id_user"];
 
                     ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_cert'];?></strong>
                 </td>
+                
+
             
                 <td class=" last"><a href="?form=ubahSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" class="btn btn-info btn-sm">Update </a> | <a href="?form=hapusSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>

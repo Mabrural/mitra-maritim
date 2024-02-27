@@ -3278,10 +3278,15 @@ function tambahSertifikat($data) {
 	$tgl_expired = mysqli_real_escape_string($koneksi, $data["tgl_expired"]);
 	$status_cert = mysqli_real_escape_string($koneksi, $data["status_cert"]);
 	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+
+	$file_sertifikat_kapal =  uploadSertifikatKapal();
+	if (!$file_sertifikat_kapal) {
+		return false;
+	}
 	
 
 	$query = "INSERT INTO sertifikat_kapal VALUES
-			('', '$nama_sertifikat', '$tgl_terbit', '$tgl_expired', '$status_cert', '$id_vessel')";
+			('', '$nama_sertifikat', '$tgl_terbit', '$tgl_expired', '$file_sertifikat_kapal', '$status_cert', '$id_vessel')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -3289,20 +3294,80 @@ function tambahSertifikat($data) {
 
 }
 
+function uploadSertifikatKapal(){
+
+	$namaFile = $_FILES['scan_sertifikat_kapal']['name'];
+	$ukuranFile = $_FILES['scan_sertifikat_kapal']['size'];
+	$error = $_FILES['scan_sertifikat_kapal']['error'];
+	$tmpName = $_FILES['scan_sertifikat_kapal']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran pdf terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/sertifikat_kapal/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
 function ubahSertifikat($data){
 	global $koneksi;
 	$id_sertifikat = $data['id_sertifikat'];
     $nama_sertifikat = mysqli_real_escape_string($koneksi, $data["nama_sertifikat"]);
 	$tgl_terbit = mysqli_real_escape_string($koneksi, $data["tgl_terbit"]);
 	$tgl_expired = mysqli_real_escape_string($koneksi, $data["tgl_expired"]);
+	$fileLama = mysqli_real_escape_string($koneksi, $data["scan_sertifikat_kapal_lama"]);
 	$status_cert = mysqli_real_escape_string($koneksi, $data["status_cert"]);
 	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+
+	// cek apakah user pilih pdf baru atau tidak
+	if ($_FILES['scan_sertifikat_kapal']['error'] === 4 ) {
+		$file = $fileLama;
+	} else {
+
+		$file = uploadSertifikatKapal();
+	}
 
 
 	$query = "UPDATE sertifikat_kapal SET
 			nama_sertifikat= '$nama_sertifikat',
 			tgl_terbit = '$tgl_terbit',
 			tgl_expired = '$tgl_expired',
+			scan_sertifikat_kapal = '$file',
 			status_cert = '$status_cert',
 			id_vessel = '$id_vessel'
 	WHERE id_sertifikat='$id_sertifikat'

@@ -106,17 +106,17 @@ if (isset($_POST["submit"])) {
 
 								<input type="hidden" name="status_cert" id="status_cert" value="">
 
-                                <!-- <div class="item form-group">
-                                    <label for="status_cert" class="col-form-label col-md-3 col-sm-3 label-align">Status Sertifikat <span class="required">*</span></label>
-                                    <div class="col-md-6 col-sm-6 ">
-										<select class="form-control" name="status_cert" required>
-                                            <option value="">--Pilih Status Sertifikat--</option>
-                                            <option value="Aktif" <?= ($sertifikat['status_cert'] == 'Aktif') ? 'selected': '';?>>Aktif</option>
-                                            <option value="Akan Kedaluarsa" <?= ($sertifikat['status_cert'] == 'Akan Kedaluarsa') ? 'selected' : '';?>>Akan Kedaluarsa</option>
-                                            <option value="Kedaluarsa" <?= ($sertifikat['status_cert'] == 'Kedaluarsa') ? 'selected' : '';?>>Kedaluarsa</option>
-                                        </select>
-                                    </div>
-                                </div> -->
+                                <div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Sertifikat Kapal (.pdf) <span class="required">*</span></label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_sertifikat_kapal">
+										<?php if (!empty($sertifikat['scan_sertifikat_kapal'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $sertifikat['scan_sertifikat_kapal'] ?></p>
+											<input type="hidden" name="scan_sertifikat_kapal_lama" value="<?= $sertifikat['scan_sertifikat_kapal'] ?>">
+										<?php endif; ?>
+									</div>
+								</div>
 
                                
 								<div class="ln_solid"></div>
