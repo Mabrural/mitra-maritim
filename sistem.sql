@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2024 at 11:21 AM
+-- Generation Time: Feb 27, 2024 at 12:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -682,7 +682,9 @@ CREATE TABLE `kontrak_crew` (
   `id_kontrakcrew` int(10) NOT NULL,
   `sign_on` date NOT NULL,
   `sign_off` date NOT NULL,
+  `sertifikat_crew` varchar(50) NOT NULL,
   `gaji_crew` int(10) NOT NULL,
+  `uang_makan_crew` int(10) NOT NULL,
   `idstatus_crew` int(10) NOT NULL,
   `id_crew` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -691,8 +693,10 @@ CREATE TABLE `kontrak_crew` (
 -- Dumping data for table `kontrak_crew`
 --
 
-INSERT INTO `kontrak_crew` (`id_kontrakcrew`, `sign_on`, `sign_off`, `gaji_crew`, `idstatus_crew`, `id_crew`) VALUES
-(9, '2024-02-20', '2024-05-20', 4500000, 1, 3);
+INSERT INTO `kontrak_crew` (`id_kontrakcrew`, `sign_on`, `sign_off`, `sertifikat_crew`, `gaji_crew`, `uang_makan_crew`, `idstatus_crew`, `id_crew`) VALUES
+(15, '2024-02-27', '2024-05-27', '65ddb8b6449d4.pdf', 4500000, 1000000, 2, 8),
+(16, '2024-05-28', '2024-08-27', '65ddbb058e31b.pdf', 5000000, 1000000, 1, 8),
+(17, '2024-02-28', '2024-03-20', '65ddbb8b26e3d.pdf', 4000000, 1000000, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -1145,9 +1149,22 @@ CREATE TABLE `sertifikat_kapal` (
   `nama_sertifikat` varchar(200) NOT NULL,
   `tgl_terbit` date NOT NULL,
   `tgl_expired` date NOT NULL,
+  `scan_sertifikat_kapal` varchar(50) NOT NULL,
   `status_cert` varchar(50) DEFAULT NULL,
   `id_vessel` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sertifikat_kapal`
+--
+
+INSERT INTO `sertifikat_kapal` (`id_sertifikat`, `nama_sertifikat`, `tgl_terbit`, `tgl_expired`, `scan_sertifikat_kapal`, `status_cert`, `id_vessel`) VALUES
+(9, 'Pertamina Safety Approval', '2024-02-28', '2024-05-27', '', 'Aktif', 2),
+(10, 'Pertamina Safety Approval', '2024-02-27', '2024-04-28', '', 'Aktif', 1),
+(11, 'CLC Bunker', '2024-02-27', '2024-03-29', '', 'Akan Kedaluarsa', 3),
+(12, 'Medichine Chest', '2024-02-27', '2024-03-02', '', 'Akan Kedaluarsa', 3),
+(13, 'tes', '2024-02-07', '2024-02-26', '65dd99f71523d.pdf', 'Kedaluarsa', 1),
+(15, 'Sertifikat ISO 9001:2015 K3', '2024-02-27', '2024-05-27', '65dd9bca2b1d4.pdf', 'Aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -1778,7 +1795,7 @@ ALTER TABLE `kategori_cuti`
 -- AUTO_INCREMENT for table `kontrak_crew`
 --
 ALTER TABLE `kontrak_crew`
-  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `kontrak_kerja`
@@ -1886,7 +1903,7 @@ ALTER TABLE `satuan`
 -- AUTO_INCREMENT for table `sertifikat_kapal`
 --
 ALTER TABLE `sertifikat_kapal`
-  MODIFY `id_sertifikat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_sertifikat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `slip_gaji`
@@ -1922,7 +1939,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `vessel`
 --
 ALTER TABLE `vessel`
-  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
