@@ -46,6 +46,15 @@ $totalStorage = $storage_barang[0]['totalstorage'];
 $sertifikat_kapal = query("SELECT COUNT(*) as totalsertifikat FROM sertifikat_kapal");
 $totalSertifikat = $sertifikat_kapal[0]['totalsertifikat'];
 
+$sertifikat_expired = query("SELECT COUNT(*) as totalexpired FROM sertifikat_kapal WHERE status_cert='Kedaluarsa'");
+$totalExpired = $sertifikat_expired[0]['totalexpired'];
+
+$will_expired = query("SELECT COUNT(*) as totalwillexpired FROM sertifikat_kapal WHERE status_cert='Akan Kedaluarsa'");
+$totalWillExpired = $will_expired[0]['totalwillexpired'];
+
+$sertifikat_aktif = query("SELECT COUNT(*) as totalsertifikataktif FROM sertifikat_kapal WHERE status_cert='Aktif'");
+$totalAktif = $sertifikat_aktif[0]['totalsertifikataktif'];
+
 
 ?>
 
@@ -81,7 +90,7 @@ $totalSertifikat = $sertifikat_kapal[0]['totalsertifikat'];
 	</div>
 	</div>
 	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
-	<div class="tile-stats">
+	<div class="tile-stats --bs-success-bg-subtle">
 		<div class="icon"><i class="fa fa-check-square-o"></i>
 		</div>
 		<div class="count"><?= $totalSertifikat;?></div>
@@ -91,3 +100,47 @@ $totalSertifikat = $sertifikat_kapal[0]['totalsertifikat'];
 	</div>
 	</div>
 </div>
+
+<div class="row">
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-danger text-light">
+		<div class="icon"><i class="fa fa-file-pdf-o text-white"></i>
+		</div>
+		<div class="count"><?= $totalExpired;?></div>
+
+		<h3 class="text-white">Sertifikat Expired</h3>
+		<p><a href="?page=sertifikatExpired" class="text-white">More details</a></p>
+	</div>
+	</div>
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-warning text-light">
+		<div class="icon"><i class="fa fa-file-pdf-o text-white"></i>
+		</div>
+		<div class="count"><?= $totalWillExpired;?></div>
+
+		<h3 class="text-white">Sertifikat Will Expired</h3>
+		<p><a href="?page=sertifikatWillExpired" class="text-white">More details</a></p>
+	</div>
+	</div>
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-success text-light">
+		<div class="icon"><i class="fa fa-file-pdf-o text-white"></i>
+		</div>
+		<div class="count"><?= $totalAktif;?></div>
+
+		<h3 class="text-white">Sertifikat Aktif</h3>
+		<p><a href="?page=sertifikatAktif" class="text-white">More details</a></p>
+	</div>
+	</div>
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-info text-light">
+		<div class="icon"><i class="fa fa-check-square-o text-light"></i>
+		</div>
+		<div class="count"><?= $totalSertifikat;?></div>
+
+		<h3 class="text-white">Stock BBM Monitor</h3>
+		<p><a href="?page=monitoringSertifikat" class="text-white">More details</a></p>
+	</div>
+	</div>
+</div>
+

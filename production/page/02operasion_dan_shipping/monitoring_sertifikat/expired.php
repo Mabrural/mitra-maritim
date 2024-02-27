@@ -6,18 +6,15 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Monitoring Sertifikat & Legalitas<small></small></h2>
+        <h2>Sertifikat Expired<small></small></h2>
         <form action="laporan/cetak_inventaris.php" method="get">
             <input type="hidden" name="aksi">
             <input type="hidden" name="id_user" value="<?= $id_user;?>">
             <input type="hidden" name="id_lokasi" value="<?= $id_vessel;?>">
             <input type="hidden" name="id_room" value="<?= $id_posisi;?>">
-            <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
 
         </form>
-        <a href="?form=tambahSertifikat" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Certificate</a>
-        <a href="?page=monitoringSertifikat" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-file-text"></i> Certificate</a>
-        <!-- <a href="?page=masterVessel" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Vessel</a> -->
+        
         <div class="clearfix"></div>
       </div>
 
@@ -51,7 +48,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM sertifikat_kapal JOIN vessel ON vessel.id_vessel=sertifikat_kapal.id_vessel ORDER BY id_sertifikat DESC";
+              		$query = "SELECT * FROM sertifikat_kapal JOIN vessel ON vessel.id_vessel=sertifikat_kapal.id_vessel WHERE sertifikat_kapal.status_cert='Kedaluarsa'";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {

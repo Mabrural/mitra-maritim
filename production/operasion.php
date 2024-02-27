@@ -563,6 +563,18 @@ if ($_SESSION["level"] == "Staff IT") {
                                   include "page/02operasion_dan_shipping/monitoring_sertifikat/monitoring_sertifikat.php";
                                   break;
 
+                                case "sertifikatExpired":
+                                  include "page/02operasion_dan_shipping/monitoring_sertifikat/expired.php";
+                                  break;
+
+                                case "sertifikatWillExpired":
+                                  include "page/02operasion_dan_shipping/monitoring_sertifikat/will_expired.php";
+                                  break;
+
+                                case "sertifikatAktif":
+                                  include "page/02operasion_dan_shipping/monitoring_sertifikat/sertifikat_aktif.php";
+                                  break;
+
                                 case "RAB":
                                   include "page/01sales_dan_marketing/rab/rab.php";
                                   break;
