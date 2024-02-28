@@ -600,8 +600,38 @@ function tambahCrew($data) {
 	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
 	$id_bank = mysqli_real_escape_string($koneksi, $data["id_bank"]);
 
+	// Cek apakah file_scan_ktp diisi
+	if(isset($_FILES['scan_ktp']) && $_FILES['scan_ktp']['size'] > 0) {
+		$file_scan_ktp =  uploadKTP();
+		if (!$file_scan_ktp) {
+			return false;
+		}
+	} else {
+		$file_scan_ktp = null;
+	}
+
+	// Cek apakah file_scan_ktp diisi
+	if(isset($_FILES['scan_kk']) && $_FILES['scan_kk']['size'] > 0) {
+		$file_scan_kk =  uploadKK();
+		if (!$file_scan_kk) {
+			return false;
+		}
+	} else {
+		$file_scan_kk = null;
+	}
+
+	// Cek apakah file_scan_ktp diisi
+	if(isset($_FILES['scan_npwp']) && $_FILES['scan_npwp']['size'] > 0) {
+		$file_scan_npwp =  uploadNPWP();
+		if (!$file_scan_npwp) {
+			return false;
+		}
+	} else {
+		$file_scan_npwp = null;
+	}
+
 	$query = "INSERT INTO crew VALUES
-			('', '$nama_crew', '$nik', '$npwp', '$tmp_lahir', '$tgl_lahircrew', '$jk_crew', '$no_rek', '$id_posisi', '$id_vessel', '$id_bank')";
+			('', '$nama_crew', '$nik', '$npwp', '$tmp_lahir', '$tgl_lahircrew', '$jk_crew', '$no_rek', '$id_posisi', '$id_vessel', '$id_bank', '$file_scan_ktp', '$file_scan_kk', '$file_scan_npwp')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -609,7 +639,157 @@ function tambahCrew($data) {
 
 }
 
-function ubahCrew($data) {
+function uploadKTP(){
+
+	$namaFile = $_FILES['scan_ktp']['name'];
+	$ukuranFile = $_FILES['scan_ktp']['size'];
+	$error = $_FILES['scan_ktp']['error'];
+	$tmpName = $_FILES['scan_ktp']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran file terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/ktp/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+ function uploadKK(){
+
+	$namaFile = $_FILES['scan_kk']['name'];
+	$ukuranFile = $_FILES['scan_kk']['size'];
+	$error = $_FILES['scan_kk']['error'];
+	$tmpName = $_FILES['scan_kk']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran file terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/kk/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+ function uploadNPWP(){
+
+	$namaFile = $_FILES['scan_npwp']['name'];
+	$ukuranFile = $_FILES['scan_npwp']['size'];
+	$error = $_FILES['scan_npwp']['error'];
+	$tmpName = $_FILES['scan_npwp']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran file terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/npwp/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+ function ubahCrew($data) {
 	global $koneksi;
 	$id_crew = $data["id_crew"];
 	$nama_crew = mysqli_real_escape_string($koneksi, $data["nama_crew"]);
@@ -622,7 +802,20 @@ function ubahCrew($data) {
 	$id_posisi = mysqli_real_escape_string($koneksi, $data["id_posisi"]);
 	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
 	$id_bank = mysqli_real_escape_string($koneksi, $data["id_bank"]);
+	
+	// Inisialisasi variabel untuk file lama
+	$ktpLama = isset($data["scan_ktp_lama"]) ? mysqli_real_escape_string($koneksi, $data["scan_ktp_lama"]) : '';
+	$kkLama = isset($data["scan_kk_lama"]) ? mysqli_real_escape_string($koneksi, $data["scan_kk_lama"]) : '';
+	$npwpLama = isset($data["scan_npwp_lama"]) ? mysqli_real_escape_string($koneksi, $data["scan_npwp_lama"]) : '';
 
+	// cek apakah user pilih pdf baru atau tidak
+	$fileKTP = isset($_FILES['scan_ktp']) && $_FILES['scan_ktp']['error'] !== 4 ? uploadKTP() : $ktpLama;
+	
+	// cek apakah user pilih pdf baru atau tidak
+	$fileKK = isset($_FILES['scan_kk']) && $_FILES['scan_kk']['error'] !== 4 ? uploadKK() : $kkLama;
+
+	// cek apakah user pilih pdf baru atau tidak
+	$fileNPWP = isset($_FILES['scan_npwp']) && $_FILES['scan_npwp']['error'] !== 4 ? uploadNPWP() : $npwpLama;
 
 	$query = "UPDATE crew SET
 				nama_crew = '$nama_crew',
@@ -634,7 +827,10 @@ function ubahCrew($data) {
 				no_rek = '$no_rek',
 				id_posisi = '$id_posisi',
 				id_vessel = '$id_vessel',
-				id_bank = '$id_bank'
+				id_bank = '$id_bank',
+				scan_ktp = '$fileKTP',
+				scan_kk = '$fileKK',
+				scan_npwp = '$fileNPWP'
 			  WHERE id_crew = $id_crew
 			";
 	mysqli_query($koneksi, $query);

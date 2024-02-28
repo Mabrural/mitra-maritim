@@ -598,6 +598,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
+                            case "lihatLampiran":
+                              include "page/04hrd/crew/lihat_lampiran.php";
+                              break;
+
                             case "tambahSertifikat":
                               include "page/02operasion_dan_shipping/monitoring_sertifikat/tambah.php";
                               break;

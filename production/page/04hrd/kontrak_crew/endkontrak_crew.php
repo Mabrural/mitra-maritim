@@ -45,8 +45,8 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Uang Makan </th>
                 <th class="column-title">Status </th>
                            
-                <th class="column-title no-link last"><span class="nobr">Action</span>
-                </th>
+                <!-- <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th> -->
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                 </th>
@@ -86,8 +86,8 @@ $id_user = $_SESSION["id_user"];
                     ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['nama_status'];?></strong>
                 </td>
             
-                <td class=" last"><a href="?form=ubahKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" class="btn btn-info btn-sm">Update </a> | <a href="?form=hapusKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
-                </td>
+                <!-- <td class=" last"><a href="?form=ubahKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" class="btn btn-info btn-sm">Update </a> | <a href="?form=hapusKontrakCrew&id_kontrakcrew=<?= $data["id_kontrakcrew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                </td> -->
               </tr>
               
            <?php } ?>

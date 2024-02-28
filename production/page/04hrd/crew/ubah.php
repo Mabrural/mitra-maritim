@@ -179,12 +179,48 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload KTP (.pdf, .png, .jpg, .jpeg) Max. 1 MB </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_ktp">
+										<?php if (!empty($crew['scan_ktp'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $crew['scan_ktp'] ?></p>
+											<input type="hidden" name="scan_ktp_lama" value="<?= $crew['scan_ktp'] ?>">
+										<?php endif; ?>
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload KK (.pdf) Max. 1 MB </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_kk">
+										<?php if (!empty($crew['scan_kk'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $crew['scan_kk'] ?></p>
+											<input type="hidden" name="scan_kk_lama" value="<?= $crew['scan_kk'] ?>">
+										<?php endif; ?>
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload NPWP (.pdf) Max. 1 MB </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_npwp">
+										<?php if (!empty($crew['scan_npwp'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $crew['scan_npwp'] ?></p>
+											<input type="hidden" name="scan_npwp_lama" value="<?= $crew['scan_npwp'] ?>">
+										<?php endif; ?>
+									</div>
+								</div>
+
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
 										<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
 										<button class="btn btn-primary" type="reset">Reset</button>
-										<button type="submit" class="btn btn-success" name="submit">Submit</button>
+										<button type="submit" class="btn btn-success" name="submit">Ubah</button>
 									</div>
 								</div>
 

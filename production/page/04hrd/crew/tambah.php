@@ -173,6 +173,27 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload KTP (.pdf, .png, .jpg, .jpeg) Max. 1 MB </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_ktp">
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload KK (.pdf) Max. 1 MB </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_kk">
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload NPWP (.pdf) Max. 1 MB </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="scan_npwp">
+									</div>
+								</div>
+
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
