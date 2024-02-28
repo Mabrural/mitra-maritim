@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2024 at 12:00 PM
+-- Generation Time: Feb 28, 2024 at 11:58 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -90,7 +90,7 @@ INSERT INTO `bank` (`id_bank`, `nama_bank`) VALUES
 (1, 'Mandiri'),
 (2, 'BCA'),
 (3, 'BNI'),
-(5, 'BRI-');
+(5, 'BRI');
 
 -- --------------------------------------------------------
 
@@ -198,7 +198,27 @@ INSERT INTO `barang` (`kode_brg`, `nama_barang`, `gambar_barang`, `spek`, `deskr
 ('BRG00085', 'Pipa Trangking', '65b752aa7d560.jpg', '-', '-'),
 ('BRG00086', 'Segal Rantai', '65b752cfa63fe.jpg', 'M16', '-'),
 ('BRG00087', 'Reduser 3 camlock 3', '65b752fe4e901.jpg', '-', '-'),
-('BRG00088', 'Tali Lifebouy', '65b77d231c0ff.jpg', 'Tali Lifebouy', '-');
+('BRG00088', 'Tali Lifebouy', '65b77d231c0ff.jpg', 'Tali Lifebouy', '-'),
+('BRG00089', 'Kabel + Lampu', '65df0ca224056.jpg', '-', 'Tanpa Steker'),
+('BRG00090', 'Reduser', '65df0ce150dc1.jpg', '6inch to 3inch', '-\r\n'),
+('BRG00091', 'Sampel Can', '65df0d1b966db.jpg', '-', '-'),
+('BRG00092', 'Tungsten', '65df0d563db20.jpg', '1.5', '-'),
+('BRG00093', 'Accu JIS', '65df0db22fb91.jpg', '36B20R', 'Kering'),
+('BRG00094', 'Tali Buang', '65df0e0a0b4d1.jpg', '-', '-'),
+('BRG00095', 'Palu', '65df0e3e08d90.jpg', '-', '-'),
+('BRG00096', 'Connecting', '65df0e6f04f29.jpg', '2 Inch', '-'),
+('BRG00097', 'Minyak Lumas', '65df0e9ea2f7e.jpg', 'WD 40', '-'),
+('BRG00098', 'Cat Meni', '65df0f0fca28d.jpg', 'Q-Ton', '3,5liter ZR004'),
+('BRG00099', 'Cat Putih', '65df0f6b3d630.jpg', 'Q-Ton', 'D5000'),
+('BRG00100', 'Cat Hijau', '65df10108280a.jpg', 'Jotun', '5ltr'),
+('BRG00101', 'Tiner 20-05', '65df103ee1258.jpg', 'Amercoat 15', '-'),
+('BRG00102', 'Cat Biru', '65df107402fe9.jpg', '5ltr', 'Internasional'),
+('BRG00103', 'Cat Kuning', '65df10b14bbae.jpg', 'RJ London', '800mm'),
+('BRG00104', 'Lampu Tl', '65df111f495ea.jpg', 'Phillips', 'tanpa rmh'),
+('BRG00105', 'Helm Putih', '65df1146da58f.jpg', '-', '-'),
+('BRG00106', 'Exhaust Wrap', '65df11700cc3b.jpg', 'Roll', '-'),
+('BRG00107', 'Dirigen Sampel', '65df11a6487c2.jpg', '-', '-'),
+('BRG00108', 'Kawat Las', '65df11cb7bf62.jpg', 'Kobelco RB-26', '-');
 
 -- --------------------------------------------------------
 
@@ -395,24 +415,30 @@ CREATE TABLE `crew` (
   `nama_crew` varchar(40) NOT NULL,
   `nik` varchar(40) NOT NULL,
   `npwp` varchar(40) NOT NULL,
+  `no_kk` varchar(40) DEFAULT NULL,
   `tmp_lahir` varchar(40) NOT NULL,
   `tgl_lahircrew` date NOT NULL,
   `jk_crew` varchar(30) NOT NULL,
   `no_rek` varchar(30) NOT NULL,
   `id_posisi` int(10) NOT NULL,
   `id_vessel` int(10) NOT NULL,
-  `id_bank` int(10) NOT NULL
+  `id_bank` int(10) NOT NULL,
+  `scan_ktp` varchar(40) DEFAULT NULL,
+  `scan_kk` varchar(40) DEFAULT NULL,
+  `scan_npwp` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `crew`
 --
 
-INSERT INTO `crew` (`id_crew`, `nama_crew`, `nik`, `npwp`, `tmp_lahir`, `tgl_lahircrew`, `jk_crew`, `no_rek`, `id_posisi`, `id_vessel`, `id_bank`) VALUES
-(3, 'Riki', '2171012109190001', '2171012109190001', 'Batam', '2024-02-15', 'Laki-laki', '32625566147', 1, 2, 2),
-(8, 'Mabrur', '2171012105020001', '95.461.480.6-225.000', 'Pulau Tumbar', '2002-05-21', 'Laki-laki', '3262432251', 1, 1, 2),
-(10, 'Alex', '2171012105020001', '95.461.480.6-225.000', 'Batam', '1990-08-14', 'Laki-laki', '1090132510002', 1, 3, 1),
-(12, 'Jordan', '2171012105020001', '95.461.480.6-225.000', 'Batam', '1989-01-01', 'Laki-laki', '3262545518', 3, 1, 2);
+INSERT INTO `crew` (`id_crew`, `nama_crew`, `nik`, `npwp`, `no_kk`, `tmp_lahir`, `tgl_lahircrew`, `jk_crew`, `no_rek`, `id_posisi`, `id_vessel`, `id_bank`, `scan_ktp`, `scan_kk`, `scan_npwp`) VALUES
+(3, 'Riki', '2171012109190001', '2171012109190001', NULL, 'Batam', '2024-02-15', 'Laki-laki', '32625566147', 1, 2, 2, NULL, NULL, NULL),
+(8, 'Mabrur', '2171012105020001', '95.461.480.6-225.000', NULL, 'Pulau Tumbar', '2002-05-21', 'Laki-laki', '3262432251', 1, 1, 2, NULL, NULL, NULL),
+(10, 'Alex', '2171012105020001', '95.461.480.6-225.000', NULL, 'Batam', '1990-08-14', 'Laki-laki', '1090132510002', 1, 3, 1, NULL, NULL, NULL),
+(12, 'Jordan', '2171012105020001', '95.461.480.6-225.000', NULL, 'Batam', '1989-01-01', 'Laki-laki', '3262545518', 3, 1, 2, NULL, NULL, NULL),
+(16, 'Felix', '1222222222', '121312312321', NULL, 'Batam', '2000-10-10', 'Laki-laki', '1090154578933', 3, 2, 1, '65deedcb1e782.jpg', '65deedfe424c5.jpg', '65deee0f7ec59.jpg'),
+(18, 'Reza', '1121122121212', '95.461.480.6-225.000', NULL, 'Batam', '2024-02-28', 'Laki-laki', '2215132123', 1, 2, 2, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -695,7 +721,6 @@ CREATE TABLE `kontrak_crew` (
 
 INSERT INTO `kontrak_crew` (`id_kontrakcrew`, `sign_on`, `sign_off`, `sertifikat_crew`, `gaji_crew`, `uang_makan_crew`, `idstatus_crew`, `id_crew`) VALUES
 (15, '2024-02-27', '2024-05-27', '65ddb8b6449d4.pdf', 4500000, 1000000, 2, 8),
-(16, '2024-05-28', '2024-08-27', '65ddbb058e31b.pdf', 5000000, 1000000, 1, 8),
 (17, '2024-02-28', '2024-03-20', '65ddbb8b26e3d.pdf', 4000000, 1000000, 2, 3);
 
 -- --------------------------------------------------------
@@ -1729,7 +1754,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `crew`
 --
 ALTER TABLE `crew`
-  MODIFY `id_crew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_crew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -1795,7 +1820,7 @@ ALTER TABLE `kategori_cuti`
 -- AUTO_INCREMENT for table `kontrak_crew`
 --
 ALTER TABLE `kontrak_crew`
-  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_kontrakcrew` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `kontrak_kerja`
@@ -1819,13 +1844,13 @@ ALTER TABLE `load_port`
 -- AUTO_INCREMENT for table `lokasi_barang`
 --
 ALTER TABLE `lokasi_barang`
-  MODIFY `id_lokasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_lokasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `lokasi_room`
 --
 ALTER TABLE `lokasi_room`
-  MODIFY `id_room` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_room` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `manage_cuti`

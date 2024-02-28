@@ -27,6 +27,7 @@ $id_room = isset($_GET['id_room']) ? $_GET['id_room'] : '';
               <a href="?page=masterLokasi" class="btn btn-warning btn-sm text-dark"><i class="fa fa-location-arrow"></i> Master Lokasi</a>
               <a href="?page=masterRoom" class="btn btn-success btn-sm"><i class="fa fa-hotel"></i> Master Ruangan</a>
               <a href="?page=disposal" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Disposal</a>
+              <a href="?page=pembelianBarang" class="btn btn-warning btn-sm"><i class="fa fa-shopping-cart"></i> Pembelian Barang</a>
               
           </form>
           <div class="row">

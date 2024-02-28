@@ -592,6 +592,7 @@ function tambahCrew($data) {
 	$nama_crew = mysqli_real_escape_string($koneksi, $data["nama_crew"]);
 	$nik = mysqli_real_escape_string($koneksi, $data["nik"]);
 	$npwp = mysqli_real_escape_string($koneksi, $data["npwp"]);
+	$no_kk = mysqli_real_escape_string($koneksi, $data["no_kk"]);
 	$tmp_lahir = mysqli_real_escape_string($koneksi, $data["tmp_lahir"]);
 	$tgl_lahircrew = mysqli_real_escape_string($koneksi, $data["tgl_lahircrew"]);
 	$jk_crew = mysqli_real_escape_string($koneksi, $data["jk_crew"]);
@@ -631,7 +632,7 @@ function tambahCrew($data) {
 	}
 
 	$query = "INSERT INTO crew VALUES
-			('', '$nama_crew', '$nik', '$npwp', '$tmp_lahir', '$tgl_lahircrew', '$jk_crew', '$no_rek', '$id_posisi', '$id_vessel', '$id_bank', '$file_scan_ktp', '$file_scan_kk', '$file_scan_npwp')";
+			('', '$nama_crew', '$nik', '$npwp', '$no_kk', '$tmp_lahir', '$tgl_lahircrew', '$jk_crew', '$no_rek', '$id_posisi', '$id_vessel', '$id_bank', '$file_scan_ktp', '$file_scan_kk', '$file_scan_npwp')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);

@@ -548,10 +548,6 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/hrd/cuti/req_cuti/rejected.php";
                                 break;
 
-                              case 'slipGaji':
-                                include "page/hrd/slip_gaji/slip_gaji_read.php";
-                                break;
-
                                 case "masterLokasi":
                                   include "page/data_master/lokasi/lokasi.php";
                                   break;

@@ -100,6 +100,13 @@ if (isset($_POST["submit"])) {
                                     </div>
                                 </div>
 
+								<div class="item form-group">
+                                    <label for="no_kk" class="col-form-label col-md-3 col-sm-3 label-align">No. KK <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <input id="no_kk" name="no_kk" class="form-control" type="text" placeholder="Ketikkan No. KK">
+                                    </div>
+                                </div>
+
                                 <div class="item form-group">
                                     <label for="tmp_lahir" class="col-form-label col-md-3 col-sm-3 label-align">Tempat Lahir <span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6 ">

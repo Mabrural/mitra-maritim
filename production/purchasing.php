@@ -438,7 +438,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 break;
 
                             case 'dataBarang':
-                                include 'page/data_barang/barang_read.php';
+                                include 'page/data_barang/barang.php';
                                 break;
 
                             case 'invoicePembelian':
@@ -460,6 +460,22 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'tagihan':
                                 include "page/tagihan/tagihan.php";
                                 break;
+
+                            case 'inventarisAsset':
+                              include "page/06purchasing/inventaris_dan_asset/inventaris.php";
+                              break;
+
+                            case "masterLokasi":
+                              include "page/data_master/lokasi/lokasi.php";
+                              break;
+
+                            case "masterRoom":
+                              include "page/data_master/room/room.php";
+                              break;
+
+                            case "disposal":
+                              include "page/06purchasing/inventaris_dan_asset/disposal.php";
+                              break;
 
 
               
@@ -561,6 +577,30 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'ubahProfil':
                                 include "page/profil/ubah.php";
                                 break;
+
+                            case "tambahLokasi":
+                              include "page/data_master/lokasi/tambah.php";
+                              break;
+
+                            case "ubahLokasi":
+                              include "page/data_master/lokasi/ubah.php";
+                              break;
+
+                            case "hapusLokasi":
+                              include "page/data_master/lokasi/hapus.php";
+                              break;
+
+                            case "tambahRuangan":
+                              include "page/data_master/room/tambah.php";
+                              break;
+
+                            case "ubahRuangan":
+                              include "page/data_master/room/ubah.php";
+                              break;
+
+                            case "hapusRuangan":
+                              include "page/data_master/room/hapus.php";
+                              break;
 
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";
