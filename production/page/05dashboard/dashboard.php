@@ -162,6 +162,16 @@ $totalCrewEnd = $crew_end[0]['totalcrew'];
 	</div>
 	</div>
 	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+	<div class="tile-stats bg-warning text-light">
+		<div class="icon"><i class="fa fa-exclamation-triangle text-white"></i>
+		</div>
+		<div class="count"><?= $totalCrewOn;?></div>
+
+		<h3 class="text-white">Crew Will End Contract</h3>
+		<p><a href="?page=sertifikatWillExpired" class="text-white">More details</a></p>
+	</div>
+	</div>
+	<div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
 	<div class="tile-stats bg-success text-light">
 		<div class="icon"><i class="fa fa-toggle-on text-white"></i>
 		</div>

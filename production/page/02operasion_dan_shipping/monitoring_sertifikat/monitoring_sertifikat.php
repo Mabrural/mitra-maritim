@@ -1,6 +1,9 @@
 <?php
 
 $id_user = $_SESSION["id_user"];
+$vessel = query("SELECT * FROM vessel");
+
+$id_vessel = isset($_GET['id_vessel']) ? $_GET['id_vessel'] : '';
 
 
 ?>
@@ -10,18 +13,56 @@ $id_user = $_SESSION["id_user"];
         <form action="laporan/cetak_inventaris.php" method="get">
             <input type="hidden" name="aksi">
             <input type="hidden" name="id_user" value="<?= $id_user;?>">
-            <input type="hidden" name="id_lokasi" value="<?= $id_vessel;?>">
+            <input type="hidden" name="id_vessel" value="<?= $id_vessel;?>">
             <input type="hidden" name="id_room" value="<?= $id_posisi;?>">
-            <!-- <button type="submit" class="btn btn-info btn-sm" name="cetakData"><i class="fa fa-print"></i> Cetak Data</button> -->
 
         </form>
         <a href="?form=tambahSertifikat" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New Certificate</a>
-        <a href="?page=monitoringSertifikat" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-file-text"></i> Certificate</a>
-        <!-- <a href="?page=masterVessel" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Vessel</a> -->
+        <br>
+          <div class="row">
+            <div class="col-md-2 col-sm-6">
+                <form method="get">
+                  <input type="hidden" name="aksi">
+
+                    <select class="form-control" name="id_vessel" id="id_vessel">
+                        <option value="">--Pilih Kapal--</option>
+                        <?php foreach($vessel as $row) : ?>
+                            <option value="<?= $row['id_vessel']?>" <?php echo ($id_vessel == $row['id_vessel']) ? 'selected' : ''; ?>>
+                                <?= $row['nama_vessel']?>
+                            </option>
+                        <?php endforeach;?> 
+                    </select><br>
+                
+            </div>
+            <div class="col-md-4 col-sm-6">
+            
+              
+                  
+                      <div class="col-md-4 col-sm-4">
+                          <input type="hidden" name="page" value="monitoringSertifikat">
+                          <input type="hidden" name="aksi">
+                          <input type="date" name="periode_awal" id="periode_awal" class="form-control" value="<?php echo isset($_GET['periode_awal']) ? $_GET['periode_awal'] : ''; ?>">
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                          <input type="date" name="periode_akhir" id="periode_akhir" class="form-control" value="<?php echo isset($_GET['periode_akhir']) ? $_GET['periode_akhir'] : ''; ?>">
+                      </div>
+                      <div class="col-md-4 col-sm-4">
+                          <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+                      </div>
+                  </form>
+                </div>
+              
+            
+
+            
+          </div>
         <div class="clearfix"></div>
       </div>
 
+
       <div class="x_content">
+
+ 
 
         <!-- <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p> -->
 
@@ -52,7 +93,25 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM sertifikat_kapal JOIN vessel ON vessel.id_vessel=sertifikat_kapal.id_vessel ORDER BY id_sertifikat DESC";
+              		$query = "SELECT * FROM sertifikat_kapal JOIN vessel ON vessel.id_vessel=sertifikat_kapal.id_vessel";
+
+                  // Add filter conditions based on the selected values
+                  if (!empty($id_vessel) || !empty($id_room)) {
+                    $query .= " WHERE";
+                  }
+
+                  if (!empty($id_vessel)) {
+                      $query .= " sertifikat_kapal.id_vessel = $id_vessel";
+                  }
+
+
+                  // Tambahkan kondisi WHERE untuk filter rentang periode
+                  if (!empty($_GET['periode_awal']) && isset($_GET['periode_akhir'])) {
+                    $periode_awal = htmlspecialchars($_GET['periode_awal']);
+                    $periode_akhir = htmlspecialchars($_GET['periode_akhir']);
+                    $query .= " AND sertifikat_kapal.tgl_expired BETWEEN '$periode_awal' AND '$periode_akhir'";
+                }
+
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {

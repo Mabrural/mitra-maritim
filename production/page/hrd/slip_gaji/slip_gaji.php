@@ -12,7 +12,7 @@ $id_user = $_SESSION["id_user"];
        
         <div class="clearfix"></div>
       </div>
-
+ 
       <div class="row"><br><br>
             <div class="col-md-12">
             <form method="get">
