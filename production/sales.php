@@ -550,6 +550,22 @@ if ($_SESSION["level"] == "Staff IT") {
                               include "page/06purchasing/inventaris_dan_asset/disposal.php";
                               break;
 
+                            case "monitoringSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/monitoring_sertifikat_read.php";
+                              break;
+
+                            case "sertifikatExpired":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/expired_read.php";
+                              break;
+
+                            case "sertifikatWillExpired":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/will_expired_read.php";
+                              break;
+
+                            case "sertifikatAktif":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/sertifikat_aktif_read.php";
+                              break;
+
               
                             
 
@@ -823,6 +839,18 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "hapusRuangan":
                               include "page/data_master/room/hapus.php";
+                              break;
+
+                            case "tambahSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/tambah.php";
+                              break;
+
+                            case "ubahSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/ubah.php";
+                              break;
+
+                            case "hapusSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/hapus.php";
                               break;
 
                             default:
