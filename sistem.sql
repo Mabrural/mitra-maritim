@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2024 at 11:58 AM
+-- Generation Time: Feb 29, 2024 at 11:57 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1023,8 +1023,20 @@ CREATE TABLE `rab` (
   `doc_num` varchar(30) NOT NULL,
   `tgl_rab` date NOT NULL,
   `file_rab` varchar(40) NOT NULL,
-  `id_user` int(10) NOT NULL
+  `id_user` int(10) NOT NULL,
+  `id_sales` int(10) NOT NULL,
+  `rab_app1` varchar(30) DEFAULT NULL,
+  `rab_app2` varchar(30) DEFAULT NULL,
+  `rab_app3` varchar(30) DEFAULT NULL,
+  `status_rab` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rab`
+--
+
+INSERT INTO `rab` (`id_rab`, `doc_num`, `tgl_rab`, `file_rab`, `id_user`, `id_sales`, `rab_app1`, `rab_app2`, `rab_app3`, `status_rab`) VALUES
+(12, 'RAB0000001', '2024-02-28', '65e05ef6034b6.xlsx', 34, 17, '', '', '', 'On Dirops');
 
 -- --------------------------------------------------------
 
@@ -1132,7 +1144,8 @@ CREATE TABLE `sales_plan` (
 --
 
 INSERT INTO `sales_plan` (`id_sales`, `kode_sales`, `voy_num`, `qty_sales`, `id_load`, `id_disch`, `sales_nominal`, `start`, `finished`, `app1`, `app2`, `app3`, `status_plan`, `id_cust`, `id_satuan`, `id_vessel`, `id_dept`, `id_kargo`) VALUES
-(17, 'SPL-24022200001-17104', '001VOY/MMM/I/2024', 1, 1, 4, 1000000000, '2024-02-22', '0000-00-00', '', '', '', 'On Dirops', 1, 1, 1, 1, 2);
+(17, 'SPL-24022200001-17104', '001VOY/MMM/I/2024', 1, 1, 4, 1000000000, '2024-02-22', '0000-00-00', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai', 1, 1, 1, 1, 2),
+(18, 'SPL-24022900002-45401', '002VOY/MMM/I/2024', 1, 1, 4, 1000000000, '2024-02-29', '0000-00-00', '', '', '', 'On Dirops', 1, 4, 1, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -1348,7 +1361,27 @@ INSERT INTO `storage_barang` (`id_storage`, `tgl_input`, `qty_brg`, `kondisi_brg
 (88, '2024-01-29', 4, 'Baik', '-', 'BRG00085', 1, 2, 2, 27),
 (89, '2024-01-29', 9, 'Baik', '-', 'BRG00086', 1, 1, 2, 27),
 (90, '2024-01-29', 1, 'Baik', '-', 'BRG00087', 1, 1, 2, 27),
-(92, '2024-01-29', 1, 'Rusak', 'Not Good', 'BRG00088', 1, 1, 2, 27);
+(92, '2024-01-29', 1, 'Rusak', 'Not Good', 'BRG00088', 1, 1, 2, 27),
+(96, '2024-02-29', 1, 'Baik', '-', 'BRG00089', 1, 1, 2, 27),
+(97, '2024-02-29', 1, 'Baik', '-', 'BRG00090', 1, 1, 2, 27),
+(98, '2024-02-29', 1, 'Baik', '', 'BRG00091', 1, 1, 2, 27),
+(99, '2024-02-29', 1, 'Disposal', '', 'BRG00092', 1, 1, 2, 27),
+(100, '2024-02-29', 1, 'Rusak', '-', 'BRG00093', 1, 1, 2, 27),
+(101, '2024-02-29', 1, 'Baik', '', 'BRG00094', 1, 3, 2, 27),
+(102, '2024-02-29', 1, 'Rusak', '-', 'BRG00095', 1, 3, 2, 27),
+(103, '2024-02-29', 1, 'Baik', '-', 'BRG00096', 1, 3, 2, 27),
+(104, '2024-02-29', 1, 'Disposal', '-', 'BRG00097', 1, 3, 2, 27),
+(105, '0000-00-00', 1, 'Baik', '', 'BRG00098', 1, 1, 2, 27),
+(106, '2024-02-29', 2, 'Baik', '', 'BRG00099', 1, 1, 2, 27),
+(107, '2024-02-29', 5, 'Baik', '', 'BRG00100', 1, 1, 2, 27),
+(108, '2024-02-29', 2, 'Baik', '-', 'BRG00101', 1, 1, 1, 27),
+(109, '2024-02-29', 1, 'Baik', '', 'BRG00102', 1, 1, 2, 27),
+(110, '0000-00-00', 1, 'Baik', '', 'BRG00103', 1, 1, 2, 27),
+(111, '2024-02-29', 1, 'Baik', '', 'BRG00104', 1, 1, 2, 27),
+(112, '2024-02-29', 1, 'Baik', '', 'BRG00105', 1, 1, 2, 27),
+(113, '2024-02-29', 1, 'Baik', '', 'BRG00106', 1, 1, 2, 27),
+(114, '2024-02-29', 23, 'Baik', '', 'BRG00107', 1, 3, 2, 27),
+(115, '2024-02-29', 1, 'Baik', '', 'BRG00108', 1, 9, 2, 27);
 
 -- --------------------------------------------------------
 
@@ -1638,7 +1671,8 @@ ALTER TABLE `qrcode`
 --
 ALTER TABLE `rab`
   ADD PRIMARY KEY (`id_rab`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_sales` (`id_sales`);
 
 --
 -- Indexes for table `req_barang`
@@ -1898,7 +1932,7 @@ ALTER TABLE `qrcode`
 -- AUTO_INCREMENT for table `rab`
 --
 ALTER TABLE `rab`
-  MODIFY `id_rab` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_rab` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `req_barang`
@@ -1916,7 +1950,7 @@ ALTER TABLE `req_cuti`
 -- AUTO_INCREMENT for table `sales_plan`
 --
 ALTER TABLE `sales_plan`
-  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_sales` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -1946,7 +1980,7 @@ ALTER TABLE `status_crew`
 -- AUTO_INCREMENT for table `storage_barang`
 --
 ALTER TABLE `storage_barang`
-  MODIFY `id_storage` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id_storage` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -2057,7 +2091,8 @@ ALTER TABLE `qrcode`
 -- Constraints for table `rab`
 --
 ALTER TABLE `rab`
-  ADD CONSTRAINT `rab_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `rab_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `rab_ibfk_2` FOREIGN KEY (`id_sales`) REFERENCES `sales_plan` (`id_sales`);
 
 --
 -- Constraints for table `req_barang`
