@@ -145,6 +145,7 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="sales.php?page=stockBBM">Stock BBM Monitor</a></li>
                       <li><a href="sales.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
                       <li><a href="sales.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="sales.php?page=crew">Crewing</a></li>
                     </ul>
                   </li>
 
@@ -414,11 +415,15 @@ if ($_SESSION["level"] == "Staff IT") {
                         switch ($page) {
 
                           case 'crew':
-                            include "page/04hrd/crew/crew.php";
+                            include "page/04hrd/crew/crew_read.php";
                             break;
 
                           case 'kontrakCrew':
-                            include "page/04hrd/kontrak_crew/kontrak_crew.php";
+                            include "page/04hrd/kontrak_crew/kontrak_crew_read.php";
+                            break;
+
+                          case 'crewEndContract':
+                            include "page/04hrd/kontrak_crew/endkontrak_crew_read.php";
                             break;
 
                           case 'masterBank':
@@ -577,6 +582,10 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "lihatLampiran":
+                            include "page/04hrd/crew/lihat_lampiran_read.php";
+                            break;
 
                             case "tambahCrew":
                               include "page/04hrd/crew/tambah.php";

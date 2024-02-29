@@ -427,7 +427,7 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'crewEndContract':
                               include "page/04hrd/kontrak_crew/endkontrak_crew.php";
                               break;
-
+ 
                             case 'masterBank':
                                 include "page/04hrd/master_bank/master_bank.php";
                                 break;
