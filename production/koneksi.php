@@ -1053,8 +1053,13 @@ function hapusPosisi($id_posisi) {
 function tambahRab($data) {
 	global $koneksi;
 	$doc_num = htmlspecialchars($data["doc_num"]);
+	$id_sales = htmlspecialchars($data["id_sales"]);
 	$tgl_rab = htmlspecialchars($data["tgl_rab"]);
 	$id_user = htmlspecialchars($data["id_user"]);
+	$rab_app1 = htmlspecialchars($data["rab_app1"]);
+	$rab_app2 = htmlspecialchars($data["rab_app2"]);
+	$rab_app3 = htmlspecialchars($data["rab_app3"]);
+	$status_rab = htmlspecialchars($data["status_rab"]);
 	
 	$file_rab =  uploadFileRab();
 	if (!$file_rab) {
@@ -1062,7 +1067,7 @@ function tambahRab($data) {
 	}
 
 	$query = "INSERT INTO rab VALUES
-			('', '$doc_num', '$tgl_rab', '$file_rab', '$id_user')";
+			('', '$doc_num', '$tgl_rab', '$file_rab', '$id_user', '$id_sales', '$rab_app1', '$rab_app2', '$rab_app3', '$status_rab')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -1122,9 +1127,14 @@ function uploadFileRab(){
 	global $koneksi;
 	$id_rab = $data["id_rab"];
 	$doc_num = htmlspecialchars($data["doc_num"]);
+	$id_sales = htmlspecialchars($data["id_sales"]);
 	$tgl_rab = htmlspecialchars($data["tgl_rab"]);
 	$id_user = htmlspecialchars($data["id_user"]);
 	$fileLama = htmlspecialchars($data['file_rab_lama']);
+	$rab_app1 = htmlspecialchars($data["rab_app1"]);
+	$rab_app2 = htmlspecialchars($data["rab_app2"]);
+	$rab_app3 = htmlspecialchars($data["rab_app3"]);
+	$status_rab = htmlspecialchars($data["status_rab"]);
 
 	// cek apakah user pilih gambar baru atau tidak
 	if ($_FILES['file_rab']['error'] === 4 ) {
@@ -1138,7 +1148,12 @@ function uploadFileRab(){
 				doc_num = '$doc_num',
 				tgl_rab = '$tgl_rab',
 				file_rab = '$file',
-				id_user = '$id_user'
+				id_user = '$id_user',
+				id_sales = '$id_sales',
+				rab_app1 = '$rab_app1',
+				rab_app2 = '$rab_app2',
+				rab_app3 = '$rab_app3',
+				status_rab = '$status_rab'
 			  WHERE id_rab = $id_rab
 			";
 	mysqli_query($koneksi, $query);

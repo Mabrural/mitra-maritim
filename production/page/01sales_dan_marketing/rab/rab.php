@@ -55,7 +55,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_rab']));?></td>
                 <td class=" "><a href="files/rab/<?= $data['file_rab']; ?>" style="color:blue; text-decoration: underline;"><i class="fa fa-download"></i> Unduh RAB</a></td>
                 
-                <td class=" last"><a href="?form=ubahRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRab&id_rab=<?= $data["id_rab"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=lihatRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Approval</a> | <a href="?form=ubahRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRab&id_rab=<?= $data["id_rab"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
                 </td>
               </tr>
               

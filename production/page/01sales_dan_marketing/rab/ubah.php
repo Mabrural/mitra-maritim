@@ -3,7 +3,7 @@
 $id_user = $_SESSION['id_user'];
 $id_rab = mysqli_real_escape_string($koneksi, $_GET['id_rab']);
 $rab = query("SELECT * FROM rab WHERE id_rab=$id_rab")[0];
-
+$sales = query("SELECT * FROM sales_plan WHERE status_plan='Selesai'");
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
 	
@@ -90,6 +90,19 @@ if (isset($_POST["submit"])) {
 										</div>
 
 										<div class="item form-group">
+											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Voyage Number <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 ">
+												<select class="form-control" name="id_sales" id="selectCrew" required>
+													<option value="">--Pilih Voyage Number--</option>
+													<?php foreach($sales as $row) : ?>
+														<option value="<?= $row['id_sales']?>" <?= ($row['id_sales'] == $rab['id_sales']) ? 'selected' : '';?>><?= $row['voy_num']?> </option>
+													<?php endforeach;?>	
+												</select>
+												
+											</div>
+										</div>
+
+										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_rab">Tanggal <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
@@ -111,7 +124,10 @@ if (isset($_POST["submit"])) {
 										</div>
 
 										<input type="hidden" name='id_user' value='<?= $id_user;?>'>
-										
+										<input type="hidden" name='rab_app1' value="<?= $rab['rab_app1']?>">
+										<input type="hidden" name='rab_app2' value="<?= $rab['rab_app2']?>">
+										<input type="hidden" name='rab_app3' value="<?= $rab['rab_app3']?>">
+										<input type="hidden" name='status_rab' value='<?= $rab['status_rab']?>'>
 							
 										
 										<div class="ln_solid"></div>

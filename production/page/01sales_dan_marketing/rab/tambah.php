@@ -2,6 +2,7 @@
 
 $id_user = $_SESSION['id_user'];
 $doc_num = generate_document_number();
+$sales = query("SELECT * FROM sales_plan WHERE status_plan='selesai'");
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -89,6 +90,20 @@ if (isset($_POST["submit"])) {
 										</div>
 
 										<div class="item form-group">
+											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Voyage Number <span class="required">*</span></label>
+											<div class="col-md-6 col-sm-6 ">
+												<!-- <input type="text" id="searchCrew" class="form-control" placeholder="Cari Nama Crew"> -->
+												<select class="form-control" name="id_sales" id="selectCrew" required>
+													<option value="">--Pilih Voyage Number--</option>
+													<?php foreach($sales as $row) : ?>
+														<option value="<?= $row['id_sales']?>"><?= $row['voy_num']?> </option>
+													<?php endforeach;?>	
+												</select>
+												
+											</div>
+										</div>
+
+										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_rab">Tanggal <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
@@ -105,6 +120,10 @@ if (isset($_POST["submit"])) {
 										</div>
 
 										<input type="hidden" name='id_user' value='<?= $id_user;?>'>
+										<input type="hidden" name='rab_app1'>
+										<input type="hidden" name='rab_app2'>
+										<input type="hidden" name='rab_app3'>
+										<input type="hidden" name='status_rab' value='On Dirops'>
 										
 							
 										
