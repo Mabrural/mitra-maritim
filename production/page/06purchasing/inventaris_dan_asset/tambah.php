@@ -100,7 +100,8 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Kode Barang <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<select class="form-control" name="kode_brg">
+										<input type="text" id="searchBarang" class="form-control" placeholder="Cari Nama Barang">
+										<select class="form-control" name="kode_brg" id="selectBarang">
 											<option value="">--Pilih Barang--</option>
 											<?php foreach($barang as $row) : ?>
 												<option value="<?= $row['kode_brg']?>"><?= $row['kode_brg']?> - <?= $row['nama_barang']?> - <?= $row['spek']?></option>
@@ -108,6 +109,23 @@ if (isset($_POST["submit"])) {
 										</select>
 									</div>
 								</div>
+
+								<script>
+									$(document).ready(function () {
+										// Fungsi untuk melakukan filter pada opsi select
+										$('#searchBarang').on('input', function () {
+											var searchText = $(this).val().toLowerCase();
+											$('#selectBarang option').filter(function () {
+												$(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
+											});
+										});
+
+										// Fungsi untuk menanggapi perubahan pada opsi select
+										$('#selectBarang').change(function () {
+											$('#searchBarang').val($('#selectBarang option:selected').text().split('-')[0].trim());
+										});
+									});
+								</script>
 								
 								<div class="item form-group">
 									<label for="qty_brg" class="col-form-label col-md-3 col-sm-3 label-align">Qty <span class="required">*</span></label>

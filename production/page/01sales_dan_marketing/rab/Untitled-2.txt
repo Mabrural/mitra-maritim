@@ -10,7 +10,7 @@ $id_user = $_SESSION["id_user"];
         <h2>RAB<small></small></h2>
         <a href="?form=tambahRab" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New RAB</a>
         <a href="?page=RAB" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-bar-chart"></i> RAB</a>
-        <!-- <a href="?page=masterPort" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Port</a> -->
+        <a href="?page=masterPort" class="btn btn-warning btn-sm text-dark"><i class="fa fa-ship"></i> Master Port</a>
        
         <div class="clearfix"></div>
       </div>

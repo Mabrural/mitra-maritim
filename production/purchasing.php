@@ -519,16 +519,16 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include 'page/hrd/tambah.php';
                               break;
 
-                            case 'tambahInventaris':
-                                include "page/asset_dan_inventaris/tambah.php";
+                              case 'tambahInventaris':
+                                include "page/06purchasing/inventaris_dan_asset/tambah.php";
                                 break;
 
                             case 'ubahInventaris':
-                                include "page/asset_dan_inventaris/ubah.php";
+                                include "page/06purchasing/inventaris_dan_asset/ubah.php";
                                 break;
 
                             case 'hapusInventaris':
-                                include 'page/asset_dan_inventaris/hapus.php';
+                                include 'page/06purchasing/inventaris_dan_asset/hapus.php';
                                 break;
 
                             case 'tambahBarang':

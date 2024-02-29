@@ -78,7 +78,7 @@ if (isset($_POST["submit"])) {
 							
 							<div class="clearfix"></div>
 						</div>
-						<div class="x_content">
+						<div class="x_content"> 
 							<br />
 							<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                                 <div class="item form-group">

@@ -706,6 +706,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 include "page/01sales_dan_marketing/rab/tambah.php";
                                 break;
 
+                            case "ubahRab":
+                              include "page/01sales_dan_marketing/rab/ubah.php";
+                              break;
+
+                            case "hapusRab":
+                              include "page/01sales_dan_marketing/rab/hapus.php";
+                              break;
+
                             case 'ubahPengajuan':
                                 include "page/pengajuan/ubah.php";
                                 break;

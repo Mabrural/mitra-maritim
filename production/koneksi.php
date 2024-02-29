@@ -298,7 +298,7 @@ function generate_document_number() {
 	}
   
 	return $kode_baru;
-  }
+}
 
 
 function tambahVessel($data) {
@@ -1055,7 +1055,7 @@ function tambahRab($data) {
 	$doc_num = htmlspecialchars($data["doc_num"]);
 	$tgl_rab = htmlspecialchars($data["tgl_rab"]);
 	$id_user = htmlspecialchars($data["id_user"]);
-
+	
 	$file_rab =  uploadFileRab();
 	if (!$file_rab) {
 		return false;
@@ -1117,6 +1117,42 @@ function uploadFileRab(){
 	move_uploaded_file($tmpName, 'files/rab/'. $namaFileBaru);
 	return $namaFileBaru;
  }
+
+ function ubahRab($data) {
+	global $koneksi;
+	$id_rab = $data["id_rab"];
+	$doc_num = htmlspecialchars($data["doc_num"]);
+	$tgl_rab = htmlspecialchars($data["tgl_rab"]);
+	$id_user = htmlspecialchars($data["id_user"]);
+	$fileLama = htmlspecialchars($data['file_rab_lama']);
+
+	// cek apakah user pilih gambar baru atau tidak
+	if ($_FILES['file_rab']['error'] === 4 ) {
+		$file = $fileLama;
+	} else {
+
+		$file = uploadFileRab();
+	}
+
+	$query = "UPDATE rab SET
+				doc_num = '$doc_num',
+				tgl_rab = '$tgl_rab',
+				file_rab = '$file',
+				id_user = '$id_user'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusRab($id_rab) {
+	global $koneksi;
+	mysqli_query($koneksi, "DELETE FROM rab WHERE id_rab=$id_rab");
+
+	return mysqli_affected_rows($koneksi);
+
+}
 
 
 function generate_kode_pengajuan() {
