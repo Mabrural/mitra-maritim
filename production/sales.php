@@ -459,7 +459,7 @@ if ($_SESSION["level"] == "Staff IT") {
                               break;
 
                             case 'inventarisAsset':
-                              include "page/06purchasing/inventaris_dan_asset/inventaris.php";
+                              include "page/06purchasing/inventaris_dan_asset/inventaris_read.php";
                               break;
 
                             case "RAB":
@@ -516,7 +516,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 break;
 
                             case 'dataBarang':
-                                include 'page/data_barang/barang.php';
+                                include 'page/data_barang/barang_read.php';
                                 break;
 
                             case 'invoicePembelian':
@@ -552,7 +552,7 @@ if ($_SESSION["level"] == "Staff IT") {
                               break;
 
                             case "disposal":
-                              include "page/06purchasing/inventaris_dan_asset/disposal.php";
+                              include "page/06purchasing/inventaris_dan_asset/disposal_read.php";
                               break;
 
                             case "monitoringSertifikat":
