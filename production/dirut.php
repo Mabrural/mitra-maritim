@@ -432,9 +432,9 @@ if ($_SESSION["level"] == "Staff IT") {
                               include "page/06purchasing/inventaris_dan_asset/inventaris_read.php";
                               break;
 
-                            case "RAB":
-                              include "page/01sales_dan_marketing/rab/rab.php";
-                              break;
+                              case "RAB":
+                                include "page/01sales_dan_marketing/rab/approve_rab/app2/app2.php";
+                                break;
   
 
                             case 'pengajuan':
@@ -662,6 +662,18 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'ubahProfil':
                                 include "page/profil/ubah.php";
                                 break;
+
+                            case "approveRab":
+                              include "page/01sales_dan_marketing/rab/approve_rab/app2/konfirmasiapp2.php";
+                              break;
+
+                            case "reviseRab":
+                              include "page/01sales_dan_marketing/rab/revise_rab/revise2/revise2.php";
+                              break;
+
+                            case "rejectRab":
+                              include "page/01sales_dan_marketing/rab/reject_rab/reject2.php";
+                              break;
 
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";

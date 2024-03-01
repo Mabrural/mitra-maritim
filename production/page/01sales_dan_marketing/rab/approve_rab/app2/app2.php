@@ -54,7 +54,7 @@ $id_user = $_SESSION["id_user"];
                 
                 <td class="last">
                     <?php
-                    if ($data['status_rab'] !== 'On Dirops') {
+                    if ($data['status_rab'] !== 'On Dirut') {
                         echo '<a href="?form=lihatRab&id_rab=' . $data["id_rab"] . '" class="btn btn-dark btn-sm btn disabled">' . $data['status_rab'] . '</a>';
                     } else {
                         echo '| <a href="?form=approveRab&id_rab=' . $data["id_rab"] . '" class="btn btn-success btn-sm" onclick="return confirm(\'Anda yakin ingin mengapprove data ini?\')">Approve</a>';
