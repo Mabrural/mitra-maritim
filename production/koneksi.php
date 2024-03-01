@@ -1257,6 +1257,55 @@ function rejectRab2($id_rab) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function approveRab3($id_rab) {
+	global $koneksi;
+	$rab_app3 = "Regina";	
+	$status_rab = "Selesai";	
+
+	$query = "UPDATE rab SET
+				rab_app3 = '$rab_app3',
+				status_rab = '$status_rab'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseRab3($id_rab) {
+	global $koneksi;
+	$rab_app1 = "";	
+	$rab_app2 = "";	
+	$status_rab = "Revise";	
+
+	$query = "UPDATE rab SET
+				rab_app1 = '$rab_app1',
+				rab_app2 = '$rab_app2',
+				status_rab = '$status_rab'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectRab3($id_rab) {
+	global $koneksi;
+	$rab_app1 = "";
+	$rab_app2 = "";
+	$status_rab = "Reject";	
+
+	$query = "UPDATE rab SET
+				rab_app1 = '$rab_app1',
+				rab_app2 = '$rab_app2',
+				status_rab = '$status_rab'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
 function generate_kode_pengajuan() {
   global $koneksi;
 
