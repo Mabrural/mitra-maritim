@@ -1169,6 +1169,49 @@ function hapusRab($id_rab) {
 
 }
 
+function approveRab1($id_rab) {
+	global $koneksi;
+	$rab_app1 = "Bambang Wahyudi";	
+	$status_rab = "On Dirut";	
+
+	$query = "UPDATE rab SET
+				rab_app1 = '$rab_app1',
+				status_rab = '$status_rab'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseRab1($id_rab) {
+	global $koneksi;
+	$rab_app1 = "";	
+	$status_rab = "Revise";	
+
+	$query = "UPDATE rab SET
+				rab_app1 = '$rab_app1',
+				status_rab = '$status_rab'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectRab1($id_rab) {
+	global $koneksi;
+	$status_rab = "Reject";	
+
+	$query = "UPDATE rab SET
+				status_rab = '$status_rab'
+			  WHERE id_rab = $id_rab
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
 
 function generate_kode_pengajuan() {
   global $koneksi;

@@ -52,16 +52,14 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_rab']));?></td>
                 <td class=" "><a href="files/rab/<?= $data['file_rab']; ?>" style="color:blue; text-decoration: underline;"><i class="fa fa-download"></i> Unduh RAB</a></td>
                 
-                <!-- <td class=" last"><a href="?form=lihatRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Approval</a> | <a href="?form=ubahRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRab&id_rab=<?= $data["id_rab"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
-                </td> -->
                 <td class="last">
                     <?php
-                    if ($data['status_rab'] === 'On Dirut' || $data['status_rab'] === 'Reject' || $data['status_rab'] === 'On Dirkeu' || $data['status_rab'] === 'Selesai') {
-                        echo '<a href="?form=lihatRab&id_rab=' . $data["id_rab"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
+                    if ($data['status_rab'] !== 'On Dirops') {
+                        echo '<a href="?form=lihatRab&id_rab=' . $data["id_rab"] . '" class="btn btn-dark btn-sm btn disabled">' . $data['status_rab'] . '</a>';
                     } else {
-                        echo '<a href="?form=lihatRab&id_rab=' . $data["id_rab"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                        echo '| <a href="?form=ubahRab&id_rab=' . $data["id_rab"] . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> </a>';
-                        echo '| <a href="?form=hapusRab&id_rab=' . $data["id_rab"] . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
+                        echo '| <a href="?form=approveRab&id_rab=' . $data["id_rab"] . '" class="btn btn-success btn-sm" onclick="return confirm(\'Anda yakin ingin mengapprove data ini?\')">Approve</a>';
+                        echo '| <a href="?form=reviseRab&id_rab=' . $data["id_rab"] . '" class="btn btn-info btn-sm" onclick="return confirm(\'Anda yakin ingin merevise data ini?\')">Revise </a>';
+                        echo '| <a href="?form=rejectRab&id_rab=' . $data["id_rab"] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Anda yakin ingin mereject data ini?\')">Reject</a>';
                     }
                     ?>
                 </td>

@@ -127,7 +127,7 @@ if (isset($_POST["submit"])) {
 										<input type="hidden" name='rab_app1' value="<?= $rab['rab_app1']?>">
 										<input type="hidden" name='rab_app2' value="<?= $rab['rab_app2']?>">
 										<input type="hidden" name='rab_app3' value="<?= $rab['rab_app3']?>">
-										<input type="hidden" name='status_rab' value='<?= $rab['status_rab']?>'>
+										<input type="hidden" name='status_rab' value='On Dirops'>
 							
 										
 										<div class="ln_solid"></div>
