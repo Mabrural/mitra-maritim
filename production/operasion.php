@@ -583,6 +583,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "vesselDatabase":
                                   include "page/02operasion_dan_shipping/vessel_database/vessel_database.php";
                                   break;
+
+                                case "pengajuanPPU":
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/ppu.php";
+                                  break;
+
+                                case "loanPanjar":
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar.php";
+                                  break;
                             
 
                             default:
@@ -593,6 +601,22 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "lihatRab":
+                            include "page/01sales_dan_marketing/rab/lihat_approve.php";
+                            break;
+
+                          case "tambahRab":
+                            include "page/01sales_dan_marketing/rab/tambah.php";
+                            break;
+
+                          case "ubahRab":
+                            include "page/01sales_dan_marketing/rab/ubah.php";
+                            break;
+
+                          case "hapusRab":
+                            include "page/01sales_dan_marketing/rab/hapus.php";
+                            break;
 
                             case "lihatLampiran":
                               include "page/04hrd/crew/lihat_lampiran.php";
