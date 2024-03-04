@@ -8,7 +8,7 @@ $id_user = $_SESSION["id_user"];
     <div class="x_panel">
       <div class="x_title">
         <h2>Loan / Panjar<small></small></h2>
-        <a href="?form=tambahRab" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New RAB</a>       
+        <a href="?form=tambahPpu" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New PPU</a>       
         <div class="clearfix"></div>
       </div>
 
@@ -24,9 +24,11 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Document Number </th>
-                <th class="column-title">Tanggal RAB </th>
-                <th class="column-title">File RAB</th>
+                <th class="column-title">Nomor PPU </th>
+                <th class="column-title">Tanggal Input </th>
+                <th class="column-title">Nama Pemohon</th>
+                <th class="column-title">Divisi</th>
+                <th class="column-title">Keperluan</th>
      
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -40,7 +42,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM rab";
+              		$query = "SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -48,22 +50,16 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['doc_num'];?></td>
-                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_rab']));?></td>
-                <td class=" "><a href="files/rab/<?= $data['file_rab']; ?>" style="color:blue; text-decoration: underline;"><i class="fa fa-download"></i> Unduh RAB</a></td>
+                <td class=" "><?= $data['no_ppu'];?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
+                <td class=" "><?= $data['nama_emp'];?></td>
+                <td class=" "><?= $data['nama_divisi'];?></td>
+                <td class=" "><?= $data['keperluan'];?></td>
+
                 
-                <!-- <td class=" last"><a href="?form=lihatRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Approval</a> | <a href="?form=ubahRab&id_rab=<?= $data["id_rab"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusRab&id_rab=<?= $data["id_rab"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
-                </td> -->
-                <td class="last">
-                    <?php
-                    if ($data['status_rab'] === 'On Dirut' || $data['status_rab'] === 'Reject' || $data['status_rab'] === 'On Dirkeu' || $data['status_rab'] === 'Selesai') {
-                        echo '<a href="?form=lihatRab&id_rab=' . $data["id_rab"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                    } else {
-                        echo '<a href="?form=lihatRab&id_rab=' . $data["id_rab"] . '" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i> </a>';
-                        echo '| <a href="?form=ubahRab&id_rab=' . $data["id_rab"] . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> </a>';
-                        echo '| <a href="?form=hapusRab&id_rab=' . $data["id_rab"] . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a>';
-                    }
-                    ?>
+                <td class=" last"><a href="?form=lihatUraian&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | <a href="?form=ubahPpu&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusPpu&id_ppu=<?= $data["id_ppu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                </td>
+            
                 </td>
               </tr>
               

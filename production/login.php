@@ -105,7 +105,7 @@ if (isset($_POST['login'])) {
                 showConfirmButton   : true
             });  
         },10);   setTimeout(function () {
-            window.location.href = 'finance.php'; //will redirect to your blog page (an ex: blog.html)
+            window.location.href = 'k-finance.php'; //will redirect to your blog page (an ex: blog.html)
         }, 2000); //will call the function after 2 secs
         </script>";
       }elseif ($row["level"] === "Purchasing") {

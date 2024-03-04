@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2024 at 11:39 AM
+-- Generation Time: Mar 04, 2024 at 11:45 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -519,7 +519,7 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 (1, 'Board of Directors'),
 (2, 'Managerial'),
 (3, 'Staff'),
-(4, 'Crew Armada'),
+(4, 'Crewing'),
 (5, 'Keuangan');
 
 -- --------------------------------------------------------
@@ -672,11 +672,11 @@ INSERT INTO `karyawan` (`id_emp`, `nama_emp`, `id_jabatan`, `id_divisi`, `status
 (15, 'Rika', 9, 3, 'Aktif', '65a4f45ead15a.png', '1990-08-12', 'Sumatra Barat', 'Perempuan', 'Tiban BTN', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
 (16, 'Krisno', 10, 3, 'Aktif', '65a4f45ead15a.png', '1990-11-20', 'Batam', 'Laki-laki', 'Sagulung', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
 (17, 'Niken', 11, 3, 'Aktif', '65a4f45ead15a.png', '2024-02-20', 'Batam', 'Perempuan', 'Batam Center', '0', 'admin@gmail.com', 'Belum Menikah', '0', '0', '0'),
-(18, 'Robby T. Hamisi ', 10, 3, 'Aktif', '65a4f45ead15a.png', '1980-08-08', 'Batam', 'Laki-laki', 'Nongsa', '082285686292', 'robby.t@gmail.com', 'Sudah Menikah', '2171012205180001', '082222050215000', '0'),
+(18, 'Robby T. Hamisi ', 10, 4, 'Aktif', '65a4f45ead15a.png', '1980-08-08', 'Batam', 'Laki-laki', 'Nongsa', '082285686292', 'robby.t@gmail.com', 'Sudah Menikah', '2171012205180001', '082222050215000', '0'),
 (19, 'Alex Untu', 10, 3, 'Aktif', '65d47dbca7657.png', '0000-00-00', 'Batam', 'Laki-laki', 'Bengkong Kolam Swadaya', '081100001212', 'alex@gmail.com', 'Belum Menikah', '2171012122030001', '927824938215000', '0'),
 (30, 'Muhammad Mabrur Al Mutaqi', 12, 3, 'Aktif', '65a8cc3d11e59.png', '2002-05-21', 'Batam', 'Laki-laki', 'Cipta Asri blok Herba no.120', '082178192938', 'mabruralmutaqi@gmail.com', 'Belum Menikah', '2171012105020001', '95.461.480.6-225.000', '0'),
 (34, 'Ardit Satoto', 12, 3, 'Tidak Aktif', '65d47dcf49cca.png', '1999-05-19', 'Batam', 'Perempuan', 'Botania 1 blok AB no. 5', '0', 'adit.hs85@gmail.com', 'Belum Menikah', '2171011945023331', '95.461.480.6-225.000', '0'),
-(37, 'Hendra', 7, 2, 'Aktif', '65d47da48862d.png', '1989-10-10', 'Batam', 'Laki-laki', 'Tiban', '0', 'adit.hs85@gmail.com', 'Belum Menikah', '2171012105020001', '95.461.480.6-225.000', '1090');
+(37, 'Hendra', 7, 2, 'Tidak Aktif', '65d47da48862d.png', '1989-10-10', 'Batam', 'Laki-laki', 'Tiban', '0', 'adit.hs85@gmail.com', 'Belum Menikah', '2171012105020001', '95.461.480.6-225.000', '1090');
 
 -- --------------------------------------------------------
 
@@ -990,6 +990,47 @@ CREATE TABLE `po_barang` (
   `id_user` int(10) NOT NULL,
   `id_no_po` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ppu`
+--
+
+CREATE TABLE `ppu` (
+  `id_ppu` int(10) NOT NULL,
+  `no_ppu` varchar(30) NOT NULL,
+  `tgl_ppu` date NOT NULL,
+  `keperluan` text NOT NULL,
+  `id_user` int(10) NOT NULL,
+  `id_emp` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ppu`
+--
+
+INSERT INTO `ppu` (`id_ppu`, `no_ppu`, `tgl_ppu`, `keperluan`, `id_user`, `id_emp`) VALUES
+(1, '001/ship/mmm/2024', '2024-03-04', 'beli sparepart kapal', 35, 18),
+(2, '002/ship/mmm/2024', '2024-03-28', 'pengurusan dokumen', 35, 18);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+CREATE TABLE `project` (
+  `id_project` int(10) NOT NULL,
+  `nama_project` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id_project`, `nama_project`) VALUES
+(1, 'Umum');
 
 -- --------------------------------------------------------
 
@@ -1386,6 +1427,31 @@ INSERT INTO `storage_barang` (`id_storage`, `tgl_input`, `qty_brg`, `kondisi_brg
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `uraian_ppu`
+--
+
+CREATE TABLE `uraian_ppu` (
+  `id_uraian` int(10) NOT NULL,
+  `nama_uraian` varchar(50) NOT NULL,
+  `qty_uraian` int(10) NOT NULL,
+  `id_satuan` int(10) NOT NULL,
+  `harga_satuan` int(10) NOT NULL,
+  `id_vessel` int(10) NOT NULL,
+  `id_project` int(10) NOT NULL,
+  `id_ppu` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `uraian_ppu`
+--
+
+INSERT INTO `uraian_ppu` (`id_uraian`, `nama_uraian`, `qty_uraian`, `id_satuan`, `harga_satuan`, `id_vessel`, `id_project`, `id_ppu`) VALUES
+(1, 'watercooler', 1, 2, 100000, 3, 1, 1),
+(2, 'bensin', 2, 2, 10000, 2, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -1402,7 +1468,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `id_emp`) VALUES
-(11, 'admin', '$2y$10$IgW4FLMwe9euVk0Ne9.ks.8ZhYCvheo7j1at4NiMIW38uOXYUM8pi', 'Kepala Cabang', 12),
+(11, 'michael', '$2y$10$5W46NlFg8dG4SGbmq88Vt.ixGj63amNJpVK/H6gm6vf4wtjmtb8Vq', 'Kepala Cabang', 12),
 (12, 'bambang', '$2y$10$SVagKtrQSTcXSCs7SKmhgeGxD3WshRv0IpPq2oD44P90gEUk.u5IG', 'Direktur Operasional', 11),
 (13, 'admin3', '$2y$10$Q3IQI9/N96Pkm12hhwZrRe152Y937dQmRcqeZZSshp0mpz2Mh7IjO', 'Purchasing', 19),
 (14, 'elis', '$2y$10$D4rpUxPZMdYYV5EBPAbWleveaycPXW5m/bsLGyhUWTF34uSzL1BJ2', 'Kepala Finance', 14),
@@ -1411,7 +1477,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`, `id_emp`) VALUES
 (27, 'alex', '$2y$10$AIPkK9rwsTtwIpWxWxQyl.B4q1KZkeHJuzk9htMLmXM3k7hgRuyzW', 'Purchasing', 19),
 (28, 'robi', '$2y$10$pi39ljqjbeI7Xgu6up8uie2wOUT6Gv7dwqsQXgvI60DotWKCmSvQC', 'Crew Armada', 18),
 (29, 'krisno', '$2y$10$L4mvXlNErUBxc9aw.wieM.LikfJ0pNRGPhJkc3ntkS1Ovi674xIiy', 'Staff Operasional', 16),
-(30, 'niken', '$2y$10$97K4MbdoDy98yZbu5BbtIOkSn4iT.PuudgLeGDIGb/USt79lGL6K2', 'Staff Finance', 17),
+(30, 'niken', '$2y$10$V0lMubpR1wYbfkLZds5B8ualjoLm5YsGnDPHBPbgxfok/ICrOtRNy', 'Staff Finance', 17),
 (31, 'mabrur', '$2y$10$zxwFH.e4ooAM3CgI8Wzi8Ot0AIZhzcnKMHNPSIprWt.gbQiArYqki', 'Staff IT', 30),
 (33, 'regina', '$2y$10$eyJDmSlVrm0AhnUWMi2KT.j8g.wrDKuDCNcpxqi.ZRWevSjBbwUXa', 'Direktur Keuangan', 9),
 (34, 'gahral', '$2y$10$htRb4rT9Pd08BIcc9/JnpeMPtqmVxkXU2Agz4JkQX0xFMj29ZBCtG', 'Kepala Operasional', 13),
@@ -1660,6 +1726,20 @@ ALTER TABLE `po_barang`
   ADD KEY `id_no_po` (`id_no_po`);
 
 --
+-- Indexes for table `ppu`
+--
+ALTER TABLE `ppu`
+  ADD PRIMARY KEY (`id_ppu`),
+  ADD KEY `id_emp` (`id_emp`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`id_project`);
+
+--
 -- Indexes for table `qrcode`
 --
 ALTER TABLE `qrcode`
@@ -1742,6 +1822,16 @@ ALTER TABLE `storage_barang`
   ADD KEY `id_room` (`id_room`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `kode_brg` (`kode_brg`);
+
+--
+-- Indexes for table `uraian_ppu`
+--
+ALTER TABLE `uraian_ppu`
+  ADD PRIMARY KEY (`id_uraian`),
+  ADD KEY `id_ppu` (`id_ppu`),
+  ADD KEY `id_project` (`id_project`),
+  ADD KEY `id_satuan` (`id_satuan`),
+  ADD KEY `id_vessel` (`id_vessel`);
 
 --
 -- Indexes for table `user`
@@ -1923,6 +2013,18 @@ ALTER TABLE `po_barang`
   MODIFY `id_po` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
+-- AUTO_INCREMENT for table `ppu`
+--
+ALTER TABLE `ppu`
+  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id_project` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
@@ -1983,6 +2085,12 @@ ALTER TABLE `storage_barang`
   MODIFY `id_storage` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
+-- AUTO_INCREMENT for table `uraian_ppu`
+--
+ALTER TABLE `uraian_ppu`
+  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -1998,7 +2106,7 @@ ALTER TABLE `vendor`
 -- AUTO_INCREMENT for table `vessel`
 --
 ALTER TABLE `vessel`
-  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_vessel` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -2082,6 +2190,13 @@ ALTER TABLE `po_barang`
   ADD CONSTRAINT `po_barang_ibfk_4` FOREIGN KEY (`id_no_po`) REFERENCES `no_po` (`id_no_po`);
 
 --
+-- Constraints for table `ppu`
+--
+ALTER TABLE `ppu`
+  ADD CONSTRAINT `ppu_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`),
+  ADD CONSTRAINT `ppu_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
 -- Constraints for table `qrcode`
 --
 ALTER TABLE `qrcode`
@@ -2144,6 +2259,15 @@ ALTER TABLE `storage_barang`
   ADD CONSTRAINT `storage_barang_ibfk_4` FOREIGN KEY (`id_room`) REFERENCES `lokasi_room` (`id_room`),
   ADD CONSTRAINT `storage_barang_ibfk_5` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
   ADD CONSTRAINT `storage_barang_ibfk_6` FOREIGN KEY (`kode_brg`) REFERENCES `barang` (`kode_brg`);
+
+--
+-- Constraints for table `uraian_ppu`
+--
+ALTER TABLE `uraian_ppu`
+  ADD CONSTRAINT `uraian_ppu_ibfk_1` FOREIGN KEY (`id_ppu`) REFERENCES `ppu` (`id_ppu`),
+  ADD CONSTRAINT `uraian_ppu_ibfk_2` FOREIGN KEY (`id_project`) REFERENCES `project` (`id_project`),
+  ADD CONSTRAINT `uraian_ppu_ibfk_3` FOREIGN KEY (`id_satuan`) REFERENCES `satuan` (`id_satuan`),
+  ADD CONSTRAINT `uraian_ppu_ibfk_4` FOREIGN KEY (`id_vessel`) REFERENCES `vessel` (`id_vessel`);
 
 --
 -- Constraints for table `user`
