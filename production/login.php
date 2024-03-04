@@ -234,6 +234,24 @@ if (isset($_POST['login'])) {
             window.location.href = 'operasion.php'; //will redirect to your blog page (an ex: blog.html)
         }, 2000); //will call the function after 2 secs
         </script>";
+      }elseif ($row["level"] === "Staff Finance") {
+        echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
+        echo '<script src="./sweetalert2.min.js"></script>';
+        echo "<script>
+        setTimeout(function () { 
+            swal.fire({
+                
+                title               : 'Login Berhasil',
+                text                :  'Anda akan diarahkan ke halaman dashboard',
+                //footer              :  '',
+                icon                : 'success',
+                timer               : 2000,
+                showConfirmButton   : true
+            });  
+        },10);   setTimeout(function () {
+            window.location.href = 'staff-finance.php'; //will redirect to your blog page (an ex: blog.html)
+        }, 2000); //will call the function after 2 secs
+        </script>";
       }else{
         echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
         echo '<script src="./sweetalert2.min.js"></script>';
