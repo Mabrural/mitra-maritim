@@ -57,7 +57,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['keperluan'];?></td>
 
                 
-                <td class=" last"><a href="?form=lihatUraian&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | <a href="?form=ubahPpu&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusPpu&id_ppu=<?= $data["id_ppu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=lihatUraian&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | <a href="?form=ubahPpu&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusPpu&id_ppu=<?= $data["id_ppu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
             
                 </td>

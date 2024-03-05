@@ -138,7 +138,7 @@ $id_posisi = isset($_GET['id_posisi']) ? $_GET['id_posisi'] : '';
                 <td class=" "><a href="?form=lihatLampiran&id_crew=<?= $data['id_crew']?>" style="text-decoration:underline; color: blue;">Lihat lampiran</a></td>
                 
             
-                <td class=" last"><a href="?form=ubahCrew&id_crew=<?= $data["id_crew"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusCrew&id_crew=<?= $data["id_crew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahCrew&id_crew=<?= $data["id_crew"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusCrew&id_crew=<?= $data["id_crew"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Hapus </a>
                 </td>
               </tr>
               

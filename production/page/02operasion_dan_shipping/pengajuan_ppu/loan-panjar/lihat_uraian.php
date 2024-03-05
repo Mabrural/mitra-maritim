@@ -10,7 +10,7 @@ $ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN
     <div class="x_panel">
       <div class="x_title">
         <h2>Uraian<small></small></h2>
-        <a href="?form=tambahUraian" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Uraian</a>
+        <a href="?form=tambahUraian&id_ppu=<?= $id_ppu;?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Uraian</a>
         <a href="?page=loanPanjar" class="btn btn-danger btn-sm"><i class="fa fa-left"></i> Back</a><br><br>
         <div class="float-left">
         <table>
@@ -78,7 +78,8 @@ $ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN
                 <th class="column-title">Jumlah</th>
                 <th class="column-title">Vessel</th>
                 <th class="column-title">Project</th>
-                <!-- <th class="column-title">Status</th> -->
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th>
 
                 </th>
                 <th class="bulk-actions" colspan="7">
@@ -91,39 +92,42 @@ $ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN
               <tr class="even pointer">
               	<?php 
               		$no = 1;
+                  $totalHarga = 0;
               		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project WHERE id_ppu=$id_ppu";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
-              	     		
-
+              	     		$jumlah = $data['qty_uraian'] * $data['harga_satuan'];
+                        $totalHarga += $jumlah;
+                        $harga_satuan = $data['harga_satuan'];
               	 ?>
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><?= $data['nama_uraian'];?></td>
                 <td class=" "><?= $data['qty_uraian'];?></td>
                 <td class=" "><?= $data['nama_satuan'];?></td>
-                <td class=" "><?= $data['harga_satuan'];?></td>
-                <td class=" "><?= $data['harga_satuan'] * $data['qty_uraian'];?></td>
+                <td class=" "><?= "Rp. " . number_format($harga_satuan, 2, ",", "."); ?></td>
+                <td class=" "><?= "Rp. " . number_format($jumlah, 2, ",", "."); ?></td>
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= $data['nama_project'];?></td>
-                <!-- <td class=" "><?= $data['nama_project'];?></td> -->
-                <!-- <td class=" ">
-                    <strong style="background-color: <?php
-                    if ($data['status_rab'] == 'Reject') {
-                        echo '#a62f26';
-                    } elseif ($data['status_rab'] == 'Selesai') {
-                      echo '#14a664';
-                    } else {
-                        echo '#b58709';
-                    }
-                ?>
-                 ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_rab'];?></strong> -->
+                <td class=" last"><a href="?form=ubahUraian&id_uraian=<?= $data["id_uraian"]?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusUraian&id_uraian=<?= $data["id_uraian"]?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                </td>
+              
                 
               </tr>
               
            <?php } ?>
 
             </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="5" style="text-align:right">Total:</th>
+                    <th><?= "Rp. " . number_format($totalHarga, 2, ",", "."); ?></th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th colspan="1"></th> <!-- Kolom aksi tidak perlu dihitung total -->
+                </tr>
+            </tfoot>
           </table>
 
           <script type="text/javascript">

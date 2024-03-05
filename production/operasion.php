@@ -602,6 +602,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
+                          case "tambahUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah.php";
+                            break;
+
                           case "lihatApprove":
                             include "page/01sales_dan_marketing/sales_plan/lihat_approve.php";
                             break;

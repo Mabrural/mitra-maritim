@@ -3837,4 +3837,88 @@ function hapusSertifikat($id_sertifikat) {
 
 }
 
+function tambahUraian($data) {
+
+	global $koneksi;
+	$nama_uraian = mysqli_real_escape_string($koneksi, $data["nama_uraian"]);
+	$qty_uraian = mysqli_real_escape_string($koneksi, $data["qty_uraian"]);
+	$id_satuan = mysqli_real_escape_string($koneksi, $data["id_satuan"]);
+	$harga_satuan = mysqli_real_escape_string($koneksi, $data["harga_satuan"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	$id_project = mysqli_real_escape_string($koneksi, $data["id_project"]);
+	$id_ppu = mysqli_real_escape_string($koneksi, $data["id_ppu"]);
+
+	
+
+	$query = "INSERT INTO uraian_ppu VALUES
+			('', '$nama_uraian', '$qty_uraian', '$id_satuan', '$harga_satuan', '$id_vessel', '$id_project', '$id_ppu')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+// function tambahUraian() {
+//     global $koneksi;
+  
+//     // Mendapatkan data dari POST
+//     $jum = isset($_POST['jum']) && $_POST['jum'] > 0 ? $_POST['jum'] : 0;
+  
+//     $nama_uraian = isset($_POST['nama_uraian']) ? $_POST['nama_uraian'] : array();
+//     $qty_uraian = isset($_POST['qty_uraian']) ? $_POST['qty_uraian'] : array();
+//     $id_satuan = isset($_POST['id_satuan']) ? $_POST['id_satuan'] : array();
+//     $harga_satuan = isset($_POST['harga_satuan']) ? $_POST['harga_satuan'] : array();
+//     $id_vessel = isset($_POST['id_vessel']) ? $_POST['id_vessel'] : array();
+//     $id_project = isset($_POST['id_project']) ? $_POST['id_project'] : array();
+//     $id_ppu = isset($_GET['id_ppu']) ? $_GET['id_ppu'] : null;
+  
+//     // Memvalidasi data
+//     if ($jum <= 0) {
+//         return false;
+//     }
+  
+//     // Membangun query INSERT
+//     $query = "INSERT INTO uraian_ppu (nama_uraian, qty_uraian, id_satuan, harga_satuan, id_vessel, id_project, id_ppu) VALUES ";
+  
+//     // Looping untuk setiap baris data
+//     for ($i = 0; $i < $jum; $i++) {
+//         // Memastikan semua data baris terisi
+//         if (
+//             !isset($nama_uraian[$i], $qty_uraian[$i], $id_satuan[$i], $harga_satuan[$i], $id_vessel[$i], $id_project[$i])
+//             || $nama_uraian[$i] === "" || $qty_uraian[$i] === "" || $id_satuan[$i] === "" || $harga_satuan[$i] === "" || $id_vessel[$i] === "" || $id_project[$i] === ""
+//         ) {
+//             return false;
+//         }
+  
+//         // Menambahkan data ke query
+//         $query .= "('" . mysqli_real_escape_string($koneksi, $nama_uraian[$i]) . "', "
+//             . mysqli_real_escape_string($koneksi, $qty_uraian[$i]) . ", "
+//             . mysqli_real_escape_string($koneksi, $id_satuan[$i]) . ", "
+//             . mysqli_real_escape_string($koneksi, $harga_satuan[$i]) . ", "
+//             . mysqli_real_escape_string($koneksi, $id_vessel[$i]) . ", "
+//             . mysqli_real_escape_string($koneksi, $id_project[$i]) . ", "
+//             . mysqli_real_escape_string($koneksi, $id_ppu) . "), ";
+//     }
+  
+//     // Menghapus koma terakhir dari query
+//     $query = rtrim($query, ", ");
+  
+//     // Menjalankan query
+//     return mysqli_multi_query($koneksi, $query);
+	
+// }
+
+  
+
+
+
+
+
+
+
+
+
+
+
  ?>

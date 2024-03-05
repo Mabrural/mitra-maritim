@@ -141,7 +141,7 @@ $id_vessel = isset($_GET['id_vessel']) ? $_GET['id_vessel'] : '';
                 
 
             
-                <td class=" last"><a href="?form=ubahSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" class="btn btn-info btn-sm">Update </a> | <a href="?form=hapusSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Update </a> | <a href="?form=hapusSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
               </tr>
               

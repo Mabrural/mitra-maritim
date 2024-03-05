@@ -77,7 +77,7 @@ $id_user = $_SESSION["id_user"];
                     ; color: white; padding-left: 5px; padding-right: 5px; padding-bottom: 5px; padding-top: 5px; font-weight: normal;"><?= $data['status_cert'];?></strong>
                 </td>
             
-                <td class=" last"><a href="?form=ubahSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" class="btn btn-info btn-sm">Update </a> | <a href="?form=hapusSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Update </a> | <a href="?form=hapusSertifikat&id_sertifikat=<?= $data["id_sertifikat"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
               </tr>
               
