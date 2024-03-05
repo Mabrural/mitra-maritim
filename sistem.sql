@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 11:45 AM
+-- Generation Time: Mar 05, 2024 at 11:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1077,7 +1077,7 @@ CREATE TABLE `rab` (
 --
 
 INSERT INTO `rab` (`id_rab`, `doc_num`, `tgl_rab`, `file_rab`, `id_user`, `id_sales`, `rab_app1`, `rab_app2`, `rab_app3`, `status_rab`) VALUES
-(12, 'RAB0000001', '2024-02-28', '65e153809d014.xlsx', 34, 17, '', '', '', 'On Dirops');
+(12, 'RAB0000001', '2024-02-28', '65e153809d014.xlsx', 34, 17, 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -1447,7 +1447,11 @@ CREATE TABLE `uraian_ppu` (
 
 INSERT INTO `uraian_ppu` (`id_uraian`, `nama_uraian`, `qty_uraian`, `id_satuan`, `harga_satuan`, `id_vessel`, `id_project`, `id_ppu`) VALUES
 (1, 'watercooler', 1, 2, 100000, 3, 1, 1),
-(2, 'bensin', 2, 2, 10000, 2, 1, 1);
+(2, 'bensin', 2, 2, 10000, 2, 1, 1),
+(90, 'Laptop', 1, 1, 35000, 1, 1, 2),
+(91, 'Lemari', 1, 1, 35000, 3, 1, 2),
+(92, 'Laptop', 1, 1, 10000000, 1, 1, 1),
+(93, 'AC 2PK', 1, 1, 5500000, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2088,7 +2092,7 @@ ALTER TABLE `storage_barang`
 -- AUTO_INCREMENT for table `uraian_ppu`
 --
 ALTER TABLE `uraian_ppu`
-  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `user`
