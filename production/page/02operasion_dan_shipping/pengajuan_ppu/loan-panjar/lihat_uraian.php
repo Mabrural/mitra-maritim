@@ -6,12 +6,15 @@ $id_user = $_SESSION["id_user"];
 $pembuat = query("SELECT * FROM ppu JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp")[0];
 
 $ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi WHERE id_ppu=$id_ppu")[0];
+
+$tgl_ppu = $ppu['tgl_ppu'];
+
 ?>
     <div class="x_panel">
       <div class="x_title">
         <h2>Uraian<small></small></h2>
         <a href="?form=tambahUraian&id_ppu=<?= $id_ppu;?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Uraian</a>
-        <a href="?page=loanPanjar" class="btn btn-danger btn-sm"><i class="fa fa-left"></i> Back</a><br><br>
+        <a href="?page=loanPanjar" class="btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a><br><br>
         <div class="float-left">
         <table>
                 <tbody style="font-size: 0.9rem;">
@@ -51,7 +54,7 @@ $ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN
                 <tr>
                     <td width="45%"><strong>Tanggal</strong></td>
                     <td>:&nbsp;&nbsp;</td>
-                    <td><?= $ppu['tgl_ppu']?></td>
+                    <td><?= date('d-M-Y', strtotime($tgl_ppu))?></td>
                 </tr>
 
             </tbody></table>

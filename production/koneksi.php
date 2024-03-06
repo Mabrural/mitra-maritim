@@ -3859,6 +3859,64 @@ function tambahUraian($data) {
 
 }
 
+
+function tambahPpu($data) {
+
+	global $koneksi;
+	$no_ppu = mysqli_real_escape_string($koneksi, $data["no_ppu"]);
+	$tgl_ppu = mysqli_real_escape_string($koneksi, $data["tgl_ppu"]);
+	$keperluan = mysqli_real_escape_string($koneksi, $data["keperluan"]);
+	$id_user = mysqli_real_escape_string($koneksi, $data["id_user"]);
+	$id_emp = mysqli_real_escape_string($koneksi, $data["id_emp"]);
+
+	$query = "INSERT INTO ppu VALUES
+			('', '$no_ppu', '$tgl_ppu', '$keperluan', '$id_user', '$id_emp')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+
+}
+
+function ubahPpu($data) {
+	global $koneksi;
+	$id_ppu = mysqli_real_escape_string($koneksi, $data['id_ppu']);
+	$no_ppu = mysqli_real_escape_string($koneksi, $data["no_ppu"]);
+	$tgl_ppu = mysqli_real_escape_string($koneksi, $data["tgl_ppu"]);
+	$keperluan = mysqli_real_escape_string($koneksi, $data["keperluan"]);
+	$id_user = mysqli_real_escape_string($koneksi, $data["id_user"]);
+	$id_emp = mysqli_real_escape_string($koneksi, $data["id_emp"]);
+
+	$query = "UPDATE ppu SET
+				no_ppu= '$no_ppu',
+				tgl_ppu= '$tgl_ppu',
+				keperluan= '$keperluan',
+				id_user= '$id_user',
+				id_emp= '$id_emp'
+			  WHERE id_ppu='$id_ppu'
+			";
+			
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function hapusPpu($id_ppu) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM ppu WHERE id_ppu='$id_ppu'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+
+
+
 // function tambahUraian() {
 //     global $koneksi;
   

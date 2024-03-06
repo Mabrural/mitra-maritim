@@ -29,6 +29,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Nama Pemohon</th>
                 <th class="column-title">Divisi</th>
                 <th class="column-title">Keperluan</th>
+                <th class="column-title">Status</th>
      
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -54,6 +55,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
                 <td class=" "><?= $data['nama_emp'];?></td>
                 <td class=" "><?= $data['nama_divisi'];?></td>
+                <td class=" "><?= $data['keperluan'];?></td>
                 <td class=" "><?= $data['keperluan'];?></td>
 
                 

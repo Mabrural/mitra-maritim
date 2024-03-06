@@ -603,7 +603,19 @@ if ($_SESSION["level"] == "Staff IT") {
                         switch ($form) {
 
                           case "tambahUraian":
-                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah.php";
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah-uraian.php";
+                            break;
+
+                          case "tambahPpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah_loan.php";
+                            break;
+
+                          case "ubahPpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/ubah_loan.php";
+                            break;
+
+                          case "hapusPpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/hapus_loan.php";
                             break;
 
                           case "lihatApprove":
