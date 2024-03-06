@@ -20,19 +20,19 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <tbody style="font-size: 0.9rem;">
 
                 <tr>
-                    <td width="45%"><strong>Nama Pemohon</strong></td>
+                    <td width="40%"><strong>Nama Pemohon</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['nama_emp']?></td>
                 </tr>
 
                 <tr>
-                    <td width="45%"><strong>Divisi</strong></td>
+                    <td width="40%"><strong>Divisi</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['nama_divisi']?></td>
                 </tr>
 
                 <tr>
-                    <td width="45%"><strong>Keperluan</strong></td>
+                    <td width="40%"><strong>Keperluan</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['keperluan']?></td>
                 </tr>
@@ -112,7 +112,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <td class=" "><?= "Rp. " . number_format($jumlah, 2, ",", "."); ?></td>
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= $data['nama_project'];?></td>
-                <td class=" last"><a href="?form=ubahUraian&id_uraian=<?= $data["id_uraian"]?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusUraian&id_uraian=<?= $data["id_uraian"]?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                <td class=" last"><a href="?form=ubahUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $id_ppu?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Ubah </a>   <a href="?form=hapusUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $data['id_ppu']?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
               
                 
@@ -182,7 +182,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <tbody style="font-size: 0.9rem;">
 
                 <tr>
-                    <td width="45%"><strong>Dibuat Oleh</strong></td>
+                    <td width="80%"><strong>Dibuat Oleh</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $pembuat['nama_emp'];?></td>
                 </tr>

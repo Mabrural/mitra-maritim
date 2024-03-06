@@ -3859,6 +3859,47 @@ function tambahUraian($data) {
 
 }
 
+function ubahUraian($data) {
+	global $koneksi;
+	$id_uraian = mysqli_real_escape_string($koneksi, $data['id_uraian']);
+	$nama_uraian = mysqli_real_escape_string($koneksi, $data["nama_uraian"]);
+	$qty_uraian = mysqli_real_escape_string($koneksi, $data["qty_uraian"]);
+	$id_satuan = mysqli_real_escape_string($koneksi, $data["id_satuan"]);
+	$harga_satuan = mysqli_real_escape_string($koneksi, $data["harga_satuan"]);
+	$id_vessel = mysqli_real_escape_string($koneksi, $data["id_vessel"]);
+	$id_project = mysqli_real_escape_string($koneksi, $data["id_project"]);
+	$id_ppu = mysqli_real_escape_string($koneksi, $data["id_ppu"]);
+
+
+	$query = "UPDATE uraian_ppu SET
+				nama_uraian= '$nama_uraian',
+				qty_uraian= '$qty_uraian',
+				id_satuan= '$id_satuan',
+				harga_satuan= '$harga_satuan',
+				id_vessel= '$id_vessel',
+				id_project= '$id_project',
+				id_ppu = '$id_ppu'
+			  WHERE id_uraian='$id_uraian'
+			";
+			
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+function hapusUraian($id_uraian) {
+	global $koneksi;
+	try{
+		mysqli_query($koneksi, "DELETE FROM uraian_ppu WHERE id_uraian='$id_uraian'");
+	}catch(Exception $e){
+		return false;
+	}
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
 
 function tambahPpu($data) {
 

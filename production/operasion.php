@@ -606,6 +606,14 @@ if ($_SESSION["level"] == "Staff IT") {
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah-uraian.php";
                             break;
 
+                          case "ubahUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/ubah-uraian.php";
+                            break;
+
+                          case "hapusUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/hapus-uraian.php";
+                            break;
+
                           case "tambahPpu":
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah_loan.php";
                             break;
