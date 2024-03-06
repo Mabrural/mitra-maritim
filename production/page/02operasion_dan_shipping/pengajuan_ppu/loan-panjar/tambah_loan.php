@@ -113,6 +113,12 @@ if (isset($_POST["submit"])) {
 					
 
 										<input type="hidden" name='id_user' value='<?= $id_user;?>'>
+										<input type="hidden" name='status_ppu' value='On Ka. Shipping'>
+										<input type="hidden" name='app_ppu1' value=''>
+										<input type="hidden" name='app_ppu2' value=''>
+										<input type="hidden" name='app_ppu3' value=''>
+										<input type="hidden" name='app_ppu4' value=''>
+										<input type="hidden" name='app_ppu5' value=''>
 							
 										
 										<div class="ln_solid"></div>

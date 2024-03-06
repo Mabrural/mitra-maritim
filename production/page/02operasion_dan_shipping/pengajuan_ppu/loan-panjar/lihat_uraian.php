@@ -20,19 +20,19 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <tbody style="font-size: 0.9rem;">
 
                 <tr>
-                    <td width="40%"><strong>Nama Pemohon</strong></td>
+                    <td width="55%"><strong>Nama Pemohon</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['nama_emp']?></td>
                 </tr>
 
                 <tr>
-                    <td width="40%"><strong>Divisi</strong></td>
+                    <td width="55%"><strong>Divisi</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['nama_divisi']?></td>
                 </tr>
 
                 <tr>
-                    <td width="40%"><strong>Keperluan</strong></td>
+                    <td width="55%"><strong>Keperluan</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['keperluan']?></td>
                 </tr>
@@ -96,7 +96,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
               	<?php 
               		$no = 1;
                   $totalHarga = 0;
-              		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project WHERE id_ppu=$id_ppu";
+              		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project JOIN ppu ON ppu.id_ppu=uraian_ppu.id_ppu WHERE ppu.id_ppu=$id_ppu";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -112,8 +112,12 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <td class=" "><?= "Rp. " . number_format($jumlah, 2, ",", "."); ?></td>
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= $data['nama_project'];?></td>
+
                 <td class=" last"><a href="?form=ubahUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $id_ppu?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Ubah </a>   <a href="?form=hapusUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $data['id_ppu']?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
+
+          
+
               
                 
               </tr>

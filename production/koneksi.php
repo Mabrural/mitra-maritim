@@ -3909,9 +3909,15 @@ function tambahPpu($data) {
 	$keperluan = mysqli_real_escape_string($koneksi, $data["keperluan"]);
 	$id_user = mysqli_real_escape_string($koneksi, $data["id_user"]);
 	$id_emp = mysqli_real_escape_string($koneksi, $data["id_emp"]);
+	$status_ppu = mysqli_real_escape_string($koneksi, $data["status_ppu"]);
+	$app_ppu1 = mysqli_real_escape_string($koneksi, $data["app_ppu1"]);
+	$app_ppu2 = mysqli_real_escape_string($koneksi, $data["app_ppu2"]);
+	$app_ppu3 = mysqli_real_escape_string($koneksi, $data["app_ppu3"]);
+	$app_ppu4 = mysqli_real_escape_string($koneksi, $data["app_ppu4"]);
+	$app_ppu5 = mysqli_real_escape_string($koneksi, $data["app_ppu5"]);
 
 	$query = "INSERT INTO ppu VALUES
-			('', '$no_ppu', '$tgl_ppu', '$keperluan', '$id_user', '$id_emp')";
+			('', '$no_ppu', '$tgl_ppu', '$keperluan', '$id_user', '$id_emp', '$status_ppu', '$app_ppu1', '$app_ppu2', '$app_ppu3', '$app_ppu4', '$app_ppu5')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -3927,13 +3933,25 @@ function ubahPpu($data) {
 	$keperluan = mysqli_real_escape_string($koneksi, $data["keperluan"]);
 	$id_user = mysqli_real_escape_string($koneksi, $data["id_user"]);
 	$id_emp = mysqli_real_escape_string($koneksi, $data["id_emp"]);
+	$status_ppu = mysqli_real_escape_string($koneksi, $data["status_ppu"]);
+	$app_ppu1 = mysqli_real_escape_string($koneksi, $data["app_ppu1"]);
+	$app_ppu2 = mysqli_real_escape_string($koneksi, $data["app_ppu2"]);
+	$app_ppu3 = mysqli_real_escape_string($koneksi, $data["app_ppu3"]);
+	$app_ppu4 = mysqli_real_escape_string($koneksi, $data["app_ppu4"]);
+	$app_ppu5 = mysqli_real_escape_string($koneksi, $data["app_ppu5"]);
 
 	$query = "UPDATE ppu SET
 				no_ppu= '$no_ppu',
 				tgl_ppu= '$tgl_ppu',
 				keperluan= '$keperluan',
 				id_user= '$id_user',
-				id_emp= '$id_emp'
+				id_emp= '$id_emp',
+				status_ppu= '$status_ppu',
+				app_ppu1= '$app_ppu1',
+				app_ppu2= '$app_ppu2',
+				app_ppu3= '$app_ppu3',
+				app_ppu4= '$app_ppu4',
+				app_ppu5= '$app_ppu5'
 			  WHERE id_ppu='$id_ppu'
 			";
 			

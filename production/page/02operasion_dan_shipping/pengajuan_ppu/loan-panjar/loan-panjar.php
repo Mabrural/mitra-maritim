@@ -56,11 +56,34 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['nama_emp'];?></td>
                 <td class=" "><?= $data['nama_divisi'];?></td>
                 <td class=" "><?= $data['keperluan'];?></td>
-                <td class=" "><?= $data['keperluan'];?></td>
+                <td class=" "><?= $data['status_ppu'];?></td>
 
                 
-                <td class=" last"><a href="?form=lihatUraian&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | <a href="?form=ubahPpu&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusPpu&id_ppu=<?= $data["id_ppu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                <!-- <td class=" last"><a href="?form=lihatUraian&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | <a href="?form=ubahPpu&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusPpu&id_ppu=<?= $data["id_ppu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                </td> -->
+
+                <td class="last">
+                    <?php
+                    $id_ppu = $data["id_ppu"];
+                    $query_check_uraian = "SELECT COUNT(*) as uraian_count FROM uraian_ppu WHERE id_ppu = $id_ppu";
+                    $result_check_uraian = mysqli_query($koneksi, $query_check_uraian);
+                    
+                    if ($result_check_uraian) {
+                        $uraian_count = mysqli_fetch_assoc($result_check_uraian)['uraian_count'];
+                        
+                        if ($uraian_count > 0 ) {
+                            // Jika terdapat data uraian, tampilkan tombol "Lihat Uraian" saja
+                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>';
+                        } else {
+                            // Jika tidak terdapat data uraian, tampilkan tombol "Lihat Uraian", "Ubah", dan "Hapus"
+                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | ';
+                            echo '<a href="?form=ubahPpu&id_ppu=' . $id_ppu . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah</a> | ';
+                            echo '<a href="?form=hapusPpu&id_ppu=' . $id_ppu . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>';
+                        }
+                    }
+                    ?>
                 </td>
+
             
                 </td>
               </tr>
