@@ -4016,7 +4016,34 @@ function rejectPpu1($id_ppu) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function approvePpu2($id_ppu) {
+	global $koneksi;
+	$app_ppu2 = "Michael";	
+	$status_ppu = "On Dirops";	
 
+	$query = "UPDATE ppu SET
+				app_ppu2 = '$app_ppu2',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
 
+	return mysqli_affected_rows($koneksi);
+}
+
+function revisePpu2($id_ppu) {
+	global $koneksi;
+	$app_ppu1 = "";	
+	$status_ppu = "Revise";	
+
+	$query = "UPDATE ppu SET
+				app_ppu1 = '$app_ppu1',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
 
  ?>

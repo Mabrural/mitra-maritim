@@ -71,7 +71,7 @@ $id_user = $_SESSION["id_user"];
                     if ($result_check_uraian) {
                         $uraian_count = mysqli_fetch_assoc($result_check_uraian)['uraian_count'];
                         
-                        if ($uraian_count > 0 ) {
+                        if ($data['status_ppu'] !== 'Revise') {
                             // Jika terdapat data uraian, tampilkan tombol "Lihat Uraian" saja
                             echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>';
                         } else {

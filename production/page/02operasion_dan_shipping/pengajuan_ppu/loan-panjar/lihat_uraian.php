@@ -5,7 +5,7 @@ $id_ppu = mysqli_real_escape_string($koneksi, $_GET['id_ppu']);
 $id_user = $_SESSION["id_user"];
 $pembuat = query("SELECT * FROM ppu JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp")[0];
 
-$ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi WHERE id_ppu=$id_ppu")[0];
+$ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN user ON user.id_user=ppu.id_user WHERE id_ppu=$id_ppu")[0];
 
 $tgl_ppu = $ppu['tgl_ppu'];
 
@@ -96,7 +96,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
               	<?php 
               		$no = 1;
                   $totalHarga = 0;
-              		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project JOIN ppu ON ppu.id_ppu=uraian_ppu.id_ppu JOIN user ON user.id_user=ppu.id_user WHERE ppu.id_ppu=$id_ppu";
+              		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project JOIN ppu ON ppu.id_ppu=uraian_ppu.id_ppu WHERE ppu.id_ppu=$id_ppu";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
