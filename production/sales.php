@@ -570,7 +570,14 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "sertifikatAktif":
                               include "page/02operasion_dan_shipping/monitoring_sertifikat/sertifikat_aktif_read.php";
                               break;
+                            
+                            case "pengajuanPPU":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/ppu.php";
+                              break;
 
+                            case "loanPanjar":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app1/app1.php";
+                              break;
               
                             
 
@@ -583,12 +590,28 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
+                            case "approvePpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app1/konfirmasiapp1.php";
+                              break;
+
+                            case "revisePpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/revise/revise1/revise1.php";
+                              break;
+
+                            case "rejectPpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/reject/reject1.php";
+                              break;
+
                             case "lihatRab":
                               include "page/01sales_dan_marketing/rab/lihat_approve.php";
                               break;
 
                             case "lihatLampiran":
                               include "page/04hrd/crew/lihat_lampiran_read.php";
+                              break;
+
+                            case "lihatUraian":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
                               break;
 
                             case "tambahCrew":

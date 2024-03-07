@@ -3,9 +3,9 @@
 $id_ppu = mysqli_real_escape_string($koneksi, $_GET['id_ppu']);
 
 $id_user = $_SESSION["id_user"];
-$pembuat = query("SELECT * FROM ppu JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp")[0];
+// $pembuat = query("SELECT * FROM ppu JOIN user ON user.id_user=$id_user JOIN karyawan ON karyawan.id_emp=user.id_emp")[0];
 
-$ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi WHERE id_ppu=$id_ppu")[0];
+$ppu = query("SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi JOIN user ON user.id_user=ppu.id_user WHERE id_ppu=$id_ppu")[0];
 
 $tgl_ppu = $ppu['tgl_ppu'];
 
@@ -13,7 +13,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
     <div class="x_panel">
       <div class="x_title">
         <h2>Uraian<small></small></h2>
-        <a href="?form=tambahUraian&id_ppu=<?= $id_ppu;?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Uraian</a>
+        <!-- <a href="?form=tambahUraian&id_ppu=<?= $id_ppu;?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Uraian</a> -->
         <a href="?page=loanPanjar" class="btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a><br><br>
         <div class="float-left">
         <table>
@@ -81,10 +81,10 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <th class="column-title">Jumlah</th>
                 <th class="column-title">Vessel</th>
                 <th class="column-title">Project</th>
-                <th class="column-title no-link last"><span class="nobr">Action</span>
-                </th>
+                <!-- <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th> -->
 
-                </th>
+                
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                 </th>
@@ -96,7 +96,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
               	<?php 
               		$no = 1;
                   $totalHarga = 0;
-              		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project JOIN ppu ON ppu.id_ppu=uraian_ppu.id_ppu JOIN user ON user.id_user=ppu.id_user WHERE ppu.id_ppu=$id_ppu";
+              		$query = "SELECT * FROM uraian_ppu JOIN satuan ON satuan.id_satuan=uraian_ppu.id_satuan JOIN vessel ON vessel.id_vessel=uraian_ppu.id_vessel JOIN project ON project.id_project=uraian_ppu.id_project JOIN ppu ON ppu.id_ppu=uraian_ppu.id_ppu WHERE ppu.id_ppu=$id_ppu";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -113,8 +113,8 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <td class=" "><?= $data['nama_vessel'];?></td>
                 <td class=" "><?= $data['nama_project'];?></td>
 
-                <td class=" last"><a href="?form=ubahUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $id_ppu?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Ubah </a>   <a href="?form=hapusUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $data['id_ppu']?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
-                </td>
+                <!-- <td class=" last"><a href="?form=ubahUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $id_ppu?>" class="btn btn-info btn-sm"> <i class="fa fa-edit"></i> Ubah </a>   <a href="?form=hapusUraian&id_uraian=<?= $data["id_uraian"]?>&id_ppu=<?= $data['id_ppu']?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                </td> -->
 
           
 
@@ -132,7 +132,6 @@ $tgl_ppu = $ppu['tgl_ppu'];
                     <th><?= "Rp. " . number_format($totalHarga, 2, ",", "."); ?></th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
-                    <th colspan="1"></th> <!-- Kolom aksi tidak perlu dihitung total -->
                 </tr>
             </tfoot>
           </table>
@@ -188,7 +187,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <tr>
                     <td width="80%"><strong>Dibuat Oleh</strong></td>
                     <td>:&nbsp;&nbsp;</td>
-                    <td><?= $ppu['username']?></td>
+                    <td><?= $ppu['username'];?></td>
                 </tr>
 
                 <tr>
