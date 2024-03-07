@@ -88,7 +88,7 @@ $id_user = $_SESSION["id_user"];
                             // Jika terdapat data uraian, tampilkan tombol "Lihat Uraian" saja
                             echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>';
                         } elseif($uraian_count > 0){
-                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | ';
+                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>  ';
                             echo ' <a href="?form=approvePpu&id_ppu=' . $data["id_ppu"] . '" class="btn btn-success btn-sm" onclick="return confirm(\'Anda yakin ingin mengapprove data ini?\')"><i class="fa fa-check"></i> Approve</a>';
                             echo ' <a href="?form=revisePpu&id_ppu=' . $data["id_ppu"] . '" class="btn btn-info btn-sm" onclick="return confirm(\'Anda yakin ingin merevise data ini?\')"><i class="fa fa-edit"></i> Revise </a>';
                             echo ' <a href="?form=rejectPpu&id_ppu=' . $data["id_ppu"] . '" class="btn btn-danger btn-sm" onclick="return confirm(\'Anda yakin ingin mereject data ini?\')"><i class="fa fa-ban"></i> Reject</a>';

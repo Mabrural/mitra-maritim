@@ -557,7 +557,7 @@ if ($_SESSION["level"] == "Staff IT") {
                               break;
 
                             case "rejectPpu":
-                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/reject/reject1.php";
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/reject/reject2.php";
                               break;
 
                           case "lihatRab":

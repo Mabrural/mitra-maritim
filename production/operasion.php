@@ -638,6 +638,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian.php";
                             break;
 
+                            case "lihatUraianRead":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                              break;
+
                           case "tambahRab":
                             include "page/01sales_dan_marketing/rab/tambah.php";
                             break;

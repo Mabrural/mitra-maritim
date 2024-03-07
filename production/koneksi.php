@@ -4046,4 +4046,19 @@ function revisePpu2($id_ppu) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function rejectPpu2($id_ppu) {
+	global $koneksi;
+	$app_ppu1 = '';
+	$status_ppu = "Reject";	
+
+	$query = "UPDATE ppu SET
+				app_ppu1 = '$app_ppu1',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
  ?>
