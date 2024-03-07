@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2024 at 11:50 AM
+-- Generation Time: Mar 07, 2024 at 11:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1090,8 +1090,9 @@ CREATE TABLE `ppu` (
 --
 
 INSERT INTO `ppu` (`id_ppu`, `no_ppu`, `tgl_ppu`, `keperluan`, `id_user`, `id_emp`, `status_ppu`, `app_ppu1`, `app_ppu2`, `app_ppu3`, `app_ppu4`, `app_ppu5`) VALUES
-(1, '001/ship/mmm/2024', '2024-03-04', 'beli sparepart kapal', 35, 30, 'On Ka. Shipping', '', '', '', '', ''),
-(13, '002/SHIP/MMM/2024', '2024-03-06', 'pembelian sparepart', 35, 18, 'On Kacab', '', '', '', '', '');
+(1, '001/ship/mmm/2024', '2024-03-04', 'beli sparepart kapal', 35, 30, 'Reject', NULL, '', '', '', ''),
+(13, '002/SHIP/MMM/2024', '2024-03-06', 'pembelian sparepart-revise2', 35, 18, 'Reject', 'Gahral', '', '', '', ''),
+(14, '002/SHIP/MMM/2024', '2024-03-07', 'Beli inventaris kantor(revise4)', 35, 17, 'Reject', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1156,7 +1157,8 @@ CREATE TABLE `rab` (
 --
 
 INSERT INTO `rab` (`id_rab`, `doc_num`, `tgl_rab`, `file_rab`, `id_user`, `id_sales`, `rab_app1`, `rab_app2`, `rab_app3`, `status_rab`) VALUES
-(12, 'RAB0000001', '2024-02-28', '65e153809d014.xlsx', 34, 17, 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai');
+(12, 'RAB0000001', '2024-02-28', '65e153809d014.xlsx', 34, 17, 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai'),
+(13, 'RAB0000002', '2024-03-07', '65e92df116d55.pdf', 34, 17, '', '', '', 'On Dirops');
 
 -- --------------------------------------------------------
 
@@ -1559,7 +1561,8 @@ INSERT INTO `uraian_ppu` (`id_uraian`, `nama_uraian`, `qty_uraian`, `id_satuan`,
 (2, 'bensin', 2, 2, 10000, 2, 1, 1),
 (92, 'Laptop', 1, 1, 10000000, 1, 1, 1),
 (93, 'AC 2PK', 1, 1, 5500000, 1, 1, 1),
-(103, 'Laptop ROG', 1, 1, 18000000, 1, 1, 13);
+(106, 'AC 1/2PK', 1, 2, 1200000, 2, 1, 13),
+(107, 'AC 2PK', 2, 1, 3400000, 2, 1, 14);
 
 -- --------------------------------------------------------
 
@@ -2202,7 +2205,7 @@ ALTER TABLE `po_barang`
 -- AUTO_INCREMENT for table `ppu`
 --
 ALTER TABLE `ppu`
-  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -2220,7 +2223,7 @@ ALTER TABLE `qrcode`
 -- AUTO_INCREMENT for table `rab`
 --
 ALTER TABLE `rab`
-  MODIFY `id_rab` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_rab` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `reimburse_cost`
@@ -2286,7 +2289,7 @@ ALTER TABLE `storage_barang`
 -- AUTO_INCREMENT for table `uraian_ppu`
 --
 ALTER TABLE `uraian_ppu`
-  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `user`
