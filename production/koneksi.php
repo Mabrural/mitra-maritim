@@ -4163,4 +4163,60 @@ function rejectPpu4($id_ppu) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function approvePpu5($id_ppu) {
+	global $koneksi;
+	$app_ppu5 = "Regina";	
+	$status_ppu = "Selesai";	
+
+	$query = "UPDATE ppu SET
+				app_ppu5 = '$app_ppu5',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function revisePpu5($id_ppu) {
+	global $koneksi;
+	$app_ppu1 = "";	
+	$app_ppu2 = "";	
+	$app_ppu3 = "";	
+	$app_ppu4 = "";	
+	$status_ppu = "Revise";	
+
+	$query = "UPDATE ppu SET
+				app_ppu1 = '$app_ppu1',
+				app_ppu2 = '$app_ppu2',
+				app_ppu3 = '$app_ppu3',
+				app_ppu4 = '$app_ppu4',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectPpu5($id_ppu) {
+	global $koneksi;
+	$app_ppu1 = '';
+	$app_ppu2 = '';
+	$app_ppu3 = '';
+	$app_ppu4 = '';
+	$status_ppu = "Reject";	
+
+	$query = "UPDATE ppu SET
+				app_ppu1 = '$app_ppu1',
+				app_ppu2 = '$app_ppu2',
+				app_ppu3 = '$app_ppu3',
+				app_ppu4 = '$app_ppu4',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
  ?>
