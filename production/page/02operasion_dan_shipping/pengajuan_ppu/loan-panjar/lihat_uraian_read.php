@@ -185,7 +185,7 @@ $tgl_ppu = $ppu['tgl_ppu'];
                 <tbody style="font-size: 0.9rem;">
 
                 <tr>
-                    <td width="80%"><strong>Dibuat Oleh</strong></td>
+                    <td width="45%"><strong>Dibuat Oleh</strong></td>
                     <td>:&nbsp;&nbsp;</td>
                     <td><?= $ppu['username'];?></td>
                 </tr>

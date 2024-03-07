@@ -4061,4 +4061,52 @@ function rejectPpu2($id_ppu) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function approvePpu3($id_ppu) {
+	global $koneksi;
+	$app_ppu3 = "Bambang Wahyudi";	
+	$status_ppu = "On Dirut";	
+
+	$query = "UPDATE ppu SET
+				app_ppu3 = '$app_ppu3',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function revisePpu3($id_ppu) {
+	global $koneksi;
+	$app_ppu1 = "";	
+	$app_ppu2 = "";	
+	$status_ppu = "Revise";	
+
+	$query = "UPDATE ppu SET
+				app_ppu1 = '$app_ppu1',
+				app_ppu2 = '$app_ppu2',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectPpu3($id_ppu) {
+	global $koneksi;
+	$app_ppu1 = '';
+	$app_ppu2 = '';
+	$status_ppu = "Reject";	
+
+	$query = "UPDATE ppu SET
+				app_ppu1 = '$app_ppu1',
+				app_ppu2 = '$app_ppu2',
+				status_ppu = '$status_ppu'
+			  WHERE id_ppu = $id_ppu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
  ?>
