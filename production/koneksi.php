@@ -4219,4 +4219,77 @@ function rejectPpu5($id_ppu) {
 
 	return mysqli_affected_rows($koneksi);
 }
+
+
+function tambahBpu($data) {
+	global $koneksi;
+	$tgl_bpu = htmlspecialchars($data["tgl_bpu"]);
+	$id_emp = htmlspecialchars($data["id_emp"]);
+	$nominal_tf = htmlspecialchars($data["nominal_tf"]);
+	$note_bpu = htmlspecialchars($data["note_bpu"]);
+	$id_ppu = htmlspecialchars($data["id_ppu"]);
+	$id_user = htmlspecialchars($data["id_user"]);
+	
+	$bukti_tf =  uploadBuktiTf();
+	if (!$bukti_tf) {
+		return false;
+	}
+
+	$query = "INSERT INTO bpu_ppu VALUES
+			('', '$tgl_bpu', '$id_emp', '$nominal_tf', '$note_bpu', '$bukti_tf', '$id_ppu', '$id_user')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function uploadBuktiTf(){
+
+	$namaFile = $_FILES['bukti_tf']['name'];
+	$ukuranFile = $_FILES['bukti_tf']['size'];
+	$error = $_FILES['bukti_tf']['error'];
+	$tmpName = $_FILES['bukti_tf']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran File terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/bukti_tf_bpu/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
  ?>

@@ -156,7 +156,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="k-finance.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="k-finance.php?page=BPU">PPU & BPU</a></li>
                       <li><a href="k-finance.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
                       <li><a href="k-finance.php?page=dataBarang">Penjualan (Omset)</a></li>
                       <li><a href="k-finance.php?page=dataBarang">Laba & Rugi</a></li>
@@ -529,6 +529,14 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "loanPanjar":
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar.php";
                                   break;
+
+                                case "bpuLoanPanjar":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu_loan.php";
+                                  break;
+
+                                case "BPU":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
+                                  break;
                             
 
                             default:
@@ -540,7 +548,19 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
-                        case "lihatApprove":
+                          case "tambahBpu":
+                            include "page/03_finance_dan_accounting/bpu_ppu/tambah.php";
+                            break;
+
+                          case "lihatUraianRead":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                            break;
+
+                          case "lihatUraianBpu":
+                            include "page/03_finance_dan_accounting/bpu_ppu/lihat_uraian_bpu.php";
+                            break;
+
+                          case "lihatApprove":
                             include "page/01sales_dan_marketing/sales_plan/lihat_approve_read.php";
                             break;
 
