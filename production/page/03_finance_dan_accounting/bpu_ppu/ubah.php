@@ -8,6 +8,8 @@ $crew = query("SELECT * FROM crew");
 $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai' AND 
              NOT EXISTS (SELECT 1 FROM bpu_ppu WHERE bpu_ppu.id_ppu = ppu.id_ppu)");
 
+$bpu_loan = query("SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu")[0];
+
 
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
@@ -68,7 +70,7 @@ if (isset($_POST["submit"])) {
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>New BPU (Bukti Pengeluaran Uang)<small></small></h2>
+									<h2>Ubah BPU (Bukti Pengeluaran Uang)<small></small></h2>
 	
 									<div class="clearfix"></div>
 								</div>
@@ -80,12 +82,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="no_ppu">Nomor PPU <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="id_ppu" required>
-													<option value="">--Pilih No PPU--</option>
-													<?php foreach($ppu as $row) : ?>
-														<option value="<?= $row['id_ppu']?>"><?= $row['no_ppu']?> </option>
-													<?php endforeach;?>	
-												</select>
+												<input type="text" name='id_ppu' value="<?= $bpu_loan['no_ppu']?>" class="form-control" readonly>
 											</div>
 										</div>
 
@@ -93,7 +90,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal PPU <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="date" name="tgl_bpu" id="tgl_bpu" required="required" class="form-control">
+												<input type="date" name="tgl_bpu" id="tgl_bpu" required="required" class="form-control" value="<?= $bpu_loan['tgl_bpu']?>">
 											</div>
 										</div>
 
@@ -104,7 +101,7 @@ if (isset($_POST["submit"])) {
 												<select class="form-control" name="id_emp">
 													<option value="">--Pilih Penerima Dana--</option>
 													<?php foreach($karyawan as $row) : ?>
-														<option value="<?= $row['id_emp']?>"><?= $row['nama_emp']?> </option>
+														<option value="<?= $row['id_emp']?>" <?= ($row['id_emp'] == $bpu_loan['id_emp']) ? 'selected' : '';?>><?= $row['nama_emp']?> </option>
 													<?php endforeach;?>	
 												</select>
 												
@@ -116,7 +113,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_tf">Nominal Transfer <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" min="0" name="nominal_tf" id="nominal_tf" required="required" class="form-control" placeholder="Nominal Transfer">
+												<input type="number" min="0" name="nominal_tf" id="nominal_tf" required="required" class="form-control" placeholder="Nominal Transfer" value="<?= $bpu_loan['nominal_tf']?>">
 											</div>
 										</div>
 
@@ -124,7 +121,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="note_bpu">Note 
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<textarea name="note_bpu" id="note_bpu" cols="30" rows="5" placeholder="Ketikkan Note " class="form-control" style="resize: none;"></textarea>
+												<textarea name="note_bpu" id="note_bpu" cols="30" rows="5" placeholder="Ketikkan Note " class="form-control" style="resize: none;"><?= $bpu_loan['note_bpu']?></textarea>
 											</div>
 										</div>
 

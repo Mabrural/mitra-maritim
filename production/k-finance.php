@@ -548,8 +548,12 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
-                          case "tambahBpu":
+                          case "tambahBpuLoan":
                             include "page/03_finance_dan_accounting/bpu_ppu/tambah.php";
+                            break;
+
+                          case "ubahBpuLoan":
+                            include "page/03_finance_dan_accounting/bpu_ppu/ubah.php";
                             break;
 
                           case "lihatUraianRead":
