@@ -556,6 +556,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             include "page/03_finance_dan_accounting/bpu_ppu/ubah.php";
                             break;
 
+                          case "hapusBpuLoan":
+                            include "page/03_finance_dan_accounting/bpu_ppu/hapus.php";
+                            break;
+
                           case "lihatUraianRead":
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
                             break;

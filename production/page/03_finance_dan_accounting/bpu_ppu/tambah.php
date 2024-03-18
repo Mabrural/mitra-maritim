@@ -23,14 +23,14 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'PPU berhasil ditambahkan',
+				text                :  'BPU berhasil ditambahkan',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=loanPanjar'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=bpuLoanPanjar'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>"; 
 
@@ -42,14 +42,14 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'PPU gagal ditambahkan',
+				text                :  'BPU gagal ditambahkan',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=loanPanjar'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=bpuLoanPanjar'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 

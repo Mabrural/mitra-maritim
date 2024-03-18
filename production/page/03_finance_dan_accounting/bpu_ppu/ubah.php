@@ -1,12 +1,13 @@
 <?php
 
 $id_user = $_SESSION['id_user'];
+$id_bpu = mysqli_real_escape_string($koneksi, $_GET['id_bpu']);
 $karyawan = query("SELECT * FROM karyawan WHERE status='Aktif'");
 $crew = query("SELECT * FROM crew");
 
 // $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai'");
 $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai' AND 
-             NOT EXISTS (SELECT 1 FROM bpu_ppu WHERE bpu_ppu.id_ppu = ppu.id_ppu)");
+             EXISTS (SELECT 1 FROM bpu_ppu WHERE bpu_ppu.id_ppu = ppu.id_ppu)");
 
 $bpu_loan = query("SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu")[0];
 
@@ -14,10 +15,9 @@ $bpu_loan = query("SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu")
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
 	
-
-
 	// cek apakah data berhasil ditambahkan atau tidak
-	if(tambahBpu($_POST) > 0 ) {
+	if(ubahBpu($_POST) > 0 ) {
+	
 		echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 		echo '<script src="./sweetalert2.min.js"></script>';
 		echo "<script>
@@ -25,14 +25,14 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'PPU berhasil ditambahkan',
+				text                :  'BPU berhasil diubah',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=loanPanjar'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=bpuLoanPanjar'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>"; 
 
@@ -44,14 +44,14 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'PPU gagal ditambahkan',
+				text                :  'BPU gagal diubah',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
 				showConfirmButton   : true
 			});  
 		},10);   setTimeout(function () {
-			window.location.href = '?page=loanPanjar'; //will redirect to your blog page (an ex: blog.html)
+			window.location.href = '?page=bpuLoanPanjar'; //will redirect to your blog page (an ex: blog.html)
 		}, 2000); //will call the function after 2 secs
 		</script>";
 
@@ -77,12 +77,17 @@ if (isset($_POST["submit"])) {
 								<div class="x_content">
 									<br />
 									<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
-
+										<input type="hidden" name='id_bpu' value="<?= $id_bpu?>">
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="no_ppu">Nomor PPU <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" name='id_ppu' value="<?= $bpu_loan['no_ppu']?>" class="form-control" readonly>
+												<select class="form-control" name="id_ppu">
+													<option value="">--No. PPU--</option>
+													<?php foreach($ppu as $row) : ?>
+														<option value="<?= $row['id_ppu']?>" <?= ($row['id_ppu'] == $bpu_loan['id_ppu']) ? 'selected' : '';?>><?= $row['no_ppu']?> </option>
+													<?php endforeach;?>	
+												</select>
 											</div>
 										</div>
 
@@ -128,7 +133,12 @@ if (isset($_POST["submit"])) {
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Bukti TF (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="file" name="bukti_tf" required>
+												<input type="file" name="bukti_tf">
+												<?php if (!empty($bpu_loan['bukti_tf'])): ?>
+										            <br>
+										            <p class="file-selected">File sebelumnya: <?= $bpu_loan['bukti_tf'] ?></p>
+										            <input type="hidden" name="bukti_tf_lama" value="<?= $bpu_loan['bukti_tf'] ?>">
+										        <?php endif; ?>
 											</div>
 										</div>
 
@@ -142,7 +152,7 @@ if (isset($_POST["submit"])) {
 											<div class="col-md-6 col-sm-6 offset-md-3">
 												<a href="?page=bpuLoanPanjar" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
 												<button class="btn btn-primary btn-sm" type="reset"><i class="fa fa-refresh"></i> Reset</button>
-												<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-send-o"></i> Submit</button>
+												<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-edit"></i> Update</button>
 											</div>
 										</div>
 

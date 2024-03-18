@@ -4292,4 +4292,47 @@ function uploadBuktiTf(){
 	return $namaFileBaru;
  }
 
+ function ubahBpu($data) {
+	global $koneksi;
+	$id_bpu = $data['id_bpu'];
+	$tgl_bpu = htmlspecialchars($data["tgl_bpu"]);
+	$id_emp = htmlspecialchars($data["id_emp"]);
+	$nominal_tf = htmlspecialchars($data["nominal_tf"]);
+	$note_bpu = htmlspecialchars($data["note_bpu"]);
+	$bukti_tf_lama = htmlspecialchars($data["bukti_tf_lama"]);
+	$id_ppu = htmlspecialchars($data["id_ppu"]);
+	$id_user = htmlspecialchars($data["id_user"]);
+	
+
+	// cek apakah user pilih gambar baru atau tidak
+	if ($_FILES['bukti_tf']['error'] === 4 ) {
+		$bukti_tf = $bukti_tf_lama;
+	} else {
+
+		$bukti_tf = uploadBuktiTf();
+	}
+
+	$query = "UPDATE bpu_ppu SET
+				tgl_bpu = '$tgl_bpu',
+				id_emp = '$id_emp',
+				nominal_tf = '$nominal_tf',
+				note_bpu = '$note_bpu',
+				bukti_tf = '$bukti_tf',
+				id_ppu = '$id_ppu',
+				id_user = '$id_user'
+			  WHERE id_bpu = $id_bpu
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusBpu($id_bpu) {
+	global $koneksi;
+	mysqli_query($koneksi, "DELETE FROM bpu_ppu WHERE id_bpu=$id_bpu");
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
  ?>
