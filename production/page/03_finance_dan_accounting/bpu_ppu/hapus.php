@@ -20,12 +20,7 @@ if( hapusBpu($id_bpu) > 0 ){
 		window.location.href = '?page=bpuLoanPanjar'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
-	// echo "
-	// 	<script>
-	// 		alert('Data berhasil dihapus!');
-	// 		document.location.href = 'index.php';
-	// 	</script>
-	// ";
+
 } else {
     echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 	echo '<script src="./sweetalert2.min.js"></script>';
@@ -44,12 +39,7 @@ if( hapusBpu($id_bpu) > 0 ){
 		window.location.href = '?page=bpuLoanPanjar'; //will redirect to your blog page (an ex: blog.html)
 	}, 2000); //will call the function after 2 secs
 	</script>";
-	// echo "
-	// 	<script>
-	// 		alert('Data gagal dihapus');
-	// 		document.location.href = 'index.php';
-	// 	</script>
-	// ";
+
  }
 
  ?>
