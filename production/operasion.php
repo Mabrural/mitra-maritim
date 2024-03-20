@@ -591,6 +591,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "loanPanjar":
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar.php";
                                   break;
+
+                                case "penyelesaianBpu":
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/penyelesaian.php";
+                                  break;
                             
 
                             default:
@@ -601,6 +605,10 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "tambahPenyelesaian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/tambah.php";
+                            break;
 
                           case "tambahUraian":
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah-uraian.php";
