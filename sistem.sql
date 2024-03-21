@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2024 at 11:45 AM
+-- Generation Time: Mar 21, 2024 at 11:28 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -253,6 +253,13 @@ CREATE TABLE `bpu_ppu` (
   `id_ppu` int(10) NOT NULL,
   `id_user` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bpu_ppu`
+--
+
+INSERT INTO `bpu_ppu` (`id_bpu`, `tgl_bpu`, `id_emp`, `nominal_tf`, `note_bpu`, `bukti_tf`, `id_ppu`, `id_user`) VALUES
+(12, '2024-03-18', 30, 150000, '-', '65f7d0c0f00ed.jpeg', 16, 14);
 
 -- --------------------------------------------------------
 
@@ -718,7 +725,7 @@ CREATE TABLE `karyawan` (
 
 INSERT INTO `karyawan` (`id_emp`, `nama_emp`, `id_jabatan`, `id_divisi`, `status`, `gambar`, `tgl_lahir`, `tempat`, `jenis_kelamin`, `alamat`, `no_hp`, `email`, `status_pernikahan`, `nik`, `npwp`, `norek_mandiri`) VALUES
 (5, 'Andre Yogi', 7, 3, 'Tidak Aktif', '65a4f45ead15a.png', '2024-02-20', 'Batam', 'Laki-laki', '-', '0', 'admin@gmail.com', 'Belum Menikah', '0', '0', '0'),
-(8, 'Raden Sulaiman Sanjeev', 1, 1, 'Aktif', '65a4f45ead15a.png', '1985-01-01', 'Batam', 'Laki-laki', '-', '0', 'sanjeev@bumi-laut.com', 'Sudah Menikah', '1312', '1321', '0'),
+(8, 'Raden Sulaiman Sanjeev', 1, 1, 'Aktif', '65a4f45ead15a.png', '1973-12-31', 'Jakarta', 'Laki-laki', 'Jl Cempaka Mas No 16 Cluster Paradise', '081210001331', 'sanjeev@mitra-maritim.com', 'Sudah Menikah', '3171063112730009', '07.599.947.4-076.000', '0'),
 (9, 'Regina', 2, 1, 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Perempuan', 'sukajadi', '0', 'admin@gmail.com', 'Sudah Menikah', '0', '0', '0'),
 (10, 'James Taju', 3, 1, 'Aktif', '65a4f45ead15a.png', '1980-01-01', 'Batam', 'Laki-laki', 'Duta Mas', '12312310000', 'btm@gmail.xom', 'Sudah Menikah', '123', '123', '0'),
 (11, 'Bambang Wahyudi', 4, 1, 'Aktif', '65a4f45ead15a.png', '0000-00-00', 'Batam', 'Laki-laki', '-', '0', 'btm@gmail.xom', 'Sudah Menikah', '132', '132', '0'),
@@ -994,8 +1001,8 @@ CREATE TABLE `penyelesaian` (
   `bukti_nota` varchar(50) NOT NULL,
   `selisih` int(10) NOT NULL,
   `status_end` varchar(50) NOT NULL,
-  `id_user` int(10) NOT NULL,
-  `id_ppu` int(10) NOT NULL
+  `id_emp` int(10) NOT NULL,
+  `id_bpu` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1159,7 +1166,7 @@ CREATE TABLE `rab` (
 
 INSERT INTO `rab` (`id_rab`, `doc_num`, `tgl_rab`, `file_rab`, `id_user`, `id_sales`, `rab_app1`, `rab_app2`, `rab_app3`, `status_rab`) VALUES
 (12, 'RAB0000001', '2024-02-28', '65e153809d014.xlsx', 34, 17, 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 'Selesai'),
-(13, 'RAB0000002', '2024-03-07', '65e92df116d55.pdf', 34, 17, '', '', '', 'On Dirops');
+(13, 'RAB0000002', '2024-03-08', '65e92df116d55.pdf', 34, 17, '', '', '', 'On Dirops');
 
 -- --------------------------------------------------------
 
@@ -1851,8 +1858,8 @@ ALTER TABLE `on_duty`
 --
 ALTER TABLE `penyelesaian`
   ADD PRIMARY KEY (`id_end`),
-  ADD KEY `id_ppu` (`id_ppu`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_bpu` (`id_bpu`),
+  ADD KEY `id_emp` (`id_emp`);
 
 --
 -- Indexes for table `port`
@@ -2051,7 +2058,7 @@ ALTER TABLE `bpu_expenses`
 -- AUTO_INCREMENT for table `bpu_ppu`
 --
 ALTER TABLE `bpu_ppu`
-  MODIFY `id_bpu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_bpu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `crew`
@@ -2183,7 +2190,7 @@ ALTER TABLE `on_duty`
 -- AUTO_INCREMENT for table `penyelesaian`
 --
 ALTER TABLE `penyelesaian`
-  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `port`
@@ -2410,8 +2417,8 @@ ALTER TABLE `on_duty`
 -- Constraints for table `penyelesaian`
 --
 ALTER TABLE `penyelesaian`
-  ADD CONSTRAINT `penyelesaian_ibfk_1` FOREIGN KEY (`id_ppu`) REFERENCES `ppu` (`id_ppu`),
-  ADD CONSTRAINT `penyelesaian_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `penyelesaian_ibfk_3` FOREIGN KEY (`id_bpu`) REFERENCES `bpu_ppu` (`id_bpu`),
+  ADD CONSTRAINT `penyelesaian_ibfk_4` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
 
 --
 -- Constraints for table `po_barang`
