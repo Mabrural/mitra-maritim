@@ -2,17 +2,12 @@
 
 $id_user = $_SESSION['id_user'];
 $karyawan = query("SELECT * FROM karyawan WHERE status='Aktif'");
-$crew = query("SELECT * FROM crew");
 
 // $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai'");
-$bpu_ppu = query("SELECT *
-            FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu
-                WHERE EXISTS (
-                    SELECT 1
-                    FROM ppu
-                    WHERE bpu_ppu.id_ppu = ppu.id_ppu
-                );
-            ");
+$bpu_ppu = query("SELECT * FROM bpu_ppu 
+                 JOIN ppu ON ppu.id_ppu = bpu_ppu.id_ppu 
+                 WHERE NOT EXISTS (SELECT 1 FROM penyelesaian WHERE penyelesaian.id_bpu = bpu_ppu.id_bpu)");
+
 
 
 // cek apakah tombol submit sudah ditekan atau belum
@@ -21,7 +16,7 @@ if (isset($_POST["submit"])) {
 
 
 	// cek apakah data berhasil ditambahkan atau tidak
-	if(tambahBpu($_POST) > 0 ) {
+	if(tambahPenyelesaian($_POST) > 0 ) {
 		echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 		echo '<script src="./sweetalert2.min.js"></script>';
 		echo "<script>
@@ -29,7 +24,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'BPU berhasil ditambahkan',
+				text                :  'Penyelesaian berhasil ditambahkan',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
@@ -48,7 +43,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'BPU gagal ditambahkan',
+				text                :  'Penyelesaian gagal ditambahkan',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
@@ -86,23 +81,22 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="no_ppu">Nomor PPU <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="id_ppu" required>
+												<select class="form-control" name="id_bpu" required>
 													<option value="">--Pilih No PPU--</option>
 													<?php foreach($bpu_ppu as $row) : ?>
-														<option value="<?= $row['id_ppu']?>"><?= $row['no_ppu']?> </option>
+														<option value="<?= $row['id_bpu']?>"><?= $row['no_ppu']?> </option>
 													<?php endforeach;?>	
 												</select>
 											</div>
 										</div>
 
                                         <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal PPU <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal Penyelesaian <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="date" name="tgl_bpu" id="tgl_bpu" required="required" class="form-control">
+												<input type="date" name="tgl_end" id="tgl_end" required="required" class="form-control">
 											</div>
 										</div>
-
 
                                         <div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Penerima Dana <span class="required">*</span></label>
@@ -119,32 +113,45 @@ if (isset($_POST["submit"])) {
 
 
                                         <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_tf">Nominal Transfer <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_use">Total Pemakaian <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" min="0" name="nominal_tf" id="nominal_tf" required="required" class="form-control" placeholder="Nominal Transfer">
+												<input type="number" min="0" name="nominal_use" id="angkaInput" required="required" class="form-control" placeholder="Total Pemakaian" >
 											</div>
 										</div>
 
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="note_bpu">Note 
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="selisih">Selisih <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<textarea name="note_bpu" id="note_bpu" cols="30" rows="5" placeholder="Ketikkan Note " class="form-control" style="resize: none;"></textarea>
+												<input type="number" min="0" name="selisih" id="angkaInput" required="required" class="form-control" placeholder="Selisih">
 											</div>
 										</div>
 
 										<div class="item form-group">
-											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Bukti TF (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
+											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Bukti Nota (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="file" name="bukti_tf" required>
+												<input type="file" name="bukti_nota" required>
 											</div>
 										</div>
+
+										<!-- <script>
+											function formatAngka(input) {
+												// Menghapus karakter selain angka
+												let angka = input.value.replace(/\D/g, '');
+
+												// Menggunakan fungsi Number() untuk mengonversi string menjadi angka
+												angka = Number(angka);
+
+												// Menggunakan fungsi toLocaleString() untuk memformat angka dengan tanda pemisah ribuan
+												input.value = angka.toLocaleString();
+											}
+										</script> -->
 
                                         
 					
 
-										<input type="hidden" name='id_user' value='<?= $id_user;?>'>
+										<input type="hidden" name='status_end' value='Selesai'>
 										
 										<div class="ln_solid"></div>
 										<div class="item form-group">

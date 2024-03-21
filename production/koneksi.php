@@ -4335,4 +4335,76 @@ function hapusBpu($id_bpu) {
 
 }
 
+function tambahPenyelesaian($data) {
+	global $koneksi;
+	$tgl_end = htmlspecialchars($data["tgl_end"]);
+	$nominal_use = htmlspecialchars($data["nominal_use"]);
+	$selisih = htmlspecialchars($data["selisih"]);
+	$status_end = htmlspecialchars($data["status_end"]);
+	$id_bpu = htmlspecialchars($data["id_bpu"]);
+	$id_emp = htmlspecialchars($data["id_emp"]);
+	
+	$bukti_nota =  uploadNota();
+	if (!$bukti_nota) {
+		return false;
+	}
+
+	$query = "INSERT INTO penyelesaian VALUES
+			('', '$tgl_end, '$nominal_use', '$bukti_nota', '$selisih', '$status_end', '$id_emp', '$id_bpu')";
+	mysqli_query($koneksi, $query);
+
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function uploadNota(){
+
+	$namaFile = $_FILES['bukti_nota']['name'];
+	$ukuranFile = $_FILES['bukti_nota']['size'];
+	$error = $_FILES['bukti_nota']['error'];
+	$tmpName = $_FILES['bukti_nota']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran File terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/bukti_nota/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
  ?>

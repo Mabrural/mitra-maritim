@@ -44,7 +44,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM penyelesaian JOIN ppu ON ppu.id_ppu=penyelesaian.id_ppu JOIN user ON user.id_user=penyelesaian.id_user JOIN karyawan ON karyawan.id_emp=user.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
+              		$query = "SELECT * FROM penyelesaian JOIN bpu_ppu ON bpu_ppu.id_bpu=penyelesaian.id_bpu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=penyelesaian.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
                     
               		
               		$tampil = mysqli_query($koneksi, $query);
