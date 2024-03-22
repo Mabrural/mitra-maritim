@@ -43,7 +43,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.id_emp";
+              		$query = "SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.penerima_dana";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
@@ -52,7 +52,7 @@ $id_user = $_SESSION["id_user"];
               	 ?>
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><a href="?form=lihatUraianBpu&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
-                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_bpu']));?></td>
                 <td class=" "><?= $data['nama_emp'];?></td>
                 <td class=" "><?= $data['nominal_tf'];?></td>
                 <td class=" "><?= $data['note_bpu'];?></td>

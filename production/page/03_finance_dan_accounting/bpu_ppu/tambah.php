@@ -101,7 +101,7 @@ if (isset($_POST["submit"])) {
                                         <div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Penerima Dana <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="id_emp">
+												<select class="form-control" name="penerima_dana">
 													<option value="">--Pilih Penerima Dana--</option>
 													<?php foreach($karyawan as $row) : ?>
 														<option value="<?= $row['id_emp']?>"><?= $row['nama_emp']?> </option>

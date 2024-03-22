@@ -9,7 +9,7 @@ $crew = query("SELECT * FROM crew");
 $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai' AND 
              EXISTS (SELECT 1 FROM bpu_ppu WHERE bpu_ppu.id_ppu = ppu.id_ppu)");
 
-$bpu_loan = query("SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu")[0];
+$bpu_loan = query("SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu WHERE id_bpu=$id_bpu")[0];
 
 
 // cek apakah tombol submit sudah ditekan atau belum
@@ -92,7 +92,7 @@ if (isset($_POST["submit"])) {
 										</div>
 
                                         <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal PPU <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal Transfer <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
 												<input type="date" name="tgl_bpu" id="tgl_bpu" required="required" class="form-control" value="<?= $bpu_loan['tgl_bpu']?>">
@@ -103,10 +103,10 @@ if (isset($_POST["submit"])) {
                                         <div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Penerima Dana <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="id_emp">
+												<select class="form-control" name="penerima_dana">
 													<option value="">--Pilih Penerima Dana--</option>
 													<?php foreach($karyawan as $row) : ?>
-														<option value="<?= $row['id_emp']?>" <?= ($row['id_emp'] == $bpu_loan['id_emp']) ? 'selected' : '';?>><?= $row['nama_emp']?> </option>
+														<option value="<?= $row['id_emp']?>" <?= ($row['id_emp'] == $bpu_loan['penerima_dana']) ? 'selected' : '';?>><?= $row['nama_emp']?> </option>
 													<?php endforeach;?>	
 												</select>
 												

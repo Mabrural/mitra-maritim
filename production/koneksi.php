@@ -4224,7 +4224,7 @@ function rejectPpu5($id_ppu) {
 function tambahBpu($data) {
 	global $koneksi;
 	$tgl_bpu = htmlspecialchars($data["tgl_bpu"]);
-	$id_emp = htmlspecialchars($data["id_emp"]);
+	$penerima_dana = htmlspecialchars($data["penerima_dana"]);
 	$nominal_tf = htmlspecialchars($data["nominal_tf"]);
 	$note_bpu = htmlspecialchars($data["note_bpu"]);
 	$id_ppu = htmlspecialchars($data["id_ppu"]);
@@ -4236,7 +4236,7 @@ function tambahBpu($data) {
 	}
 
 	$query = "INSERT INTO bpu_ppu VALUES
-			('', '$tgl_bpu', '$id_emp', '$nominal_tf', '$note_bpu', '$bukti_tf', '$id_ppu', '$id_user')";
+			('', '$tgl_bpu', '$penerima_dana', '$nominal_tf', '$note_bpu', '$bukti_tf', '$id_ppu', '$id_user')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -4296,7 +4296,7 @@ function uploadBuktiTf(){
 	global $koneksi;
 	$id_bpu = $data['id_bpu'];
 	$tgl_bpu = htmlspecialchars($data["tgl_bpu"]);
-	$id_emp = htmlspecialchars($data["id_emp"]);
+	$penerima_dana = htmlspecialchars($data["penerima_dana"]);
 	$nominal_tf = htmlspecialchars($data["nominal_tf"]);
 	$note_bpu = htmlspecialchars($data["note_bpu"]);
 	$bukti_tf_lama = htmlspecialchars($data["bukti_tf_lama"]);
@@ -4314,7 +4314,7 @@ function uploadBuktiTf(){
 
 	$query = "UPDATE bpu_ppu SET
 				tgl_bpu = '$tgl_bpu',
-				id_emp = '$id_emp',
+				penerima_dana = '$penerima_dana',
 				nominal_tf = '$nominal_tf',
 				note_bpu = '$note_bpu',
 				bukti_tf = '$bukti_tf',
@@ -4350,7 +4350,7 @@ function tambahPenyelesaian($data) {
 	}
 
 	$query = "INSERT INTO penyelesaian VALUES
-			('', '$tgl_end, '$nominal_use', '$bukti_nota', '$selisih', '$status_end', '$id_emp', '$id_bpu')";
+			('', '$tgl_end', '$nominal_use', '$bukti_nota', '$selisih', '$status_end', '$id_emp', '$id_bpu')";
 	mysqli_query($koneksi, $query);
 
 
