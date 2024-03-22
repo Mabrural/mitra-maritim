@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 10:29 AM
+-- Generation Time: Mar 22, 2024 at 10:52 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1010,7 +1010,7 @@ CREATE TABLE `penyelesaian` (
 --
 
 INSERT INTO `penyelesaian` (`id_end`, `tgl_end`, `nominal_use`, `bukti_nota`, `selisih`, `status_end`, `id_bpu`, `bukti_return`, `bukti_reimburse`) VALUES
-(7, '2024-03-22', 150000, '65fd4e20c4408.png', 0, 'Nihil', 15, '', '');
+(8, '2024-03-22', 150000, '65fd4fb7ae280.jpeg', 0, 'Return', 15, '65fd4fb7ae40d.jpeg', '');
 
 -- --------------------------------------------------------
 
@@ -2188,7 +2188,7 @@ ALTER TABLE `on_duty`
 -- AUTO_INCREMENT for table `penyelesaian`
 --
 ALTER TABLE `penyelesaian`
-  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `port`
