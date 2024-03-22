@@ -28,9 +28,10 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">Tanggal Input </th>
                 <th class="column-title">Nominal Pemakaian </th>
                 <th class="column-title">Selisih </th>
-                <th class="column-title">Nama Pemohon</th>
-                <th class="column-title">Divisi</th>
                 <th class="column-title">Status</th>
+                <th class="column-title">Bukti Nota</th>
+                <th class="column-title">Bukti Return</th>
+                <th class="column-title">Bukti Reimburse</th>
      
                 <th class="column-title no-link last"><span class="nobr">Action</span>
                 </th>
@@ -44,7 +45,7 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM penyelesaian JOIN bpu_ppu ON bpu_ppu.id_bpu=penyelesaian.id_bpu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=penyelesaian.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
+              		$query = "SELECT * FROM penyelesaian JOIN bpu_ppu ON bpu_ppu.id_bpu=penyelesaian.id_bpu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.penerima_dana JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
                     
               		
               		$tampil = mysqli_query($koneksi, $query);
@@ -53,61 +54,20 @@ $id_user = $_SESSION["id_user"];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><?= $data['no_ppu'];?></td>
+                <td class=" "><a href="?form=lihatUraianRead&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
                 <td class=" "><?= $data['nominal_use'];?></td>
                 <td class=" "><?= $data['selisih'];?></td>
-                <td class=" "><?= $data['nama_emp'];?></td>
-                <td class=" "><?= $data['nama_divisi'];?></td>
                 <td class=" "><?= $data['status_end'];?></td>
+                <td class=" "><a href="files/bukti_nota/<?= $data['bukti_nota'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Nota</a></td>
+                <td class=" "><a href="files/bukti_nota/<?= $data['bukti_return'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Return</a></td>
+                <td class=" "><?= $data['bukti_reimburse'];?></td>
 
                 
-                <!-- <td class=" last"><a href="?form=lihatUraian&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | <a href="?form=ubahPpu&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusPpu&id_ppu=<?= $data["id_ppu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
-                </td> -->
+                <td class=" last"><a href="?form=ubahPenyelesaian=<?= $data["id_end"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a>
+                </td>
 
-                <!-- <td class="last">
-                    <?php
-                    $id_ppu = $data["id_ppu"];
-                    $query_check_uraian = "SELECT COUNT(*) as uraian_count FROM uraian_ppu WHERE id_ppu = $id_ppu";
-                    $result_check_uraian = mysqli_query($koneksi, $query_check_uraian);
-                    
-                    if ($result_check_uraian) {
-                        $uraian_count = mysqli_fetch_assoc($result_check_uraian)['uraian_count'];
-                        
-                        if ($data['status_ppu'] !== 'Revise' || $data['status_ppu'] !== 'Reject') {
-                            // Jika terdapat data uraian, tampilkan tombol "Lihat Uraian" saja
-                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>';
-                        }else {
-                            // Jika tidak terdapat data uraian, tampilkan tombol "Lihat Uraian", "Ubah", dan "Hapus"
-                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | ';
-                            echo '<a href="?form=ubahPpu&id_ppu=' . $id_ppu . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah</a> | ';
-                            echo '<a href="?form=hapusPpu&id_ppu=' . $id_ppu . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>';
-                        }
-                    }
-                    ?>
-                </td> -->
-
-                <td class="last">
-                  <?php
-                  $id_ppu = $data["id_ppu"];
-                  $query_check_uraian = "SELECT COUNT(*) as uraian_count FROM uraian_ppu WHERE id_ppu = $id_ppu";
-                  $result_check_uraian = mysqli_query($koneksi, $query_check_uraian);
-
-                  if ($result_check_uraian) {
-                      $uraian_count = mysqli_fetch_assoc($result_check_uraian)['uraian_count'];
-
-                      if ($data['status_ppu'] === 'Revise' || $data['status_ppu'] === 'On Ka. Shipping') {
-                          // Jika status_ppu adalah 'Revise' atau 'On Ka. Shipping', tampilkan tombol "Lihat Uraian", "Ubah", dan "Hapus"
-                          echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | ';
-                          echo '<a href="?form=ubahPpu&id_ppu=' . $id_ppu . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah</a> | ';
-                          echo '<a href="?form=hapusPpu&id_ppu=' . $id_ppu . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>';
-                      } else {
-                          // Jika status_ppu bukan 'Revise' atau 'On Ka. Shipping', tampilkan tombol "Lihat Uraian" saja
-                          echo '<a href="?form=lihatUraianRead&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>';
-                      }
-                  }
-                  ?>
-              </td>
+              
 
 
             

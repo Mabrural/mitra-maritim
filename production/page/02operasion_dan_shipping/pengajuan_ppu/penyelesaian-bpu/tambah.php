@@ -3,7 +3,6 @@
 $id_user = $_SESSION['id_user'];
 $karyawan = query("SELECT * FROM karyawan WHERE status='Aktif'");
 
-// $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai'");
 $bpu_ppu = query("SELECT * FROM bpu_ppu 
                  JOIN ppu ON ppu.id_ppu = bpu_ppu.id_ppu 
                  WHERE NOT EXISTS (SELECT 1 FROM penyelesaian WHERE penyelesaian.id_bpu = bpu_ppu.id_bpu)");
@@ -98,19 +97,6 @@ if (isset($_POST["submit"])) {
 									</div>
 								</div>
 
-								<div class="item form-group">
-									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Penerima Dana <span class="required">*</span></label>
-									<div class="col-md-6 col-sm-6 ">
-										<select class="form-control" name="id_emp">
-											<option value="">--Pilih Penerima Dana--</option>
-											<?php foreach($karyawan as $row) : ?>
-												<option value="<?= $row['id_emp']?>"><?= $row['nama_emp']?> </option>
-											<?php endforeach;?>	
-										</select>
-										
-									</div>
-								</div>
-
 
 								<div class="item form-group">
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_use">Total Pemakaian <span class="required">*</span>
@@ -129,9 +115,36 @@ if (isset($_POST["submit"])) {
 								</div>
 
 								<div class="item form-group">
-									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Bukti Nota (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
+									<label class="col-form-label col-md-3 col-sm-3 label-align" for="selisih">Status <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 ">
+										<select name="status_end" id="" class="form-control">
+											<option value="Nihil">--Pilih Status--</option>
+											<option value="Nihil">Nihil</option>
+											<option value="Reimburse">Reimburse</option>
+											<option value="Return">Return</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bukti Nota (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 ">
 										<input type="file" name="bukti_nota" required>
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bukti Return (.jpg, .png, .jpeg .pdf) </label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="bukti_return">
+									</div>
+								</div>
+
+								<div class="item form-group">
+									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bukti Reimburse (.jpg, .png, .jpeg .pdf) <br> <b style="color:red">(Diisi oleh Finance)</b></label>
+									<div class="col-md-6 col-sm-6 ">
+										<input type="file" name="bukti_reimburse">
 									</div>
 								</div>
 
@@ -148,15 +161,12 @@ if (isset($_POST["submit"])) {
 									}
 								</script> -->
 
-								
 			
-
-								<input type="hidden" name='status_end' value='Selesai'>
 								
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
-										<a href="?page=bpuLoanPanjar" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+										<a href="?page=penyelesaianBpu" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
 										<button class="btn btn-primary btn-sm" type="reset"><i class="fa fa-refresh"></i> Reset</button>
 										<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-send-o"></i> Submit</button>
 									</div>
@@ -170,17 +180,4 @@ if (isset($_POST["submit"])) {
 		</div>
     </div>
 
-    <script>
-        document.getElementById('pemohon_type').addEventListener('change', function() {
-            var karyawanDropdown = document.getElementById('karyawan_dropdown');
-            var crewDropdown = document.getElementById('crew_dropdown');
 
-            if (this.value === 'karyawan') {
-                karyawanDropdown.style.display = 'block';
-                crewDropdown.style.display = 'none';
-            } else if (this.value === 'crew') {
-                karyawanDropdown.style.display = 'none';
-                crewDropdown.style.display = 'block';
-            }
-        });
-    </script>

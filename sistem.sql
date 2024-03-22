@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2024 at 11:28 AM
+-- Generation Time: Mar 22, 2024 at 10:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -246,20 +246,19 @@ CREATE TABLE `bpu_expenses` (
 CREATE TABLE `bpu_ppu` (
   `id_bpu` int(10) NOT NULL,
   `tgl_bpu` date NOT NULL,
-  `id_emp` int(10) NOT NULL,
+  `penerima_dana` int(10) NOT NULL,
   `nominal_tf` int(10) NOT NULL,
   `note_bpu` text DEFAULT NULL,
   `bukti_tf` varchar(50) NOT NULL,
-  `id_ppu` int(10) NOT NULL,
-  `id_user` int(10) NOT NULL
+  `id_ppu` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `bpu_ppu`
 --
 
-INSERT INTO `bpu_ppu` (`id_bpu`, `tgl_bpu`, `id_emp`, `nominal_tf`, `note_bpu`, `bukti_tf`, `id_ppu`, `id_user`) VALUES
-(12, '2024-03-18', 30, 150000, '-', '65f7d0c0f00ed.jpeg', 16, 14);
+INSERT INTO `bpu_ppu` (`id_bpu`, `tgl_bpu`, `penerima_dana`, `nominal_tf`, `note_bpu`, `bukti_tf`, `id_ppu`) VALUES
+(15, '2024-03-22', 19, 35000001, '-', '65fd04d38f49f.png', 16);
 
 -- --------------------------------------------------------
 
@@ -1001,9 +1000,17 @@ CREATE TABLE `penyelesaian` (
   `bukti_nota` varchar(50) NOT NULL,
   `selisih` int(10) NOT NULL,
   `status_end` varchar(50) NOT NULL,
-  `id_emp` int(10) NOT NULL,
-  `id_bpu` int(10) NOT NULL
+  `id_bpu` int(10) NOT NULL,
+  `bukti_return` varchar(50) DEFAULT NULL,
+  `bukti_reimburse` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penyelesaian`
+--
+
+INSERT INTO `penyelesaian` (`id_end`, `tgl_end`, `nominal_use`, `bukti_nota`, `selisih`, `status_end`, `id_bpu`, `bukti_return`, `bukti_reimburse`) VALUES
+(7, '2024-03-22', 150000, '65fd4e20c4408.png', 0, 'Nihil', 15, '', '');
 
 -- --------------------------------------------------------
 
@@ -1097,10 +1104,8 @@ CREATE TABLE `ppu` (
 --
 
 INSERT INTO `ppu` (`id_ppu`, `no_ppu`, `tgl_ppu`, `keperluan`, `id_user`, `id_emp`, `status_ppu`, `app_ppu1`, `app_ppu2`, `app_ppu3`, `app_ppu4`, `app_ppu5`) VALUES
-(1, '001/ship/mmm/2024', '2024-03-04', 'beli sparepart kapal', 35, 30, 'Reject', NULL, '', '', '', ''),
-(13, '002/SHIP/MMM/2024', '2024-03-06', 'pembelian sparepart-revise2', 35, 18, 'Reject', 'Gahral', '', '', '', ''),
-(14, '002/SHIP/MMM/2024', '2024-03-07', 'Beli inventaris kantor(revise4)', 35, 17, 'Reject', '', '', '', '', ''),
-(16, '003/mmm/ship/2024', '2024-03-08', 'Beli inventaris kantor', 35, 19, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina');
+(16, '003/mmm/ship/2024', '2024-03-08', 'Beli inventaris kantor', 35, 19, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina'),
+(19, '004/mmm/ship/2024', '2024-03-22', 'Pengurusan Dokumen BKI', 35, 18, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina');
 
 -- --------------------------------------------------------
 
@@ -1565,13 +1570,7 @@ CREATE TABLE `uraian_ppu` (
 --
 
 INSERT INTO `uraian_ppu` (`id_uraian`, `nama_uraian`, `qty_uraian`, `id_satuan`, `harga_satuan`, `id_vessel`, `id_project`, `id_ppu`) VALUES
-(1, 'watercooler', 1, 2, 100000, 3, 1, 1),
-(2, 'bensin', 2, 2, 10000, 2, 1, 1),
-(92, 'Laptop', 1, 1, 10000000, 1, 1, 1),
-(93, 'AC 2PK', 1, 1, 5500000, 1, 1, 1),
-(106, 'AC 1/2PK', 1, 2, 1200000, 2, 1, 13),
-(107, 'AC 2PK', 2, 1, 3400000, 2, 1, 14),
-(109, 'Laptop ROG', 1, 1, 1000000, 1, 1, 16);
+(111, 'AC 1/2PK', 1, 1, 3500000, 1, 1, 19);
 
 -- --------------------------------------------------------
 
@@ -1695,9 +1694,8 @@ ALTER TABLE `bpu_expenses`
 --
 ALTER TABLE `bpu_ppu`
   ADD PRIMARY KEY (`id_bpu`),
-  ADD KEY `id_emp` (`id_emp`),
-  ADD KEY `id_ppu` (`id_ppu`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_emp` (`penerima_dana`),
+  ADD KEY `id_ppu` (`id_ppu`);
 
 --
 -- Indexes for table `cart_of_account`
@@ -1858,8 +1856,7 @@ ALTER TABLE `on_duty`
 --
 ALTER TABLE `penyelesaian`
   ADD PRIMARY KEY (`id_end`),
-  ADD KEY `id_bpu` (`id_bpu`),
-  ADD KEY `id_emp` (`id_emp`);
+  ADD KEY `id_bpu` (`id_bpu`);
 
 --
 -- Indexes for table `port`
@@ -1888,6 +1885,7 @@ ALTER TABLE `po_barang`
 --
 ALTER TABLE `ppu`
   ADD PRIMARY KEY (`id_ppu`),
+  ADD UNIQUE KEY `no_ppu` (`no_ppu`),
   ADD KEY `id_emp` (`id_emp`),
   ADD KEY `id_user` (`id_user`);
 
@@ -2058,7 +2056,7 @@ ALTER TABLE `bpu_expenses`
 -- AUTO_INCREMENT for table `bpu_ppu`
 --
 ALTER TABLE `bpu_ppu`
-  MODIFY `id_bpu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_bpu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `crew`
@@ -2190,7 +2188,7 @@ ALTER TABLE `on_duty`
 -- AUTO_INCREMENT for table `penyelesaian`
 --
 ALTER TABLE `penyelesaian`
-  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `port`
@@ -2214,7 +2212,7 @@ ALTER TABLE `po_barang`
 -- AUTO_INCREMENT for table `ppu`
 --
 ALTER TABLE `ppu`
-  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -2298,7 +2296,7 @@ ALTER TABLE `storage_barang`
 -- AUTO_INCREMENT for table `uraian_ppu`
 --
 ALTER TABLE `uraian_ppu`
-  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -2348,9 +2346,9 @@ ALTER TABLE `bpu_expenses`
 -- Constraints for table `bpu_ppu`
 --
 ALTER TABLE `bpu_ppu`
-  ADD CONSTRAINT `bpu_ppu_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`),
+  ADD CONSTRAINT `bpu_ppu_ibfk_1` FOREIGN KEY (`penerima_dana`) REFERENCES `karyawan` (`id_emp`),
   ADD CONSTRAINT `bpu_ppu_ibfk_2` FOREIGN KEY (`id_ppu`) REFERENCES `ppu` (`id_ppu`),
-  ADD CONSTRAINT `bpu_ppu_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `bpu_ppu_ibfk_4` FOREIGN KEY (`penerima_dana`) REFERENCES `karyawan` (`id_emp`);
 
 --
 -- Constraints for table `crew`
@@ -2417,8 +2415,7 @@ ALTER TABLE `on_duty`
 -- Constraints for table `penyelesaian`
 --
 ALTER TABLE `penyelesaian`
-  ADD CONSTRAINT `penyelesaian_ibfk_3` FOREIGN KEY (`id_bpu`) REFERENCES `bpu_ppu` (`id_bpu`),
-  ADD CONSTRAINT `penyelesaian_ibfk_4` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
+  ADD CONSTRAINT `penyelesaian_ibfk_3` FOREIGN KEY (`id_bpu`) REFERENCES `bpu_ppu` (`id_bpu`);
 
 --
 -- Constraints for table `po_barang`

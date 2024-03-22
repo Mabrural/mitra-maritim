@@ -138,7 +138,6 @@ if (isset($_POST["submit"])) {
                                         
 					
 
-										<input type="hidden" name='id_user' value='<?= $id_user;?>'>
 										
 										<div class="ln_solid"></div>
 										<div class="item form-group">

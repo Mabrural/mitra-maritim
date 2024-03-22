@@ -93,6 +93,7 @@ if ($_SESSION["level"] == "Staff IT") {
     <!-- link jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
   </head>
 
   <body class="nav-md">
@@ -606,6 +607,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
+                          case "getBpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/get_bpu.php";
+                            break;
+
                           case "tambahPenyelesaian":
                             include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/tambah.php";
                             break;
@@ -948,6 +953,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
 	
   </body>
 </html>

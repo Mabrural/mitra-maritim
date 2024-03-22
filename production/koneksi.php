@@ -4228,7 +4228,6 @@ function tambahBpu($data) {
 	$nominal_tf = htmlspecialchars($data["nominal_tf"]);
 	$note_bpu = htmlspecialchars($data["note_bpu"]);
 	$id_ppu = htmlspecialchars($data["id_ppu"]);
-	$id_user = htmlspecialchars($data["id_user"]);
 	
 	$bukti_tf =  uploadBuktiTf();
 	if (!$bukti_tf) {
@@ -4236,7 +4235,7 @@ function tambahBpu($data) {
 	}
 
 	$query = "INSERT INTO bpu_ppu VALUES
-			('', '$tgl_bpu', '$penerima_dana', '$nominal_tf', '$note_bpu', '$bukti_tf', '$id_ppu', '$id_user')";
+			('', '$tgl_bpu', '$penerima_dana', '$nominal_tf', '$note_bpu', '$bukti_tf', '$id_ppu')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -4301,7 +4300,6 @@ function uploadBuktiTf(){
 	$note_bpu = htmlspecialchars($data["note_bpu"]);
 	$bukti_tf_lama = htmlspecialchars($data["bukti_tf_lama"]);
 	$id_ppu = htmlspecialchars($data["id_ppu"]);
-	$id_user = htmlspecialchars($data["id_user"]);
 	
 
 	// cek apakah user pilih gambar baru atau tidak
@@ -4318,8 +4316,7 @@ function uploadBuktiTf(){
 				nominal_tf = '$nominal_tf',
 				note_bpu = '$note_bpu',
 				bukti_tf = '$bukti_tf',
-				id_ppu = '$id_ppu',
-				id_user = '$id_user'
+				id_ppu = '$id_ppu'
 			  WHERE id_bpu = $id_bpu
 			";
 	mysqli_query($koneksi, $query);
@@ -4342,15 +4339,39 @@ function tambahPenyelesaian($data) {
 	$selisih = htmlspecialchars($data["selisih"]);
 	$status_end = htmlspecialchars($data["status_end"]);
 	$id_bpu = htmlspecialchars($data["id_bpu"]);
-	$id_emp = htmlspecialchars($data["id_emp"]);
 	
-	$bukti_nota =  uploadNota();
-	if (!$bukti_nota) {
-		return false;
+	// Cek apakah bukti_nota diisi
+	if(isset($_FILES['bukti_nota']) && $_FILES['bukti_nota']['size'] > 0) {
+		$bukti_nota =  uploadNota();
+		if (!$bukti_nota) {
+			return false;
+		}
+	} else {
+		$bukti_nota = null;
+	}
+
+	// Cek apakah bukti_return diisi
+	if(isset($_FILES['bukti_return']) && $_FILES['bukti_return']['size'] > 0) {
+		$bukti_return =  uploadReturn();
+		if (!$bukti_return) {
+			return false;
+		}
+	} else {
+		$bukti_return = null;
+	}
+
+	// Cek apakah file_scan_ktp diisi
+	if(isset($_FILES['bukti_reimburse']) && $_FILES['bukti_reimburse']['size'] > 0) {
+		$bukti_reimburse =  uploadReimburse();
+		if (!$bukti_reimburse) {
+			return false;
+		}
+	} else {
+		$bukti_reimburse = null;
 	}
 
 	$query = "INSERT INTO penyelesaian VALUES
-			('', '$tgl_end', '$nominal_use', '$bukti_nota', '$selisih', '$status_end', '$id_emp', '$id_bpu')";
+			('', '$tgl_end', '$nominal_use', '$bukti_nota', '$selisih', '$status_end', '$id_bpu', '$bukti_return', '$bukti_reimburse')";
 	mysqli_query($koneksi, $query);
 
 
@@ -4407,4 +4428,103 @@ function uploadNota(){
 	return $namaFileBaru;
  }
 
+ function uploadReturn(){
+
+	$namaFile = $_FILES['bukti_return']['name'];
+	$ukuranFile = $_FILES['bukti_return']['size'];
+	$error = $_FILES['bukti_return']['error'];
+	$tmpName = $_FILES['bukti_return']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran File terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/bukti_nota/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+ function uploadReimburse(){
+
+	$namaFile = $_FILES['bukti_reimburse']['name'];
+	$ukuranFile = $_FILES['bukti_reimburse']['size'];
+	$error = $_FILES['bukti_reimburse']['error'];
+	$tmpName = $_FILES['bukti_reimburse']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran File terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/bukti_nota/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
  ?>
