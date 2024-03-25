@@ -137,9 +137,9 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="staff-finance.php?page=voyageTracking">Voyage Tracking</a></li>
+                      <li><a href="staff-finance.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="staff-finance.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="staff-finance.php?page=stockBBM">Stock BBM Monitor</a></li>
+                      <li><a href="staff-finance.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="staff-finance.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
                       <li><a href="staff-finance.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                       <li><a href="staff-finance.php?page=crew">Crewing</a></li>
@@ -156,10 +156,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="staff-finance.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="staff-finance.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
-                      <li><a href="staff-finance.php?page=dataBarang">Penjualan (Omset)</a></li>
-                      <li><a href="staff-finance.php?page=dataBarang">Laba & Rugi</a></li>
+                      <li><a href="staff-finance.php?page=BPU">PPU & BPU</a></li>
+                      <li><a href="staff-finance.php?page=actualRab">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="staff-finance.php?page=omset">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="staff-finance.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
 
@@ -178,10 +178,8 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <!-- <li><a href="operasion.php?page=dataBarang">Inventaris & Asset Armada</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Sales Plan</a></li>
-                      <li><a href="operasion.php?page=dataBarang">RAB</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Pengajuan PPU</a></li> -->
+                      <li><a href="staff-finance.php?page=profile">Profile</a></li>
+                      <li><a href="logout.php" onclick="return confirm('Anda yakin ingin keluar?')">Logout</a></li>
                     </ul>
                   </li>
 
@@ -529,6 +527,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "loanPanjar":
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar.php";
                                   break;
+
+                                case 'slipGaji':
+                                  include "page/hrd/slip_gaji/slip_gaji.php";
+                                  break;
                             
 
                             default:
@@ -539,6 +541,14 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case 'tambahSlip':
+                            include 'page/hrd/slip_gaji/tambah.php';
+                            break;
+
+                          case 'ubahSlip':
+                            include 'page/hrd/slip_gaji/ubah.php';
+                            break;
 
                         case "lihatApprove":
                             include "page/01sales_dan_marketing/sales_plan/lihat_approve_read.php";

@@ -140,9 +140,9 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=voyageTracking">Voyage Tracking</a></li>
+                      <li><a href="sales.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="sales.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="sales.php?page=stockBBM">Stock BBM Monitor</a></li>
+                      <li><a href="sales.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="sales.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
                       <li><a href="sales.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                       <li><a href="sales.php?page=crew">Crewing</a></li>
@@ -160,15 +160,15 @@ if ($_SESSION["level"] == "Staff IT") {
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="sales.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="sales.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
-                      <li><a href="sales.php?page=dataBarang">Penjualan (Omset)</a></li>
-                      <li><a href="sales.php?page=dataBarang">Laba & Rugi</a></li>
+                      <li><a href="sales.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="sales.php?page=dataBarang">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="sales.php?page=dataBarang">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=reqCuti">Database Karyawan</a></li>
+                      <li><a href="sales.php?page=dataKaryawan">Database Karyawan</a></li>
                       <li><a href="sales.php?page=crew">Database Crew</a></li>
                       <li><a href="sales.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="sales.php?page=slipGaji">Slip Gaji</a></li>
@@ -181,10 +181,8 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=dataBarang">Inventaris & Asset Armada</a></li>
-                      <li><a href="sales.php?page=dataBarang">Sales Plan</a></li>
-                      <li><a href="sales.php?page=dataBarang">RAB</a></li>
-                      <li><a href="sales.php?page=dataBarang">Pengajuan PPU</a></li>
+                      <li><a href="sales.php?page=profile">Profile</a></li>
+                      <li><a href="logout.php" onclick="return confirm('Anda yakin ingin keluar?')">Logout</a></li>
                     </ul>
                   </li>
 
@@ -414,6 +412,10 @@ if ($_SESSION["level"] == "Staff IT") {
                         $page = $_GET['page'];
                         switch ($page) {
 
+                          case 'dataKaryawan':
+                            include "page/hrd/data_karyawan_read.php";
+                            break;
+
                           case 'crew':
                             include "page/04hrd/crew/crew_read.php";
                             break;
@@ -537,10 +539,6 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case 'rejected':
                               include "page/04hrd/on_duty/rejected.php";
-                              break;
-
-                            case 'slipGaji':
-                              include "page/hrd/slip_gaji/slip_gaji_read.php";
                               break;
 
                             case "masterLokasi":

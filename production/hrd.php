@@ -127,7 +127,6 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-bar-chart"></i> Sales & Marketing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="finance.php?page=voyageManagement">Voyage Management</a></li>
                       <li><a href="finance.php?page=salesPlan">Sales Plan</a></li>
                       <li><a href="finance.php?page=RAB">RAB</a></li>
                       <li><a href="finance.php?page=pengajuanPPU">Pengajuan PPU</a></li>
@@ -136,9 +135,9 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="finance.php?page=voyageTracking">Voyage Tracking</a></li>
+                      <li><a href="finance.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="finance.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="finance.php?page=stockBBM">Stock BBM Monitor</a></li>
+                      <li><a href="finance.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="finance.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
                       <li><a href="finance.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
@@ -154,10 +153,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="finance.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="finance.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
-                      <li><a href="finance.php?page=dataBarang">Penjualan (Omset)</a></li>
-                      <li><a href="finance.php?page=dataBarang">Laba & Rugi</a></li>
+                      <li><a href="hrd.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="hrd.php?page=actualRAB">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="hrd.php?page=omset">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="hrd.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
                  
@@ -283,15 +282,12 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
-                  <!-- <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Chart JS</a></li>
-                      <li><a href="chartjs2.html">Chart JS2</a></li>
-                      <li><a href="morisjs.html">Moris JS</a></li>
-                      <li><a href="echarts.html">ECharts</a></li>
-                      <li><a href="other_charts.html">Other Charts</a></li>
+                      <li><a href="hrd.php?page=profile">Profile</a></li>
+                      <li><a href="logout.php" onclick="return confirm('Anda yakin ingin keluar?')">Logout</a></li>
                     </ul>
-                  </li> -->
+                  </li>
                   <!-- <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
@@ -464,7 +460,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                 break;
                          
                             case 'dashboard':
-                                include "page/05dashboard/dashboardHr.php";
+                                include "page/05dashboard/dashboard.php";
                                 break;
 
                             case 'dataBarang':
@@ -843,7 +839,7 @@ if ($_SESSION["level"] == "Staff IT") {
                             case 'hapusCatatan':
                                 include "page/catatan/hapus.php";
                                 break;
-              case 'cariCatatan':
+                            case 'cariCatatan':
                                 include "page/catatan/cari.php";
                                 break;
 
@@ -869,7 +865,7 @@ if ($_SESSION["level"] == "Staff IT") {
                     }
 
                     else{
-                        include "dashboardHr.php";
+                        include "page/05dashboard/dashboard.php";
                     }
                 ?>
         </div>

@@ -176,18 +176,13 @@ if ($_SESSION["level"] == "Staff IT") {
                       <li><a href="operasion.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="operasion.php?page=slipGaji">Slip Gaji</a></li>
                       <li><a href="operasion.php?page=cutiKaryawan">Cuti Karyawan</a></li>
-                      <!-- <li><a href="operasion.php?page=reqCuti">Form Cuti</a></li>
-                      <li><a href="operasion.php?page=historyCuti">History Cuti</a></li> -->
-                      <!-- <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="operasion.php?page=dataBarang">Inventaris & Asset Armada</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Sales Plan</a></li>
-                      <li><a href="operasion.php?page=dataBarang">RAB</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Pengajuan PPU</a></li>
+                      <li><a href="operasion.php?page=profile">Profile</a></li>
+                      <li><a href="logout.php" onclick="return confirm('Anda yakin ingin keluar?')">Logout</a></li>
                     </ul>
                   </li>
 

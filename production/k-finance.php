@@ -178,10 +178,8 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <!-- <li><a href="operasion.php?page=dataBarang">Inventaris & Asset Armada</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Sales Plan</a></li>
-                      <li><a href="operasion.php?page=dataBarang">RAB</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Pengajuan PPU</a></li> -->
+                      <li><a href="k-finance.php?page=profile">Profile</a></li>
+                      <li><a href="logout.php" onclick="return confirm('Anda yakin ingin keluar?')">Logout</a></li>
                     </ul>
                   </li>
 
