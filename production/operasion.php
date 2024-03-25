@@ -143,9 +143,9 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="operasion.php?page=voyageTracking">Voyage Tracking</a></li>
+                      <li><a href="operasion.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="operasion.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="operasion.php?page=stockBBM">Stock BBM Monitor</a></li>
+                      <li><a href="operasion.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="operasion.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
                       <li><a href="operasion.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                       <li><a href="operasion.php?page=crew">Crewing</a></li>
@@ -162,10 +162,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="operasion.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="operasion.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum)</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Penjualan (Omset)</a></li>
-                      <li><a href="operasion.php?page=dataBarang">Laba & Rugi</a></li>
+                      <li><a href="operasion.php?page=BPU">PPU & BPU</a></li>
+                      <li><a href="operasion.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum) <br><b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="operasion.php?page=dataBarang">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="operasion.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
 
@@ -595,6 +595,14 @@ if ($_SESSION["level"] == "Staff IT") {
 
                                 case "penyelesaianBpu":
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/penyelesaian.php";
+                                  break;
+                                  
+                                case "bpuLoanPanjar":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu_loan_read.php";
+                                  break;
+
+                                case "BPU":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
                                   break;
                             
 
