@@ -472,7 +472,21 @@ if ($_SESSION["level"] == "Staff IT") {
                               include "page/06purchasing/inventaris_dan_asset/disposal.php";
                               break;
 
+                            case "pengajuanPPU":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/ppu.php";
+                              break;
 
+                            case "loanPanjar":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar.php";
+                              break;
+
+                            case "penyelesaianBpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/penyelesaian.php";
+                              break;
+
+                            case "expenses";
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/expenses.php";
+                              break;
               
                             
 
@@ -484,7 +498,46 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
-                            
+
+                          case "tambahUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah-uraian.php";
+                            break;
+
+                          case "ubahUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/ubah-uraian.php";
+                            break;
+
+                          case "hapusUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/hapus-uraian.php";
+                            break;
+
+                          case "lihatUraian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian.php";
+                            break;
+
+                          case "lihatUraianRead":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                            break;
+
+                          case "tambahPpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/tambah_loan.php";
+                            break;
+
+                          case "ubahPpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/ubah_loan.php";
+                            break;
+
+                          case "hapusPpu":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/hapus_loan.php";
+                            break;
+
+                            case "tambahPenyelesaian":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/tambah.php";
+                              break;
+
+                            case "ubahPenyelesaian":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/ubah.php";
+                              break;
 
                             case 'ubahPengajuan':
                                 include "page/pengajuan/ubah.php";

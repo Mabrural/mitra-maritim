@@ -599,6 +599,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "BPU":
                                   include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
                                   break;
+
+                                case "expenses";
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/expenses.php";
+                                  break;
                             
 
                             default:
@@ -609,6 +613,14 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "tambahExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/tambah.php";
+                            break;
+
+                          case "ubahExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/ubah.php";
+                            break;
 
                           case "getBpu":
                             include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/get_bpu.php";

@@ -4567,4 +4567,128 @@ function uploadNota(){
 	return mysqli_affected_rows($koneksi);
 }
 
+function tambahExpenses($data) {
+	global $koneksi;
+	$no_expenses = htmlspecialchars($data["no_expenses"]);
+	$tgl_expenses = htmlspecialchars($data["tgl_expenses"]);
+	$nominal_expenses = htmlspecialchars($data["nominal_expenses"]);
+	$keperluan_exp = htmlspecialchars($data["keperluan_exp"]);
+	$status_expenses = htmlspecialchars($data["status_expenses"]);
+	$app_exp1 = htmlspecialchars($data["app_exp1"]);
+	$app_exp2 = htmlspecialchars($data["app_exp2"]);
+	$app_exp3 = htmlspecialchars($data["app_exp3"]);
+	$app_exp4 = htmlspecialchars($data["app_exp4"]);
+	$app_exp5 = htmlspecialchars($data["app_exp5"]);
+	$pemohon = htmlspecialchars($data["pemohon"]);
+	$id_user = htmlspecialchars($data["id_user"]);
+	
+	$upload_exp =  uploadExpenses();
+	if (!$upload_exp) {
+		return false;
+	}
+
+	$query = "INSERT INTO expenses VALUES
+			('', '$no_expenses', '$tgl_expenses', '$nominal_expenses', '$keperluan_exp', '$upload_exp', '$status_expenses', '$app_exp1', '$app_exp2', '$app_exp3', '$app_exp4', '$app_exp5', '$pemohon', '$id_user')";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function uploadExpenses(){
+
+	$namaFile = $_FILES['upload_expenses']['name'];
+	$ukuranFile = $_FILES['upload_expenses']['size'];
+	$error = $_FILES['upload_expenses']['error'];
+	$tmpName = $_FILES['upload_expenses']['tmp_name'];
+
+	// cek apakah tidak ada file yang diupload
+	if ($error === 4) {
+		echo "
+			<script>
+				alert('pilih file terlebih dahulu!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek apakah yang diupload adalah pdf
+	$ekstensiFileValid = ['pdf', 'png', 'jpg', 'jpeg'];
+	$ekstensiFile = explode('.', $namaFile);
+	$ekstensiFile = strtolower(end($ekstensiFile));
+	if (!in_array($ekstensiFile, $ekstensiFileValid) ){
+		echo "
+			<script>
+				alert('yang anda upload bukan Pdf/Png/Jpg/Jpeg!');
+			</script>
+		";
+		return false;
+	}
+
+	// cek jika ukurannya terlalu besar
+	if ($ukuranFile > 1000000){
+		echo "
+			<script>
+				alert('ukuran File terlalu besar!');
+			</script>
+		";
+		return false;
+	}
+
+	// lolos pengecekan, pdf siap diupload
+	// generate nama pdf baru
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiFile;
+
+	move_uploaded_file($tmpName, 'files/upload_expenses/'. $namaFileBaru);
+	return $namaFileBaru;
+ }
+
+ function ubahExpenses($data) {
+	global $koneksi;
+	$id_expenses = $data['id_expenses'];
+	$no_expenses = htmlspecialchars($data["no_expenses"]);
+	$tgl_expenses = htmlspecialchars($data["tgl_expenses"]);
+	$nominal_expenses = htmlspecialchars($data["nominal_expenses"]);
+	$keperluan_exp = htmlspecialchars($data["keperluan_exp"]);
+	$status_expenses = htmlspecialchars($data["status_expenses"]);
+	$app_exp1 = htmlspecialchars($data["app_exp1"]);
+	$app_exp2 = htmlspecialchars($data["app_exp2"]);
+	$app_exp3 = htmlspecialchars($data["app_exp3"]);
+	$app_exp4 = htmlspecialchars($data["app_exp4"]);
+	$app_exp5 = htmlspecialchars($data["app_exp5"]);
+	$pemohon = htmlspecialchars($data["pemohon"]);
+	$id_user = htmlspecialchars($data["id_user"]);
+	$upload_exp_lama = htmlspecialchars($data["upload_expenses_lama"]);
+	
+
+	// cek apakah user pilih gambar baru atau tidak
+	if ($_FILES['upload_expenses']['error'] === 4 ) {
+		$upload_exp = $upload_exp_lama;
+	} else {
+
+		$bukti_tf = uploadBuktiTf();
+	}
+
+	$query = "UPDATE expenses SET
+				no_expenses = '$no_expenses',
+				tgl_expenses = '$tgl_expenses',
+				nominal_expenses = '$nominal_expenses',
+				keperluan_exp = '$keperluan_exp',
+				upload_exp = '$upload_exp',
+				status_expenses = '$status_expenses',
+				app_exp1 = '$app_exp1',
+				app_exp2 = '$app_exp2',
+				app_exp3 = '$app_exp3',
+				app_exp4 = '$app_exp4',
+				app_exp5 = '$app_exp5',
+				pemohon = '$pemohon',
+				id_user = '$id_user'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
  ?>

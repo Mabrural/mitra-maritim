@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 10:52 AM
+-- Generation Time: Mar 25, 2024 at 10:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -258,7 +258,8 @@ CREATE TABLE `bpu_ppu` (
 --
 
 INSERT INTO `bpu_ppu` (`id_bpu`, `tgl_bpu`, `penerima_dana`, `nominal_tf`, `note_bpu`, `bukti_tf`, `id_ppu`) VALUES
-(15, '2024-03-22', 19, 35000001, '-', '65fd04d38f49f.png', 16);
+(15, '2024-03-22', 19, 3500000, '-', '65fd04d38f49f.png', 16),
+(16, '2024-03-25', 19, 3500000, 'ok', '6600dd122acf4.jpg', 19);
 
 -- --------------------------------------------------------
 
@@ -477,7 +478,7 @@ INSERT INTO `crew` (`id_crew`, `nama_crew`, `nik`, `npwp`, `no_kk`, `tmp_lahir`,
 (8, 'Mabrur', '2171012105020001', '95.461.480.6-225.000', NULL, 'Pulau Tumbar', '2002-05-21', 'Laki-laki', '3262432251', 1, 1, 2, NULL, NULL, NULL),
 (10, 'Alex', '2171012105020001', '95.461.480.6-225.000', NULL, 'Batam', '1990-08-14', 'Laki-laki', '1090132510002', 1, 3, 1, NULL, NULL, NULL),
 (12, 'Jordan', '2171012105020001', '95.461.480.6-225.000', NULL, 'Batam', '1989-01-01', 'Laki-laki', '3262545518', 3, 1, 2, NULL, NULL, NULL),
-(16, 'Felix', '1222222222', '121312312321', NULL, 'Batam', '2000-10-10', 'Laki-laki', '1090154578933', 3, 2, 1, '65deedcb1e782.jpg', '65deedfe424c5.jpg', '65deee0f7ec59.jpg'),
+(16, 'Felix', '1222222222', '121312312321', NULL, 'Batam', '2000-10-10', 'Laki-laki', '1090154578933', 3, 2, 2, '65deedcb1e782.jpg', '65deedfe424c5.jpg', '65deee0f7ec59.jpg'),
 (18, 'Reza', '1121122121212', '95.461.480.6-225.000', NULL, 'Batam', '2024-02-28', 'Laki-laki', '2215132123', 1, 2, 2, '', '', '');
 
 -- --------------------------------------------------------
@@ -573,6 +574,7 @@ CREATE TABLE `expenses` (
   `no_expenses` varchar(50) NOT NULL,
   `tgl_expenses` date NOT NULL,
   `nominal_expenses` int(10) NOT NULL,
+  `keperluan_exp` text NOT NULL,
   `upload_expenses` varchar(50) NOT NULL,
   `status_expenses` varchar(40) NOT NULL,
   `app_exp1` varchar(50) DEFAULT NULL,
@@ -580,9 +582,16 @@ CREATE TABLE `expenses` (
   `app_exp3` varchar(50) DEFAULT NULL,
   `app_exp4` varchar(50) DEFAULT NULL,
   `app_exp5` varchar(50) DEFAULT NULL,
-  `id_emp` int(10) NOT NULL,
+  `pemohon` int(10) NOT NULL,
   `id_user` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id_expenses`, `no_expenses`, `tgl_expenses`, `nominal_expenses`, `keperluan_exp`, `upload_expenses`, `status_expenses`, `app_exp1`, `app_exp2`, `app_exp3`, `app_exp4`, `app_exp5`, `pemohon`, `id_user`) VALUES
+(10, '001/MMM/EXP/2024', '2024-03-25', 3000000, 'beli printer', '66012b2b12eef.pdf', 'On Ka. Shipping', '', '', '', '', '', 19, 35);
 
 -- --------------------------------------------------------
 
@@ -655,7 +664,8 @@ INSERT INTO `jenis_kargo` (`id_kargo`, `nama_kargo`) VALUES
 (2, 'Palm Oil Product'),
 (3, 'CPO (CRUD Palm Oil)'),
 (4, 'PFAD (Palm Fatty Acid Distillate)'),
-(5, 'Biosolar');
+(5, 'Biosolar'),
+(7, 'POME');
 
 -- --------------------------------------------------------
 
@@ -985,7 +995,8 @@ INSERT INTO `on_duty` (`id_duty`, `tgl_duty`, `waktu_duty`, `tujuan_duty`, `alas
 (8, '2024-02-23', '11:11:00', 'Meeting dengan customer', '', 'Approved', 15),
 (9, '2024-02-26', '11:14:00', 'Meeting dengan customer', '', 'Approved', 13),
 (10, '2024-02-23', '11:25:00', 'Meeting dengan customer', '', 'Rejected', 15),
-(11, '2024-02-27', '11:29:00', 'Meeting dengan customer', '', 'Approved', 15);
+(11, '2024-02-27', '11:29:00', 'Meeting dengan customer', '', 'Approved', 15),
+(12, '2024-03-25', '14:13:00', '-', '-', 'Pending', 15);
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1021,8 @@ CREATE TABLE `penyelesaian` (
 --
 
 INSERT INTO `penyelesaian` (`id_end`, `tgl_end`, `nominal_use`, `bukti_nota`, `selisih`, `status_end`, `id_bpu`, `bukti_return`, `bukti_reimburse`) VALUES
-(8, '2024-03-22', 150000, '65fd4fb7ae280.jpeg', 0, 'Return', 15, '65fd4fb7ae40d.jpeg', '');
+(8, '2024-03-22', 150000, '65fd4fb7ae280.jpeg', 0, 'Return', 15, '65fd4fb7ae40d.jpeg', ''),
+(11, '2024-03-25', 3600000, '6601099132773.png', -100000, 'Reimburse', 16, '66010991328f4.jpeg', '660109b912a5c.jpeg');
 
 -- --------------------------------------------------------
 
@@ -1105,7 +1117,8 @@ CREATE TABLE `ppu` (
 
 INSERT INTO `ppu` (`id_ppu`, `no_ppu`, `tgl_ppu`, `keperluan`, `id_user`, `id_emp`, `status_ppu`, `app_ppu1`, `app_ppu2`, `app_ppu3`, `app_ppu4`, `app_ppu5`) VALUES
 (16, '003/mmm/ship/2024', '2024-03-08', 'Beli inventaris kantor', 35, 19, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina'),
-(19, '004/mmm/ship/2024', '2024-03-22', 'Pengurusan Dokumen BKI', 35, 18, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina');
+(19, '004/mmm/ship/2024', '2024-03-22', 'Pengurusan Dokumen BKI', 35, 18, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina'),
+(21, '002/SHIP/MMM/2024', '2024-03-25', 'Beli inventaris kantor', 27, 19, 'On Ka. Shipping', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1570,7 +1583,8 @@ CREATE TABLE `uraian_ppu` (
 --
 
 INSERT INTO `uraian_ppu` (`id_uraian`, `nama_uraian`, `qty_uraian`, `id_satuan`, `harga_satuan`, `id_vessel`, `id_project`, `id_ppu`) VALUES
-(111, 'AC 1/2PK', 1, 1, 3500000, 1, 1, 19);
+(111, 'AC 1/2PK', 1, 1, 3500000, 1, 1, 19),
+(112, 'Laptop ROG', 1, 1, 10000000, 1, 1, 21);
 
 -- --------------------------------------------------------
 
@@ -1741,7 +1755,7 @@ ALTER TABLE `divisi`
 --
 ALTER TABLE `expenses`
   ADD PRIMARY KEY (`id_expenses`),
-  ADD KEY `id_emp` (`id_emp`),
+  ADD KEY `id_emp` (`pemohon`),
   ADD KEY `id_user` (`id_user`);
 
 --
@@ -2056,7 +2070,7 @@ ALTER TABLE `bpu_expenses`
 -- AUTO_INCREMENT for table `bpu_ppu`
 --
 ALTER TABLE `bpu_ppu`
-  MODIFY `id_bpu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_bpu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `crew`
@@ -2092,7 +2106,7 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id_expenses` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_expenses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `ijazah`
@@ -2110,7 +2124,7 @@ ALTER TABLE `jabatan`
 -- AUTO_INCREMENT for table `jenis_kargo`
 --
 ALTER TABLE `jenis_kargo`
-  MODIFY `id_kargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kargo` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
@@ -2182,13 +2196,13 @@ ALTER TABLE `no_po`
 -- AUTO_INCREMENT for table `on_duty`
 --
 ALTER TABLE `on_duty`
-  MODIFY `id_duty` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_duty` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `penyelesaian`
 --
 ALTER TABLE `penyelesaian`
-  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_end` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `port`
@@ -2212,7 +2226,7 @@ ALTER TABLE `po_barang`
 -- AUTO_INCREMENT for table `ppu`
 --
 ALTER TABLE `ppu`
-  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -2224,7 +2238,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
-  MODIFY `id_qr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_qr` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `rab`
@@ -2296,7 +2310,7 @@ ALTER TABLE `storage_barang`
 -- AUTO_INCREMENT for table `uraian_ppu`
 --
 ALTER TABLE `uraian_ppu`
-  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -2362,8 +2376,8 @@ ALTER TABLE `crew`
 -- Constraints for table `expenses`
 --
 ALTER TABLE `expenses`
-  ADD CONSTRAINT `expenses_ibfk_1` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`),
-  ADD CONSTRAINT `expenses_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `expenses_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `expenses_ibfk_3` FOREIGN KEY (`pemohon`) REFERENCES `karyawan` (`id_emp`);
 
 --
 -- Constraints for table `ijazah`
