@@ -1,11 +1,14 @@
 <?php
 
+$id_end = mysqli_real_escape_string($koneksi, $_GET['id_end']);
 $id_user = $_SESSION['id_user'];
 $karyawan = query("SELECT * FROM karyawan WHERE status='Aktif'");
 
 $bpu_ppu = query("SELECT * FROM bpu_ppu 
                  JOIN ppu ON ppu.id_ppu = bpu_ppu.id_ppu 
-                 WHERE NOT EXISTS (SELECT 1 FROM penyelesaian WHERE penyelesaian.id_bpu = bpu_ppu.id_bpu)");
+                 WHERE EXISTS (SELECT 1 FROM penyelesaian WHERE penyelesaian.id_bpu = bpu_ppu.id_bpu AND penyelesaian.id_end = $id_end)");
+
+$penyelesaian = query("SELECT * FROM penyelesaian JOIN bpu_ppu ON bpu_ppu.id_bpu=penyelesaian.id_bpu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu WHERE penyelesaian.id_end = $id_end")[0];
 
 
 
@@ -15,7 +18,7 @@ if (isset($_POST["submit"])) {
 
 
 	// cek apakah data berhasil ditambahkan atau tidak
-	if(tambahPenyelesaian($_POST) > 0 ) {
+	if(ubahPenyelesaian($_POST) > 0 ) {
 		echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 		echo '<script src="./sweetalert2.min.js"></script>';
 		echo "<script>
@@ -23,7 +26,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'Penyelesaian berhasil ditambahkan',
+				text                :  'Penyelesaian berhasil diubah',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
@@ -42,7 +45,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'Penyelesaian gagal ditambahkan',
+				text                :  'Penyelesaian gagal diubah',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
@@ -68,14 +71,14 @@ if (isset($_POST["submit"])) {
 				<div class="col-md-12 col-sm-12 ">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>New Penyelesaian<small></small></h2>
+							<h2>Ubah Penyelesaian<small></small></h2>
 
 							<div class="clearfix"></div>
 						</div>
 						<div class="x_content">
 							<br />
 							<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
-
+                                <input type="hidden" name="id_end" value= "<?= $id_end?>">
 								<div class="item form-group">
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="no_ppu">Nomor PPU <span class="required">*</span>
 									</label>
@@ -83,7 +86,7 @@ if (isset($_POST["submit"])) {
 										<select class="form-control" name="id_bpu" required>
 											<option value="">--Pilih No PPU--</option>
 											<?php foreach($bpu_ppu as $row) : ?>
-												<option value="<?= $row['id_bpu']?>"><?= $row['no_ppu']?> </option>
+												<option value="<?= $row['id_bpu']?>" <?= ($row['id_bpu'] == $penyelesaian['id_bpu']) ? 'selected' : '';?> ><?= $row['no_ppu']?> </option>
 											<?php endforeach;?>	
 										</select>
 									</div>
@@ -93,7 +96,7 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal Penyelesaian <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="date" name="tgl_end" id="tgl_end" required="required" class="form-control">
+										<input type="date" name="tgl_end" id="tgl_end" required="required" class="form-control" value="<?= $penyelesaian['tgl_end']?>">
 									</div>
 								</div>
 
@@ -102,7 +105,7 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_use">Total Pemakaian <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="number" min="0" name="nominal_use" id="angkaInput" required="required" class="form-control" placeholder="Total Pemakaian" >
+										<input type="number" min="0" name="nominal_use" id="angkaInput" required="required" class="form-control" placeholder="Total Pemakaian" value="<?= $penyelesaian['nominal_use']?>">
 									</div>
 								</div>
 
@@ -110,7 +113,7 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="selisih">Selisih <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="number" name="selisih" id="angkaInput" required="required" class="form-control" placeholder="Selisih">
+										<input type="number" name="selisih" id="angkaInput" required="required" class="form-control" placeholder="Selisih" value="<?= $penyelesaian['selisih']?>">
 									</div>
 								</div>
 
@@ -120,9 +123,9 @@ if (isset($_POST["submit"])) {
 									<div class="col-md-6 col-sm-6 ">
 										<select name="status_end" id="" class="form-control">
 											<option value="">--Pilih Status--</option>
-											<option value="Nihil">Nihil</option>
-											<option value="Reimburse">Reimburse</option>
-											<option value="Return">Return</option>
+											<option value="Nihil" <?= ($penyelesaian['status_end'] == 'Nihil') ? 'selected' : '';?>>Nihil</option>
+											<option value="Reimburse" <?= ($penyelesaian['status_end'] == 'Reimburse') ? 'selected': '';?>>Reimburse</option>
+											<option value="Return" <?= ($penyelesaian['status_end'] == 'Return') ? 'selected' : '';?>>Return</option>
 										</select>
 									</div>
 								</div>
@@ -130,7 +133,12 @@ if (isset($_POST["submit"])) {
 								<div class="item form-group">
 									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bukti Nota (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
 									<div class="col-md-6 col-sm-6 ">
-										<input type="file" name="bukti_nota" required>
+										<input type="file" name="bukti_nota">
+                                        <?php if (!empty($penyelesaian['bukti_nota'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $penyelesaian['bukti_nota'] ?></p>
+											<input type="hidden" name="bukti_nota_lama" value="<?= $penyelesaian['bukti_nota'] ?>">
+										<?php endif; ?>
 									</div>
 								</div>
 
@@ -138,6 +146,11 @@ if (isset($_POST["submit"])) {
 									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bukti Return (.jpg, .png, .jpeg .pdf) </label>
 									<div class="col-md-6 col-sm-6 ">
 										<input type="file" name="bukti_return">
+                                        <?php if (!empty($penyelesaian['bukti_return'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $penyelesaian['bukti_return'] ?></p>
+											<input type="hidden" name="bukti_return_lama" value="<?= $penyelesaian['bukti_return'] ?>">
+										<?php endif; ?>
 									</div>
 								</div>
 
@@ -145,6 +158,11 @@ if (isset($_POST["submit"])) {
 									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Bukti Reimburse (.jpg, .png, .jpeg .pdf) <br> <b style="color:red">(Diisi oleh Finance)</b></label>
 									<div class="col-md-6 col-sm-6 ">
 										<input type="file" name="bukti_reimburse">
+                                        <?php if (!empty($penyelesaian['bukti_reimburse'])): ?>
+											<br>
+											<p class="file-selected">File sebelumnya: <?= $penyelesaian['bukti_reimburse'] ?></p>
+											<input type="hidden" name="bukti_reimburse_lama" value="<?= $penyelesaian['bukti_reimburse'] ?>">
+										<?php endif; ?>
 									</div>
 								</div>
 

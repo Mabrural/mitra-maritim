@@ -61,10 +61,17 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['status_end'];?></td>
                 <td class=" "><a href="files/bukti_nota/<?= $data['bukti_nota'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Nota</a></td>
                 <td class=" "><a href="files/bukti_nota/<?= $data['bukti_return'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Return</a></td>
-                <td class=" "><?= $data['bukti_reimburse'];?></td>
+                <!-- <td class=" "><a href="files/bukti_nota/<?= $data['bukti_reimburse'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Reimburse</a></td> -->
+                <td class=" ">
+                    <?php if (!empty($data['bukti_reimburse'])): ?>
+                        <a href="files/bukti_nota/<?= $data['bukti_reimburse'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Reimburse</a>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
 
                 
-                <td class=" last"><a href="?form=ubahPenyelesaian=<?= $data["id_end"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a>
+                <td class=" last"><a href="?form=ubahPenyelesaian&id_end=<?= $data["id_end"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a>
                 </td>
 
               
@@ -113,6 +120,7 @@ $id_user = $_SESSION["id_user"];
           });
 
           </script> -->
+
         </div>
 				
 			

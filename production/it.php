@@ -6,50 +6,41 @@ if (!isset($_SESSION["login"])) {
   exit;
 }
 
-if ($_SESSION["level"] == "Staff Operasional") {
-    header("Location: index.php");
-    exit;
-}
-
 if ($_SESSION["level"] == "Kepala Cabang") {
     header("Location: admin.php");
     exit;
-}
+} 
 
-if ($_SESSION["level"] == "Direktur Operasional") {
-    header("Location: admin2.php");
-    exit;
-}
 
 if ($_SESSION["level"] == "Direktur Keuangan") {
     header("Location: dirkeu.php");
     exit;
 }
 
-if ($_SESSION["level"] == "Direktur Utama") {
-    header("Location: dirut.php");
+if ($_SESSION["level"] == "Purchasing") {
+    header("Location: admin.php");
     exit;
 }
 
+if ($_SESSION["level"] == "Direktur Operasional") {
+    header("Location: dirops.php");
+    exit;
+}
 
 if ($_SESSION["level"] == "Direktur HRD") {
     header("Location: hrd.php");
     exit;
 }
 
-if ($_SESSION["level"] == "Purchasing") {
-    header("Location: admin3.php");
-    exit;
-}
 
   include "koneksi.php";
   $id_user = $_SESSION["id_user"];
 
   $nama = $_SESSION["nama_emp"];
+  $jabatan = $_SESSION['nama_jabatan'];
 
-  $jabatan = $_SESSION['jabatan'];
+ $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
 
-  $karyawan = query("SELECT * FROM user JOIN karyawan ON karyawan.id_emp=user.id_emp WHERE user.id_user = $id_user")[0];
   
   ?>
 
@@ -61,9 +52,9 @@ if ($_SESSION["level"] == "Purchasing") {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="icon" href="images/logo-gpp.png" type="image/ico" />
+	  <link rel="icon" href="images/logo-mmm.png" type="image/ico" />
 
-    <title>PT GLOBAL PETRO PASIFIC</title>
+    <title>PT MITRA MARITIM MANDIRI</title>
 
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
@@ -89,6 +80,8 @@ if ($_SESSION["level"] == "Purchasing") {
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   </head>
 
   <body class="nav-md">
@@ -97,7 +90,7 @@ if ($_SESSION["level"] == "Purchasing") {
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="admin.php" class="site_title"><i class="fa fa-globe"></i> <span>PT Global Petro</span></a>
+              <a href="sales.php" class="site_title"><i class="fa fa-anchor"></i> <span>Mitra Maritim, M </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -105,11 +98,11 @@ if ($_SESSION["level"] == "Purchasing") {
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/gpp.png" alt="..." class="img-circle profile_img">
-              </div> 
+                <img src="images/logo-mmm.png" alt="..." class="img-circle profile_img">
+              </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2><?= $nama;?></h2>
+                <h2 class=""><?= $nama;?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -123,61 +116,110 @@ if ($_SESSION["level"] == "Purchasing") {
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="admin.php">Dashboard</a></li>
+                      <li><a href="it.php?page=dashboard">Dashboard</a></li>
                       <!-- <li><a href="index2.html">Dashboard2</a></li>
                       <li><a href="index3.html">Dashboard3</a></li> -->
                     </ul>
                   </li>
-                  <!-- <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
-                    </ul>
-                  </li> -->
-                  <!-- <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
-                      <li><a href="icons.html">Icons</a></li>
-                      <li><a href="glyphicons.html">Glyphicons</a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
-                    </ul>
-                  </li> -->
-                  <!-- <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                    </ul>
-                  </li> -->
 
-                  <li><a><i class="fa fa-edit"></i> Approval <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart"></i> Sales & Marketing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="admin.php?page=approve">Approval</a></li>
-                      <li><a href="admin.php?page=historyApprove">History Approve</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                      <!-- <li><a href="sales.php?page=voyageManagement">Voyage Management</a></li> -->
+                      <li><a href="it.php?page=salesPlan">Sales Plan</a></li>
+                      <li><a href="it.php?page=RAB">RAB</a></li>
+                      <li><a href="it.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="it.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="it.php?page=vesselDatabase">Vessel Database</a></li>
+                      <li><a href="it.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="it.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
+                      <li><a href="it.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-shopping-cart"></i> Purchasing<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="it.php?page=inventarisAsset">Inventaris & Asset Armada</a></li>
+                      <li><a href="it.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="it.php?page=dataBarang">Data Barang/Sparepart</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="it.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="it.php?page=actualRAB">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="it.php?page=omset">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="it.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="it.php?page=dataKaryawan">Data Karyawan</a></li>
-                      <li><a href="it.php?page=reqCuti">Form Cuti</a></li>
-                      <li><a href="it.php?page=historyCuti">History Cuti</a></li>
-                      <li><a href="it.php?page=absen">Data Absen</a></li>
-                      <li><a href="it.php?page=aksesPintu">Data Akses Pintu</a></li>
-                      <li><a href="it.php?page=userLogin">Data Login</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                      <li><a href="it.php?page=dataKaryawan">Database Karyawan</a></li>
+                      <li><a href="it.php?page=crew">Database Crew</a></li>
+                      <li><a href="it.php?page=onDuty">On Duty Karyawan</a></li>
+                      <li><a href="it.php?page=slipGaji">Slip Gaji</a></li>
+                      <li><a href="it.php?page=cutiKaryawan">Cuti Karyawan</a></li>
+                      <!-- <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
-                  <!-- <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+
+                  <li><a><i class="fa fa-gear"></i> Setting<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="it.php?page=profile">Profile</a></li>
+                      <li><a href="logout.php" onclick="return confirm('Anda yakin ingin keluar?')">Logout</a></li>
+                    </ul>
+                  </li>
+
+
+                  <!-- <li><a><i class="fa fa-folder"></i> Master Barang<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=dataBarang">Daftar Barang</a></li>
+                    </ul>
+                  </li> -->
+
+
+
+                  <!-- <li><a><i class="fa fa-database"></i> Asset dan Inventaris<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=dataInventaris">Storage Barang</a></li>
+                    </ul>
+                  </li> -->
+
+                 <!--  <li><a><i class="fa fa-exchange"></i>Transaksi Barang<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=transaksiBarangMasuk">Barang Masuk</a></li>
+                      <li><a href="index.php?page=historyTransaksi">History Transaksi</a></li>
+                    </ul>
+                  </li> -->
+
+                  <!-- <li><a><i class="fa fa-edit"></i> Pengajuan Barang<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=pengajuan">Data Pengajuan Barang</a></li>
+                      <li><a href="index.php?page=historyPengajuan">History Pengajuan Barang</a></li>
+                    </ul>
+                  </li> -->
+
+                  <!-- <li><a><i class="fa fa-shopping-cart"></i> Pembelian Barang<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=invoicePembelian">Invoice Pembelian</a></li>
+               
+                    </ul>
+                  </li> -->
+
+                  <!-- <li><a><i class="fa fa-users"></i> Human Resources<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?page=reqCuti">Form Cuti</a></li>
+                      <li><a href="index.php?page=historyCuti">History Cuti</a></li>
+                    </ul>
+                  </li> -->
+
+                  <!-- li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="chartjs.html">Chart JS</a></li>
                       <li><a href="chartjs2.html">Chart JS2</a></li>
@@ -194,7 +236,48 @@ if ($_SESSION["level"] == "Purchasing") {
                   </li> -->
                 </ul>
               </div>
-              
+              <!-- <div class="menu_section">
+                <h3>Live On</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="e_commerce.html">E-commerce</a></li>
+                      <li><a href="projects.html">Projects</a></li>
+                      <li><a href="project_detail.html">Project Detail</a></li>
+                      <li><a href="contacts.html">Contacts</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="page_403.html">403 Error</a></li>
+                      <li><a href="page_404.html">404 Error</a></li>
+                      <li><a href="page_500.html">500 Error</a></li>
+                      <li><a href="plain_page.html">Plain Page</a></li>
+                      <li><a href="login.html">Login Page</a></li>
+                      <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="#level1_1">Level One</a>
+                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li class="sub_menu"><a href="level2.html">Level Two</a>
+                            </li>
+                            <li><a href="#level2_1">Level Two</a>
+                            </li>
+                            <li><a href="#level2_2">Level Two</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#level1_2">Level One</a>
+                        </li>
+                    </ul>
+                  </li>                  
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                </ul>
+              </div> -->
 
             </div>
             <!-- /sidebar menu -->
@@ -218,7 +301,6 @@ if ($_SESSION["level"] == "Purchasing") {
           </div>
         </div>
 
-       
         <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
@@ -229,18 +311,17 @@ if ($_SESSION["level"] == "Purchasing") {
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                  <img src="img/<?= $karyawan['gambar'];?>" alt=""> <strong> <?= $nama;?></strong> ( <?= $jabatan?> )
+                   <img src="img/<?= $karyawan['gambar'];?>" alt=""> <strong> <?= $nama;?></strong> ( <?= $jabatan?> )
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <!-- <a class="dropdown-item"  href="javascript:;"> Profile</a> -->
-                    <a class="dropdown-item"  href="?page=profile">Profile <i class="fa fa-user pull-right"></i></a>
-                    <a class="dropdown-item"  href="?page=changePassword">Change Password<i class="fa fa-key pull-right"></i></a>
-                      <!-- <a class="dropdown-item"  href="javascript:;">
+                    <!-- <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                      <a class="dropdown-item"  href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a> -->
-                    <!-- <a class="dropdown-item"  href="javascript:;">Help</a> -->
-                    <a class="dropdown-item"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item"  href="?page=profile">Profile <i class="fa fa-user pull-right"></i></a>
+                    <a class="dropdown-item"  href="?page=changePassword">Change Password<i class="fa fa-key pull-right"></i></a>
+                    <a class="dropdown-item" onclick="return confirm('Anda yakin ingin keluar?')"  href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 
@@ -320,47 +401,82 @@ if ($_SESSION["level"] == "Purchasing") {
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
                         switch ($page) {
-                            case 'approve':
-                                include "page/admin_approve/admin_aprove.php";
+
+                            case 'salesPlan':
+                                include "page/01sales_dan_marketing/sales_plan/approve_sales/app2/app2.php";
                                 break;
 
-                            case 'historyApprove':
-                                include "page/history_approve/history_approve.php";
-                                break;
-                         
-                            case 'dashboard':
-                                include "page/dashboard/dashboard.php";
-                                break;
-
-                            case 'dataKaryawan':
-                                include "page/hrd/data_karyawan.php";
-                                break;
-
-                            case 'aksesPintu':
-                                include 'page/hrd/akses_pintu/akses_pintu.php';
+                            case 'masterVessel':
+                              include "page/01sales_dan_marketing/master_vessel/master_vessel.php";
                               break;
 
-                            case 'absen':
-                                include "page/hrd/data_absen/data_absen.php";
+                            case 'masterCustomer':
+                              include "page/01sales_dan_marketing/master_customer/master_customer.php";
+                              break;
+
+                            case 'masterDept':
+                              include "page/01sales_dan_marketing/master_dept/master_dept.php";
+                              break;
+
+                            case 'masterKargo':
+                              include "page/01sales_dan_marketing/master_kargo/master_kargo.php";
+                              break;
+
+                            case 'inventarisAsset':
+                              include "page/06purchasing/inventaris_dan_asset/inventaris_read.php";
+                              break;
+
+                              case "RAB":
+                                include "page/01sales_dan_marketing/rab/approve_rab/app2/app2.php";
+                                break;
+  
+
+                            case 'pengajuan':
+                                include "page/pengajuan/pengajuan.php";
                                 break;
 
-                            case 'userLogin':
-                                include 'page/hrd/user_login/user_login.php';
-                              break;
+                            case 'historyPengajuan':
+                                include "page/history_pengajuan/history_pengajuan.php";
+                                break;
 
                             case 'changePassword':
-                                include "page/change_password/change_password.php";
-                                break;
+                                include 'page/change_password/change_password.php';
+                               break;
 
                             case 'profile':
                                 include "page/profile/profile.php";
                                 break;
+                            
 
                             case 'reqCuti':
                                 include "page/hrd/cuti/req_cuti/form_cuti.php";
                                 break;
                             case 'historyCuti':
                                 include "page/hrd/cuti/req_cuti/history_request.php";
+                                break;
+
+                            case 'dashboard':
+                                include "page/05dashboard/dashboard.php";
+                                break;
+
+                            case 'dataInventaris':
+                                include 'page/asset_dan_inventaris/inventaris_read.php';
+                                break;
+
+                            case 'dataBarang':
+                                include 'page/data_barang/barang_read.php';
+                                break;
+
+                            case 'invoicePembelian':
+                                include 'page/pembelian_barang/invoice/invoice_read.php';
+                                break;
+
+                            case 'pengajuanPembelian':
+                                include "page/pembelian_barang/pengajuan_pembelian/pengajuan_pembelian_read.php";
+                                break;
+
+                            case 'transaksiBarangMasuk':
+                                include 'page/asset_dan_inventaris/transaksi_barang/barang_masuk/barang_masuk.php';
                                 break;
 
                             case 'laporan':
@@ -370,10 +486,20 @@ if ($_SESSION["level"] == "Purchasing") {
                             case 'tagihan':
                                 include "page/tagihan/tagihan.php";
                                 break;
+
+                            case "disposal":
+                              include "page/06purchasing/inventaris_dan_asset/disposal_read.php";
+                              break;
+
+                            case "pengajuanPPU":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/ppu.php";
+                              break;
+
+                            case "loanPanjar":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app4/app4.php";
+                              break;
               
-                            case 'profil':
-                                include "page/profil/profil.php";
-                                break;
+                            
 
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";
@@ -383,63 +509,94 @@ if ($_SESSION["level"] == "Purchasing") {
                         $form = $_GET['form'];
 
                         switch ($form) {
-                            
 
-                            case 'tambahKaryawan':
-                                include "page/hrd/tambah.php";
-                                break;
 
-                            case 'ubahKaryawan':
-                                include "page/hrd/ubah.php";
-                                break;
-
-                            case 'hapusKaryawan':
-                                include 'page/hrd/hapus.php';
-                                break;
-
-                            case 'rincianKaryawan':
-                                include 'page/hrd/rincian_karyawan.php';
-                                break;
-
-                            case 'tambahAbsen':
-                                include "page/hrd/data_absen/tambah.php";
-                                break;
-
-                            case 'ubahAbsen':
-                                include "page/hrd/data_absen/ubah.php";
-                                break;
-
-                            case 'hapusAbsen':
-                                include "page/hrd/data_absen/hapus.php";
+                            case "lihatUraian":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
                               break;
 
-                            case 'tambahAkses':
-                                include 'page/hrd/akses_pintu/tambah.php';
+                            case "approvePpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app4/konfirmasiapp4.php";
+                              break;
+
+                            case "revisePpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/revise/revise4/revise4.php";
+                              break;
+
+                            case "rejectPpu":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/reject/reject4.php";
+                              break;
+
+                            case "tambahSales":
+                                include "page/01sales_dan_marketing/sales_plan/tambah.php";
                                 break;
 
-                            case 'ubahAkses':
-                                include 'page/hrd/akses_pintu/ubah.php';
+                            case "hapusSales":
+                                include "page/01sales_dan_marketing/sales_plan/hapus.php";
                                 break;
 
-
-                            case 'hapusAkses':
-                                include 'page/hrd/akses_pintu/hapus.php';
+                            case "ubahSales":
+                                include "page/01sales_dan_marketing/sales_plan/ubah.php";
                                 break;
 
-                            case 'tambahLogin':
-                                include 'page/hrd/user_login/tambah.php';
+                            case "tambahVessel":
+                                include "page/01sales_dan_marketing/master_vessel/tambah.php";
                                 break;
 
-                            case 'ubahLogin':
-                                include 'page/hrd/user_login/ubah.php';
+                            case "hapusVessel":
+                                include "page/01sales_dan_marketing/master_vessel/hapus.php";
                                 break;
 
-                            case 'hapusLogin':
-                                include 'page/hrd/user_login/hapus.php';
+                            case "ubahVessel":
+                                include "page/01sales_dan_marketing/master_vessel/ubah.php";
                                 break;
 
-                            case 'ubahApprove':
-                                include "page/admin_approve/konfirmasi_aprove.php";
+                            case "tambahCustomer":
+                                include "page/01sales_dan_marketing/master_customer/tambah.php";
+                                break;
+
+                            case "hapusCustomer":
+                                include "page/01sales_dan_marketing/master_customer/hapus.php";
+                                break;
+
+                            case "ubahCustomer":
+                                include "page/01sales_dan_marketing/master_customer/ubah.php";
+                                break;
+
+                            case "tambahDept":
+                                include "page/01sales_dan_marketing/master_dept/tambah.php";
+                                break;
+
+                            case "hapusDept":
+                                include "page/01sales_dan_marketing/master_dept/hapus.php";
+                                break;
+
+                            case "ubahDept":
+                                include "page/01sales_dan_marketing/master_dept/ubah.php";
+                                break;
+
+                            case "lihatApprove":
+                                include "page/01sales_dan_marketing/sales_plan/lihat_approve.php";
+                                break;
+
+                            case "approveSales":
+                                include "page/01sales_dan_marketing/sales_plan/approve_sales/app2/konfirmasiapp2.php";
+                                break;
+
+                            case "reviseSales":
+                                include "page/01sales_dan_marketing/sales_plan/revise_sales/revise2/revise2.php";
+                                break;
+
+                            case "rejectSales":
+                                include "page/01sales_dan_marketing/sales_plan/reject_sales/reject2.php";
+                                break;
+
+                            case "tambahRab":
+                                include "page/01sales_dan_marketing/rab/tambah.php";
+                                break;
+
+                            case 'ubahPengajuan':
+                                include "page/pengajuan/ubah.php";
                                 break;
 
                             case 'tambahPengajuan':
@@ -449,11 +606,55 @@ if ($_SESSION["level"] == "Purchasing") {
                             case 'hapusPengajuan':
                                 include "page/pengajuan/hapus.php";
                                 break;
-                
+
                             case 'updateProfile':
                                 include 'page/profile/update_profile.php';
                                 break;
-                                
+
+                            case 'ubahRequestCuti':
+                                include 'page/hrd/cuti/req_cuti/ubah.php';
+                                break;
+
+                            case 'hapusRequestCuti':
+                                include 'page/hrd/cuti/req_cuti/hapus.php';
+                                break;
+
+                            case 'tambahKaryawan':
+                                include 'page/hrd/tambah.php';
+                              break;
+
+                            case 'tambahInventaris':
+                                include "page/06purchasing/inventaris_dan_asset/tambah.php";
+                                break;
+
+                            case 'ubahInventaris':
+                                include "page/06purchasing/inventaris_dan_asset/ubah.php";
+                                break;
+
+                            case 'hapusInventaris':
+                                include 'page/06purchasing/inventaris_dan_asset/hapus.php';
+                                break;
+
+                            case 'tambahBarang':
+                                include "page/data_barang/tambah.php";
+                                break;
+
+                            case 'ubahBarang':
+                                include "page/data_barang/ubah.php";
+                                break;
+
+                            case 'hapusBarang':
+                                include "page/data_barang/hapus.php";
+                                break;
+
+                            case 'tambahBarangMasuk':
+                                include "page/asset_dan_inventaris/transaksi_barang/barang_masuk/tambah.php";
+                                break;
+                
+                            case 'cariAnggaran':
+                              include "page/anggaran/cari.php";
+                              break;
+
                             case 'ubahCatatan':
                                 include "page/catatan/ubah.php";
                                 break;
@@ -463,7 +664,7 @@ if ($_SESSION["level"] == "Purchasing") {
                             case 'hapusCatatan':
                                 include "page/catatan/hapus.php";
                                 break;
-              case 'cariCatatan':
+                            case 'cariCatatan':
                                 include "page/catatan/cari.php";
                                 break;
 
@@ -480,7 +681,18 @@ if ($_SESSION["level"] == "Purchasing") {
                             case 'ubahProfil':
                                 include "page/profil/ubah.php";
                                 break;
-                        
+
+                            case "approveRab":
+                              include "page/01sales_dan_marketing/rab/approve_rab/app2/konfirmasiapp2.php";
+                              break;
+
+                            case "reviseRab":
+                              include "page/01sales_dan_marketing/rab/revise_rab/revise2/revise2.php";
+                              break;
+
+                            case "rejectRab":
+                              include "page/01sales_dan_marketing/rab/reject_rab/reject2.php";
+                              break;
 
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";
@@ -489,19 +701,22 @@ if ($_SESSION["level"] == "Purchasing") {
                     }
 
                     else{
-                        include "dashboard2.php";
+                        include "page/05dashboard/dashboard.php";
                     }
                 ?>
         </div>
-          <!-- /top tiles -->
+    
+
+          
+         
 
 
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
+        <footer class="">
           <div class="pull-right">
-            PT Global Petro Pasific - All Right Reserved <a href="https://globalpetro.co.id">2024</a>
+            PT Mitra Maritim Mandiri - All Right Reserved <a href="https://mitramaritim.com">2024</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -552,4 +767,3 @@ if ($_SESSION["level"] == "Purchasing") {
 	
   </body>
 </html>
-

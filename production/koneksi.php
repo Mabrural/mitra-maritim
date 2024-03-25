@@ -4527,4 +4527,44 @@ function uploadNota(){
 	move_uploaded_file($tmpName, 'files/bukti_nota/'. $namaFileBaru);
 	return $namaFileBaru;
  }
+
+ function ubahPenyelesaian($data) {
+	global $koneksi;
+	$id_end = mysqli_real_escape_string($koneksi, $data["id_end"]);
+	$tgl_end = htmlspecialchars($data["tgl_end"]);
+	$nominal_use = htmlspecialchars($data["nominal_use"]);
+	$selisih = htmlspecialchars($data["selisih"]);
+	$status_end = htmlspecialchars($data["status_end"]);
+	$id_bpu = htmlspecialchars($data["id_bpu"]);
+	
+	// Inisialisasi variabel untuk file lama
+	$notaLama = isset($data["bukti_nota_lama"]) ? mysqli_real_escape_string($koneksi, $data["bukti_nota_lama"]) : '';
+	$returnLama = isset($data["bukti_return_lama"]) ? mysqli_real_escape_string($koneksi, $data["bukti_return_lama"]) : '';
+	$reimburseLama = isset($data["bukti_reimburse_lama"]) ? mysqli_real_escape_string($koneksi, $data["bukti_reimburse_lama"]) : '';
+
+	// cek apakah user pilih pdf baru atau tidak
+	$bukti_nota = isset($_FILES['bukti_nota']) && $_FILES['bukti_nota']['error'] !== 4 ? uploadNota() : $notaLama;
+	
+	// cek apakah user pilih pdf baru atau tidak
+	$bukti_return = isset($_FILES['bukti_return']) && $_FILES['bukti_return']['error'] !== 4 ? uploadReturn() : $returnLama;
+
+	// cek apakah user pilih pdf baru atau tidak
+	$bukti_reimburse = isset($_FILES['bukti_reimburse']) && $_FILES['bukti_reimburse']['error'] !== 4 ? uploadReimburse() : $reimburseLama;
+
+	$query = "UPDATE penyelesaian SET
+				tgl_end = '$tgl_end',
+				nominal_use = '$nominal_use',
+				bukti_nota = '$bukti_nota',
+				selisih = '$selisih',
+				status_end = '$status_end',
+				id_bpu = '$id_bpu',
+				bukti_return = '$bukti_return',
+				bukti_reimburse = '$bukti_reimburse'
+			  WHERE id_end = $id_end
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
  ?>
