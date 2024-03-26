@@ -527,6 +527,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "loanPanjar":
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app2/app2.php";
                                   break;
+
+                                case "expenses";
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app2/app2.php";
+                                  break;
                             
 
                             default:
@@ -538,9 +542,21 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
-                        case "lihatApprove":
-                            include "page/01sales_dan_marketing/sales_plan/lihat_approve_read.php";
+                          case "approveExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app2/konfirmasiapp2.php";
                             break;
+
+                          case "reviseExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/revise/revise2/revise2.php";
+                            break;
+
+                          case "rejectExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/reject/reject2.php";
+                            break;
+
+                          case "lihatApprove":
+                              include "page/01sales_dan_marketing/sales_plan/lihat_approve_read.php";
+                              break;
 
                           case "lihatUraian":
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";

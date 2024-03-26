@@ -580,6 +580,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "expenses";
                               include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app1/app1.php";
                               break;
+
+                            case "vesselDatabase":
+                              include "page/02operasion_dan_shipping/vessel_database/vessel_database.php";
+                              break;
               
                             
 

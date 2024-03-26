@@ -7,7 +7,7 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>Expenses<small></small></h2>
+        <h2>Expenses<small></small></h2>     
         <div class="clearfix"></div>
       </div>
 
@@ -64,7 +64,7 @@ $id_user = $_SESSION["id_user"];
 
                 
                 <td class=" last">
-                <?php if ($data["status_expenses"] === "On Ka. Shipping") : ?>
+                <?php if ($data["status_expenses"] === "On Kacab") : ?>
                     
                         <a href="?form=approveExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approve </a>
                         <a href="?form=reviseExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Revise </a>
