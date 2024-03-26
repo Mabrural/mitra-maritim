@@ -156,7 +156,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="kacab.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="kacab.php?page=BPU">PPU & BPU</a></li>
                       <li><a href="kacab.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="kacab.php?page=dataBarang">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="kacab.php?page=dataBarang">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
@@ -530,6 +530,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                                 case "expenses";
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app2/app2.php";
+                                  break;
+
+                                case "BPU":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
                                   break;
                             
 

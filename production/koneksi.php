@@ -4787,5 +4787,53 @@ function rejectExpenses2($id_expenses) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function approveExpenses3($id_expenses) {
+	global $koneksi;
+	$app_exp3 = "Bambang Wahyudi";	
+	$status_expenses = "On Dirut";	
+
+	$query = "UPDATE expenses SET
+				app_exp3 = '$app_exp3',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseExpenses3($id_expenses) {
+	global $koneksi;
+	$app_exp1 = "";	
+	$app_exp2 = "";	
+	$status_expenses = "Revise";	
+
+	$query = "UPDATE expenses SET
+				app_exp1 = '$app_exp1',
+				app_exp2 = '$app_exp2',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectExpenses3($id_expenses) {
+	global $koneksi;
+	$app_exp1 = '';
+	$app_exp2 = '';
+	$status_expenses = "Reject";	
+
+	$query = "UPDATE expenses SET
+				app_exp1 = '$app_exp1',
+				app_exp2 = '$app_exp2',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
 
  ?>
