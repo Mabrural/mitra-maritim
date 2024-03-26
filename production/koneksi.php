@@ -4699,4 +4699,47 @@ function uploadExpenses(){
 	return mysqli_affected_rows($koneksi);
 }
 
+function approveExpenses1($id_expenses) {
+	global $koneksi;
+	$app_exp1 = "Gahral";	
+	$status_expenses = "On Kacab";	
+
+	$query = "UPDATE expenses SET
+				app_exp1 = '$app_exp1',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseExpenses1($id_expenses) {
+	global $koneksi;
+	$app_exp1 = "";	
+	$status_expenses = "Revise";	
+
+	$query = "UPDATE expenses SET
+				app_exp1 = '$app_exp1',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectExpenses1($id_expenses) {
+	global $koneksi;
+	$status_expenses = "Reject";	
+
+	$query = "UPDATE expenses SET
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
  ?>

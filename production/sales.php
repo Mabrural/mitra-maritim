@@ -592,6 +592,18 @@ if ($_SESSION["level"] == "Staff IT") {
 
                         switch ($form) {
 
+                            case "approveExpenses":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app1/konfirmasiapp1.php";
+                              break;
+
+                            case "reviseExpenses":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/revise/revise1/revise1.php";
+                              break;
+
+                            case "rejectExpenses":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/reject/reject1.php";
+                              break;
+
                             case "approvePpu":
                               include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app1/konfirmasiapp1.php";
                               break;

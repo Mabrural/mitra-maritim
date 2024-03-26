@@ -64,8 +64,27 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><a href="files/upload_expenses/<?= $data['upload_expenses']?>" class="btn btn-secondary btn-sm"> <i class="fa fa-eye"></i> View</a></td>
 
                 
-                <td class=" last"><a href="?form=ubahExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a>
+                <!-- <td class=" last"><a href="?form=ubahExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a>
+                </td> -->
+
+                <td class="last">
+                    <?php 
+                        // Mendapatkan status_expenses dari data
+                        $status_expenses = $data["status_expenses"];
+                        
+                        // Mengecek apakah status_expenses adalah "revise" atau "On Ka. Shipping"
+                        $showButton = ($status_expenses == "Revise" || $status_expenses == "On Ka. Shipping");
+                        
+                        // Jika $showButton bernilai true, maka tampilkan tombol "Ubah"
+                        if($showButton): 
+                    ?>
+                        <a href="?form=ubahExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a>
+                    <?php else: ?>
+                        <!-- Jika tidak, maka disable tombol "Ubah" -->
+                        <button class="btn btn-info btn-sm" disabled><i class="fa fa-edit"></i> Ubah </button>
+                    <?php endif; ?>
                 </td>
+
 
         
               </tr>

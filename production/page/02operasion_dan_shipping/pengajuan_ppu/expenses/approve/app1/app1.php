@@ -68,7 +68,7 @@ $id_user = $_SESSION["id_user"];
                 <?php if ($data["status_expenses"] === "On Ka. Shipping") : ?>
                     
                         <a href="?form=approveExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Approve </a>
-                        <a href="?form=reviseExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i> Revise </a>
+                        <a href="?form=reviseExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Revise </a>
                         <a href="?form=rejectExpenses&id_expenses=<?= $data["id_expenses"]; ?>" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Reject </a>
               
                 <?php else : ?>
