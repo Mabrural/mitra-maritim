@@ -4570,6 +4570,14 @@ function uploadNota(){
 function tambahExpenses($data) {
 	global $koneksi;
 	$no_expenses = htmlspecialchars($data["no_expenses"]);
+
+	// Check if the expenses with the same number already exists
+	$query_check = "SELECT * FROM expenses WHERE no_expenses = '$no_expenses'";
+	$result_check = mysqli_query($koneksi, $query_check);
+	if(mysqli_num_rows($result_check) > 0) {
+		return false; // Return false to indicate failure
+	}
+
 	$tgl_expenses = htmlspecialchars($data["tgl_expenses"]);
 	$nominal_expenses = htmlspecialchars($data["nominal_expenses"]);
 	$keperluan_exp = htmlspecialchars($data["keperluan_exp"]);
@@ -4675,7 +4683,7 @@ function uploadExpenses(){
 				tgl_expenses = '$tgl_expenses',
 				nominal_expenses = '$nominal_expenses',
 				keperluan_exp = '$keperluan_exp',
-				upload_exp = '$upload_exp',
+				upload_expenses = '$upload_exp',
 				status_expenses = '$status_expenses',
 				app_exp1 = '$app_exp1',
 				app_exp2 = '$app_exp2',

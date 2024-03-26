@@ -66,7 +66,7 @@ if (isset($_POST["submit"])) {
 				<div class="col-md-12 col-sm-12 ">
 					<div class="x_panel">
 						<div class="x_title">
-							<h2>Ubah Penyelesaian<small></small></h2>
+							<h2>Ubah Expenses<small></small></h2>
 
 							<div class="clearfix"></div>
 						</div>
@@ -136,7 +136,7 @@ if (isset($_POST["submit"])) {
 
 
 
-                                <!-- <input type="hidden" name="status_expenses" value="On Ka. Shipping"> -->
+                                <input type="hidden" name="status_expenses" value="On Ka. Shipping">
                                 <input type="hidden" name="app_exp1" value="">
                                 <input type="hidden" name="app_exp2" value="">
                                 <input type="hidden" name="app_exp3" value="">
@@ -149,9 +149,9 @@ if (isset($_POST["submit"])) {
 								<div class="ln_solid"></div>
 								<div class="item form-group">
 									<div class="col-md-6 col-sm-6 offset-md-3">
-										<a href="?page=penyelesaianBpu" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+										<a href="?page=expenses" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
 										<button class="btn btn-primary btn-sm" type="reset"><i class="fa fa-refresh"></i> Reset</button>
-										<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-send-o"></i> Submit</button>
+										<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-edit"></i> Update</button>
 									</div>
 								</div>
 

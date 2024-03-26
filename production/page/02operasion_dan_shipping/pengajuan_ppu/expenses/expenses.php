@@ -49,6 +49,7 @@ $id_user = $_SESSION["id_user"];
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
+                    $nominal_expenses = $data['nominal_expenses'];
               	     		
 
               	 ?>
@@ -58,7 +59,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['nama_emp'];?></td>
                 <td class=" "><?= $data['nama_divisi'];?></td>
                 <td class=" "><?= $data['keperluan_exp'];?></td>
-                <td class=" "><?= $data['nominal_expenses'];?></td>
+                <td class=" "><?= "Rp. " . number_format($nominal_expenses, 2, ",", "."); ?></td>
                 <td class=" "><?= $data['status_expenses'];?></td>
                 <td class=" "><a href="files/upload_expenses/<?= $data['upload_expenses']?>" class="btn btn-secondary btn-sm"> <i class="fa fa-eye"></i> View</a></td>
 

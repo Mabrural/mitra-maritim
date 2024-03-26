@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="no_ppu">Nomor PPU <span class="required">*</span>
 									</label>
 									<div class="col-md-6 col-sm-6 ">
-										<select class="form-control" name="id_bpu" required>
+										<select class="form-control" name="id_bpu" required readonly>
 											<option value="">--Pilih No PPU--</option>
 											<?php foreach($bpu_ppu as $row) : ?>
 												<option value="<?= $row['id_bpu']?>" <?= ($row['id_bpu'] == $penyelesaian['id_bpu']) ? 'selected' : '';?> ><?= $row['no_ppu']?> </option>
@@ -91,6 +91,8 @@ if (isset($_POST["submit"])) {
 										</select>
 									</div>
 								</div>
+
+								
 
 								<div class="item form-group">
 									<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal Penyelesaian <span class="required">*</span>
@@ -186,7 +188,7 @@ if (isset($_POST["submit"])) {
 									<div class="col-md-6 col-sm-6 offset-md-3">
 										<a href="?page=penyelesaianBpu" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
 										<button class="btn btn-primary btn-sm" type="reset"><i class="fa fa-refresh"></i> Reset</button>
-										<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-send-o"></i> Submit</button>
+										<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-edit"></i> Update</button>
 									</div>
 								</div>
 

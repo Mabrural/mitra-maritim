@@ -126,13 +126,6 @@ if (isset($_POST["submit"])) {
 									</div>
 								</div>
 
-								<!-- <div class="item form-group">
-									<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Reimburse Expenses (.jpg, .png, .jpeg .pdf) <br> <b style="color:red">(Diisi oleh Finance)</b></label>
-									<div class="col-md-6 col-sm-6 ">
-										<input type="file" name="reimburse_exp">
-									</div>
-								</div> -->
-
                                 <input type="hidden" name="status_expenses" value="On Ka. Shipping">
                                 <input type="hidden" name="app_exp1" value="">
                                 <input type="hidden" name="app_exp2" value="">

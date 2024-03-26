@@ -50,14 +50,15 @@ $id_user = $_SESSION["id_user"];
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
-                        // var_dump($data); die; 		
+                       $nominal_use = $data['nominal_use'];
+                       $selisih = $data['selisih'];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
                 <td class=" "><a href="?form=lihatUraianRead&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
-                <td class=" "><?= $data['nominal_use'];?></td>
-                <td class=" "><?= $data['selisih'];?></td>
+                <td class=" "><?= "Rp. " . number_format($nominal_use, 2, ",", "."); ?></td>
+                <td class=" "><?= "Rp. " . number_format($selisih, 2, ",", "."); ?></td>
                 <td class=" "><?= $data['status_end'];?></td>
                 <td class=" "><a href="files/bukti_nota/<?= $data['bukti_nota'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Nota</a></td>
                 <td class=" "><a href="files/bukti_nota/<?= $data['bukti_return'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Return</a></td>
