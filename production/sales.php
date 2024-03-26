@@ -576,6 +576,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "loanPanjar":
                               include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app1/app1.php";
                               break;
+
+                            case "expenses";
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app1/app1.php";
+                              break;
               
                             
 
