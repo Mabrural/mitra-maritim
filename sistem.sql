@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2024 at 10:19 AM
+-- Generation Time: Mar 26, 2024 at 05:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -591,7 +591,7 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`id_expenses`, `no_expenses`, `tgl_expenses`, `nominal_expenses`, `keperluan_exp`, `upload_expenses`, `status_expenses`, `app_exp1`, `app_exp2`, `app_exp3`, `app_exp4`, `app_exp5`, `pemohon`, `id_user`) VALUES
-(10, '001/MMM/EXP/2024', '2024-03-25', 3000000, 'beli printer', '66012b2b12eef.pdf', 'On Ka. Shipping', '', '', '', '', '', 19, 35);
+(13, '001/MMM/EXP/2024', '2024-03-26', 150000, 'claim uang bensin', '66023ed34b7a1.jpeg', 'On Ka. Shipping', '', '', '', '', '', 19, 35);
 
 -- --------------------------------------------------------
 
@@ -1755,6 +1755,7 @@ ALTER TABLE `divisi`
 --
 ALTER TABLE `expenses`
   ADD PRIMARY KEY (`id_expenses`),
+  ADD UNIQUE KEY `no_expenses` (`no_expenses`),
   ADD KEY `id_emp` (`pemohon`),
   ADD KEY `id_user` (`id_user`);
 
@@ -2106,7 +2107,7 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id_expenses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_expenses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `ijazah`
