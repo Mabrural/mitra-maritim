@@ -536,6 +536,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                   include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
                                   break;
 
+                                case "bpuExpenses":
+                                  include "page/03_finance_dan_accounting/bpu_expenses/bpu_expenses.php";
+                                  break;
+
                                 case 'slipGaji':
                                   include "page/hrd/slip_gaji/slip_gaji.php";
                                   break;
@@ -549,6 +553,10 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "tambahBpuExpenses":
+                            include "page/03_finance_dan_accounting/bpu_expenses/tambah.php";
+                            break;
 
                           case 'tambahSlip':
                             include 'page/hrd/slip_gaji/tambah.php';

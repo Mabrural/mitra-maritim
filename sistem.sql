@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2024 at 05:05 AM
+-- Generation Time: Mar 26, 2024 at 10:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -229,7 +229,7 @@ INSERT INTO `barang` (`kode_brg`, `nama_barang`, `gambar_barang`, `spek`, `deskr
 CREATE TABLE `bpu_expenses` (
   `id_bpu_exp` int(10) NOT NULL,
   `tgl_bpu_exp` date NOT NULL,
-  `id_emp` int(10) NOT NULL,
+  `penerima_exp` int(10) NOT NULL,
   `nominal_tf_exp` int(10) NOT NULL,
   `note_exp` text DEFAULT NULL,
   `bukti_tf_exp` varchar(50) NOT NULL,
@@ -591,7 +591,7 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`id_expenses`, `no_expenses`, `tgl_expenses`, `nominal_expenses`, `keperluan_exp`, `upload_expenses`, `status_expenses`, `app_exp1`, `app_exp2`, `app_exp3`, `app_exp4`, `app_exp5`, `pemohon`, `id_user`) VALUES
-(13, '001/MMM/EXP/2024', '2024-03-26', 150000, 'claim uang bensin', '66023ed34b7a1.jpeg', 'On Ka. Shipping', '', '', '', '', '', 19, 35);
+(13, '001/MMM/EXP/2024', '2024-03-26', 150000, 'claim uang bensin ke KSOP', '66023ed34b7a1.jpeg', 'Selesai', 'Gahral', 'Michael Kawilarang', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina', 15, 35);
 
 -- --------------------------------------------------------
 
@@ -1701,7 +1701,7 @@ ALTER TABLE `bpu_expenses`
   ADD PRIMARY KEY (`id_bpu_exp`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_expenses` (`id_expenses`),
-  ADD KEY `id_emp` (`id_emp`);
+  ADD KEY `penerima_exp` (`penerima_exp`);
 
 --
 -- Indexes for table `bpu_ppu`
@@ -2355,7 +2355,7 @@ ALTER TABLE `akses_pintu`
 ALTER TABLE `bpu_expenses`
   ADD CONSTRAINT `bpu_expenses_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
   ADD CONSTRAINT `bpu_expenses_ibfk_2` FOREIGN KEY (`id_expenses`) REFERENCES `expenses` (`id_expenses`),
-  ADD CONSTRAINT `bpu_expenses_ibfk_3` FOREIGN KEY (`id_emp`) REFERENCES `karyawan` (`id_emp`);
+  ADD CONSTRAINT `bpu_expenses_ibfk_3` FOREIGN KEY (`penerima_exp`) REFERENCES `karyawan` (`id_emp`);
 
 --
 -- Constraints for table `bpu_ppu`

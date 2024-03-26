@@ -67,7 +67,7 @@ if (isset($_POST["submit"])) {
 						</div>
 
                         <a href="?page=bpuLoanPanjar" class="btn btn-primary">BPU Loan / Panjar</a>
-                        <a href="?page=expenses" class="btn btn-info">BPU Expenses</a>
+                        <a href="?page=bpuExpenses" class="btn btn-info">BPU Expenses</a>
                         <a href="?page=penyelesaianBpu" class="btn btn-success">Penyelesaian / BPU</a>
                         
 						

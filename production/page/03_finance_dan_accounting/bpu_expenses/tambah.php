@@ -4,9 +4,8 @@ $id_user = $_SESSION['id_user'];
 $karyawan = query("SELECT * FROM karyawan WHERE status='Aktif'");
 $crew = query("SELECT * FROM crew");
 
-// $ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai'");
-$ppu = query("SELECT * FROM ppu WHERE status_ppu = 'Selesai' AND 
-             NOT EXISTS (SELECT 1 FROM bpu_ppu WHERE bpu_ppu.id_ppu = ppu.id_ppu)");
+$expenses = query("SELECT * FROM expenses WHERE status_expenses = 'Selesai' AND 
+             NOT EXISTS (SELECT 1 FROM bpu_expenses WHERE bpu_expenses.id_expenses = expenses.id_expenses)");
 
 
 // cek apakah tombol submit sudah ditekan atau belum
@@ -15,7 +14,7 @@ if (isset($_POST["submit"])) {
 
 
 	// cek apakah data berhasil ditambahkan atau tidak
-	if(tambahBpu($_POST) > 0 ) {
+	if(tambahBpuExpenses($_POST) > 0 ) {
 		echo '<link rel="stylesheet" href="./sweetalert2.min.css"></script>';
 		echo '<script src="./sweetalert2.min.js"></script>';
 		echo "<script>
@@ -23,7 +22,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Berhasil',
-				text                :  'BPU berhasil ditambahkan',
+				text                :  'BPU Expenses berhasil ditambahkan',
 				//footer              :  '',
 				icon                : 'success',
 				timer               : 2000,
@@ -42,7 +41,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'BPU gagal ditambahkan',
+				text                :  'BPU Expenses gagal ditambahkan',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,
@@ -68,7 +67,7 @@ if (isset($_POST["submit"])) {
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>New BPU (Bukti Pengeluaran Uang)<small></small></h2>
+									<h2>New BPU Expenses (Bukti Pengeluaran Uang)<small></small></h2>
 	
 									<div class="clearfix"></div>
 								</div>
@@ -77,13 +76,13 @@ if (isset($_POST["submit"])) {
 									<form action="" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="no_ppu">Nomor PPU <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="id_expenses">Nomor Expenses <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="id_ppu" required>
-													<option value="">--Pilih No PPU--</option>
-													<?php foreach($ppu as $row) : ?>
-														<option value="<?= $row['id_ppu']?>"><?= $row['no_ppu']?> </option>
+												<select class="form-control" name="id_expenses" required>
+													<option value="">--Pilih No Expenses--</option>
+													<?php foreach($expenses as $row) : ?>
+														<option value="<?= $row['id_expenses']?>"><?= $row['no_expenses']?> </option>
 													<?php endforeach;?>	
 												</select>
 											</div>
@@ -93,7 +92,7 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_bpu">Tanggal Transfer <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="date" name="tgl_bpu" id="tgl_bpu" required="required" class="form-control">
+												<input type="date" name="tgl_bpu_exp" id="tgl_bpu_exp" required="required" class="form-control">
 											</div>
 										</div>
 
@@ -101,7 +100,7 @@ if (isset($_POST["submit"])) {
                                         <div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Penerima Dana <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<select class="form-control" name="penerima_dana">
+												<select class="form-control" name="penerima_exp">
 													<option value="">--Pilih Penerima Dana--</option>
 													<?php foreach($karyawan as $row) : ?>
 														<option value="<?= $row['id_emp']?>"><?= $row['nama_emp']?> </option>
@@ -113,10 +112,10 @@ if (isset($_POST["submit"])) {
 
 
                                         <div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_tf">Nominal Transfer <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="nominal_tf_exp">Nominal Transfer <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="number" min="0" name="nominal_tf" id="nominal_tf" required="required" class="form-control" placeholder="Nominal Transfer">
+												<input type="number" min="0" name="nominal_tf_exp" id="nominal_tf_exp" required="required" class="form-control" placeholder="Nominal Transfer">
 											</div>
 										</div>
 
@@ -124,25 +123,25 @@ if (isset($_POST["submit"])) {
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="note_bpu">Note 
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<textarea name="note_bpu" id="note_bpu" cols="30" rows="5" placeholder="Ketikkan Note " class="form-control" style="resize: none;"></textarea>
+												<textarea name="note_exp" id="note_exp" cols="30" rows="5" placeholder="Ketikkan Note " class="form-control" style="resize: none;"></textarea>
 											</div>
 										</div>
 
 										<div class="item form-group">
 											<label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Upload Bukti TF (.jpg, .png, .jpeg .pdf) <span class="required">*</span></label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="file" name="bukti_tf" required>
+												<input type="file" name="bukti_tf_exp" required>
 											</div>
 										</div>
 
                                         
 					
-
+                                        <input type="hidden" name="id_user" value="<?= $id_user?>">
 										
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
-												<a href="?page=bpuLoanPanjar" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+												<a href="?page=bpuExpenses" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
 												<button class="btn btn-primary btn-sm" type="reset"><i class="fa fa-refresh"></i> Reset</button>
 												<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-send-o"></i> Submit</button>
 											</div>
