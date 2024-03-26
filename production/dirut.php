@@ -253,7 +253,7 @@ if ($_SESSION["level"] == "Staff IT") {
                   </li>
                   <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">403 Error</a></li>
+                      <li><a href="page_403.htm l">403 Error</a></li>
                       <li><a href="page_404.html">404 Error</a></li>
                       <li><a href="page_500.html">500 Error</a></li>
                       <li><a href="plain_page.html">Plain Page</a></li>
@@ -501,6 +501,10 @@ if ($_SESSION["level"] == "Staff IT") {
                             case "loanPanjar":
                               include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app4/app4.php";
                               break;
+
+                            case "expenses";
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app4/app4.php";
+                              break;
               
                             
 
@@ -512,6 +516,18 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "approveExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app4/konfirmasiapp4.php";
+                            break;
+
+                          case "reviseExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/revise/revise4/revise4.php";
+                            break;
+
+                          case "rejectExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/reject/reject4.php";
+                            break;
 
 
                             case "lihatUraian":

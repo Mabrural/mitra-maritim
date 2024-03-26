@@ -4836,4 +4836,57 @@ function rejectExpenses3($id_expenses) {
 	return mysqli_affected_rows($koneksi);
 }
 
+function approveExpenses4($id_expenses) {
+	global $koneksi;
+	$app_exp4 = "Raden Sulaiman Sanjeev";	
+	$status_expenses = "On Dirkeu";	
+
+	$query = "UPDATE expenses SET
+				app_exp4 = '$app_exp4',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function reviseExpenses4($id_expenses) {
+	global $koneksi;
+	$app_exp1 = "";	
+	$app_exp2 = "";	
+	$app_exp3 = "";	
+	$status_expenses = "Revise";	
+
+	$query = "UPDATE expenses SET
+				app_exp1 = '$app_exp1',
+				app_exp2 = '$app_exp2',
+				app_exp3 = '$app_exp3',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function rejectExpenses4($id_expenses) {
+	global $koneksi;
+	$app_exp1 = '';
+	$app_exp2 = '';
+	$app_exp3 = '';
+	$status_expenses = "Reject";	
+
+	$query = "UPDATE expenses SET
+				app_exp1 = '$app_exp1',
+				app_exp2 = '$app_exp2',
+				app_exp3 = '$app_exp3',
+				status_expenses = '$status_expenses'
+			  WHERE id_expenses = $id_expenses
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
  ?>
