@@ -3905,6 +3905,12 @@ function tambahPpu($data) {
 
 	global $koneksi;
 	$no_ppu = mysqli_real_escape_string($koneksi, $data["no_ppu"]);
+	// Check if the expenses with the same number already exists
+	$query_check = "SELECT * FROM ppu WHERE no_ppu = '$no_ppu'";
+	$result_check = mysqli_query($koneksi, $query_check);
+	if(mysqli_num_rows($result_check) > 0) {
+		return false; // Return false to indicate failure
+	}
 	$tgl_ppu = mysqli_real_escape_string($koneksi, $data["tgl_ppu"]);
 	$keperluan = mysqli_real_escape_string($koneksi, $data["keperluan"]);
 	$id_user = mysqli_real_escape_string($koneksi, $data["id_user"]);
