@@ -4326,7 +4326,13 @@ function uploadBuktiTf(){
 
 function hapusBpu($id_bpu) {
 	global $koneksi;
-	mysqli_query($koneksi, "DELETE FROM bpu_ppu WHERE id_bpu=$id_bpu");
+
+	try{
+		mysqli_query($koneksi, "DELETE FROM bpu_ppu WHERE id_bpu=$id_bpu");
+	}catch(Exception $e){
+		return false;
+	}
+	
 
 	return mysqli_affected_rows($koneksi);
 
