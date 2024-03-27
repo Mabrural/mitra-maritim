@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2024 at 10:41 AM
+-- Generation Time: Mar 27, 2024 at 11:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `absen` (
 --
 
 INSERT INTO `absen` (`id_absen`, `no_absen`, `id_emp`, `id_lantai`) VALUES
-(8, 16, 17, 3),
+(8, 16, 17, 2),
 (9, 4, 14, 2),
 (10, 1, 30, 2),
 (12, 8, 13, 1),
@@ -67,9 +67,17 @@ CREATE TABLE `akses_pintu` (
 INSERT INTO `akses_pintu` (`id_akses`, `no_akses`, `id_emp`, `id_lantai`) VALUES
 (9, 2, 10, 2),
 (10, 1, 8, 1),
-(11, 2, 8, 2),
-(12, 3, 8, 2),
-(13, 4, 30, 2);
+(11, 1, 8, 2),
+(12, 1, 8, 3),
+(13, 5, 30, 2),
+(16, 7, 17, 2),
+(17, 18, 17, 3),
+(18, 13, 14, 3),
+(19, 6, 14, 2),
+(20, 4, 12, 2),
+(21, 12, 30, 1),
+(22, 9, 19, 1),
+(23, 15, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -1118,7 +1126,8 @@ CREATE TABLE `ppu` (
 INSERT INTO `ppu` (`id_ppu`, `no_ppu`, `tgl_ppu`, `keperluan`, `id_user`, `id_emp`, `status_ppu`, `app_ppu1`, `app_ppu2`, `app_ppu3`, `app_ppu4`, `app_ppu5`) VALUES
 (16, '003/mmm/ship/2024', '2024-03-08', 'Beli inventaris kantor', 35, 19, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina'),
 (19, '004/mmm/ship/2024', '2024-03-22', 'Pengurusan Dokumen BKI', 35, 18, 'Selesai', 'Gahral', 'Michael', 'Bambang Wahyudi', 'Raden Sulaiman Sanjeev', 'Regina'),
-(21, '002/SHIP/MMM/2024', '2024-03-25', 'Beli inventaris kantor', 27, 19, 'On Ka. Shipping', '', '', '', '', '');
+(21, '002/SHIP/MMM/2024', '2024-03-25', 'Beli inventaris kantor', 27, 19, 'On Ka. Shipping', '', '', '', '', ''),
+(23, '001/MMM/2024', '2024-03-27', 'Beli inventaris kantor(revise)', 30, 17, 'On Ka. Shipping', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1584,7 +1593,8 @@ CREATE TABLE `uraian_ppu` (
 
 INSERT INTO `uraian_ppu` (`id_uraian`, `nama_uraian`, `qty_uraian`, `id_satuan`, `harga_satuan`, `id_vessel`, `id_project`, `id_ppu`) VALUES
 (111, 'AC 1/2PK', 1, 1, 3500000, 1, 1, 19),
-(112, 'Laptop ROG', 1, 1, 10000000, 1, 1, 21);
+(112, 'Laptop ROG', 1, 1, 10000000, 1, 1, 21),
+(113, 'Kertas A4', 1, 6, 50000, 2, 1, 23);
 
 -- --------------------------------------------------------
 
@@ -2053,7 +2063,7 @@ ALTER TABLE `absen`
 -- AUTO_INCREMENT for table `akses_pintu`
 --
 ALTER TABLE `akses_pintu`
-  MODIFY `id_akses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_akses` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `bank`
@@ -2065,7 +2075,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bpu_expenses`
 --
 ALTER TABLE `bpu_expenses`
-  MODIFY `id_bpu_exp` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bpu_exp` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bpu_ppu`
@@ -2227,7 +2237,7 @@ ALTER TABLE `po_barang`
 -- AUTO_INCREMENT for table `ppu`
 --
 ALTER TABLE `ppu`
-  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_ppu` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `project`
@@ -2311,7 +2321,7 @@ ALTER TABLE `storage_barang`
 -- AUTO_INCREMENT for table `uraian_ppu`
 --
 ALTER TABLE `uraian_ppu`
-  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id_uraian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `user`
