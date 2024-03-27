@@ -175,9 +175,9 @@ if (isset($_POST["submit"])) {
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
-												<!-- <button class="btn btn-primary" type="button">Cancel</button> -->
-												<button class="btn btn-primary" type="reset">Reset</button>
-												<button type="submit" class="btn btn-success" name="submit">Submit</button>
+												<a href="?page=userLogin" class= "btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+												<button class="btn btn-primary btn-sm" type="reset"><i class="fa fa-refresh"></i> Reset</button>
+												<button type="submit" class="btn btn-success btn-sm" name="submit"><i class="fa fa-edit"></i> Update</button>
 											</div>
 										</div>
 

@@ -66,7 +66,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><?= $data['level'];?> </td>
                
 
-                <td class=" last"><a href="?form=ubahLogin&id_user=<?= $data["id_user"]; ?>" class="btn btn-info btn-sm">Ubah </a> | <a href="?form=hapusLogin&id_user=<?= $data["id_user"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm">Hapus </a>
+                <td class=" last"><a href="?form=ubahLogin&id_user=<?= $data["id_user"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> <a href="?form=hapusLogin&id_user=<?= $data["id_user"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
               </tr>
               <?php } ?>

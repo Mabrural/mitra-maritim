@@ -165,7 +165,9 @@ if ($_SESSION["level"] == "Direktur HRD") {
                       <li><a href="it.php?page=onDuty">On Duty Karyawan</a></li>
                       <li><a href="it.php?page=slipGaji">Slip Gaji</a></li>
                       <li><a href="it.php?page=cutiKaryawan">Cuti Karyawan</a></li>
-                      <!-- <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
+                      <li><a href="it.php?page=absen">Data Absen</a></li>
+                      <li><a href="it.php?page=aksesPintu">Data Akses Pintu</a></li>
+                      <li><a href="it.php?page=userLogin">Data Login</a></li>
                     </ul>
                   </li>
 
@@ -498,6 +500,34 @@ if ($_SESSION["level"] == "Direktur HRD") {
                             case "loanPanjar":
                               include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/approve/app4/app4.php";
                               break;
+
+                            case 'aksesPintu':
+                                include 'page/hrd/akses_pintu/akses_pintu.php';
+                              break;
+
+                            case 'absen':
+                                include "page/hrd/data_absen/data_absen.php";
+                                break;
+
+                            case 'userLogin':
+                                include 'page/hrd/user_login/user_login.php';
+                              break;
+
+                            case 'dataKaryawan':
+                              include "page/hrd/data_karyawan.php";
+                              break;
+
+                            case 'dataKaryawanNonaktif':
+                              include "page/hrd/data_karyawan_nonaktif.php";
+                              break;
+
+                            case 'masterJabatan':
+                              include "page/hrd/master_jabatan/master_jabatan.php";
+                              break;
+
+                            case 'masterDivisi':
+                              include "page/hrd/master_divisi/master_divisi.php";
+                              break;
               
                             
 
@@ -623,6 +653,14 @@ if ($_SESSION["level"] == "Direktur HRD") {
                                 include 'page/hrd/tambah.php';
                               break;
 
+                            case 'ubahKaryawan':
+                                include "page/hrd/ubah.php";
+                                break;
+
+                            case 'hapusKaryawan':
+                                include 'page/hrd/hapus.php';
+                                break;
+
                             case 'tambahInventaris':
                                 include "page/06purchasing/inventaris_dan_asset/tambah.php";
                                 break;
@@ -693,6 +731,71 @@ if ($_SESSION["level"] == "Direktur HRD") {
                             case "rejectRab":
                               include "page/01sales_dan_marketing/rab/reject_rab/reject2.php";
                               break;
+
+                              case 'tambahAbsen':
+                                include "page/hrd/data_absen/tambah.php";
+                                break;
+
+                            case 'ubahAbsen':
+                                include "page/hrd/data_absen/ubah.php";
+                                break;
+
+                            case 'hapusAbsen':
+                                include "page/hrd/data_absen/hapus.php";
+                              break;
+
+                            case 'tambahAkses':
+                                include 'page/hrd/akses_pintu/tambah.php';
+                                break;
+
+                            case 'ubahAkses':
+                                include 'page/hrd/akses_pintu/ubah.php';
+                                break;
+
+
+                            case 'hapusAkses':
+                                include 'page/hrd/akses_pintu/hapus.php';
+                                break;
+
+                            case 'tambahLogin':
+                                include 'page/hrd/user_login/tambah.php';
+                                break;
+
+                            case 'ubahLogin':
+                                include 'page/hrd/user_login/ubah.php';
+                                break;
+
+                            case 'hapusLogin':
+                                include 'page/hrd/user_login/hapus.php';
+                                break;
+
+                            case 'rincianKaryawan':
+                              include 'page/hrd/rincian_karyawan.php';
+                              break;
+
+                            case "tambahJabatan":
+                                include "page/hrd/master_jabatan/tambah.php";
+                                break;
+
+                            case "ubahJabatan":
+                                include "page/hrd/master_jabatan/ubah.php";
+                                break;
+
+                            case "hapusJabatan":
+                                include "page/hrd/master_jabatan/hapus.php";
+                                break;
+
+                            case "tambahDivisi":
+                                include "page/hrd/master_divisi/tambah.php";
+                                break;
+
+                            case "ubahDivisi":
+                                include "page/hrd/master_divisi/ubah.php";
+                                break;
+
+                            case "hapusDivisi":
+                                include "page/hrd/master_divisi/hapus.php";
+                                break;
 
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";
