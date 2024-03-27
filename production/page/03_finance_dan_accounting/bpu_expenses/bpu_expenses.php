@@ -47,44 +47,20 @@ $id_user = $_SESSION["id_user"];
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
-                    $nominal_tf =$data['nominal_tf'];
+                    $nominal_tf =$data['nominal_tf_exp'];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><a href="?form=lihatUraianBpu&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
-                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_bpu']));?></td>
+                <td class=" "><?= $data['no_expenses'];?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_bpu_exp']));?></td>
                 <td class=" "><?= $data['nama_emp'];?></td>
                 <td class=" "><strong style='color: red'><?= "Rp. ".number_format("$nominal_tf", 2, ",", "."); ?> </strong></td>
-                <td class=" "><?= $data['note_bpu'];?></td>
-                <td class=" "><a href="files/bukti_tf_bpu/<?= $data['bukti_tf']?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;">Lihat Bukti TF</a></td>
+                <td class=" "><?= $data['note_exp'];?></td>
+                <td class=" "><a href="files/bukti_tf_exp/<?= $data['bukti_tf_exp']?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;">Lihat Bukti TF</a></td>
 
                 
-                <td class=" last"> <a href="?form=ubahBpuLoan&id_bpu=<?= $data["id_bpu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusBpuLoan&id_bpu=<?= $data["id_bpu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                <td class=" last"> <a href="?form=ubahBpuExpenses&id_bpu_exp=<?= $data["id_bpu_exp"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> <a href="?form=hapusBpuExpenses&id_bpu_exp=<?= $data["id_bpu_exp"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
-
-          
-
-                <!-- <td class="last">
-                    <?php
-                    $id_ppu = $data["id_ppu"];
-                    $query_check_uraian = "SELECT COUNT(*) as uraian_count FROM uraian_ppu WHERE id_ppu = $id_ppu";
-                    $result_check_uraian = mysqli_query($koneksi, $query_check_uraian);
-
-                    if ($result_check_uraian) {
-                        $uraian_count = mysqli_fetch_assoc($result_check_uraian)['uraian_count'];
-
-                        if ($data['status_ppu'] === 'Revise' || $data['status_ppu'] === 'On Ka. Shipping') {
-                            // Jika status_ppu adalah 'Revise' atau 'On Ka. Shipping', tampilkan tombol "Lihat Uraian", "Ubah", dan "Hapus"
-                            echo '<a href="?form=lihatUraian&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> | ';
-                            echo '<a href="?form=ubahPpu&id_ppu=' . $id_ppu . '" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah</a> | ';
-                            echo '<a href="?form=hapusPpu&id_ppu=' . $id_ppu . '" onclick="return confirm(\'Anda yakin ingin menghapus data ini?\')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus</a>';
-                        } else {
-                            // Jika status_ppu bukan 'Revise' atau 'On Ka. Shipping', tampilkan tombol "Lihat Uraian" saja
-                            echo '<a href="?form=lihatUraianRead&id_ppu=' . $id_ppu . '" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a>';
-                        }
-                    }
-                    ?>
-                </td> -->
 
 
             

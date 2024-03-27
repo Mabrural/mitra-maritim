@@ -4961,7 +4961,7 @@ function tambahBpuExpenses($data) {
 	}
 
 	$query = "INSERT INTO bpu_expenses VALUES
-			('', '$tgl_bpu_exp', '$penerima_exp', '$nominal_tf_exp', '$note_exp', '$id_expenses', '$id_user')";
+			('', '$tgl_bpu_exp', '$penerima_exp', '$nominal_tf_exp', '$note_exp', '$bukti_tf_exp', '$id_expenses', '$id_user')";
 	mysqli_query($koneksi, $query);
 
 	return mysqli_affected_rows($koneksi);
@@ -5016,5 +5016,48 @@ function uploadBuktiTfExp(){
 	move_uploaded_file($tmpName, 'files/bukti_tf_exp/'. $namaFileBaru);
 	return $namaFileBaru;
  }
+
+ function ubahBpuExpenses($data) {
+	global $koneksi;
+	$id_bpu_exp = mysqli_real_escape_string($koneksi, $data['id_bpu_exp']);
+	$tgl_bpu_exp = htmlspecialchars($data["tgl_bpu_exp"]);
+	$penerima_exp = mysqli_real_escape_string($koneksi, $data['penerima_exp']);
+	$nominal_tf_exp = mysqli_real_escape_string($koneksi, $data['nominal_tf_exp']);
+	$note_exp = mysqli_real_escape_string($koneksi, $data['note_exp']);
+	$id_expenses = mysqli_real_escape_string($koneksi, $data['id_expenses']);
+	$id_user = htmlspecialchars($data["id_user"]);
+	$bukti_tf_exp_lama = mysqli_real_escape_string($koneksi, $data['bukti_tf_exp_lama']);
+	
+
+	// cek apakah user pilih gambar baru atau tidak
+	if ($_FILES['bukti_tf_exp']['error'] === 4 ) {
+		$bukti_tf_exp = $bukti_tf_exp_lama;
+	} else {
+
+		$bukti_tf_exp = uploadBuktiTfExp();
+	}
+
+	$query = "UPDATE bpu_expenses SET
+				tgl_bpu_exp = '$tgl_bpu_exp',
+				penerima_exp = '$penerima_exp',
+				nominal_tf_exp = '$nominal_tf_exp',
+				note_exp = '$note_exp',
+				bukti_tf_exp = '$bukti_tf_exp',
+				id_expenses = '$id_expenses',
+				id_user = '$id_user'
+			  WHERE id_bpu_exp = $id_bpu_exp
+			";
+	mysqli_query($koneksi, $query);
+
+	return mysqli_affected_rows($koneksi);
+}
+
+function hapusBpuExpenses($id_bpu_exp) {
+	global $koneksi;
+	mysqli_query($koneksi, "DELETE FROM bpu_expenses WHERE id_bpu_exp=$id_bpu_exp");
+
+	return mysqli_affected_rows($koneksi);
+
+}
 
  ?>

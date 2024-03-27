@@ -59,7 +59,7 @@ $id_user = $_SESSION["id_user"];
                 <td class=" "><a href="files/bukti_tf_bpu/<?= $data['bukti_tf']?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;">Lihat Bukti TF</a></td>
 
                 
-                <td class=" last"> <a href="?form=ubahBpuLoan&id_bpu=<?= $data["id_bpu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> | <a href="?form=hapusBpuLoan&id_bpu=<?= $data["id_bpu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
+                <td class=" last"> <a href="?form=ubahBpuLoan&id_bpu=<?= $data["id_bpu"]; ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Ubah </a> <a href="?form=hapusBpuLoan&id_bpu=<?= $data["id_bpu"]; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Hapus </a>
                 </td>
 
           

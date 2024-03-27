@@ -83,7 +83,6 @@ if (isset($_POST["submit"])) {
 											</label>
 											<div class="col-md-6 col-sm-6 ">
 												<select class="form-control" name="id_ppu">
-													<option value="">--No. PPU--</option>
 													<?php foreach($ppu as $row) : ?>
 														<option value="<?= $row['id_ppu']?>" <?= ($row['id_ppu'] == $bpu_loan['id_ppu']) ? 'selected' : '';?>><?= $row['no_ppu']?> </option>
 													<?php endforeach;?>	

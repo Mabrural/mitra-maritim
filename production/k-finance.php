@@ -558,6 +558,14 @@ if ($_SESSION["level"] == "Staff IT") {
                             include "page/03_finance_dan_accounting/bpu_expenses/tambah.php";
                             break;
 
+                          case "ubahBpuExpenses":
+                            include "page/03_finance_dan_accounting/bpu_expenses/ubah.php";
+                            break;
+
+                          case "hapusBpuExpenses":
+                            include "page/03_finance_dan_accounting/bpu_expenses/hapus.php";
+                            break;
+
                           case 'tambahSlip':
                             include 'page/hrd/slip_gaji/tambah.php';
                             break;
