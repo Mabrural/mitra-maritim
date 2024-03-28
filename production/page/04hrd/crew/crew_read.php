@@ -21,7 +21,7 @@ $id_posisi = isset($_GET['id_posisi']) ? $_GET['id_posisi'] : '';
               
           </form>
         <a href="?page=crew" class="btn btn-dark btn-sm btn disabled"><i class="fa fa-users"></i> Crew Armada</a>
-        <a href="?page=kontrakCrew" class="btn btn-success btn-sm  "><i class="fa fa-file-text-o"></i> Kontrak Crew</a>
+        <a href="?page=kontrakCrew" class="btn btn-success btn-sm  "><i class="fa fa-file-text-o"></i> Contract Crew</a>
         <a href="?page=crewEndContract" class="btn btn-danger btn-sm"><i class="fa fa-users"></i> Crew End Contract</a>
         <div class="clearfix"></div>
       </div>

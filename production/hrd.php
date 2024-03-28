@@ -120,26 +120,24 @@ if ($_SESSION["level"] == "Staff IT") {
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="hrd.php?page=dashboard">Dashboard</a></li>
-                      <!-- <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li> -->
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-bar-chart"></i> Sales & Marketing<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="finance.php?page=salesPlan">Sales Plan</a></li>
-                      <li><a href="finance.php?page=RAB">RAB</a></li>
-                      <li><a href="finance.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="hrd.php?page=salesPlan">Sales Plan</a></li>
+                      <li><a href="hrd.php?page=RAB">RAB</a></li>
+                      <li><a href="hrd.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
                   <li><a><i class="fa fa-ship"></i> Operasional & Shipping<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="finance.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
-                      <li><a href="finance.php?page=vesselDatabase">Vessel Database</a></li>
-                      <li><a href="finance.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
-                      <li><a href="finance.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
-                      <li><a href="finance.php?page=pengajuanPPU">Pengajuan PPU</a></li>
+                      <li><a href="hrd.php?page=voyageTracking">Voyage Tracking <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="hrd.php?page=vesselDatabase">Vessel Database</a></li>
+                      <li><a href="hrd.php?page=stockBBM">Stock BBM Monitor <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="hrd.php?page=monitoringSertifikat">Monitoring Sertifikat & Legalitas</a></li>
+                      <li><a href="hrd.php?page=pengajuanPPU">Pengajuan PPU</a></li>
                     </ul>
                   </li>
 
@@ -153,7 +151,7 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="hrd.php?page=dataBarang">PPU & BPU</a></li>
+                      <li><a href="hrd.php?page=BPU">PPU & BPU</a></li>
                       <li><a href="hrd.php?page=actualRAB">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="hrd.php?page=omset">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                       <li><a href="hrd.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
@@ -423,17 +421,25 @@ if ($_SESSION["level"] == "Staff IT") {
                         $page = $_GET['page'];
                         switch ($page) {
 
+                            case 'salesPlan':
+                              include "page/01sales_dan_marketing/sales_plan/sales_plan_read.php";
+                              break;
+
                             case 'inventarisAsset':
                                 include "page/06purchasing/inventaris_dan_asset/inventaris_read.php";
                                 break;
 
                             case 'crew':
-                                include "page/04hrd/crew/crew.php";
+                                include "page/04hrd/crew/crew_read.php";
                                 break;
 
                             case 'kontrakCrew':
-                                include "page/04hrd/kontrak_crew/kontrak_crew.php";
+                                include "page/04hrd/kontrak_crew/kontrak_crew_read.php";
                                 break;
+
+                            case 'crewEndContract':
+                              include "page/04hrd/kontrak_crew/endkontrak_crew_read.php";
+                              break;
 
                             case 'masterBank':
                                 include "page/04hrd/master_bank/master_bank.php";
@@ -590,6 +596,56 @@ if ($_SESSION["level"] == "Staff IT") {
                               include "page/06purchasing/inventaris_dan_asset/disposal_read.php";
                               break;
 
+                            case "RAB":
+                              include "page/01sales_dan_marketing/rab/rab_read.php";
+                              break;
+
+                            case "pengajuanPPU":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/ppu.php";
+                              break;
+
+                            case "loanPanjar":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar-read.php";
+                              break;
+
+                            case "expenses";
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/expenses_read.php";
+                              break;
+
+                            case "vesselDatabase":
+                              include "page/02operasion_dan_shipping/vessel_database/vessel_database_read.php";
+                              break;
+
+                            case "monitoringSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/monitoring_sertifikat_read.php";
+                              break;
+
+                            case "sertifikatExpired":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/expired_read.php";
+                              break;
+
+                            case "sertifikatWillExpired":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/will_expired_read.php";
+                              break;
+
+                            case "sertifikatAktif":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/sertifikat_aktif_read.php";
+                              break;
+
+                            case "BPU":
+                              include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
+                              break;
+
+                            case "bpuLoanPanjar":
+                              include "page/03_finance_dan_accounting/bpu_ppu/bpu_loan_reads.php";
+                              break;
+
+                            case "bpuExpenses":
+                              include "page/03_finance_dan_accounting/bpu_expenses/bpu_expenses_reads.php";
+                              break;
+
+                            
+
                             default:
                                 echo "<center><h3>Maaf. Halaman tidak di temukan!</h3></center>";
                                 break;
@@ -598,6 +654,18 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "lihatUraianRead":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                            break;
+
+                          case "lihatApprove":
+                            include "page/01sales_dan_marketing/sales_plan/lihat_approve_read.php";
+                            break;
+
+                          case "lihatRab":
+                            include "page/01sales_dan_marketing/rab/lihat_approve_read.php";
+                            break;
 
                           case 'tambahSlip':
                             include 'page/hrd/slip_gaji/tambah.php';

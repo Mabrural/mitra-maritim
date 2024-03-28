@@ -19,7 +19,7 @@ $id_user = $_SESSION["id_user"];
         <a href="?page=crew" class="btn btn-dark btn-sm "><i class="fa fa-users"></i> Crew Armada</a>
         <a href="?page=masterBank" class="btn btn-warning btn-sm"><i class="fa fa-bank"></i> Master Bank</a>
         <a href="?page=masterPosisi" class="btn btn-dark btn-sm"><i class="fa fa-ship"></i> Master Posisi</a>
-        <a href="?page=kontrakCrew" class="btn btn-success btn-sm  btn disabled"><i class="fa fa-file-text-o"></i> Kontrak Crew</a>
+        <a href="?page=kontrakCrew" class="btn btn-success btn-sm  btn disabled"><i class="fa fa-file-text-o"></i> Contract Crew</a>
         <a href="?page=crewEndContract" class="btn btn-danger btn-sm"><i class="fa fa-users"></i> Crew End Contract</a>
         <div class="clearfix"></div>
       </div>

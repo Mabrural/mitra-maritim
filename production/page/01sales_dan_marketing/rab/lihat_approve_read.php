@@ -9,7 +9,7 @@ $rab = query("SELECT * FROM rab WHERE id_rab=$id_rab")[0];
     <div class="x_panel">
       <div class="x_title">
         <h2>RAB<small></small></h2>
-        <a href="?page=RAB" class="btn btn-primary btn-sm"> Back</a>
+        <a href="?page=RAB" class="btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
        
         <div class="clearfix"></div>
       </div>
