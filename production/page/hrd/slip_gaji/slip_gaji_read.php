@@ -64,7 +64,7 @@ $id_user = $_SESSION["id_user"];
                       JOIN karyawan ON karyawan.id_emp=slip_gaji.id_emp 
                       JOIN jabatan ON jabatan.id_jabatan=karyawan.id_jabatan 
                       JOIN user ON user.id_emp=karyawan.id_emp 
-                      WHERE user.id_user=$id_user";
+                     ";
             
                     // Tambahkan kondisi WHERE untuk filter rentang periode
                     if (!empty($_GET['periode_awal']) && isset($_GET['periode_akhir'])) {

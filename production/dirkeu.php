@@ -154,10 +154,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="dirkeu.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="dirkeu.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
-                      <li><a href="dirkeu.php?page=dataBarang">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
-                      <li><a href="dirkeu.php?page=dataBarang">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="dirkeu.php?page=BPU">PPU & BPU</a></li>
+                      <li><a href="dirkeu.php?page=actualRab">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="dirkeu.php?page=omset">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="dirkeu.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
 
@@ -504,6 +504,50 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "expenses";
                               include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/approve/app5/app5.php";
+                              break;
+
+                            case "vesselDatabase":
+                              include "page/02operasion_dan_shipping/vessel_database/vessel_database_read.php";
+                              break;
+
+                            case "monitoringSertifikat":
+                              include "page/02operasion_dan_shipping/monitoring_sertifikat/monitoring_sertifikat_read.php";
+                              break;
+
+                            case "BPU":
+                              include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
+                              break;
+
+                            case "bpuLoanPanjar":
+                              include "page/03_finance_dan_accounting/bpu_ppu/bpu_loan_reads.php";
+                              break;
+
+                            case "bpuExpenses":
+                              include "page/03_finance_dan_accounting/bpu_expenses/bpu_expenses_reads.php";
+                              break;
+
+                            case 'dataKaryawan':
+                              include "page/hrd/data_karyawan_read.php";
+                              break;
+
+                            case 'dataKaryawanNonaktif':
+                              include "page/hrd/data_karyawan_nonaktif_read.php";
+                              break;
+
+                            case 'crew':
+                              include "page/04hrd/crew/crew_read.php";
+                              break;
+
+                            case 'kontrakCrew':
+                              include "page/04hrd/kontrak_crew/kontrak_crew_read.php";
+                              break;
+
+                            case 'crewEndContract':
+                              include "page/04hrd/kontrak_crew/endkontrak_crew_read.php";
+                              break;
+
+                            case 'slipGaji':
+                              include "page/hrd/slip_gaji/slip_gaji_read.php";
                               break;
               
                             
