@@ -159,10 +159,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                   <li><a><i class="fa fa-credit-card"></i> Finance & Accounting<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="sales.php?page=dataBarang">PPU & BPU</a></li>
-                      <li><a href="sales.php?page=dataBarang">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
-                      <li><a href="sales.php?page=dataBarang">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
-                      <li><a href="sales.php?page=dataBarang">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="sales.php?page=BPU">PPU & BPU</a></li>
+                      <li><a href="sales.php?page=actualRab">RAB/Actual RAB (Jurnal Umum) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="sales.php?page=omset">Penjualan (Omset) <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
+                      <li><a href="sales.php?page=labaRugi">Laba & Rugi <br> <b style="color:#f5b042">(Coming Soon)</b></a></li>
                     </ul>
                   </li>
 
@@ -583,6 +583,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                             case "vesselDatabase":
                               include "page/02operasion_dan_shipping/vessel_database/vessel_database.php";
+                              break;
+
+                            case "BPU":
+                              include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
                               break;
               
                             
