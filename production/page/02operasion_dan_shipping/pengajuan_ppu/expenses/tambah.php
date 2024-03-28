@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
 			swal.fire({
 				
 				title               : 'Gagal',
-				text                :  'Penyelesaian gagal ditambahkan',
+				text                :  'Expenses gagal ditambahkan',
 				//footer              :  '',
 				icon                : 'error',
 				timer               : 2000,

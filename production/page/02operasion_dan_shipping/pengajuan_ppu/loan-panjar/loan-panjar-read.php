@@ -7,7 +7,7 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>BPU Loan / Panjar<small></small></h2>
+        <h2>Loan / Panjar<small></small></h2>
         <div class="clearfix"></div>
       </div>
 
@@ -24,12 +24,14 @@ $id_user = $_SESSION["id_user"];
                 </th> -->
                 <th class="column-title">No. </th>
                 <th class="column-title">Nomor PPU </th>
-                <th class="column-title">Tanggal Transfer </th>
-                <th class="column-title">Nama Penerima Dana</th>
-                <th class="column-title">Nominal Transfer</th>
-                <th class="column-title">Note</th>
-                <th class="column-title">Bukti Transfer</th>
-    
+                <th class="column-title">Tanggal Input </th>
+                <th class="column-title">Nama Pemohon</th>
+                <th class="column-title">Divisi</th>
+                <th class="column-title">Keperluan</th>
+                <th class="column-title">Status</th>
+     
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th>
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                 </th>
@@ -40,20 +42,27 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.penerima_dana WHERE id_user=$id_user";
+              		$query = "SELECT * FROM ppu JOIN karyawan ON karyawan.id_emp=ppu.id_emp JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
-              	     	$nominal_tf =$data['nominal_tf'];
+              	     		
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><a href="?form=lihatUraianBpu&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
-                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_bpu']));?></td>
+                <td class=" "><?= $data['no_ppu'];?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
                 <td class=" "><?= $data['nama_emp'];?></td>
-                <td class=" "><strong style='color: red'><?= "Rp. ".number_format("$nominal_tf", 2, ",", "."); ?> </strong></td>
-                <td class=" "><?= $data['note_bpu'];?></td>
-                <td class=" "><a href="files/bukti_tf_bpu/<?= $data['bukti_tf']?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;">Lihat Bukti TF</a></td>
+                <td class=" "><?= $data['nama_divisi'];?></td>
+                <td class=" "><?= $data['keperluan'];?></td>
+                <td class=" "><?= $data['status_ppu'];?></td>
+
+                
+                <td class=" last"><a href="?form=lihatUraianRead&id_ppu=<?= $data["id_ppu"]; ?>" class="btn btn-secondary btn-sm"><i class="fa fa-eye"></i> Lihat Uraian</a> 
+                </td>
+
+
+
 
             
                 </td>

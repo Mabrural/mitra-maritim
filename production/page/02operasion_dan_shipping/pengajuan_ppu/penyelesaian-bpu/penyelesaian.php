@@ -26,6 +26,7 @@ $id_user = $_SESSION["id_user"];
                 <th class="column-title">No. </th>
                 <th class="column-title">Nomor PPU </th>
                 <th class="column-title">Tanggal Input </th>
+                <th class="column-title">Dana Dikeluarkan </th>
                 <th class="column-title">Nominal Pemakaian </th>
                 <th class="column-title">Selisih </th>
                 <th class="column-title">Status</th>
@@ -45,24 +46,33 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM penyelesaian JOIN bpu_ppu ON bpu_ppu.id_bpu=penyelesaian.id_bpu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.penerima_dana JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
+              		$query = "SELECT * FROM penyelesaian JOIN bpu_ppu ON bpu_ppu.id_bpu=penyelesaian.id_bpu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.penerima_dana JOIN divisi ON divisi.id_divisi=karyawan.id_divisi WHERE id_user=$id_user";
                     
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
+                       $nominal_tf = $data['nominal_tf'];
                        $nominal_use = $data['nominal_use'];
                        $selisih = $data['selisih'];
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><a href="?form=lihatUraianRead&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
+                <td class=" "><a href="?form=lihatUraianReads&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
                 <td class=" "><?= date('d/m/Y', strtotime($data['tgl_ppu']));?></td>
+                <td class=" "><?= "Rp. " . number_format($nominal_tf, 2, ",", "."); ?></td>
                 <td class=" "><?= "Rp. " . number_format($nominal_use, 2, ",", "."); ?></td>
                 <td class=" "><?= "Rp. " . number_format($selisih, 2, ",", "."); ?></td>
                 <td class=" "><?= $data['status_end'];?></td>
                 <td class=" "><a href="files/bukti_nota/<?= $data['bukti_nota'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Nota</a></td>
-                <td class=" "><a href="files/bukti_nota/<?= $data['bukti_return'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Return</a></td>
-                <!-- <td class=" "><a href="files/bukti_nota/<?= $data['bukti_reimburse'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Reimburse</a></td> -->
+                <!-- <td class=" "><a href="files/bukti_nota/<?= $data['bukti_return'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Return</a></td> -->
+                <td class=" ">
+                    <?php if (!empty($data['bukti_return'])): ?>
+                        <a href="files/bukti_nota/<?= $data['bukti_return'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Reimburse</a>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+                
                 <td class=" ">
                     <?php if (!empty($data['bukti_reimburse'])): ?>
                         <a href="files/bukti_nota/<?= $data['bukti_reimburse'];?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;" >Lihat Reimburse</a>
@@ -107,7 +117,6 @@ $id_user = $_SESSION["id_user"];
           });
 
           </script>
-
 
           <!-- <script type="text/javascript">
             new DataTable('#example', {

@@ -532,6 +532,26 @@ if ($_SESSION["level"] == "Staff IT") {
                                   include "page/hrd/slip_gaji/slip_gaji.php";
                                   break;
 
+                                case "penyelesaianBpu":
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/penyelesaian.php";
+                                  break;
+
+                                case "expenses";
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/expenses.php";
+                                  break;
+
+                                case "BPU":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu.php";
+                                  break;
+
+                                case "bpuLoanPanjar":
+                                  include "page/03_finance_dan_accounting/bpu_ppu/bpu_loan_read.php";
+                                  break;
+
+                                case "bpuExpenses":
+                                  include "page/03_finance_dan_accounting/bpu_expenses/bpu_expenses_read.php";
+                                  break;
+
                                 
                             
 
@@ -543,6 +563,27 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "tambahExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/tambah.php";
+                            break;
+
+                          case "ubahExpenses":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/ubah.php";
+                            break;
+
+                          case "tambahPenyelesaian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/tambah.php";
+                            break;
+
+                          case "ubahPenyelesaian":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/penyelesaian-bpu/ubah.php";
+                            break;
+
+
+                          case "lihatUraianRead":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                            break;
 
                           case 'tambahSlip':
                             include 'page/hrd/slip_gaji/tambah.php';

@@ -5,7 +5,7 @@ $karyawan = query("SELECT * FROM karyawan WHERE status='Aktif'");
 
 $bpu_ppu = query("SELECT * FROM bpu_ppu 
                  JOIN ppu ON ppu.id_ppu = bpu_ppu.id_ppu 
-                 WHERE NOT EXISTS (SELECT 1 FROM penyelesaian WHERE penyelesaian.id_bpu = bpu_ppu.id_bpu)");
+                 WHERE NOT EXISTS (SELECT 1 FROM penyelesaian WHERE penyelesaian.id_bpu = bpu_ppu.id_bpu) AND id_user=$id_user");
 
 
 

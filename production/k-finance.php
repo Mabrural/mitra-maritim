@@ -525,7 +525,7 @@ if ($_SESSION["level"] == "Staff IT") {
                                   break;
 
                                 case "loanPanjar":
-                                  include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar.php";
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/loan-panjar-read.php";
                                   break;
 
                                 case "bpuLoanPanjar":
@@ -538,6 +538,10 @@ if ($_SESSION["level"] == "Staff IT") {
 
                                 case "bpuExpenses":
                                   include "page/03_finance_dan_accounting/bpu_expenses/bpu_expenses.php";
+                                  break;
+
+                                case "expenses";
+                                  include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/expenses_read.php";
                                   break;
 
                                 case 'slipGaji':
@@ -553,6 +557,10 @@ if ($_SESSION["level"] == "Staff IT") {
                         $form = $_GET['form'];
 
                         switch ($form) {
+
+                          case "lihatUraianRead":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                            break;
 
                           case "tambahBpuExpenses":
                             include "page/03_finance_dan_accounting/bpu_expenses/tambah.php";

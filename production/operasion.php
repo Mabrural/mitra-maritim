@@ -603,6 +603,10 @@ if ($_SESSION["level"] == "Staff IT") {
                                 case "expenses";
                                   include "page/02operasion_dan_shipping/pengajuan_ppu/expenses/expenses.php";
                                   break;
+
+                                case "bpuExpenses":
+                                  include "page/03_finance_dan_accounting/bpu_expenses/bpu_expenses_read.php";
+                                  break;
                             
 
                             default:
@@ -670,8 +674,12 @@ if ($_SESSION["level"] == "Staff IT") {
                             include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian.php";
                             break;
 
-                            case "lihatUraianRead":
-                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                          case "lihatUraianRead":
+                            include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_read.php";
+                            break;
+
+                            case "lihatUraianReads":
+                              include "page/02operasion_dan_shipping/pengajuan_ppu/loan-panjar/lihat_uraian_reads.php";
                               break;
 
                           case "tambahRab":

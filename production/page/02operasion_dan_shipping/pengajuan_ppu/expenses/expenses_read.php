@@ -7,7 +7,7 @@ $id_user = $_SESSION["id_user"];
 ?>
     <div class="x_panel">
       <div class="x_title">
-        <h2>BPU Loan / Panjar<small></small></h2>
+        <h2>Expenses<small></small></h2>
         <div class="clearfix"></div>
       </div>
 
@@ -23,13 +23,15 @@ $id_user = $_SESSION["id_user"];
                   <input type="checkbox" id="check-all" class="flat">
                 </th> -->
                 <th class="column-title">No. </th>
-                <th class="column-title">Nomor PPU </th>
-                <th class="column-title">Tanggal Transfer </th>
-                <th class="column-title">Nama Penerima Dana</th>
-                <th class="column-title">Nominal Transfer</th>
-                <th class="column-title">Note</th>
-                <th class="column-title">Bukti Transfer</th>
-    
+                <th class="column-title">Nomor Expenses </th>
+                <th class="column-title">Tanggal Expenses </th>
+                <th class="column-title">Nama Pemohon</th>
+                <th class="column-title">Divisi</th>
+                <th class="column-title">Keperluan</th>
+                <th class="column-title">Nominal</th>
+                <th class="column-title">Status</th>
+                <th class="column-title">Lampiran</th>
+
                 <th class="bulk-actions" colspan="7">
                   <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
                 </th>
@@ -40,23 +42,23 @@ $id_user = $_SESSION["id_user"];
               <tr class="even pointer">
               	<?php 
               		$no = 1;
-              		$query = "SELECT * FROM bpu_ppu JOIN ppu ON ppu.id_ppu=bpu_ppu.id_ppu JOIN karyawan ON karyawan.id_emp=bpu_ppu.penerima_dana WHERE id_user=$id_user";
+              		$query = "SELECT * FROM expenses JOIN karyawan ON karyawan.id_emp=expenses.pemohon JOIN divisi ON divisi.id_divisi=karyawan.id_divisi";
               		
               		$tampil = mysqli_query($koneksi, $query);
               		while ($data = mysqli_fetch_assoc($tampil)) {
-              	     	$nominal_tf =$data['nominal_tf'];
+                    $nominal_expenses = $data['nominal_expenses'];
+              	     		
 
               	 ?>
                 <td class=" "><?= $no++;?></td>
-                <td class=" "><a href="?form=lihatUraianBpu&id_ppu=<?= $data['id_ppu']?>"><?= $data['no_ppu'];?></a></td>
-                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_bpu']));?></td>
+                <td class=" "><?= $data['no_expenses'];?></td>
+                <td class=" "><?= date('d/m/Y', strtotime($data['tgl_expenses']));?></td>
                 <td class=" "><?= $data['nama_emp'];?></td>
-                <td class=" "><strong style='color: red'><?= "Rp. ".number_format("$nominal_tf", 2, ",", "."); ?> </strong></td>
-                <td class=" "><?= $data['note_bpu'];?></td>
-                <td class=" "><a href="files/bukti_tf_bpu/<?= $data['bukti_tf']?>" style="padding-top:5px; padding-bottom: 5px; padding-left:5px; padding-right:5px; background-color: green; color : white; border-radius: 3px;">Lihat Bukti TF</a></td>
-
-            
-                </td>
+                <td class=" "><?= $data['nama_divisi'];?></td>
+                <td class=" "><?= $data['keperluan_exp'];?></td>
+                <td class=" "><?= "Rp. " . number_format($nominal_expenses, 2, ",", "."); ?></td>
+                <td class=" "><?= $data['status_expenses'];?></td>
+                <td class=" "><a href="files/upload_expenses/<?= $data['upload_expenses']?>" class="btn btn-secondary btn-sm" target="_blank"> <i class="fa fa-eye"></i> View</a></td>
               </tr>
               
            <?php } ?>
